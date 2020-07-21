@@ -1,3 +1,55 @@
 .container{
+    background-color: #f4f7fc;
+}
 
+.row{
+    background-color: #f4f7fc;
+    margin-top: 2%;
+    text-align: center;
+    height: 500px;
+}
+
+
+.mainReg{
+    background-color: #f4f7fc;
+    height: 100%;
+    text-align: left;
+}
+.centerReg{
+    width: 80%;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    /*border: 1px solid black;*/
+    background: #fff;
+    text-align: left;
+    height: 100%;
+    border-radius: 6px;
+    margin: 0px auto;
+}
+.backBtn{
+    background-color: #fff;
+    border-style: none;
+    border: none;
+    /*border: 1px solid black;*/
+    text-align: left;
+    font-size: 25px;
+}
+.flexCol{
+    display: flex;
+    flex-direction: column;
+}
+.emailDiv{
+    display: flex;
+    flex-direction: column;
+    margin-top: 14px;
+}
+.submitBtn{
+    height: 45px;
+}
+.socialDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.signInDiv{
+    margin-top: 25px;
 }
