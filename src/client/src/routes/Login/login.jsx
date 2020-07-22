@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
 import style from "../Registration/register.module.css";
+import GoogleLogin from 'react-google-login'
+
 class Login extends Component {
+
+    responseGoogle=(response)=>{
+        console.log(response);
+        console.log(response.profileObj);    
+      }
     render() {
         return (
             <div className={`container-fluid ${style.container}`}>
@@ -22,7 +29,15 @@ class Login extends Component {
                                         <p className={"text-center text-muted"}>or sign in with one click</p>
                                     </div>
                                     <div className={`${style.socialDiv}`}>
-                                        <div>G</div>
+                                        <div>
+                                            <GoogleLogin
+                                            clientId="406658916404-4mih2ovr62l3mnmsmj3ammem908186nu.apps.googleusercontent.com"
+                                            // buttonText="Login"
+                                            onSuccess={this.responseGoogle}
+                                            onFailure={this.responseGoogle}
+                                            cookiePolicy={'single_host_origin'}
+                                            />
+                                        </div>
                                         <div>F</div>
                                         <div>A</div>
                                     </div>

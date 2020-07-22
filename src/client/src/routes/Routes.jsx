@@ -11,9 +11,9 @@ const Routes = ()=>(
         <Switch>
             <Route path ="/stays" component = {Stays} />
             <Route exact path ="/register"  component = {Register}/>
-            <Route path ="/register/password" exact component = {RegisterPassword}/>
-            <Route path ="/login" exact component = {Login}/>
-            <Route path ="/login/password" exact component = {LoginPassword}/>
+            <Route path ="/register/password" component = {RegisterPassword}/>
+            <Route exact path ="/login" component = {Login}/>
+            <Route path ="/login/password"   component = {LoginPassword}/>
         </Switch>
     </>
 )

@@ -38,12 +38,15 @@ var config = {
 };
 
 axios(config)
-.then(function (response) {
-  console.log(JSON.stringify(response.data));
-})
-.catch(function (error) {
-  console.log(error);
-});
+// .then(function (response) {
+//   console.log(JSON.stringify(response.data));
+// })
+// .catch(function (error) {
+//   console.log(error);
+// });
+   .then(res => res.data)
+   .then(res => dispatch(registerUserSuccess(res)))
+   .catch(err => dispatch(registerUserFailure(err)), console.log("errormjn"));
 
 }
 

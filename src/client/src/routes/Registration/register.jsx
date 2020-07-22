@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import style from "./register.module.css";
 import { registerUserData } from '../../redux/ Registration/action';
+import GoogleLogin from 'react-google-login'
+
 class Register extends Component {
     constructor(props){
         super(props)
@@ -15,6 +17,11 @@ class Register extends Component {
         this.setState({
             email:e.target.value
         })
+    }
+
+    responseGoogle=(response)=>{
+        console.log(response)
+        console.log(response.profileObj)
     }
     render() {
         const {email} = this.state
@@ -40,7 +47,15 @@ class Register extends Component {
                                         <p className={"text-center text-muted"}>or sign in with one click</p>
                                     </div>
                                     <div className={`${style.socialDiv}`}>
-                                        <div>G</div>
+                                        <div> 
+                                            <GoogleLogin
+                                            clientId="406658916404-4mih2ovr62l3mnmsmj3ammem908186nu.apps.googleusercontent.com"
+                                            // buttonText="Sign In"
+                                            onSuccess={this.responseGoogle}
+                                            onFailure={this.responseGoogle}
+                                            cookiePolicy={'single_host_origin'}
+                                            />
+                                            </div>
                                         <div>F</div>
                                         <div>A</div>
                                     </div>
