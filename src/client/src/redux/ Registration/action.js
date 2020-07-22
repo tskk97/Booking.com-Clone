@@ -18,13 +18,6 @@ export const registerUserFailure = payload =>({
 export const registerUserData = payload => dispatch =>{
     console.log(payload)
     dispatch(registerUserRequest(payload))
-
-    // Post request
-    //  return axios
-    //  .post("http://b267e0559f0c.ngrok.io/register", { ...payload })
-    //  .then(res => console.log(res))
-    //  .then(res => dispatch(registerUserSuccess(res)))
-    //  .catch(err => dispatch(registerUserFailure(err)), console.log("errormjn"));
     var axios = require('axios');
     var data = JSON.stringify({"email":payload});
 

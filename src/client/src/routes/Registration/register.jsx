@@ -1,21 +1,23 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import style from "./register.module.css";
-import { registerUserData } from '../../redux/ Registration/action';
+import {registerUserData} from '../../redux/ Registration/action';
+
 class Register extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state={
-            email:"",
-            password:""
+        this.state = {
+            email: "",
+            password: ""
         }
     }
 
-    handleChange=(e)=>{
+    handleChange = (e) => {
         this.setState({
-            email:e.target.value
+            email: e.target.value
         })
     }
+
     render() {
         const {email} = this.state
         const {registerUserData} = this.props
@@ -29,14 +31,28 @@ class Register extends Component {
                             <div className={`row`}>
                                 <div className={`col-1`}></div>
                                 <div className={`col-10 ${style.flexCol}`}>
-                                    <p style={{marginTop:"7%"}}><button className={`${style.backBtn}`}> </button><span style={{color:"#23387E",fontWeight:"bolder",fontSize:"18px"}}>Booking</span><span style={{color:"#47A1DE",fontWeight:"bolder",fontSize:"18px"}}>.com</span> Account</p>
+                                    <p style={{marginTop: "7%"}}>
+                                        <button className={`${style.backBtn}`}></button>
+                                        <span style={{
+                                            color: "#23387E",
+                                            fontWeight: "bolder",
+                                            fontSize: "18px"
+                                        }}>Booking</span><span style={{
+                                        color: "#47A1DE",
+                                        fontWeight: "bolder",
+                                        fontSize: "18px"
+                                    }}>.com</span> Account
+                                    </p>
 
                                     <h4>Create your account</h4>
                                     <small>Create an account to use Booking.com services easily.</small>
                                     <div className={`${style.emailDiv}`}>
                                         <label>Email</label>
-                                        <input type={"text"} className={`${style.email}`} value = {this.state.email} onChange={this.handleChange} />
-                                        <button className={`btn-primary mt-4 ${style.submitBtn}`} onClick={()=>registerUserData(this.state.email)}>Get Started</button>
+                                        <input type={"text"} className={`${style.email}`} value={this.state.email}
+                                               onChange={this.handleChange}/>
+                                        <button className={`btn-primary mt-4 ${style.submitBtn}`}
+                                                onClick={() => registerUserData(this.state.email)}>Get Started
+                                        </button>
                                         <p className={"text-center text-muted"}>or sign in with one click</p>
                                     </div>
                                     <div className={`${style.socialDiv}`}>
@@ -59,15 +75,12 @@ class Register extends Component {
     }
 }
 
-const mapStateToProps  = state=>({
-    registerUserData:state.register.registerUserData,
+const mapStateToProps = state => ({
+    registerUserData: state.register.registerUserData,
     isRegister: state.register.isRegister
 })
 
-const mapDispatchToProps =dispatch=>({
-    registerUserData:payload=>dispatch(registerUserData(payload))
+const mapDispatchToProps = dispatch => ({
+    registerUserData: payload => dispatch(registerUserData(payload))
 })
-export default connect(mapStateToProps,mapDispatchToProps)(Register);
-
-
-// export default Register;
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
