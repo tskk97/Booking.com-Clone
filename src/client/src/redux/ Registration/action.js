@@ -31,9 +31,6 @@ export const registerUserData = payload => dispatch => {
     };
 
     axios(config)
-        // .then(function (response) {
-        //   console.log(JSON.stringify(response.data));
-        // })
         .then(res => res.data)
         .then(res => dispatch(registerUserSuccess(res)))
         .catch(err => dispatch(registerUserFailure(err)));

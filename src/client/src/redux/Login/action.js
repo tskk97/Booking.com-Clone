@@ -1,7 +1,7 @@
 import {LOGIN_USER_FAILURE,LOGIN_USER_REQUEST,LOGIN_USER_SUCCESS} from './actionType'
 
 import axios from 'axios'
-import {registerUserRequest} from "../ Registration/action";
+import {registerUserFailure, registerUserRequest, registerUserSuccess} from "../ Registration/action";
 
 export const loginUserRequest = payload =>({
     type:LOGIN_USER_REQUEST,
@@ -13,7 +13,7 @@ export const loginUserSuccess = payload =>({
     payload
 })
 
-export const loginUserFailue = payload =>({
+export const loginUserFailure = payload =>({
     type:LOGIN_USER_FAILURE,
     payload
 })
@@ -34,10 +34,7 @@ export const loginUserData = payload =>dispatch=>{
     };
 
     axios(config)
-        .then(function (response) {
-            console.log(JSON.stringify(response.data));
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        .then(res => res.data)
+        .then(res => dispatch(loginUserSuccess(res)))
+        .catch(err => dispatch(loginUserFailure(err)));
 }

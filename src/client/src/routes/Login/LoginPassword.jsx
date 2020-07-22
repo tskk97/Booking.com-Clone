@@ -24,7 +24,7 @@ class LoginPassword extends Component {
                                     </div>
 
                                     <div className={`${style.signInDiv}`}>
-                                        <p className={"text-center"}><Link>Sign in with a verification link</Link></p>
+                                        <p className={"text-center"}><a>Sign in with a verification link</a></p>
                                     </div>
                                 </div>
                                 <div className={`col-1`}></div>

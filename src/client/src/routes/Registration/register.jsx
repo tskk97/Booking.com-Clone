@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import style from "./register.module.css";
 import {registerUserData} from '../../redux/ Registration/action';
-import {Redirect,Link} from "react-router-dom"
+import {Redirect, Link} from "react-router-dom"
 
 class Register extends Component {
     constructor(props) {
@@ -21,10 +21,10 @@ class Register extends Component {
 
     render() {
         const {email} = this.state
-        const {registerUserData,isRegister,message} = this.props
+        const {registerUserData, isRegister, message} = this.props
         console.log(this.props);
-        console.log(registerUserData,"asg")
-        if(!isRegister){
+        console.log(registerUserData, "asg")
+        if (!isRegister) {
             return (
                 <div className={`container-fluid ${style.container}`}>
                     <div className={`row ${style.row}`}>
@@ -53,7 +53,9 @@ class Register extends Component {
                                             <label>Email</label>
                                             <input type={"text"} className={`${style.email}`} value={this.state.email}
                                                    onChange={this.handleChange}/>
-                                            {!isRegister && <p className={"text-danger"}>{message} <span className={!message ? "d-none" : "d-block"}>You can <Link to="/login">Sign in</Link> directly.</span> </p>}
+                                            {!isRegister && <p className={"text-danger"}>{message} <span
+                                                className={!message ? "d-none" : "d-block"}>You can <Link to="/login">Sign in</Link> directly.</span>
+                                            </p>}
                                             <button className={`btn-primary mt-4 ${style.submitBtn}`}
                                                     onClick={() => registerUserData(this.state.email)}>Get Started
                                             </button>
@@ -76,10 +78,9 @@ class Register extends Component {
                     </div>
                 </div>
             );
-        }
-        else{
+        } else {
             return (
-                <Redirect to="/register/password" />
+                <Redirect to="/register/password"/>
             )
         }
     }
@@ -88,7 +89,7 @@ class Register extends Component {
 const mapStateToProps = state => ({
     registerUserData: state.register.registerUserData,
     isRegister: state.register.isRegister,
-    message:state.register.message
+    message: state.register.message
 })
 
 const mapDispatchToProps = dispatch => ({
