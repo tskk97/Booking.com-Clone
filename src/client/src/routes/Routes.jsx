@@ -4,12 +4,14 @@ import Register from "./Registration/register";
 import RegisterPassword from "./Registration/RegisterPassword";
 import Login from "./Login/login";
 import LoginPassword from "./Login/LoginPassword";
+import Stays from './Navbar/Stays'
 
 const Routes = ()=>(
     <>
         <Switch>
-            <Route path ="/Register" exact component = {Register}/>
-            <Route path ="/Register/password" exact component = {RegisterPassword}/>
+            <Route path ="/stays" component = {Stays} />
+            <Route exact path ="/register"  component = {Register}/>
+            <Route path ="/register/password" exact component = {RegisterPassword}/>
             <Route path ="/login" exact component = {Login}/>
             <Route path ="/login/password" exact component = {LoginPassword}/>
         </Switch>

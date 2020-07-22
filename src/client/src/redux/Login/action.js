@@ -20,13 +20,13 @@ export const loginUserFailue = payload =>({
 export const loginUserData = payload =>dispatch=>{
     dispatch(loginUserRequest(payload))
 
-    return axios
-    .post("", { ...payload })
-    .then(res => {
-      return res.data;
-    })
-    .then(res => dispatch(loginUserSuccess(res)))
-    .catch(err => {
-      dispatch(loginUserFailure(err));
-    });
+    // return axios
+    // .post("", { ...payload })
+    // .then(res => {
+    //   return res.data;
+    // })
+    // .then(res => dispatch(loginUserSuccess(res)))
+    // .catch(err => {
+    //   dispatch(loginUserFailure(err));
+    // });
 }

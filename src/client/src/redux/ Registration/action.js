@@ -16,14 +16,34 @@ export const registerUserFailure = payload =>({
 })
 
 export const registerUserData = payload => dispatch =>{
-
+    console.log(payload)
     dispatch(registerUserRequest(payload))
 
     // Post request
-    // return axios
-    // .post("http://localhost:8080/auth/register", { ...payload })
-    // .then(res => res.data.message)
-    // .then(res => dispatch(registerUserSuccess(res)))
-    // .catch(err => dispatch(registerUserFailure(err)), console.log("errormjn"));
+    //  return axios
+    //  .post("http://b267e0559f0c.ngrok.io/register", { ...payload })
+    //  .then(res => console.log(res))
+    //  .then(res => dispatch(registerUserSuccess(res)))
+    //  .catch(err => dispatch(registerUserFailure(err)), console.log("errormjn"));
+    var axios = require('axios');
+    var data = JSON.stringify({"email":payload});
+
+var config = {
+  method: 'post',
+  url: 'http://b267e0559f0c.ngrok.io/register',
+  headers: { 
+    'Content-Type': 'application/json'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
 }
 

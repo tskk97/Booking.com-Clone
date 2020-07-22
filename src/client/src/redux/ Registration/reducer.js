@@ -2,7 +2,8 @@ import {REGISTER_USER_FAILURE,REGISTER_USER_REQUEST,REGISTER_USER_SUCCESS} from 
 
 const initState = {
     isRegister : false,
-    registerData:""
+    registerData:"",
+    message:""
 }
 
 const reducer = ((state = initState,action)=>{
@@ -17,12 +18,14 @@ const reducer = ((state = initState,action)=>{
             return{
                 ...state,
                 registerData:action.payload,
+                message: "",
                 isRegister:true
             }
         
         case REGISTER_USER_FAILURE:
             return{
                 ...state,
+                message:"",
                 isRegister:true
             }
         
