@@ -2,7 +2,8 @@ import {LOGIN_USER_FAILURE,LOGIN_USER_REQUEST,LOGIN_USER_SUCCESS} from './action
  
 const initState = {
     isLogin:false,
-    loginData:""
+    loginData:"",
+    messageLogin:""
 }
 
 const loginReducer = (state = initState,action)=>{
@@ -11,19 +12,21 @@ const loginReducer = (state = initState,action)=>{
         case LOGIN_USER_REQUEST:
             return {
                 ...state,
-                isLogin:false
+                // isLogin:false
                 // username:action.payload.username,
             }
         case LOGIN_USER_SUCCESS:
             return{
                 ...state,
-                isLogin:true,
-                loginData:action.payload
+                isLogin:action.payload.status,
+                loginData:action.payload,
+                messageLogin: action.payload.msg
             }
         case LOGIN_USER_FAILURE:
             return{
                 ...state,
-                isLogin:false
+                isLogin:action.payload.status,
+                messageLogin: action.payload.msg
             }
         default:
             return state 

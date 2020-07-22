@@ -1,36 +1,52 @@
-import {REGISTER_USER_FAILURE,REGISTER_USER_REQUEST,REGISTER_USER_SUCCESS} from './actionType'
+import {REGISTER_USER_FAILURE,REGISTER_USER_REQUEST,REGISTER_USER_SUCCESS,REGISTER_PASSWORD_FAILURE,REGISTER_PASSWORD_SUCCESS,REGISTER_PASSWORD_REQUEST} from './actionType'
 
 const initState = {
     isRegister : false,
     registerData:"",
-    message:""
+    message:"",
+    userEmail:"",
+    
 }
 
 const reducer = ((state = initState,action)=>{
     switch(action.type){
         case REGISTER_USER_REQUEST:
             return{
-                ...state,
-                isRegister:true,
+                ...state
+                // isRegister:true,
             }
 
         case REGISTER_USER_SUCCESS:
+            // console.log(action.payload.status)
             return{
                 ...state,
                 registerData:action.payload,
-                message: "",
-                isRegister:true
+                isRegister:action.payload.status,
+                userEmail:action.payload.msg
             }
         
         case REGISTER_USER_FAILURE:
             return{
                 ...state,
-                message:"",
-                isRegister:true
+                message:action.payload.msg,
+                isRegister:action.payload.status 
+            }
+
+        case REGISTER_PASSWORD_REQUEST:
+            console.log(action.payload)
+            return{
+                ...state,               
             }
         
-        default:
-            return state
+        case REGISTER_PASSWORD_SUCCESS:
+            return{
+                ...state
+            }
+        case REGISTER_PASSWORD_FAILURE:
+            return{
+                ...state
+            }
+        default:return {...state}
     }
 })
 

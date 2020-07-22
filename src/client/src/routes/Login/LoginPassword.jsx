@@ -1,7 +1,29 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
+// import {Link} from "react-router-dom";
+import {loginUserData} from '../../redux/Login/action';
+import {connect} from "react-redux";
 import style from "../Registration/register.module.css";
 class LoginPassword extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+            password:"",
+            cnfpassword:""
+        }
+    }
+    handleChange =(e)=>{
+        this.setState({
+            [e.target.name] : e.target.value
+        })
+    }
+    handleSubmit=()=>{
+        const {loginUserData} = this.props;
+        const obj = {
+            password:this.state.password,
+            username:this.state.username,
+        }
+        loginUserData(obj);
+    }
     render() {
         return (
             <div className={`container-fluid ${style.container}`}>
@@ -18,13 +40,13 @@ class LoginPassword extends Component {
                                     <small>Please enter your Booking.com password for (#fillerEmail)</small>
                                     <div className={`${style.emailDiv}`}>
                                         <label>Booking.com password</label>
-                                        <input type={"text"} className={`${style.email}`} />
-                                        <button className={`btn-primary mt-4 ${style.submitBtn}`}>Sign in</button>
+                                        <input type={"text"} className={`${style.email}`} value={this.state.password} name="password" onChange={this.handleChange}/>
+                                        <button className={`btn-primary mt-4 ${style.submitBtn}`} onClick={this.handleSubmit}>Sign in</button>
                                         {/*<p className={"text-center text-muted"}>or sign in with one click</p>*/}
                                     </div>
 
                                     <div className={`${style.signInDiv}`}>
-                                        <p className={"text-center"}><Link>Sign in with a verification link</Link></p>
+                                        <p className={"text-center"}><a>Sign in with a verification link</a></p>
                                     </div>
                                 </div>
                                 <div className={`col-1`}></div>
@@ -38,4 +60,9 @@ class LoginPassword extends Component {
     }
 }
 
-export default LoginPassword;
+const mapDispatchToProps = dispatch => ({
+    loginUserData: payload => dispatch(loginUserData(payload))
+})
+
+export default connect(null, mapDispatchToProps)(LoginPassword);
+// export default LoginPassword;
