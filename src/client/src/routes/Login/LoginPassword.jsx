@@ -1,41 +1,86 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
+// import {Link} from "react-router-dom";
+import {loginPasswordUserData} from '../../redux/Login/action';
+import {connect} from "react-redux";
 import style from "../Registration/register.module.css";
+import { Redirect } from 'react-router-dom';
 class LoginPassword extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+            password:""      
+        }
+    }
+    handleChange =(e)=>{
+        this.setState({
+            [e.target.name] : e.target.value
+        })
+    }
+    handleSubmit=()=>{
+        const {loginPasswordUserData,userLoginEmail} = this.props;
+        const obj = {
+            email:userLoginEmail,   
+            password:this.state.password
+        }
+        console.log(obj,"obj")
+        loginPasswordUserData(obj);
+    }
     render() {
-        return (
-            <div className={`container-fluid ${style.container}`}>
-                <div className={`row ${style.row}`}>
-                    <div className={"col-4"}></div>
-                    <div className={`col-4 ${style.mainReg}`}>
-                        <div className={`${style.centerReg}`}>
-                            <div className={`row`}>
-                                <div className={`col-1`}></div>
-                                <div className={`col-10 ${style.flexCol}`}>
-                                    <p style={{marginTop:"7%"}}><button className={`${style.backBtn}`}> ></button><span style={{color:"#23387E",fontWeight:"bolder",fontSize:"18px"}}>Booking</span><span style={{color:"#47A1DE",fontWeight:"bolder",fontSize:"18px"}}>.com</span> Account</p>
+        const {messageLogin,userLoginEmail,userToken,isLogin,userData} = this.props;
+        console.log(userLoginEmail,"ree")
+        if(messageLogin === "Login Successful"){
+            return (
+                <Redirect to='/stays'/> 
+            )
+        }
+        else{
+            return (
+                <div className={`container-fluid ${style.container}`}>
+                    <div className={`row ${style.row}`}>
+                        <div className={"col-4"}></div>
+                        <div className={`col-4 ${style.mainReg}`}>
+                            <div className={`${style.centerReg}`}>
+                                <div className={`row`}>
+                                    <div className={`col-1`}></div>
+                                    <div className={`col-10 ${style.flexCol}`}>
+                                        <p style={{marginTop:"7%"}}><button className={`${style.backBtn}`}> ></button><span style={{color:"#23387E",fontWeight:"bolder",fontSize:"18px"}}>Booking</span><span style={{color:"#47A1DE",fontWeight:"bolder",fontSize:"18px"}}>.com</span> Account</p>
 
-                                    <h4>Enter your password</h4>
-                                    <small>Please enter your Booking.com password for (#fillerEmail)</small>
-                                    <div className={`${style.emailDiv}`}>
-                                        <label>Booking.com password</label>
-                                        <input type={"text"} className={`${style.email}`} />
-                                        <button className={`btn-primary mt-4 ${style.submitBtn}`}>Sign in</button>
-                                        {/*<p className={"text-center text-muted"}>or sign in with one click</p>*/}
-                                    </div>
+                                        <h4>Enter your password</h4>
+                                        <small>Please enter your Booking.com password for {userLoginEmail}</small>
+                                        <div className={`${style.emailDiv}`}>
+                                            <label>Booking.com password</label>
+                                            <input type={"text"} className={`${style.email}`} value={this.state.password} name="password" onChange={this.handleChange}/>
+                                            <button className={`btn-primary mt-4 ${style.submitBtn}`} onClick={this.handleSubmit}>Sign in</button>
+                                            {/*<p className={"text-center text-muted"}>or sign in with one click</p>*/}
+                                        </div>
 
-                                    <div className={`${style.signInDiv}`}>
-                                        <p className={"text-center"}><a>Sign in with a verification link</a></p>
+                                        <div className={`${style.signInDiv}`}>
+                                            <p className={"text-center"}><a>Sign in with a verification link</a></p>
+                                        </div>
                                     </div>
+                                    <div className={`col-1`}></div>
                                 </div>
-                                <div className={`col-1`}></div>
                             </div>
                         </div>
+                        <div className={"col-4"}></div>
                     </div>
-                    <div className={"col-4"}></div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
 }
 
-export default LoginPassword;
+const mapStateToProps = state => ({
+    loginPasswordUserData: state.login.loginPasswordUserData,
+    isLogin: state.login.isLogin,
+    messageLogin: state.login.messageLogin,
+    userToken:state.login.token,
+    userData:state.login.user_data,
+    userLoginEmail:state.login.mail
+})
+const mapDispatchToProps = dispatch => ({
+    loginPasswordUserData: payload => dispatch(loginPasswordUserData(payload))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPassword);
+// export default LoginPassword;

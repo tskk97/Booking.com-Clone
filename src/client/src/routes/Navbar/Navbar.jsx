@@ -30,7 +30,7 @@ const Navbar = () => {
                             </div>
                             <div className={`${style.navFlexInside}`}>
                                 <div className={`${style.white}`} style={{color:"white",fontSize:"22px"}}>₹</div>
-                                <div style={{color:"white",fontSize:"22px"}}><img src={"india-flag-icon-32.png"}/></div>
+                                <div style={{color:"white",fontSize:"22px"}}><img src={"india-flag-icon-32.png"} alt={"not found im"}/></div>
                                 <div style={{color:"white",fontSize:"22px"}}><FiHelpCircle/></div>
                                 <div>
                                     <button className={`${style.propertyBtn}`}>List your property</button>

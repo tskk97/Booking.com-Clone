@@ -1,24 +1,28 @@
 import React, {Component} from 'react';
 import style from "../Registration/register.module.css";
-import {registerUserData} from "../../redux/ Registration/action";
+// import {registerUserData} from "../../redux/ Registration/action";
 import {loginUserData} from '../../redux/Login/action';
 import {connect} from "react-redux";
+import GoogleLogin from 'react-google-login'
 import {Redirect, Link} from "react-router-dom"
-
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: ""
+            
         }
     }
-
     handleChange = (e) => {
         this.setState({
             email: e.target.value
         })
     }
 
+    responseGoogle=(response)=>{
+        console.log(response)
+        // console.log(response.profileObj)
+    }
     render() {
         const {email} = this.state;
         const {loginUserData, isLogin, messageLogin} = this.props;
@@ -42,7 +46,6 @@ class Login extends Component {
                                             fontSize: "18px"
                                         }}>.com</span> Account
                                         </p>
-
                                         <h4>Sign in</h4>
                                         <small>You can sign in using your Booking.com account to access our
                                             services.</small>
@@ -60,7 +63,15 @@ class Login extends Component {
                                             <p className={"text-center text-muted"}>or sign in with one click</p>
                                         </div>
                                         <div className={`${style.socialDiv}`}>
-                                            <div>G</div>
+                                            <div>
+                                                <GoogleLogin
+                                                clientId="406658916404-4mih2ovr62l3mnmsmj3ammem908186nu.apps.googleusercontent.com"
+                                                // buttonText="Login"
+                                                onSuccess={this.responseGoogle}
+                                                onFailure={this.responseGoogle}
+                                                cookiePolicy={'single_host_origin'}
+                                                />
+                                            </div>
                                             <div>F</div>
                                             <div>A</div>
                                         </div>
@@ -84,16 +95,12 @@ class Login extends Component {
         }
     }
 }
-
-
 const mapStateToProps = state => ({
     loginUserData: state.login.loginUserData,
     isLogin: state.login.isLogin,
     messageLogin: state.login.messageLogin
 })
-
 const mapDispatchToProps = dispatch => ({
     loginUserData: payload => dispatch(loginUserData(payload))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
-

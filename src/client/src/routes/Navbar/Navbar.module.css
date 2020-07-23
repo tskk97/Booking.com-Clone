@@ -1,6 +1,6 @@
 .mainNav{
     background: #003580;
-    height: 13%;
+    height: 18%;
 }
 .navFlex{
     display: flex;
@@ -19,7 +19,7 @@
 .navFlexTabs{
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 .navFlexInside{

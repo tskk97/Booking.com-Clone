@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
+import { registerUserData } from '../../redux/ Registration/action';
 import style from "./register.module.css";
-import {registerUserData} from '../../redux/ Registration/action';
+import GoogleLogin from 'react-google-login'
 import {Redirect, Link} from "react-router-dom"
 
 class Register extends Component {
@@ -19,12 +20,22 @@ class Register extends Component {
         })
     }
 
+    responseGoogle=(response)=>{
+        console.log(response)
+        //console.log(response.profileObj)
+    }
     render() {
-        const {email} = this.state
+        // const {email} = this.state
         const {registerUserData, isRegister, message} = this.props
         console.log(this.props);
-        console.log(registerUserData, "asg")
-        if (!isRegister) {
+        // console.log(registerUserData, "asg")
+        if(message === "Registration Successful"){
+            return (
+                <Redirect to='/login'/>
+            )
+        }
+
+        else if (!isRegister) {
             return (
                 <div className={`container-fluid ${style.container}`}>
                     <div className={`row ${style.row}`}>
@@ -62,7 +73,15 @@ class Register extends Component {
                                             <p className={"text-center text-muted"}>or sign in with one click</p>
                                         </div>
                                         <div className={`${style.socialDiv}`}>
-                                            <div>G</div>
+                                            <div>
+                                            <GoogleLogin
+                                                clientId="406658916404-4mih2ovr62l3mnmsmj3ammem908186nu.apps.googleusercontent.com"
+                                                // buttonText="Login"
+                                                onSuccess={this.responseGoogle}
+                                                onFailure={this.responseGoogle}
+                                                cookiePolicy={'single_host_origin'}
+                                            />
+                                            </div>
                                             <div>F</div>
                                             <div>A</div>
                                         </div>
