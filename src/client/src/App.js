@@ -1,15 +1,15 @@
 import React from 'react';
 import './App.css';
  import Routes from "./routes/Routes";
-import Navbar from './routes/Navbar/Navbar';
+// import Navbar from './routes/Navbar/Navbar';
 
  
 function App() {
   return (  
     <>
    
-   <Navbar/>
-   <div>hello</div>
+   {/* <Navbar/> */}
+   {/* <div>hello</div> */}
     <Routes/>
     </>
   );

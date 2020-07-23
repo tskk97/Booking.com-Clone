@@ -9,11 +9,8 @@
     "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-<<<<<<< HEAD
     "react-google-login": "^5.1.21",
-=======
     "react-icons": "^3.10.0",
->>>>>>> 63a8d0aee80c871771761ee6ea89cfb4806a86a2
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",

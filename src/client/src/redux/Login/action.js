@@ -1,8 +1,6 @@
-import {LOGIN_USER_FAILURE,LOGIN_USER_REQUEST,LOGIN_USER_SUCCESS} from './actionType'
+import {LOGIN_USER_FAILURE,LOGIN_USER_REQUEST,LOGIN_USER_SUCCESS,LOGIN_PASSWORD_REQUEST,LOGIN_PASSWORD_SUCCESS,LOGIN_PASSWORD_FAILURE} from './actionType'
 
 import axios from 'axios'
-// import {registerUserFailure, registerUserRequest, registerUserSuccess} from "../ Registration/action";
-
 export const loginUserRequest = payload =>({
     type:LOGIN_USER_REQUEST,
     payload:payload
@@ -18,6 +16,21 @@ export const loginUserFailure = payload =>({
     payload
 })
 
+export const loginPasswordUserRequest = payload =>({
+    type:LOGIN_PASSWORD_REQUEST,
+    payload
+})
+
+export const loginPasswordUserSuccess = payload =>({
+    type:LOGIN_PASSWORD_SUCCESS,
+    payload
+})
+
+export const loginPasswordUserFailure = payload =>({
+    type:LOGIN_PASSWORD_FAILURE,
+    payload
+})
+
 export const loginUserData = payload =>dispatch=>{
     dispatch(loginUserRequest(payload))
     console.log(payload)
@@ -26,7 +39,7 @@ export const loginUserData = payload =>dispatch=>{
 
     var config = {
         method: 'post',
-        url: 'http://b267e0559f0c.ngrok.io/login',
+        url: 'http://b8b4cb2b4039.ngrok.io/login',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -38,3 +51,25 @@ export const loginUserData = payload =>dispatch=>{
         .then(res => dispatch(loginUserSuccess(res)))
         .catch(err => dispatch(loginUserFailure(err)));
 }
+
+export const loginPasswordUserData = payload =>dispatch=>{
+    dispatch(loginPasswordUserRequest(payload))
+    console.log(payload)
+    var axios = require('axios');
+    var data = JSON.stringify({"email":payload.email, "password":payload.password});
+
+    var config = {
+        method: 'post',
+        url: 'http://b8b4cb2b4039.ngrok.io/login/password',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data : data
+    };
+
+    axios(config)
+        .then(res => res.data)
+        .then(res => dispatch(loginPasswordUserSuccess(res)))
+        .catch(err => dispatch(loginPasswordUserFailure(err)));
+}
+

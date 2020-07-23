@@ -27,9 +27,9 @@ class Register extends Component {
     render() {
         // const {email} = this.state
         const {registerUserData, isRegister, message} = this.props
-        // console.log(this.props);
+        console.log(this.props);
         // console.log(registerUserData, "asg")
-        if(message == "Registration Successful"){
+        if(message === "Registration Successful"){
             return (
                 <Redirect to='/login'/>
             )

@@ -1,5 +1,5 @@
 import {REGISTER_USER_FAILURE, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS,REGISTER_PASSWORD_FAILURE,REGISTER_PASSWORD_SUCCESS,REGISTER_PASSWORD_REQUEST} from './actionType'
-import axios from 'axios'
+// import axios from 'axios'
 
 export const registerUserRequest = payload => ({
     type: REGISTER_USER_REQUEST
@@ -38,7 +38,7 @@ export const registerUserData = payload => dispatch => {
 
     var config = {
         method: 'post',
-        url: 'http://b267e0559f0c.ngrok.io/register',
+        url: 'http://b8b4cb2b4039.ngrok.io/register',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -61,7 +61,7 @@ export const registerPasswordUserData = payload => dispatch => {
 
     var config = {
         method: 'post',
-        url: 'http://b267e0559f0c.ngrok.io/register/password',
+        url: 'http://b8b4cb2b4039.ngrok.io/register/password',
         headers: {
             'Content-Type': 'application/json'
         },

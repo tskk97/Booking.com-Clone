@@ -1,5 +1,5 @@
 import React from 'react'
-// import Navbar from './Navbar'
+import Navbar from './Navbar'
 // import Register from '../Registration/register'
 
 class Stays extends React.Component{
@@ -7,7 +7,7 @@ class Stays extends React.Component{
         return(
             <div>
                 <h1>Ashok</h1>
-                {/* <Navbar/> */}
+                <Navbar/>
                 {/* <Register/> */}
             </div>
         )
