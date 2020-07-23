@@ -12,7 +12,7 @@ class Stays extends React.Component{
         const activePath = this.props.match.url
         return(
             <>
-                <Navbar activepath={activePath}/>
+                <Navbar activePath={activePath}/>
                 <div className={`${style.body} container-fluid`}>
                     <div className={`row ${style.row}`}>
                         <div className={`col-1`}></div>
