@@ -13,6 +13,7 @@ import AirportTaxis from './Navbar/AirportTaxis';
 const Routes = ()=>(
     <>
         <Switch>
+            <Route path ="/" exact component = {Stays} />
             <Route path ="/stays" component = {Stays} />
             <Route path ="/flights" component = {Flights} />
             <Route path = '/carrentals' component ={CarRentals} />
