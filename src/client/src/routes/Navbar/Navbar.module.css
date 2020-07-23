@@ -1,0 +1,64 @@
+.mainNav{
+    background: #003580;
+    height: 18%;
+}
+.navFlex{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.navCol{
+    display: flex;
+    flex-direction: column;
+}
+.white{
+    color: white;
+}
+
+.navFlexTabs{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.navFlexInside{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+}
+.navFlexTabs > li{
+    display: inline;
+}
+
+.navFlexInside > *{
+    margin-right: 18px;
+    vertical-align: middle;
+}
+
+.propertyBtn{
+    /*background: #003580;*/
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+    line-height: 18px;
+    border: 1px solid white;
+    font-size: 12px;
+    padding: 7px 10px;
+    border-radius: 3px;
+}
+
+.authBtn{
+    background-color: white;
+    color: black;
+    padding: 7px 10px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    white-space: nowrap;
+}
+.tabs > *{
+    margin-right: 10px;
+}
