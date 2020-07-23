@@ -5,6 +5,7 @@ from flask import Flask, request, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_restful import Api
+from flask_cors import CORS
 
 
 from .settings import config_by_name
@@ -26,6 +27,7 @@ def create_app(config_name):
         object: Flask object configured with the configuration parameters from settings based on the environment name specified
     """
     app = Flask(__name__)
+    CORS(app)
     app.config.from_object(config_by_name[config_name])
     add_extentions(app=app)
 

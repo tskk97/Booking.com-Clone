@@ -22,7 +22,7 @@ class DevelopmentConfig(Config):
     # SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://<user>:<password>@<host>:<port>/<database_name>'
 
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = ''
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:SaikiMysql@17@localhost/booking_clone'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     ENV = 'development'
 
@@ -30,7 +30,7 @@ class DevelopmentConfig(Config):
 class TestingConfig(Config):
     DEBUG = True
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = ''
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:SaikiMysql@17@localhost/booking_clone'
     PRESERVE_CONTEXT_ON_EXCEPTION = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
