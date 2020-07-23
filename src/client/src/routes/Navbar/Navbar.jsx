@@ -12,7 +12,7 @@ const Navbar = () => {
         <>
             <nav className={`container-fluid fixed-top navbar-expand-lg ${style.mainNav}`}>
                 <div className={`row`}>
-                    <div className={`col-1 text-center`}>1</div>
+                    <div className={`col-1 text-center`}></div>
                     <div className={`col-10 text-center ${style.navCol}`}>
                         <div className={`text-center ${style.navFlex}`}>
                             <div>
@@ -46,8 +46,8 @@ const Navbar = () => {
                         <div className={`${style.navFlexTabs}`}>
                             <ul className="nav nav-tabs" id="myTab" role="tablist">
                                 <li className="nav-item" role="presentation">
-                                    <Link to ="/stays" className="nav-link" id="home-tab" data-toggle="tab"
-                                       role="tab" aria-controls="home" aria-selected="true"><FaHome style={{marginRight:"5px"}}/>Stays</Link>
+                                    <Link to ="/stays" className="nav-link active" id="home-tab" data-toggle="tab"
+                                       role="tab"  aria-controls="home" aria-selected="true"><FaHome style={{marginRight:"5px"}}/>Stays</Link>
                                 </li>
                                 <li className="nav-item" role="presentation">
                                     <Link className="nav-link" id="profile-tab" data-toggle="tab" to ="/flights"
@@ -70,7 +70,7 @@ const Navbar = () => {
                         </div>
 
                     </div>
-                    <div className={`col-1 text-center`}>3</div>
+                    <div className={`col-1 text-center`}></div>
                 </div>
             </nav>
 

@@ -1,3 +1,55 @@
 .body{
     margin-top: 15vh;
 }
+
+.row{
+    height: auto;
+    width: auto;
+    padding: 5px;
+    background: #f5f5f5;
+    border: 1px solid black;
+    text-align: start;
+}
+.flexCol{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+.flexRow{
+    display: flex;
+    flex-direction: row;
+}
+.flexRow > *{
+    margin-right: 3px;
+}
+.flexRowInput{
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+    margin-right: 0%;
+    justify-content: unset;
+
+}
+.flexRowInput > *{
+    margin-right: 0px;
+    border: 1px solid #febb02;
+}
+.searchBtn{
+    background-color: #0071c2;
+    padding: 3px 32px;
+    height: 3%;
+    color: white;
+    cursor: pointer;
+    height:fit-content;
+    border-radius: 2px;
+}
+/*.bed{*/
+/*    width: 30px;*/
+/*}*/
+/*.calendar{*/
+/*    width: 25%;*/
+/*}*/
+/*.user{*/
+/*    width: 25%;*/
+/*    text-align: center;*/
+/*}*/

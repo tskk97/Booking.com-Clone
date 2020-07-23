@@ -3,7 +3,7 @@ import style from "../Registration/register.module.css";
 // import {registerUserData} from "../../redux/ Registration/action";
 import {loginUserData} from '../../redux/Login/action';
 import {connect} from "react-redux";
-import GoogleLogin from 'react-google-login'
+import GoogleLogin from 'react-google-login';
 import {Redirect, Link} from "react-router-dom"
 class Login extends Component {
     constructor(props) {
