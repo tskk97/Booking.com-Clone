@@ -5,6 +5,7 @@ import {loginUserData} from '../../redux/Login/action';
 import {connect} from "react-redux";
 import GoogleLogin from 'react-google-login';
 import {Redirect, Link} from "react-router-dom"
+import {FiChevronLeft} from 'react-icons/fi'
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -38,7 +39,7 @@ class Login extends Component {
                                     <div className={`col-1`}></div>
                                     <div className={`col-10 ${style.flexCol}`}>
                                         <p style={{marginTop: "7%"}}>
-                                            <button className={`${style.backBtn}`}></button>
+                                            <Link to ='/stays'> <FiChevronLeft /> </Link>
                                             <span style={{color: "#23387E", fontWeight: "bolder", fontSize: "18px"}}>
                                             Booking</span><span style={{
                                             color: "#47A1DE",

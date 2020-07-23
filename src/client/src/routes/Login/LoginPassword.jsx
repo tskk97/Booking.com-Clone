@@ -3,7 +3,8 @@ import React, {Component} from 'react';
 import {loginPasswordUserData} from '../../redux/Login/action';
 import {connect} from "react-redux";
 import style from "../Registration/register.module.css";
-import { Redirect } from 'react-router-dom';
+import { Redirect ,Link} from 'react-router-dom';
+import {FiChevronLeft} from 'react-icons/fi'
 class LoginPassword extends Component {
     constructor(props){
         super(props)
@@ -27,7 +28,7 @@ class LoginPassword extends Component {
     }
     render() {
         const {messageLogin,userLoginEmail,userToken,isLogin,userData} = this.props;
-        console.log(userLoginEmail,"ree")
+        // console.log(userLoginEmail,"ree")
         if(messageLogin === "Login Successful"){
             return (
                 <Redirect to='/stays'/> 
@@ -43,7 +44,7 @@ class LoginPassword extends Component {
                                 <div className={`row`}>
                                     <div className={`col-1`}></div>
                                     <div className={`col-10 ${style.flexCol}`}>
-                                        <p style={{marginTop:"7%"}}><button className={`${style.backBtn}`}> ></button><span style={{color:"#23387E",fontWeight:"bolder",fontSize:"18px"}}>Booking</span><span style={{color:"#47A1DE",fontWeight:"bolder",fontSize:"18px"}}>.com</span> Account</p>
+                                        <p style={{marginTop:"7%"}}><Link to ='/login'> <FiChevronLeft /> </Link><span style={{color:"#23387E",fontWeight:"bolder",fontSize:"18px"}}>Booking</span><span style={{color:"#47A1DE",fontWeight:"bolder",fontSize:"18px"}}>.com</span> Account</p>
 
                                         <h4>Enter your password</h4>
                                         <small>Please enter your Booking.com password for {userLoginEmail}</small>
@@ -74,10 +75,10 @@ const mapStateToProps = state => ({
     loginPasswordUserData: state.login.loginPasswordUserData,
     isLogin: state.login.isLogin,
     messageLogin: state.login.messageLogin,
-    userToken:state.login.token,
-    userData:state.login.user_data,
-    userLoginEmail:state.login.mail
-});
+    userToken:state.login.userToken,
+    userData:state.login.userData,
+    userLoginEmail:state.login.userLoginEmail
+})
 const mapDispatchToProps = dispatch => ({
     loginPasswordUserData: payload => dispatch(loginPasswordUserData(payload))
 });

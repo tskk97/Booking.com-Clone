@@ -8,10 +8,11 @@ import {FiUser} from "react-icons/fi";
 
 class Stays extends React.Component{
     render(){
+        console.log(this.props)
+        const activePath = this.props.match.url
         return(
-
             <>
-                <Navbar/>
+                <Navbar activepath={activePath}/>
                 <div className={`${style.body} container-fluid`}>
                     <div className={`row ${style.row}`}>
                         <div className={`col-1`}></div>
@@ -60,9 +61,7 @@ class Stays extends React.Component{
                     </div>
                 </div>
             </>
-
         )
     }
 }
-
 export default Stays

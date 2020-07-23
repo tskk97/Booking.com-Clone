@@ -5,12 +5,20 @@ import RegisterPassword from "./Registration/RegisterPassword";
 import Login from "./Login/login";
 import LoginPassword from "./Login/LoginPassword";
 import Stays from './Navbar/Stays'
+import Flights from './Navbar/Flights'
+import CarRentals from './Navbar/CarRentals';
+import Attractions from './Navbar/Attractions';
+import AirportTaxis from './Navbar/AirportTaxis';
 
 const Routes = ()=>(
     <>
         <Switch>
             <Route path ="/" exact component = {Stays} />
             <Route path ="/stays" component = {Stays} />
+            <Route path ="/flights" component = {Flights} />
+            <Route path = '/carrentals' component ={CarRentals} />
+            <Route path = "/attractions" component={Attractions} />
+            <Route path ="/airporttaxis" component={AirportTaxis} />
             <Route exact path ="/register"  component = {Register}/>
             <Route path ="/register/password" component = {RegisterPassword}/>
             <Route exact path ="/login" component = {Login}/>
