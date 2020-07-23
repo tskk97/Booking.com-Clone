@@ -2,14 +2,14 @@ import React from "react"
 import {Link} from "react-router-dom";
 import style from "./Navbar.module.css";
 import {FiHelpCircle} from "react-icons/fi";
-import {FaHome,FaChild,FaTaxi} from "react-icons/fa";
+import {FaHome, FaChild, FaTaxi} from "react-icons/fa";
 import {MdFlight} from "react-icons/md";
 import {AiFillCar} from "react-icons/ai";
 
 
-class Navbar extends React.Component{
+class Navbar extends React.Component {
 
-    render(){
+    render() {
         console.log(this.props)
         const {activePath} = this.props
         return (
@@ -33,37 +33,52 @@ class Navbar extends React.Component{
                                     </p>
                                 </div>
                                 <div className={`${style.navFlexInside}`}>
-                                    <div className={`${style.white}`} style={{color:"white",fontSize:"22px"}}>₹</div>
-                                    <div style={{color:"white",fontSize:"22px"}}><img src={"india-flag-icon-32.png"} alt={"not found im"}/></div>
-                                    <div style={{color:"white",fontSize:"22px"}}><FiHelpCircle/></div>
+                                    <div className={`${style.white}`} style={{color: "white", fontSize: "22px"}}>₹</div>
+                                    <div style={{color: "white", fontSize: "22px"}}><img src="india-flag-icon-32.png"
+                                                                                         alt={"not found img"}/></div>
+                                    <div style={{color: "white", fontSize: "22px"}}><FiHelpCircle/></div>
                                     <div>
                                         <button className={`${style.propertyBtn}`}>List your property</button>
                                     </div>
                                     <div>
-                                        <Link to="/register"> <button className={`${style.authBtn}`}>Register</button></Link>
+                                        <Link to="/register">
+                                            <button className={`${style.authBtn}`}>Register</button>
+                                        </Link>
                                     </div>
                                     <div>
-                                        <Link to="/login"> <button className={`${style.authBtn}`}>Sign in</button></Link>
+                                        <Link to="/login">
+                                            <button className={`${style.authBtn}`}>Sign in</button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
-                             
+
                             <div className={`${style.navFlexTabs}`}>
                                 <ul className="nav nav-tabs" id="myTab" role="tablist">
                                     <li>
-                                        <Link to ="/stays" className={activePath === "/stays" ? "nav-link active" : "nav-link"}><FaHome style={{marginRight:"5px"}}/>Stays</Link>
+                                        <Link to="/stays"
+                                              className={activePath === "/stays" ? "nav-link active" : "nav-link"}><FaHome
+                                            style={{marginRight: "5px"}}/>Stays</Link>
                                     </li>
                                     <li>
-                                        <Link to ="/flights" className={activePath === "/flights" ? "nav-link active" : "nav-link"}><MdFlight style={{marginRight:"5px"}}/>Flights</Link>
+                                        <Link to="/flights"
+                                              className={activePath === "/flights" ? "nav-link active" : "nav-link"}><MdFlight
+                                            style={{marginRight: "5px"}}/>Flights</Link>
                                     </li>
                                     <li>
-                                        <Link to ="/carrentals" className={activePath === "/carrentals" ? "nav-link active" : "nav-link"}><MdFlight style={{marginRight:"5px"}}/>Car Rentals</Link>
+                                        <Link to="/carrentals"
+                                              className={activePath === "/carrentals" ? "nav-link active" : "nav-link"}><AiFillCar
+                                            style={{marginRight: "5px"}}/>Car Rentals</Link>
                                     </li>
                                     <li>
-                                        <Link to ="/attractions" className={activePath === "/attractions" ? "nav-link active" : "nav-link"}><MdFlight style={{marginRight:"5px"}}/>Attractions</Link>
+                                        <Link to="/attractions"
+                                              className={activePath === "/attractions" ? "nav-link active" : "nav-link"}><FaChild
+                                            style={{marginRight: "5px"}}/>Attractions</Link>
                                     </li>
                                     <li>
-                                        <Link to ="/airporttaxis" className={activePath === "/airporttaxis" ? "nav-link active" : "nav-link"}><MdFlight style={{marginRight:"5px"}}/>Airport Taxis</Link>
+                                        <Link to="/airporttaxis"
+                                              className={activePath === "/airporttaxis" ? "nav-link active" : "nav-link"}><FaTaxi
+                                            style={{marginRight: "5px"}}/>Airport Taxis</Link>
                                     </li>
                                 </ul>
                             </div>
@@ -71,7 +86,7 @@ class Navbar extends React.Component{
                         <div className={`col-1 text-center`}></div>
                     </div>
                 </nav>
-    
+
             </>
         )
     }
