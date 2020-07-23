@@ -9,6 +9,7 @@ import Stays from './Navbar/Stays'
 const Routes = ()=>(
     <>
         <Switch>
+            <Route path ="/" exact component = {Stays} />
             <Route path ="/stays" component = {Stays} />
             <Route exact path ="/register"  component = {Register}/>
             <Route path ="/register/password" exact component = {RegisterPassword}/>
