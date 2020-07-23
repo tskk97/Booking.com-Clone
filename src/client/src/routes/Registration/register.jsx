@@ -4,7 +4,7 @@ import { registerUserData } from '../../redux/ Registration/action';
 import style from "./register.module.css";
 import GoogleLogin from 'react-google-login'
 import {Redirect, Link} from "react-router-dom"
-
+import {FiChevronLeft}  from 'react-icons/fi'
 class Register extends Component {
     constructor(props) {
         super(props)
@@ -46,7 +46,7 @@ class Register extends Component {
                                     <div className={`col-1`}></div>
                                     <div className={`col-10 ${style.flexCol}`}>
                                         <p style={{marginTop: "7%"}}>
-                                            <button className={`${style.backBtn}`}></button>
+                                        <Link to ='/stays'> <FiChevronLeft /></Link>
                                             <span style={{
                                                 color: "#23387E",
                                                 fontWeight: "bolder",

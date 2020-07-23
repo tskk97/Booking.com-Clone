@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import style from "./register.module.css";
 import {connect} from 'react-redux'
 import { registerPasswordUserData  } from '../../redux/ Registration/action';
-import {Redirect} from "react-router-dom"
-
+import {Redirect,Link} from "react-router-dom"
+import {FiChevronLeft}  from 'react-icons/fi'
 class RegisterPassword extends Component {
     constructor(props){
         super(props)
@@ -58,7 +58,7 @@ class RegisterPassword extends Component {
                                 <div className={`row`}>
                                     <div className={`col-1`}></div>
                                     <div className={`col-10 ${style.flexCol}`}>
-                                        <p style={{marginTop:"7%"}}><button className={`${style.backBtn}`}> ></button><span style={{color:"#23387E",fontWeight:"bolder",fontSize:"18px"}}>Booking</span><span style={{color:"#47A1DE",fontWeight:"bolder",fontSize:"18px"}}>.com</span> Account</p>
+                                        <p style={{marginTop:"7%"}}><Link to ='/register'> <FiChevronLeft /></Link><span style={{color:"#23387E",fontWeight:"bolder",fontSize:"18px"}}>Booking</span><span style={{color:"#47A1DE",fontWeight:"bolder",fontSize:"18px"}}>.com</span> Account</p>
 
                                         <h4>Create your account</h4>
                                         <small>Please choose a password for your Booking.com account registered to {userEmail}</small>

@@ -4,10 +4,12 @@ import Navbar from './Navbar'
 
 class Stays extends React.Component{
     render(){
+        console.log(this.props)
+        const activePath = this.props.match.url
         return(
             <div>
+                <Navbar activePath = {activePath}/>
                 <h1>Ashok</h1>
-                <Navbar/>
                 {/* <Register/> */}
             </div>
         )
