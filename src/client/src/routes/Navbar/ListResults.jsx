@@ -21,8 +21,9 @@ class ListResults extends Component {
             adults: "1 Adult",
             children: "No Children",
             room: "1 room",
-            searchName:"",
-            filterData:[]
+            searchName: "",
+            filterData: [],
+            travelWorkCheckBox:false
         }
     }
 
@@ -36,50 +37,54 @@ class ListResults extends Component {
 
     }
 
-    handleUrlChange = (query)=>{
-        
+    handleUrlChange = (query) => {
+
         const url = new URLSearchParams(query)
         const {staysSearchData} = this.props
         console.log(url.get('city'))
 
         this.setState({
-             searchName: url.get('city')
+            searchName: url.get('city')
         })
 
-        const obj ={
+        const obj = {
             city: url.get('city'),
-            checkin:url.get('checkin'),
-            num_rooms:url.get('num_rooms')
+            checkin: url.get('checkin'),
+            num_rooms: url.get('num_rooms')
         }
         console.log(obj)
         staysSearchData(obj)
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const {location} = this.props
-          this.handleUrlChange(location.search)
-       }
-
+        this.handleUrlChange(location.search)
+    }
+    oncChangeInput = (e)=>{
+        let name = e.target.name;
+        this.setState({
+            [e.target.name]: !this.state[e.target.name]
+        })
+    }
     render() {
-        // console.log("data is", data)
-        const {allData,searchData} = this.props;
-        const {filterData} = this.state;
-        console.log(searchData,"jjjjj");
-        console.log(allData,"all data is");
+        console.log("this.state is",this.state);
+        const {allData, searchData} = this.props;
+        const {filterData,travelWorkCheckBox} = this.state;
+        console.log(searchData, "jjjjj");
+        console.log(allData, "all data is");
         let objArray;
-        if(allData){
+        if (allData) {
             objArray = Object.keys(allData)
-        }
-        else{
+        } else {
             objArray = [];
         }
         console.log(objArray);
-        objArray.forEach(item =>{
-            if(item !== "msg" && item !== "data"){
-                filterData.push([item,[...allData[item]]]);
+        objArray.forEach(item => {
+            if (item !== "msg" && item !== "data") {
+                filterData.push([item, [...allData[item]]]);
             }
         })
-        console.log("filter Data is",filterData);
+        console.log("filter Data is", filterData);
         return (
             <div className={`${style.body}`}>
                 <Navbar/>
@@ -166,7 +171,7 @@ class ListResults extends Component {
                                         </div>
                                         <div className={`${style.flexRow} ${style.travelWork}`}>
                                             <div className="custom-control custom-checkbox">
-                                                <input type="checkbox" className="custom-control-input"
+                                                <input name="travelWorkCheckBox" type="checkbox" value={this.state.travelWorkCheckBox} onChange={this.oncChangeInput} className="custom-control-input"
                                                        id="customCheck1"/>
                                                 <label className="custom-control-label" htmlFor="customCheck1">I'm
                                                     traveling for work </label>
@@ -176,13 +181,17 @@ class ListResults extends Component {
                                         <button className={`${style.searchBtn}`} style={{textAlign: "center"}}>Search
                                         </button>
                                     </div>
-                                    <div className={`${style.filterBy}`} style={{textAlign:"left"}}>
-                                        <div style={{textAlign:"left","fontWeight":"700","borderBottom":"1px solid black"}} className={`${style.baseFilter}`}>
+                                    <div className={`${style.filterBy}`} style={{textAlign: "left"}}>
+                                        <div style={{
+                                            "textAlign": "left",
+                                            "fontWeight": "700",
+                                            "borderBottom": "1px solid black"
+                                        }} className={`${style.baseFilter}`}>
                                             Filter By:
                                         </div>
                                         <div>
                                             {filterData && filterData.map(item =>
-                                                <FilterByCards  key = {uuidv4()} data = {item}/>
+                                                <FilterByCards key={uuidv4()} data={item}/>
                                             )}
                                         </div>
 
@@ -223,15 +232,15 @@ class ListResults extends Component {
     }
 }
 
-const mapStateToProps = state =>({
+const mapStateToProps = state => ({
     staysSearchData: state.staysSearch.staysSearchData,
-    searchData:state.staysSearch.searchData,
-    allData:state.staysSearch.allData,
+    searchData: state.staysSearch.searchData,
+    allData: state.staysSearch.allData,
     isSearch: state.staysSearch.isSearch
 })
 
 const mapDispatchToProps = dispatch => ({
-    staysSearchData: payload => dispatch(staysSearchData(payload))   
+    staysSearchData: payload => dispatch(staysSearchData(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListResults);
