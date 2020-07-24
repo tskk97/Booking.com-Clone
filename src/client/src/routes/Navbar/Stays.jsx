@@ -27,36 +27,12 @@ class Stays extends React.Component{
             modalVisible : false
         }
     }
-    // http://ngrok.io/stays/search_results?city=Bangalore&checkin_date=25&checkin_month=07&checkin_year=2020&checkout_date=30&checkout_month=07&checkout_year=2020&num_adults=2&num_child=1&num_rooms=2
-    handleChange =(e)=>{
+     handleChange =(e)=>{
         this.setState({
             [e.target.name] : e.target.value
         })
     }
-
-    handleUrlChange = (query)=>{
-        
-        const url = new URLSearchParams(query)
-
-        console.log(url.get('stays/staysList'))
-
-        // this.setState({
-        //     sortByPrice: url.get('orderby')
-        // })
-    }
-    handleSubmit=()=>{
-        console.log(this.state)
-        // let  x= this.props.history.push('?/stays/staysList='+this.state.city+this.state.checkin+this.state.num_rooms)
-        // console.log(x)
-        const {staysSearchData} = this.props
-        const obj ={
-            city:this.state.city,
-            checkin:this.state.checkin,
-            num_rooms:this.state.num_rooms
-        }
-        console.log(obj)
-        staysSearchData(obj)
-    } 
+    
     componentDidMount(){
         setTimeout(() => {
             this.setState({
