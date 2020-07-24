@@ -53,21 +53,7 @@ class Stays extends React.Component{
         }
         console.log(obj)
         staysSearchData(obj)
-        // console.log(this.props.url)
-        // console.log(this.props.params)
-        // const {city,checkin,num_rooms} = this.state
-        
-
-        // this.setState({
-        //     web: '?:/stays/staysList='+place+date+rooms
-        // })
-        //  return(
-        //     <Redirect to= "/login/password"/>
-        //  )  
-
-    }
-      
-    
+    } 
     componentDidMount(){
         setTimeout(() => {
             this.setState({

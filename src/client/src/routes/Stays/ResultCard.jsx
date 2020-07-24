@@ -12,7 +12,7 @@ class ResultCard extends Component {
     }
     render() {
         const {staysSearchData,searchData} = this.props;
-        console.log(searchData);
+        // console.log(searchData);
         return (
             
             <div className={`${style.container}`}>
