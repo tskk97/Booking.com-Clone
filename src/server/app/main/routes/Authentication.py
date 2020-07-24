@@ -10,16 +10,27 @@ from app.main.services.authentication import check_email
 class Login(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('email', type=str, required=True)
+    parser.add_argument('mode', type=str, required=True)
+    parser.add_argument('password', type=str, required=False)
 
     @classmethod
     def post(self):
         data = Login.parser.parse_args()
-        flag_request, mail = check_email(data)
+        if data.mode == "Manual":
+            flag_request, mail = check_email(data)
 
-        if flag_request:
-            return {'status': True, 'msg': "User Exists", 'mail': mail}
-        else:
-            return {'status': False, 'msg': "User Doesn't Exist"}
+            if flag_request:
+                return {'status': True, 'msg': "User Exists", 'mail': mail, 'mode': data.mode}
+            else:
+                return {'status': False, 'msg': "It looks like there is no account associated with this email address.", 'mode': data.mode}
+
+        elif data.mode == "Google":
+            flag_request, token, user_data = user_login(data)
+
+            if flag_request:
+                return {'status': True, 'msg': "Login Successful", 'token': str(token), 'user_data': user_data, 'mode': data.mode}
+            else:
+                return {'status': False, 'msg': "Incorrect Credentials", 'mode': data.mode}
 
 class Login_Pwd(Resource):
     parser = reqparse.RequestParser()
