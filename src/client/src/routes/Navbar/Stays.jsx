@@ -3,78 +3,57 @@ import {connect} from 'react-redux'
 import style from "./Stays.module.css";
 import Navbar from "./Navbar";
 import {IoIosBed} from "react-icons/io";
-import {FaRegCalendarAlt} from  "react-icons/fa";
+import {FaRegCalendarAlt} from "react-icons/fa";
 import {FiUser} from "react-icons/fi";
 import {Redirect, Link} from "react-router-dom";
 import "react-dates/initialize";
-import { DateRangePicker } from "react-dates";
+import {DateRangePicker} from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
 // import {connect} from 'react-redux'
 import {staysSearchData} from '../../redux/Stays/action'
 // import { registerUserData } from '../../redux/Registration/action';
 // import {loginUserData} from '../../redux/Login/action';
 
-class Stays extends React.Component{
-    constructor(props){
+class Stays extends React.Component {
+    constructor(props) {
         super(props)
-        this.state={
-            city:"",
-            checkin:"",
-            checkout:"",
-            num_adults:"",
-            num_child:"",
-            num_rooms:"",
-            modalVisible : false
+        this.state = {
+            city: "",
+            checkin: "",
+            checkout: "",
+            num_adults: "",
+            num_child: "",
+            num_rooms: "",
+            modalVisible: false
         }
     }
-    // http://ngrok.io/stays/search_results?city=Bangalore&checkin_date=25&checkin_month=07&checkin_year=2020&checkout_date=30&checkout_month=07&checkout_year=2020&num_adults=2&num_child=1&num_rooms=2
-    handleChange =(e)=>{
+
+    handleChange = (e) => {
         this.setState({
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
-    handleUrlChange = (query)=>{
-        
-        const url = new URLSearchParams(query)
-
-        console.log(url.get('stays/staysList'))
-
-        // this.setState({
-        //     sortByPrice: url.get('orderby')
-        // })
-    }
-    handleSubmit=()=>{
-        console.log(this.state)
-        // let  x= this.props.history.push('?/stays/staysList='+this.state.city+this.state.checkin+this.state.num_rooms)
-        // console.log(x)
-        const {staysSearchData} = this.props
-        const obj ={
-            city:this.state.city,
-            checkin:this.state.checkin,
-            num_rooms:this.state.num_rooms
-        }
-        console.log(obj)
-        staysSearchData(obj)
-    } 
-    componentDidMount(){
+    componentDidMount() {
         setTimeout(() => {
             this.setState({
                 modalVisible: !this.state.modalVisible
             })
-        },1000)
+        }, 1000)
     }
+
     toggleModal = () => {
         this.setState({
             modalVisible: !this.state.modalVisible
         })
     }
-    render(){
+
+    render() {
         // console.log(this.props)  
-        const {city,checkin,checkout,num_child,num_adults,num_rooms}  = this.state
+        const {city, checkin, checkout, num_child, num_adults, num_rooms} = this.state
         const activePath = this.props.match.url
-        let styles = this.state.modalVisible ? { display: "block" } : { display: "none" };
-        return(
+        let styles = this.state.modalVisible ? {display: "block"} : {display: "none"};
+        return (
             <>
                 <Navbar activePath={activePath}/>
                 <div className={`${style.body} container-fluid`}>
@@ -82,7 +61,8 @@ class Stays extends React.Component{
                         <div className={`col-1`}></div>
                         <div className={`col-10`}>
                             <div className={`${style.flexCol} mt-5`}>
-                                <h4 style={{fontWeight:"bold",marginTop:"7px"}}>Find deals on hotels, homes and much more...</h4>
+                                <h4 style={{fontWeight: "bold", marginTop: "7px"}}>Find deals on hotels, homes and much
+                                    more...</h4>
                                 <small>From cosy country homes to funky city flats</small>
                                 <div className={`${style.flexRowInput}`}>
                                     <div className="input-group mb-3">
@@ -91,34 +71,39 @@ class Stays extends React.Component{
                                                     id="button-addon1"><IoIosBed/>
                                             </button>
                                         </div>
-                                        <input type="text" className={`form-control ${style.bed}`} placeholder="Where are you going?"
-                                               aria-label="Example text with button addon" aria-describedby="button-addon1" 
+                                        <input type="text" className={`form-control ${style.bed}`}
+                                               placeholder="Where are you going?"
+                                               aria-label="Example text with button addon"
+                                               aria-describedby="button-addon1"
                                                value={this.state.city} name="city" onChange={this.handleChange}
-                                               />
+                                        />
                                     </div>
                                     <div className="input-group mb-3">
-                                        {/* <div className="input-group-prepend">
+                                        <div className="input-group-prepend">
                                             <button className="btn btn-outline-secondary" type="button"
                                                     id="button-addon1"><FaRegCalendarAlt/>
                                             </button>
-                                        </div> */}
+                                        </div>
                                         {/* <input type="date" className={`form-control ${style.calendar}`} placeholder="Check-in - Check-out"
                                                aria-label="Example text with button addon" aria-describedby="button-addon1" 
                                                value={this.state.checkin} name="checkin" onChange={this.handleChange}
                                                /> */}
-                                        <DateRangePicker 
+                                        <DateRangePicker
                                             className={`form-control ${style.calendar}`}
                                             startDate={this.state.startDate}
                                             startDateId="your_unique_start_date_id"
                                             endDate={this.state.endDate}
                                             endDateId="your_unique_end_date_id"
-                                            onDatesChange={({ startDate, endDate }) =>this.setState({ startDate, endDate })}
+                                            onDatesChange={({startDate, endDate}) => this.setState({
+                                                startDate,
+                                                endDate
+                                            })}
                                             focusedInput={this.state.focusedInput}
-                                            onFocusChange={(focusedInput) => this.setState({ focusedInput })}
-                                            startDatePlaceholderText="Add dates"
-                                            endDatePlaceholderText="Add dates"
-                                            >                                               
-                                    </DateRangePicker>
+                                            onFocusChange={(focusedInput) => this.setState({focusedInput})}
+                                            startDatePlaceholderText="Check-in"
+                                            endDatePlaceholderText="Check-out"
+                                        >
+                                        </DateRangePicker>
                                     </div>
                                     <div className="input-group mb-3">
                                         <div className="input-group-prepend">
@@ -127,19 +112,21 @@ class Stays extends React.Component{
                                             </button>
                                         </div>
                                         <input type="text" className={`form-control ${style.user}`} placeholder=".."
-                                               aria-label="Example text with button addon" aria-describedby="button-addon1" 
-                                               value={this.state.num_rooms} name="num_rooms" onChange={this.handleChange}
-                                               />
+                                               aria-label="Example text with button addon"
+                                               aria-describedby="button-addon1"
+                                               value={this.state.num_rooms} name="num_rooms"
+                                               onChange={this.handleChange}
+                                        />
                                     </div>
-                                    
+
                                     {/* // http://ngrok.io/stays/search_results?city=Bangalore&checkin_date=25&checkin_month=07&checkin_year=2020&checkout_date=30&checkout_month=07&checkout_year=2020&num_adults=2&num_child=1&num_rooms=2 */}
 
-                                    <Link to= {`/stays/search_results?city=${this.state.city}`}>
+                                    <Link to={`/stays/search_results?city=${this.state.city}`}>
                                         <button className={`${style.searchBtn}`}>Search</button>
                                     </Link>
                                 </div>
                                 <div className={`${style.flexRow} form-check`}>
-                                    <input className="form-check-input" type="checkbox" style={{marginRight:"7px"}}/>
+                                    <input className="form-check-input" type="checkbox" style={{marginRight: "7px"}}/>
                                     <label className="form-check-label">I'm traveling for work </label>
                                 </div>
 
@@ -207,11 +194,11 @@ const mapStateToProps = state => ({
 
     staysSearchData: state.staysSearch.staysSearchData,
     isSearch: state.staysSearch.isSearch
-    
+
 })
 
 const mapDispatchToProps = dispatch => ({
-    staysSearchData: payload => dispatch(staysSearchData(payload))   
+    staysSearchData: payload => dispatch(staysSearchData(payload))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Stays);
 // export default Stays
