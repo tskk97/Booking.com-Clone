@@ -9,6 +9,7 @@ import Flights from './Navbar/Flights'
 import CarRentals from './Navbar/CarRentals';
 import Attractions from './Navbar/Attractions';
 import AirportTaxis from './Navbar/AirportTaxis';
+import StaysList from './Stays/StaysList';
 
 const Routes = ()=>(
     <>
@@ -23,6 +24,7 @@ const Routes = ()=>(
             <Route path ="/register/password" component = {RegisterPassword}/>
             <Route exact path ="/login" component = {Login}/>
             <Route path ="/login/password"   component = {LoginPassword}/>
+            <Route path="/stays/staysList/" name="stays"component={StaysList}/>
         </Switch>
     </>
 )
