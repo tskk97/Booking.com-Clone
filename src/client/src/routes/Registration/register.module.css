@@ -37,6 +37,9 @@
     display: flex;
     flex-direction: column;
 }
+.flexCol a{
+    text-decoration: none;
+}
 .emailDiv{
     display: flex;
     flex-direction: column;
@@ -44,7 +47,15 @@
 }
 .submitBtn{
     height: 45px;
+    border: 1px solid #0071c2;
+    background-color: #0071c2;
+    color: white;
 }
+
+.submitBtn:hover{
+    background-color: #0064ac;
+}
+
 .socialDiv{
     display: flex;
     flex-direction: row;

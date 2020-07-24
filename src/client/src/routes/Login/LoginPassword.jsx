@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import {Link} from "react-router-dom";
 import {loginPasswordUserData} from '../../redux/Login/action';
 import {connect} from "react-redux";
 import style from "../Registration/register.module.css";
@@ -18,18 +17,17 @@ class LoginPassword extends Component {
         })
     }
     handleSubmit=()=>{
-        const {loginPasswordUserData,userLoginEmail} = this.props;
+        const {loginPasswordUserData,userEmail} = this.props;
         const obj = {
-            email:userLoginEmail,   
+            email:userEmail,   
             password:this.state.password
         }
         console.log(obj,"obj")
         loginPasswordUserData(obj);
     }
     render() {
-        const {messageLogin,userLoginEmail,userToken,isLogin,userData} = this.props;
-        // console.log(userLoginEmail,"ree")
-        if(messageLogin === "Login Successful"){
+        const {message,userEmail} = this.props;
+        if(message === "Login Successful"){
             return (
                 <Redirect to='/stays'/> 
             )
@@ -44,20 +42,19 @@ class LoginPassword extends Component {
                                 <div className={`row`}>
                                     <div className={`col-1`}></div>
                                     <div className={`col-10 ${style.flexCol}`}>
-                                        <p style={{marginTop:"7%"}}><Link to ='/login'> <FiChevronLeft /> </Link><span style={{color:"#23387E",fontWeight:"bolder",fontSize:"18px"}}>Booking</span><span style={{color:"#47A1DE",fontWeight:"bolder",fontSize:"18px"}}>.com</span> Account</p>
+                                        <p style={{marginTop:"7%"}}><Link to ='/login'> <FiChevronLeft className="mb-1" /> </Link><span style={{color:"#23387E",fontWeight:"bolder",fontSize:"18px"}}>Booking</span><span style={{color:"#47A1DE",fontWeight:"bolder",fontSize:"18px"}}>.com</span> Account</p>
 
                                         <h4>Enter your password</h4>
-                                        <small>Please enter your Booking.com password for {userLoginEmail}</small>
-                                        <div className={`${style.emailDiv}`}>
+                                        <small>Please enter your Booking.com password for {userEmail}</small>
+                                        <div className={`${style.emailDiv} mt-4`}>
                                             <label>Booking.com password</label>
                                             <input type={"text"} className={`${style.email}`} value={this.state.password} name="password" onChange={this.handleChange}/>
-                                            <button className={`btn-primary mt-4 ${style.submitBtn}`} onClick={this.handleSubmit}>Sign in</button>
-                                            {/*<p className={"text-center text-muted"}>or sign in with one click</p>*/}
+                                            <button className={`mt-4 ${style.submitBtn}`} onClick={this.handleSubmit}>Sign in</button>
                                         </div>
 
-                                        <div className={`${style.signInDiv}`}>
+                                        {/* <div className={`${style.signInDiv}`}>
                                             <p className={"text-center"}><a>Sign in with a verification link</a></p>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className={`col-1`}></div>
                                 </div>
@@ -74,14 +71,13 @@ class LoginPassword extends Component {
 const mapStateToProps = state => ({
     loginPasswordUserData: state.login.loginPasswordUserData,
     isLogin: state.login.isLogin,
-    messageLogin: state.login.messageLogin,
+    message: state.login.message,
     userToken:state.login.userToken,
     userData:state.login.userData,
-    userLoginEmail:state.login.userLoginEmail
+    userEmail:state.login.userEmail
 })
 const mapDispatchToProps = dispatch => ({
     loginPasswordUserData: payload => dispatch(loginPasswordUserData(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPassword);
-// export default LoginPassword;

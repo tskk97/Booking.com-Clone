@@ -28,10 +28,8 @@ class RegisterPassword extends Component {
                 email:userEmail
             }
             registerPasswordUserData(obj);
-            // console.log(obj,userEmail)
         }
         else{
-            // alert("Password mismatched")
             this.setState({
                 pwdMatch:false
             })
@@ -40,12 +38,10 @@ class RegisterPassword extends Component {
     }
 
     render() {
-        const {userEmail,message } = this.props
-        // const {pwdMatch} = this.state
-        // console.log(userEmail,"asd")
-        if(message === "Registration Successful"){
+        const {userEmail, message } = this.props
+        if(message === "Login Successful"){
             return (
-                <Redirect to='/login'/>
+                <Redirect to='/stays'/>
             )
         }
         else{  
@@ -58,27 +54,18 @@ class RegisterPassword extends Component {
                                 <div className={`row`}>
                                     <div className={`col-1`}></div>
                                     <div className={`col-10 ${style.flexCol}`}>
-                                        <p style={{marginTop:"7%"}}><Link to ='/register'> <FiChevronLeft /></Link><span style={{color:"#23387E",fontWeight:"bolder",fontSize:"18px"}}>Booking</span><span style={{color:"#47A1DE",fontWeight:"bolder",fontSize:"18px"}}>.com</span> Account</p>
+                                        <p style={{marginTop:"7%"}}><Link to ='/register'> <FiChevronLeft className="mb-1" /></Link><span style={{color:"#23387E",fontWeight:"bolder",fontSize:"18px"}}>Booking</span><span style={{color:"#47A1DE",fontWeight:"bolder",fontSize:"18px"}}>.com</span> Account</p>
 
                                         <h4>Create your account</h4>
                                         <small>Please choose a password for your Booking.com account registered to {userEmail}</small>
-                                        <div className={`${style.emailDiv}`}>
+                                        <div className={`${style.emailDiv} mt-4`}>
                                             <label>Password</label>
                                             <input type={"text"} className={`${style.email}`} value={this.state.password} name="password" onChange={this.handleChange}  />
                                             <label>Confirm Password</label>
                                             <input type={"text"} className={`${style.email}`} value={this.state.cnfpassword} name="cnfpassword" onChange={this.handleChange}/>
                                             <p className={this.state.pwdMatch ? "d-none" : "d-block text-danger"}>The passwords you entered did not match, please try again!</p>
-                                            <button className={`btn-primary mt-4 ${style.submitBtn}`} onClick={this.handleSubmit}>Create Account</button>
-                                            {/* <p className={"text-center text-muted"}>or sign in with one click</p> */}
+                                            <button className={`mt-4 ${style.submitBtn}`} onClick={this.handleSubmit}>Create Account</button>
                                         </div>
-                                        {/* <div className={`${style.socialDiv}`}>
-                                            <div>G</div>
-                                            <div>F</div>
-                                            <div>A</div>
-                                        </div> */}
-                                        {/* <div className={`${style.signInDiv}`}>
-                                            <p className={"text-center"}>Already have an account? Sign in</p>
-                                        </div> */}
                                     </div>
                                     <div className={`col-1`}></div>
                                 </div>
@@ -104,5 +91,3 @@ const mapDispatchToProps = dispatch => ({
     
 })
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterPassword);
-
-// export default RegisterPassword;

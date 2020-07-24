@@ -10,7 +10,7 @@ class Register extends Component {
         super(props)
         this.state = {
             email: "",
-            password: ""
+            registerMode: ""
         }
     }
 
@@ -20,21 +20,32 @@ class Register extends Component {
         })
     }
 
-    responseGoogle=(response)=>{
-        console.log(response)
-        //console.log(response.profileObj)
+    handleRegister = () => {
+        const {registerUserData} = this.props
+        let obj = {
+            email: this.state.email,
+            mode: "Manual"
+        }
+        registerUserData(obj)
     }
+
+    responseGoogle=(response)=>{
+        const {registerUserData} = this.props
+        let obj = {
+            email:response.profileObj.email,
+            password: response.googleId,
+            mode: "Google"
+        }
+        registerUserData(obj);
+    }
+
     render() {
-        // const {email} = this.state
-        const {registerUserData, isRegister, message} = this.props
-        console.log(this.props);
-        // console.log(registerUserData, "asg")
-        if(message === "Registration Successful"){
+        const { isRegister, message} = this.props
+        if(message === "Login Successful"){
             return (
-                <Redirect to='/login'/>
+                <Redirect to='/stays'/>
             )
         }
-
         else if (!isRegister) {
             return (
                 <div className={`container-fluid ${style.container}`}>
@@ -46,12 +57,12 @@ class Register extends Component {
                                     <div className={`col-1`}></div>
                                     <div className={`col-10 ${style.flexCol}`}>
                                         <p style={{marginTop: "7%"}}>
-                                        <Link to ='/stays'> <FiChevronLeft /></Link>
+                                        <Link to ='/stays'> <FiChevronLeft className="mb-1" /></Link>
                                             <span style={{
                                                 color: "#23387E",
                                                 fontWeight: "bolder",
                                                 fontSize: "18px"
-                                            }}>Booking</span><span style={{
+                                            }}> Booking</span><span style={{
                                             color: "#47A1DE",
                                             fontWeight: "bolder",
                                             fontSize: "18px"
@@ -61,22 +72,22 @@ class Register extends Component {
                                         <h4>Create your account</h4>
                                         <small>Create an account to use Booking.com services easily.</small>
                                         <div className={`${style.emailDiv}`}>
-                                            <label>Email</label>
+                                            <label>Email address</label>
                                             <input type={"text"} className={`${style.email}`} value={this.state.email}
                                                    onChange={this.handleChange}/>
                                             {!isRegister && <p className={"text-danger"}>{message} <span
                                                 className={!message ? "d-none" : "d-block"}>You can <Link to="/login">Sign in</Link> directly.</span>
                                             </p>}
-                                            <button className={`btn-primary mt-4 ${style.submitBtn}`}
-                                                    onClick={() => registerUserData(this.state.email)}>Get Started
+                                            <button className={`mt-4 ${style.submitBtn}`}
+                                                    onClick={this.handleRegister}>Get Started
                                             </button>
-                                            <p className={"text-center text-muted"}>or sign in with one click</p>
+                                            <p className={"text-center text-muted mt-2"}>or sign in with one click</p>
                                         </div>
                                         <div className={`${style.socialDiv}`}>
                                             <div>
                                             <GoogleLogin
                                                 clientId="406658916404-4mih2ovr62l3mnmsmj3ammem908186nu.apps.googleusercontent.com"
-                                                // buttonText="Login"
+                                                buttonText="Google"
                                                 onSuccess={this.responseGoogle}
                                                 onFailure={this.responseGoogle}
                                                 cookiePolicy={'single_host_origin'}
@@ -86,7 +97,7 @@ class Register extends Component {
                                             <div>A</div>
                                         </div>
                                         <div className={`${style.signInDiv}`}>
-                                            <p className={"text-center"}>Already have an account? Sign in</p>
+                                            <p className={"text-center mt-4"}>Already have an account? <Link to="/login">Sign in</Link></p>
                                         </div>
                                     </div>
                                     <div className={`col-1`}></div>
@@ -97,7 +108,8 @@ class Register extends Component {
                     </div>
                 </div>
             );
-        } else {
+        } 
+        else {
             return (
                 <Redirect to="/register/password"/>
             )
@@ -106,7 +118,6 @@ class Register extends Component {
 }
 
 const mapStateToProps = state => ({
-    registerUserData: state.register.registerUserData,
     isRegister: state.register.isRegister,
     message: state.register.message
 })

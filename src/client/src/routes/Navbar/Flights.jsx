@@ -7,8 +7,10 @@ class Flights extends React.Component{
         return(
             <div>
                 <Navbar activePath = {activePath}/>
-                <h1>Flights</h1>
-                <h1>Flights</h1>
+                <div className="my-5">
+                    <h1 >Flights</h1>
+                    <h1>Flights</h1>
+                </div>
                  
             </div>
         )

@@ -8,6 +8,11 @@
     justify-content: space-between;
     margin-top: 10px;
 }
+
+.navFlex a:hover{
+    text-decoration: none;
+}
+
 .navCol{
     display: flex;
     flex-direction: column;
@@ -20,6 +25,10 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+}
+
+.navFlexTabs a:hover{
+    color: #a9cdff;
 }
 
 .navFlexInside{
@@ -40,25 +49,54 @@
 .propertyBtn{
     /*background: #003580;*/
     background-color: transparent;
+    border: 1px solid white;
     color: white;
     font-weight: bold;
-    line-height: 18px;
-    border: 1px solid white;
-    font-size: 12px;
+    line-height: 16px;
+    font-size: 13px;
     padding: 7px 10px;
     border-radius: 3px;
 }
 
 .authBtn{
     background-color: white;
+    border: 1px solid white;
     color: black;
     padding: 7px 10px;
     border-radius: 3px;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 16px;
     white-space: nowrap;
 }
 .tabs > *{
     margin-right: 10px;
+}
+
+.userNameCircle{
+    height: 35px;
+    width: 35px;
+    border: 2px solid #c2913e;
+    border-radius: 60px;
+    margin: auto;
+}
+
+.userNameCircle a{
+    color: #e0e0e0;
+    font-size: 20px;
+}
+
+.userNameCircle a:hover{
+    color: white;
+    text-decoration: none;
+}
+
+.userName a{
+    color: #e0e0e0;
+    font-size: 20px;
+}
+
+.userName a:hover{
+    color: white;
+    text-decoration: none;
 }
