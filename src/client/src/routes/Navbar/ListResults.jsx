@@ -6,7 +6,7 @@ import {BsSearch} from "react-icons/bs";
 import {FaRegCalendarPlus} from "react-icons/fa";
 import {FiHelpCircle} from "react-icons/fi";
 import data from "./data.json";
-import filterData from "./filter.json";
+// import filterData from "./filter.json";
 import ResultCard from "./ResultCard";
 import {v4 as uuidv4} from 'uuid';
 import FilterByCards from "./filterByCards";
@@ -21,7 +21,8 @@ class ListResults extends Component {
             adults: "1 Adult",
             children: "No Children",
             room: "1 room",
-            searchName:""
+            searchName:"",
+            filterData:[]
         }
     }
 
@@ -61,8 +62,24 @@ class ListResults extends Component {
 
     render() {
         // console.log("data is", data)
-        const {staysSearchData,searchData} = this.props;
-        // console.log(searchData,"jjjjj");
+        const {allData,searchData} = this.props;
+        const {filterData} = this.state;
+        console.log(searchData,"jjjjj");
+        console.log(allData,"all data is");
+        let objArray;
+        if(allData){
+            objArray = Object.keys(allData)
+        }
+        else{
+            objArray = [];
+        }
+        console.log(objArray);
+        objArray.forEach(item =>{
+            if(item !== "msg" && item !== "data"){
+                filterData.push([item,[...allData[item]]]);
+            }
+        })
+        console.log("filter Data is",filterData);
         return (
             <div className={`${style.body}`}>
                 <Navbar/>
@@ -209,6 +226,7 @@ class ListResults extends Component {
 const mapStateToProps = state =>({
     staysSearchData: state.staysSearch.staysSearchData,
     searchData:state.staysSearch.searchData,
+    allData:state.staysSearch.allData,
     isSearch: state.staysSearch.isSearch
 })
 

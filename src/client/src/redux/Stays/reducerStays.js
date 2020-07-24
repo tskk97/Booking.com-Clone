@@ -3,7 +3,7 @@ import {STAYS_SEARCH_FAILURE,STAYS_SEARCH_REQUEST,STAYS_SEARCH_SUCCESS} from './
 const initState = {
     isSearch:false,
     searchData:"",
-    // data:[]
+    allData:""
 }
 
 const reducerStays =(state = initState,action)=>{
@@ -18,7 +18,8 @@ const reducerStays =(state = initState,action)=>{
             return{
                 ...state,
                 isSearch:true,
-                searchData:action.payload.data
+                searchData:action.payload.data,
+                allData: action.payload
             }
         case STAYS_SEARCH_FAILURE:
             return{

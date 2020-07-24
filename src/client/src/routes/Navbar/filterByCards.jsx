@@ -4,20 +4,21 @@ import style from "./FilterCards.module.css";
 class FilterByCards extends Component {
     render() {
         const {data} = this.props;
+        console.log("data in card Filter is",data)
         return (
             <div className={`${style.container}`}>
                 <div>
-                    {data.name}
+                    {data[0]}
                 </div>
                 <div className={`${style.flexCol}`}>
-                    {data.filterData.map(item =>(
+                    {data[1].map(item =>(
                         <div className={`${style.flexRow}`}>
                             <div className="custom-control custom-checkbox">
                                 <input type="checkbox" className="custom-control-input"
                                        id="customCheck1"/>
-                                <label className="custom-control-label" htmlFor="customCheck1">{item[0]}</label>
+                                <label className="custom-control-label" htmlFor="customCheck1">{item}</label>
                             </div>
-                            <div className={`text-muted`}>{item[1]}</div>
+                            <div className={`text-muted`}>{data.length}</div>
                         </div>
                     ))}
                 </div>

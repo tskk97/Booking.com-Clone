@@ -121,7 +121,7 @@ class Stays extends React.Component {
 
                                     {/* // http://ngrok.io/stays/search_results?city=Bangalore&checkin_date=25&checkin_month=07&checkin_year=2020&checkout_date=30&checkout_month=07&checkout_year=2020&num_adults=2&num_child=1&num_rooms=2 */}
 
-                                    <Link to={`/stays/search_results?city=${this.state.city}`}>
+                                    <Link style={{height:"54px"}} to={`/stays/search_results?city=${this.state.city}`}>
                                         <button className={`${style.searchBtn}`}>Search</button>
                                     </Link>
                                 </div>
