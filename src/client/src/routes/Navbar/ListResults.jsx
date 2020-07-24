@@ -97,7 +97,22 @@ class ListResults extends Component {
                                         <button className={`${style.searchBtn}`} style={{textAlign:"center"}}>Search</button>
                                     </div>
                                 </div>
-                                <div className={`col-9 ${style.Results}`}>Results</div>
+                                <div className={`col-9 ${style.Results}`}>
+                                    <div className={`${style.flexColRes}`}>
+                                        <div style={{fontWeight:"bold",fontSize:"20px"}}>(#Filler Destination): (#Total No) Properties Found</div>
+                                    </div>
+                                    <hr/>
+                                    <div className={`${style.blueBg}`}>
+                                        <div className={`${style.filterBtn}`}>
+                                            <button className={`form-control btn`}>Top picks for families</button>
+                                            <button className={`form-control btn`}>show homes first</button>
+                                            <button className={`form-control btn`}>price(lowest first)</button>
+                                            <button className={`form-control btn`}>stars</button>
+                                            <button className={`form-control btn`}>star rating and price</button>
+                                            <button className={`form-control btn`}>...</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div className={`col-1`}>3</div>

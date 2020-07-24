@@ -16,6 +16,45 @@
     justify-content: space-between;
     margin-top: 2%;
 }
+.flexColRes{
+    display: flex;
+    flex-direction: column;
+}
+
+.flexColRes > *{
+    text-align: left;
+}
+.filterBtn{
+    display: flex;
+    flex-direction: row;
+}
+.filterBtn > *{
+    font-size: smaller;
+    text-align: center;
+    background-color: white;
+    width: 30%;
+    border: 1px solid blue;
+    border-top: 3px solid blue;
+}
+.filterBtn :nth-child(1){
+    width: 40%;
+    text-align: center;
+}
+.filterBtn :nth-child(4){
+    width: 10%;
+    text-align: center;
+}
+.filterBtn :nth-child(6){
+    width: 5%;
+    text-align: left;
+    font-weight: bolder;
+    vertical-align: top;
+    padding-bottom: 3px;
+}
+
+.blueBg{
+    background-color: #003580;
+}
 
 .searchBtn{
     background-color: #0071c2;
