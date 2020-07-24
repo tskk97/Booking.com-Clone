@@ -5,18 +5,40 @@ import {IoIosBed} from "react-icons/io";
 import {BsSearch} from "react-icons/bs";
 import {FaRegCalendarPlus} from "react-icons/fa";
 import {FiHelpCircle} from "react-icons/fi";
+import data from "./data.json";
+import ResultCard from "./ResultCard";
+import { v4 as uuidv4 } from 'uuid';
 
 class ListResults extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            adults:"1 Adult",
+            children:"No Children",
+            room:"1 room"
+        }
+    }
+
+    handleAdults = ()=>{
+
+    }
+    handleChildren = ()=>{
+
+    }
+    handleRooms = ()=>{
+
+    }
     render() {
+        console.log("data is",data)
         return (
             <div className={`${style.body}`}>
                 <Navbar/>
                 <div className={`container-fluid ${style.container}`}>
                     <div className={`row`}>
-                        <div className={`col-1`}>1</div>
+                        <div className={`col-1`}></div>
                         <div className={`col-10 text-center container-fluid ${style.centralDiv}`}>
                             <div className={`row`}>
-                                <div className={`col-3 ${style.filters}`}>3
+                                <div className={`col-3 ${style.filters}`}>
                                     <div className={`${style.basicFilter}`}>
                                         <h5>Search</h5>
                                         <div>
@@ -65,22 +87,22 @@ class ListResults extends Component {
                                             </div>
                                         </div>
                                         <div>
-                                            <select className="custom-select" id="inputGroupSelect04" style={{textAlign:"left",fontWeight:"bold"}}>
-                                                <option selected>Choose...</option>
-                                                <option value="1" selected>1 adult</option>
+                                            <select value={this.state.adults} onChange={this.handleAdults} className="custom-select" id="inputGroupSelect04" style={{textAlign:"left",fontWeight:"bold"}}>
+                                                <option>Choose...</option>
+                                                <option value="1">1 adult</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>
                                             </select>
                                             <div className={`${style.flexRow} ${style.childRoom}`}>
-                                                <select className="custom-select" id="inputGroupSelect04" style={{textAlign:"left",fontWeight:"bold"}}>
-                                                    <option selected>Choose...</option>
-                                                    <option value="1" selected>No children</option>
+                                                <select value={this.state.children} onChange={this.handleChildren} className="custom-select" id="inputGroupSelect04" style={{textAlign:"left",fontWeight:"bold"}}>
+                                                    <option>Choose...</option>
+                                                    <option value="1">No children</option>
                                                     <option value="2">Two</option>
                                                     <option value="3">Three</option>
                                                 </select>
-                                                <select className="custom-select" id="inputGroupSelect04" style={{textAlign:"left",fontWeight:"bold"}}>
-                                                    <option selected>Choose...</option>
-                                                    <option value="1" selected>1 room</option>
+                                                <select value={this.state.rooms} onChange={this.handleRooms} className="custom-select" id="inputGroupSelect04" style={{textAlign:"left",fontWeight:"bold"}}>
+                                                    <option>Choose...</option>
+                                                    <option value="1">1 room</option>
                                                     <option value="2">Two</option>
                                                     <option value="3">Three</option>
                                                 </select>
@@ -111,6 +133,11 @@ class ListResults extends Component {
                                             <button className={`form-control btn`}>star rating and price</button>
                                             <button className={`form-control btn`}>...</button>
                                         </div>
+                                    </div>
+                                    <div className={`${style.showCards}`}>
+                                        {data && data.map(item =>
+                                            <ResultCard key={ uuidv4()} data ={item}/>
+                                        )}
                                     </div>
                                 </div>
                             </div>
