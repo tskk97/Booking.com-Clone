@@ -61,8 +61,8 @@ class ListResults extends Component {
 
     render() {
         // console.log("data is", data)
-        const {staysSearchData,searchData} = this.props;
-        // console.log(searchData,"jjjjj");
+        const {staysSearchData,searchData,facilitiesData} = this.props;
+        console.log(facilitiesData,"jjjjj");
         return (
             <div className={`${style.body}`}>
                 <Navbar/>
@@ -164,11 +164,10 @@ class ListResults extends Component {
                                             Filter By:
                                         </div>
                                         <div>
-                                            {filterData && filterData.map(item =>
-                                                <FilterByCards  key = {uuidv4()} data = {item}/>
-                                            )}
+                                            {facilitiesData&& facilitiesData.map(item =>
+                                                <FilterByCards   data = {item}/>
+                                             )} 
                                         </div>
-
                                     </div>
                                 </div>
                                 <div className={`col-9 ${style.Results}`}>
@@ -209,7 +208,8 @@ class ListResults extends Component {
 const mapStateToProps = state =>({
     staysSearchData: state.staysSearch.staysSearchData,
     searchData:state.staysSearch.searchData,
-    isSearch: state.staysSearch.isSearch
+    isSearch: state.staysSearch.isSearch,
+    facilitiesData:state.staysSearch.facilitiesData
 })
 
 const mapDispatchToProps = dispatch => ({

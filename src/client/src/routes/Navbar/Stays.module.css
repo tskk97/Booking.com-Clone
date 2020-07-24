@@ -43,13 +43,15 @@
     height:fit-content;
     border-radius: 2px;
 }
-/*.bed{*/
-/*    width: 30px;*/
-/*}*/
+.calendar{
+    width: 100%;
+}
 /*.calendar{*/
-/*    width: 25%;*/
+/*    text-align: right;*/
 /*}*/
-/*.user{*/
-/*    width: 25%;*/
-/*    text-align: center;*/
-/*}*/
+.bed{
+    height: 100%;
+}
+.user{
+    height: 100%;
+}
