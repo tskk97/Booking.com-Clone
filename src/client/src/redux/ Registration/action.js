@@ -33,23 +33,42 @@ export const registerPasswordUserFailure = payload=>({
 export const registerUserData = payload => dispatch => {
     console.log(payload)
     dispatch(registerUserRequest(payload))
+    var mode = payload.mode
     var axios = require('axios');
-    var data = JSON.stringify({"email": payload});
+    if(mode === "Google"){
+        var data = JSON.stringify({"email": payload.email, "password": payload.password, "mode": mode});
 
-    var config = {
-        method: 'post',
-        url: 'http://b8b4cb2b4039.ngrok.io/register',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        data: data
-    };
-
-    axios(config)
-        .then(res => res.data)
-        .then(res => dispatch(registerUserSuccess(res)))
-        .catch(err => dispatch(registerUserFailure(err)));
-
+        var config = {
+            method: 'post',
+            url: 'http://b8b4cb2b4039.ngrok.io/register',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+    
+        axios(config)
+            .then(res => res.data)
+            .then(res => dispatch(registerUserSuccess(res)))
+            .catch(err => dispatch(registerUserFailure(err)));
+    }
+    else if(mode === "Manual"){
+        var data = JSON.stringify({"email": payload.email, "mode": mode});
+    
+        var config = {
+            method: 'post',
+            url: 'http://b8b4cb2b4039.ngrok.io/register',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+    
+        axios(config)
+            .then(res => res.data)
+            .then(res => dispatch(registerUserSuccess(res)))
+            .catch(err => dispatch(registerUserFailure(err)));
+    }
 }
 
 

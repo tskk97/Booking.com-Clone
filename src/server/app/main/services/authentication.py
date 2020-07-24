@@ -32,6 +32,10 @@ def user_login(data):
         
         token_data = {
             "id": user.id,
+            "email": user.email,
+            "firstname": user.firstname,
+            "lastname": user.lastname,
+            "mobile_num": user.mobile_num,
             "expire": str(datetime.datetime.utcnow() + datetime.timedelta(days=1))
         }
         token = jwt.encode(token_data, key)

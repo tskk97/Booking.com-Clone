@@ -32,24 +32,44 @@ export const loginPasswordUserFailure = payload =>({
 })
 
 export const loginUserData = payload =>dispatch=>{
+    console.log(payload)
     dispatch(loginUserRequest(payload))
-    // console.log(payload)
+    var mode = payload.mode
     var axios = require('axios');
-    var data = JSON.stringify({"email":payload});
-
-    var config = {
-        method: 'post',
-        url: 'http://b8b4cb2b4039.ngrok.io/login',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        data : data
-    };
-
-    axios(config)
-        .then(res => res.data)
-        .then(res => dispatch(loginUserSuccess(res)))
-        .catch(err => dispatch(loginUserFailure(err)));
+    if(mode === "Google"){
+        var data = JSON.stringify({"email": payload.email, "password": payload.password, "mode": mode});
+    
+        var config = {
+            method: 'post',
+            url: 'http://b8b4cb2b4039.ngrok.io/login',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data : data
+        };
+    
+        axios(config)
+            .then(res => res.data)
+            .then(res => dispatch(loginUserSuccess(res)))
+            .catch(err => dispatch(loginUserFailure(err)));
+    }
+    else if(mode === "Manual"){
+        var data = JSON.stringify({"email": payload.email, "mode": mode});
+    
+        var config = {
+            method: 'post',
+            url: 'http://b8b4cb2b4039.ngrok.io/login',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data : data
+        };
+    
+        axios(config)
+            .then(res => res.data)
+            .then(res => dispatch(loginUserSuccess(res)))
+            .catch(err => dispatch(loginUserFailure(err)));
+    }
 }
 
 export const loginPasswordUserData = payload =>dispatch=>{

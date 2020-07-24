@@ -26,3 +26,5 @@ import React from "react";
             <Link className="nav-link" to="/login">Login </Link>
         </li>
     </ul>
+
+ </div>
