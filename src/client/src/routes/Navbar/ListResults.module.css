@@ -99,3 +99,16 @@
     flex-direction: column;
     margin-top: 5%;
 }
+.filterBy{
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 100%;
+    padding: 10px;
+    height: auto;
+}
+.baseFilter{
+    /*padding: 10px;*/
+    width: 100%;
+}

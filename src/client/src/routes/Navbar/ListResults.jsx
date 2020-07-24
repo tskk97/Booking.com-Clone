@@ -6,30 +6,33 @@ import {BsSearch} from "react-icons/bs";
 import {FaRegCalendarPlus} from "react-icons/fa";
 import {FiHelpCircle} from "react-icons/fi";
 import data from "./data.json";
+import filterData from "./filter.json";
 import ResultCard from "./ResultCard";
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
+import FilterByCards from "./filterByCards";
 
 class ListResults extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            adults:"1 Adult",
-            children:"No Children",
-            room:"1 room"
+            adults: "1 Adult",
+            children: "No Children",
+            room: "1 room"
         }
     }
 
-    handleAdults = ()=>{
+    handleAdults = () => {
 
     }
-    handleChildren = ()=>{
+    handleChildren = () => {
 
     }
-    handleRooms = ()=>{
+    handleRooms = () => {
 
     }
+
     render() {
-        console.log("data is",data)
+        console.log("data is", data)
         return (
             <div className={`${style.body}`}>
                 <Navbar/>
@@ -87,20 +90,26 @@ class ListResults extends Component {
                                             </div>
                                         </div>
                                         <div>
-                                            <select value={this.state.adults} onChange={this.handleAdults} className="custom-select" id="inputGroupSelect04" style={{textAlign:"left",fontWeight:"bold"}}>
+                                            <select value={this.state.adults} onChange={this.handleAdults}
+                                                    className="custom-select" id="inputGroupSelect04"
+                                                    style={{textAlign: "left", fontWeight: "bold"}}>
                                                 <option>Choose...</option>
                                                 <option value="1">1 adult</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>
                                             </select>
                                             <div className={`${style.flexRow} ${style.childRoom}`}>
-                                                <select value={this.state.children} onChange={this.handleChildren} className="custom-select" id="inputGroupSelect04" style={{textAlign:"left",fontWeight:"bold"}}>
+                                                <select value={this.state.children} onChange={this.handleChildren}
+                                                        className="custom-select" id="inputGroupSelect04"
+                                                        style={{textAlign: "left", fontWeight: "bold"}}>
                                                     <option>Choose...</option>
                                                     <option value="1">No children</option>
                                                     <option value="2">Two</option>
                                                     <option value="3">Three</option>
                                                 </select>
-                                                <select value={this.state.rooms} onChange={this.handleRooms} className="custom-select" id="inputGroupSelect04" style={{textAlign:"left",fontWeight:"bold"}}>
+                                                <select value={this.state.rooms} onChange={this.handleRooms}
+                                                        className="custom-select" id="inputGroupSelect04"
+                                                        style={{textAlign: "left", fontWeight: "bold"}}>
                                                     <option>Choose...</option>
                                                     <option value="1">1 room</option>
                                                     <option value="2">Two</option>
@@ -112,16 +121,31 @@ class ListResults extends Component {
                                             <div className="custom-control custom-checkbox">
                                                 <input type="checkbox" className="custom-control-input"
                                                        id="customCheck1"/>
-                                                    <label className="custom-control-label" htmlFor="customCheck1">I'm traveling for work </label>
+                                                <label className="custom-control-label" htmlFor="customCheck1">I'm
+                                                    traveling for work </label>
                                             </div>
-                                            <FiHelpCircle style={{height:"28px"}}/>
+                                            <FiHelpCircle style={{height: "28px"}}/>
                                         </div>
-                                        <button className={`${style.searchBtn}`} style={{textAlign:"center"}}>Search</button>
+                                        <button className={`${style.searchBtn}`} style={{textAlign: "center"}}>Search
+                                        </button>
+                                    </div>
+                                    <div className={`${style.filterBy}`} style={{textAlign:"left"}}>
+                                        <div style={{textAlign:"left","font-weight":"700","borderBottom":"1px solid black"}} className={`${style.baseFilter}`}>
+                                            Filter By:
+                                        </div>
+                                        <div>
+                                            {filterData && filterData.map(item =>
+                                                <FilterByCards  key = {uuidv4()} data = {item}/>
+                                            )}
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div className={`col-9 ${style.Results}`}>
                                     <div className={`${style.flexColRes}`}>
-                                        <div style={{fontWeight:"bold",fontSize:"20px"}}>(#Filler Destination): (#Total No) Properties Found</div>
+                                        <div style={{fontWeight: "bold", fontSize: "20px"}}>(#Filler Destination):
+                                            (#Total No) Properties Found
+                                        </div>
                                     </div>
                                     <hr/>
                                     <div className={`${style.blueBg}`}>
@@ -136,13 +160,15 @@ class ListResults extends Component {
                                     </div>
                                     <div className={`${style.showCards}`}>
                                         {data && data.map(item =>
-                                            <ResultCard key={ uuidv4()} data ={item}/>
+                                            <ResultCard key={uuidv4()} data={item}/>
                                         )}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className={`col-1`}>3</div>
+                        <div className={`col-1`}>
+
+                        </div>
                     </div>
                 </div>
             </div>
