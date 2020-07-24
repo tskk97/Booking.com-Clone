@@ -11,6 +11,8 @@ import ResultCard from "./ResultCard";
 import {v4 as uuidv4} from 'uuid';
 import FilterByCards from "./filterByCards";
 import {connect} from 'react-redux'
+import {staysSearchData} from '../../redux/Stays/action'
+
 
 class ListResults extends Component {
     constructor(props) {
@@ -36,12 +38,20 @@ class ListResults extends Component {
     handleUrlChange = (query)=>{
         
         const url = new URLSearchParams(query)
-
+        const {staysSearchData} = this.props
         console.log(url.get('city'))
 
         this.setState({
              searchName: url.get('city')
         })
+
+        const obj ={
+            city: url.get('city'),
+            checkin:url.get('checkin'),
+            num_rooms:url.get('num_rooms')
+        }
+        console.log(obj)
+        staysSearchData(obj)
     }
 
     componentDidMount(){
@@ -153,11 +163,11 @@ class ListResults extends Component {
                                         <div style={{textAlign:"left","fontWeight":"700","borderBottom":"1px solid black"}} className={`${style.baseFilter}`}>
                                             Filter By:
                                         </div>
-                                        {/* <div>
+                                        <div>
                                             {filterData && filterData.map(item =>
                                                 <FilterByCards  key = {uuidv4()} data = {item}/>
                                             )}
-                                        </div> */}
+                                        </div>
 
                                     </div>
                                 </div>
@@ -202,7 +212,11 @@ const mapStateToProps = state =>({
     isSearch: state.staysSearch.isSearch
 })
 
-export default connect(mapStateToProps, null)(ListResults);
+const mapDispatchToProps = dispatch => ({
+    staysSearchData: payload => dispatch(staysSearchData(payload))   
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListResults);
 
 
 // export default ListResults;

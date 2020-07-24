@@ -33,9 +33,9 @@ class ResultCard extends Component {
                     <div className={`d-flex flex-row justify-content-between`}>
                         <div className={`d-flex flex-column`}>
                             <h4 style={{fontSize:"large"}}>Very good</h4>
-                            <p style={{fontSize:"small"}}>{searchData.review_score} reviews</p>
+                            <p style={{fontSize:"small"}}>{searchData.rating} reviews</p>
                         </div>
-                        <div className={`${style.ratingDiv}`}>{searchData.rating}</div>
+                        <div className={`${style.ratingDiv}`}>{searchData.review_score}</div>
                     </div>
                     <div className={`${style.priceBtn}`}>
                         <button>Show prices</button>

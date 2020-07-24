@@ -5,7 +5,10 @@ import Navbar from "./Navbar";
 import {IoIosBed} from "react-icons/io";
 import {FaRegCalendarAlt} from  "react-icons/fa";
 import {FiUser} from "react-icons/fi";
-import {Redirect, Link} from "react-router-dom"
+import {Redirect, Link} from "react-router-dom";
+import "react-dates/initialize";
+import { DateRangePicker } from "react-dates";
+import "react-dates/lib/css/_datepicker.css";
 // import {connect} from 'react-redux'
 import {staysSearchData} from '../../redux/Stays/action'
 // import { registerUserData } from '../../redux/Registration/action';
@@ -94,15 +97,28 @@ class Stays extends React.Component{
                                                />
                                     </div>
                                     <div className="input-group mb-3">
-                                        <div className="input-group-prepend">
+                                        {/* <div className="input-group-prepend">
                                             <button className="btn btn-outline-secondary" type="button"
                                                     id="button-addon1"><FaRegCalendarAlt/>
                                             </button>
-                                        </div>
-                                        <input type="date" className={`form-control ${style.calendar}`} placeholder="Check-in - Check-out"
+                                        </div> */}
+                                        {/* <input type="date" className={`form-control ${style.calendar}`} placeholder="Check-in - Check-out"
                                                aria-label="Example text with button addon" aria-describedby="button-addon1" 
                                                value={this.state.checkin} name="checkin" onChange={this.handleChange}
-                                               />
+                                               /> */}
+                                        <DateRangePicker 
+                                            className={`form-control ${style.calendar}`}
+                                            startDate={this.state.startDate}
+                                            startDateId="your_unique_start_date_id"
+                                            endDate={this.state.endDate}
+                                            endDateId="your_unique_end_date_id"
+                                            onDatesChange={({ startDate, endDate }) =>this.setState({ startDate, endDate })}
+                                            focusedInput={this.state.focusedInput}
+                                            onFocusChange={(focusedInput) => this.setState({ focusedInput })}
+                                            startDatePlaceholderText="Add dates"
+                                            endDatePlaceholderText="Add dates"
+                                            >                                               
+                                    </DateRangePicker>
                                     </div>
                                     <div className="input-group mb-3">
                                         <div className="input-group-prepend">
@@ -115,10 +131,11 @@ class Stays extends React.Component{
                                                value={this.state.num_rooms} name="num_rooms" onChange={this.handleChange}
                                                />
                                     </div>
+                                    
                                     {/* // http://ngrok.io/stays/search_results?city=Bangalore&checkin_date=25&checkin_month=07&checkin_year=2020&checkout_date=30&checkout_month=07&checkout_year=2020&num_adults=2&num_child=1&num_rooms=2 */}
 
                                     <Link to= {`/stays/search_results?city=${this.state.city}`}>
-                                        <button className={`${style.searchBtn}`} onClick={this.handleSubmit}>Search</button>
+                                        <button className={`${style.searchBtn}`}>Search</button>
                                     </Link>
                                 </div>
                                 <div className={`${style.flexRow} form-check`}>
