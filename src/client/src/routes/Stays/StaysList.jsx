@@ -10,7 +10,16 @@ class StaysList extends React.Component{
 
     render(){
         return(
+            <>
             <div>LIST</div>
+            <div>LIST</div>
+            <div>LIST</div>
+            <div>LIST</div>
+            <div>LIST</div>
+            <div>LIST</div>
+            <div>LIST</div>
+            <div>LIST</div>
+            </>
         )
     }
 

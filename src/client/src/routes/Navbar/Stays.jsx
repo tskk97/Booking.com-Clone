@@ -99,7 +99,7 @@ class Stays extends React.Component{
                                                value={this.state.num_rooms} name="num_rooms" onChange={this.handleChange}
                                                />
                                     </div>
-                                    <Link to={this.state.web}>
+                                    <Link to= "/stays/staysList">
                                         <button className={`${style.searchBtn}`} onClick={this.handleSubmit}>Search</button>
                                     </Link>
                                 </div>

@@ -24,7 +24,7 @@ const Routes = ()=>(
             <Route path ="/register/password" component = {RegisterPassword}/>
             <Route exact path ="/login" component = {Login}/>
             <Route path ="/login/password"   component = {LoginPassword}/>
-            <Route path="/stays/staysList/" name="stays"component={StaysList}/>
+            <Route path="/stays/staysList"  component={StaysList}/>
         </Switch>
     </>
 )
