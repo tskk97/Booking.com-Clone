@@ -9,7 +9,7 @@ import data from "./data.json";
 // import filterData from "./filter.json";
 import ResultCard from "./ResultCard";
 import {v4 as uuidv4} from 'uuid';
-import FilterByCards from "./filterByCards";
+import FilterByCards from "./FilterByCards";
 import {connect} from 'react-redux'
 import {staysSearchData} from '../../redux/Stays/action'
 
@@ -23,7 +23,7 @@ class ListResults extends Component {
             room: "1 room",
             searchName: "",
             filterData: [],
-            travelWorkCheckBox:false
+            travelWorkCheckBox: false
         }
     }
 
@@ -60,16 +60,19 @@ class ListResults extends Component {
         const {location} = this.props
         this.handleUrlChange(location.search)
     }
-    oncChangeInput = (e)=>{
+
+    onChangeInput = (e) => {
         let name = e.target.name;
         this.setState({
             [e.target.name]: !this.state[e.target.name]
-        })
+        });
+
     }
+
     render() {
-        console.log("this.state is",this.state);
+        console.log("this.state is", this.state);
         const {allData, searchData} = this.props;
-        const {filterData,travelWorkCheckBox} = this.state;
+        const {filterData, travelWorkCheckBox} = this.state;
         console.log(searchData, "jjjjj");
         console.log(allData, "all data is");
         let objArray;
@@ -171,7 +174,9 @@ class ListResults extends Component {
                                         </div>
                                         <div className={`${style.flexRow} ${style.travelWork}`}>
                                             <div className="custom-control custom-checkbox">
-                                                <input name="travelWorkCheckBox" type="checkbox" value={this.state.travelWorkCheckBox} onChange={this.oncChangeInput} className="custom-control-input"
+                                                <input name="travelWorkCheckBox" type="checkbox"
+                                                       value={this.state.travelWorkCheckBox}
+                                                       onChange={this.onChangeInput} className="custom-control-input"
                                                        id="customCheck1"/>
                                                 <label className="custom-control-label" htmlFor="customCheck1">I'm
                                                     traveling for work </label>
@@ -191,7 +196,7 @@ class ListResults extends Component {
                                         </div>
                                         <div>
                                             {filterData && filterData.map(item =>
-                                                <FilterByCards key={uuidv4()} data={item}/>
+                                                <FilterByCards cb={this.onChangeInput} key={uuidv4()} data={item}/>
                                             )}
                                         </div>
 
