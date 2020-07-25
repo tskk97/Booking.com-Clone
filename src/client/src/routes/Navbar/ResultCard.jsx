@@ -12,7 +12,7 @@ class ResultCard extends Component {
     render() {
         const {staysSearchData,searchData} = this.props;
         // console.log(searchData[0],"app");
-        console.log(staysSearchData,"asdfdf")
+        // console.log(staysSearchData,"asdfdf")
         return (
             
             <div className={`${style.container}`}>
@@ -20,10 +20,10 @@ class ResultCard extends Component {
                     <img src={searchData.img_path_url}></img>
                 </div>
                 <div className={`${style.descr}`}>
-                    <h4>{searchData.property_name}</h4>
+                    <h4 style={{color:"#0071c2",fontSize:"20px","fontWeight":"bold",padding:"3px 0"}}>{searchData.property_name}</h4>
                     <div className={`d-flex flex-row`} style={{textAlign:"left"}}>
-                        <p>{searchData.city_name}</p>
-                        <p className={`ml-2`}>Show on Map</p>
+                        <p style={{fontSize:"12px",color:"#0071c2"}}>{searchData.city_name}</p>
+                        <p style={{fontSize:"12px",color:"#0071c2"}} className={`ml-2`}>Show on Map</p>
                     </div>
                     <div className={`${style.details}`}>
                         {searchData.description}

@@ -6,10 +6,10 @@ import {BsSearch} from "react-icons/bs";
 import {FaRegCalendarPlus} from "react-icons/fa";
 import {FiHelpCircle} from "react-icons/fi";
 import data from "./data.json";
-import filterData from "./filter.json";
+// import filterData from "./filter.json";
 import ResultCard from "./ResultCard";
 import {v4 as uuidv4} from 'uuid';
-import FilterByCards from "./filterByCards";
+import FilterByCards from "./FilterByCards";
 import {connect} from 'react-redux'
 import {staysSearchData} from '../../redux/Stays/action'
 
@@ -21,7 +21,10 @@ class ListResults extends Component {
             adults: "1 Adult",
             children: "No Children",
             room: "1 room",
-            searchName:""
+            searchName: "",
+            filterData: [],
+            travelWorkCheckBox: false,
+            renderOnce:true
         }
     }
 
@@ -35,34 +38,62 @@ class ListResults extends Component {
 
     }
 
-    handleUrlChange = (query)=>{
-        
+    handleUrlChange = (query) => {
+
         const url = new URLSearchParams(query)
         const {staysSearchData} = this.props
-        console.log(url.get('city'))
+        // console.log(url.get('country'))   returns null if not found
 
         this.setState({
-             searchName: url.get('city')
+            searchName: url.get('city')
         })
 
-        const obj ={
+        const obj = {
             city: url.get('city'),
-            checkin:url.get('checkin'),
-            num_rooms:url.get('num_rooms')
+            checkin: url.get('checkin'),
+            num_rooms: url.get('num_rooms')
         }
         console.log(obj)
         staysSearchData(obj)
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const {location} = this.props
-          this.handleUrlChange(location.search)
-       }
+        this.handleUrlChange(location.search)
+    }
+
+    onChangeInput = (e) => {
+        let name = e.target.name;
+        this.setState({
+            [e.target.name]: !this.state[e.target.name],
+            renderOnce:false
+        });
+        e.target.checked = !this.state[e.target.name];
+
+
+    }
 
     render() {
-        // console.log("data is", data)
-        const {staysSearchData,searchData,facilitiesData,reviewData,ratingData,roomData} = this.props;
-        console.log(facilitiesData,"jjjjj");
+        console.log("this.state is", this.state);
+        const {allData, searchData} = this.props;
+        const {filterData, travelWorkCheckBox,renderOnce} = this.state;
+        console.log(searchData, "jjjjj");
+        console.log(allData, "all data is");
+        let objArray;
+        if (allData) {
+            objArray = Object.keys(allData)
+        } else {
+            objArray = [];
+        }
+        console.log(objArray);
+         renderOnce && objArray.forEach(item => {
+            if (item !== "msg" && item !== "data") {
+                filterData.push([item, [...allData[item]]]);
+            }
+        })
+        console.log("filter Data is", filterData);
+
+        let capitalisedSearchName = this.state.searchName.charAt(0).toUpperCase() + this.state.searchName.slice(1);
         return (
             <div className={`${style.body}`}>
                 <Navbar/>
@@ -149,7 +180,9 @@ class ListResults extends Component {
                                         </div>
                                         <div className={`${style.flexRow} ${style.travelWork}`}>
                                             <div className="custom-control custom-checkbox">
-                                                <input type="checkbox" className="custom-control-input"
+                                                <input name="travelWorkCheckBox" type="checkbox"
+                                                       value={this.state.travelWorkCheckBox}
+                                                       onChange={this.onChangeInput} className="custom-control-input"
                                                        id="customCheck1"/>
                                                 <label className="custom-control-label" htmlFor="customCheck1">I'm
                                                     traveling for work </label>
@@ -159,14 +192,18 @@ class ListResults extends Component {
                                         <button className={`${style.searchBtn}`} style={{textAlign: "center"}}>Search
                                         </button>
                                     </div>
-                                    <div className={`${style.filterBy}`} style={{textAlign:"left"}}>
-                                        <div style={{textAlign:"left","fontWeight":"700","borderBottom":"1px solid black"}} className={`${style.baseFilter}`}>
+                                    <div className={`${style.filterBy}`} style={{textAlign: "left"}}>
+                                        <div style={{
+                                            "textAlign": "left",
+                                            "fontWeight": "700",
+                                            "borderBottom": "1px solid #c6c6c6"
+                                        }} className={`${style.baseFilter}`}>
                                             Filter By:
                                         </div>
                                         <div>
-                                            {facilitiesData&& facilitiesData.map(item =>
-                                                <FilterByCards   data = {item}/>
-                                             )} 
+                                            {filterData && filterData.map(item =>
+                                                <FilterByCards cb={this.onChangeInput} key={uuidv4()} data={item}/>
+                                            )}
                                         </div>
                                     </div>
 
@@ -174,18 +211,20 @@ class ListResults extends Component {
                                         <div style={{textAlign:"left","fontWeight":"700","borderBottom":"1px solid black"}} className={`${style.baseFilter}`}>
                                              ReviewScore:
                                         </div>
-                                        <div>
+                                        {/* <div>
                                             {reviewData&& reviewData.map(item =>
                                                 <FilterByCards  reviews= {item}/>
                                              )} 
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
+
+                                {/*Middle section*/}
+
+
                                 <div className={`col-9 ${style.Results}`}>
                                     <div className={`${style.flexColRes}`}>
-                                        <div style={{fontWeight: "bold", fontSize: "20px"}}>{this.state.searchName}:
-                                            {searchData.length} Properties Found
-                                        </div>
+                                        <div style={{fontWeight: "bold", fontSize: "20px"}}>{capitalisedSearchName}: {searchData.length} Properties Found</div>
                                     </div>
                                     <hr/>
                                     <div className={`${style.blueBg}`}>
@@ -216,18 +255,15 @@ class ListResults extends Component {
     }
 }
 
-const mapStateToProps = state =>({
+const mapStateToProps = state => ({
     staysSearchData: state.staysSearch.staysSearchData,
-    searchData:state.staysSearch.searchData,
-    isSearch: state.staysSearch.isSearch,
-    facilitiesData:state.staysSearch.facilitiesData,
-    reviewData:state.staysSearch.reviewData,
-    ratingData:state.staysSearch.ratingData,
-    roomData:state.staysSearch.roomData
+    searchData: state.staysSearch.searchData,
+    allData: state.staysSearch.allData,
+    isSearch: state.staysSearch.isSearch
 })
 
 const mapDispatchToProps = dispatch => ({
-    staysSearchData: payload => dispatch(staysSearchData(payload))   
+    staysSearchData: payload => dispatch(staysSearchData(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListResults);

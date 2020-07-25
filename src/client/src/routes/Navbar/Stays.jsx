@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import style from "./Stays.module.css";
 import Navbar from "./Navbar";
 import {IoIosBed} from "react-icons/io";
-import {FaRegCalendarAlt} from "react-icons/fa";
+import {FaRegCalendarAlt, FaDivide} from "react-icons/fa";
 import {FiUser} from "react-icons/fi";
 import {Redirect, Link} from "react-router-dom";
 import "react-dates/initialize";
@@ -21,9 +21,9 @@ class Stays extends React.Component {
             city: "",
             checkin: "",
             checkout: "",
-            num_adults: "",
-            num_child: "",
-            num_rooms: "",
+            num_adults: 1,
+            num_child: 0,
+            num_rooms: 1,
             modalVisible: false
         }
     }
@@ -48,9 +48,53 @@ class Stays extends React.Component {
         })
     }
 
+    handleAdultIncrement=()=>{ 
+        this.setState({
+            num_adults:this.state.num_adults+1
+        })
+    }
+    handleAdultDecrement=()=>{
+        const num_adults = this.state.num_adults
+        console.log(num_adults,"dec")
+        if(num_adults>1){
+            this.setState({
+                num_adults:this.state.num_adults-1
+            })
+        }
+    }
+    handleChildIncrement=()=>{
+        this.setState({
+            num_child:this.state.num_child+1
+        })
+    }
+
+    handleChildDecrement=()=>{
+        const num_child = this.state.num_child
+        if(num_child>0){
+            this.setState({
+                num_child:this.state.num_child-1
+            })
+        }
+    }
+
+    handleRoomIncrement=()=>{
+        this.setState({
+            num_rooms:this.state.num_rooms+1
+        })
+    }
+
+    handleRoomDecrement=()=>{
+        const num_rooms = this.state.num_rooms
+        if(num_rooms>1){
+            this.setState({
+                num_rooms:this.state.num_rooms-1
+            })
+        }
+    }
     render() {
-        // console.log(this.props)  
-        const {city, checkin, checkout, num_child, num_adults, num_rooms} = this.state
+        // console.log(this.props) 
+         const {city, checkin, checkout, num_child, num_adults, num_rooms} = this.state
+        console.log(num_adults,"data")
         const activePath = this.props.match.url
         let styles = this.state.modalVisible ? {display: "block"} : {display: "none"};
         return (
@@ -111,17 +155,47 @@ class Stays extends React.Component {
                                                     id="button-addon1"><FiUser/>
                                             </button>
                                         </div>
-                                        <input type="text" className={`form-control ${style.user}`} placeholder=".."
+                                        <div class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#exampleModal">
+                                            {this.state.num_adults} adult . {this.state.num_child} children . {this.state.num_rooms} room
+                                        </div>
+                                        {/* <div class="dropdown" className={`form-control ${style.user}`}>
+                                          <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          {this.state.num_adults} adult . {this.state.num_child} children . {this.state.num_rooms} room
+                                          </button>
+                                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">                                          
+                                                <div>
+                                                     <h5>Adults</h5>
+                                                     <div>
+                                                        <button onClick={this.handleAdultDecrement}> - </button>
+                                                            {this.state.num_adults}
+                                                        <button onClick={this.handleAdultIncrement}>+</button>
+                                                     </div>
+                                                </div>                                             
+                                                <div>
+                                                     Childrens
+                                                    <button onClick={this.handleChildDecrement}> - </button>
+                                                    {this.state.num_child}
+                                                    <button onClick={this.handleChildIncrement}>+</button>
+                                                </div>                                            
+                                                <div>
+                                                     Rooms
+                                                    <button onClick={this.handleRoomDecrement}> - </button>
+                                                    {this.state.num_rooms}
+                                                    <button onClick={this.handleRoomIncrement}>+</button>
+                                                </div>                                            
+                                            </div>
+                                        </div> */}
+                                        {/* <input type="text" className={`form-control ${style.user}`} placeholder=".."
                                                aria-label="Example text with button addon"
                                                aria-describedby="button-addon1"
                                                value={this.state.num_rooms} name="num_rooms"
                                                onChange={this.handleChange}
-                                        />
+                                        /> */}
                                     </div>
 
                                     {/* // http://ngrok.io/stays/search_results?city=Bangalore&checkin_date=25&checkin_month=07&checkin_year=2020&checkout_date=30&checkout_month=07&checkout_year=2020&num_adults=2&num_child=1&num_rooms=2 */}
 
-                                    <Link to={`/stays/search_results?city=${this.state.city}`}>
+                                    <Link style={{height:"54px"}} to={`/stays/search_results?city=${this.state.city}`}>
                                         <button className={`${style.searchBtn}`}>Search</button>
                                     </Link>
                                 </div>
