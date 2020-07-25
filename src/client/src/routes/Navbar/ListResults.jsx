@@ -61,7 +61,7 @@ class ListResults extends Component {
 
     render() {
         // console.log("data is", data)
-        const {staysSearchData,searchData,facilitiesData} = this.props;
+        const {staysSearchData,searchData,facilitiesData,reviewData,ratingData,roomData} = this.props;
         console.log(facilitiesData,"jjjjj");
         return (
             <div className={`${style.body}`}>
@@ -169,6 +169,17 @@ class ListResults extends Component {
                                              )} 
                                         </div>
                                     </div>
+
+                                    <div className={`${style.filterBy}`} style={{textAlign:"left"}}>
+                                        <div style={{textAlign:"left","fontWeight":"700","borderBottom":"1px solid black"}} className={`${style.baseFilter}`}>
+                                             ReviewScore:
+                                        </div>
+                                        <div>
+                                            {reviewData&& reviewData.map(item =>
+                                                <FilterByCards  reviews= {item}/>
+                                             )} 
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className={`col-9 ${style.Results}`}>
                                     <div className={`${style.flexColRes}`}>
@@ -209,7 +220,10 @@ const mapStateToProps = state =>({
     staysSearchData: state.staysSearch.staysSearchData,
     searchData:state.staysSearch.searchData,
     isSearch: state.staysSearch.isSearch,
-    facilitiesData:state.staysSearch.facilitiesData
+    facilitiesData:state.staysSearch.facilitiesData,
+    reviewData:state.staysSearch.reviewData,
+    ratingData:state.staysSearch.ratingData,
+    roomData:state.staysSearch.roomData
 })
 
 const mapDispatchToProps = dispatch => ({
