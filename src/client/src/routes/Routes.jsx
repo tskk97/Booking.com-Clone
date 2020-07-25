@@ -9,12 +9,16 @@ import Flights from './Navbar/Flights'
 import CarRentals from './Navbar/CarRentals';
 import Attractions from './Navbar/Attractions';
 import AirportTaxis from './Navbar/AirportTaxis';
+// import StaysList from './Stays/StaysList';
+// import ResultCard from './Navbar/ResultCard';
+import ListResults from "./Navbar/ListResults";
 
 const Routes = ()=>(
     <>
         <Switch>
             <Route path ="/" exact component = {Stays} />
-            <Route path ="/stays" component = {Stays} />
+            <Route exact path ="/stays" component = {Stays} />
+            {/* <Route path ="/stays/results" component = {ListResults} /> */}
             <Route path ="/flights" component = {Flights} />
             <Route path = '/carrentals' component ={CarRentals} />
             <Route path = "/attractions" component={Attractions} />
@@ -22,7 +26,8 @@ const Routes = ()=>(
             <Route exact path ="/register"  component = {Register}/>
             <Route path ="/register/password" component = {RegisterPassword}/>
             <Route exact path ="/login" component = {Login}/>
-            <Route path ="/login/password"   component = {LoginPassword}/>
+            <Route path ="/login/password"  component = {LoginPassword}/>
+            <Route path="/stays/:id"  component={ListResults}/>
         </Switch>
     </>
 )

@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    border-bottom: 1px solid #c6c6c6;
+}
+
+.flexRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.flexCol{
+    display: flex;
+    flex-direction: column;
+}

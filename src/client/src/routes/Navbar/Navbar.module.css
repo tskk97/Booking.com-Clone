@@ -1,6 +1,7 @@
 .mainNav{
     background: #003580;
-    height: 13%;
+    height: 18%;
+    position: fixed;
 }
 .navFlex{
     display: flex;
