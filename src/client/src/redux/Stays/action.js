@@ -27,7 +27,7 @@ export const staysSearchData = payload=>dispatch=>{
     // http://ngrok.io/stays/search_results?city=Bangalore&checkin_date=25&checkin_month=07&checkin_year=2020&checkout_date=30&checkout_month=07&checkout_year=2020&num_adults=2&num_child=1&num_rooms=2
 
     axios
-    .get("http://b8b4cb2b4039.ngrok.io/stays/search_results", {
+    .get("http://4a6c43bc9d5d.ngrok.io/stays/search_results", {
       params: {
         city: query
       }

@@ -69,6 +69,8 @@ class ListResults extends Component {
             renderOnce:false
         });
         e.target.checked = !this.state[e.target.name];
+
+
     }
 
     render() {
@@ -90,6 +92,8 @@ class ListResults extends Component {
             }
         })
         console.log("filter Data is", filterData);
+
+        let capitalisedSearchName = this.state.searchName.charAt(0).toUpperCase() + this.state.searchName.slice(1);
         return (
             <div className={`${style.body}`}>
                 <Navbar/>
@@ -204,11 +208,13 @@ class ListResults extends Component {
 
                                     </div>
                                 </div>
+
+                                {/*Middle section*/}
+
+
                                 <div className={`col-9 ${style.Results}`}>
                                     <div className={`${style.flexColRes}`}>
-                                        <div style={{fontWeight: "bold", fontSize: "20px"}}>{this.state.searchName}:
-                                            {searchData.length} Properties Found
-                                        </div>
+                                        <div style={{fontWeight: "bold", fontSize: "20px"}}>{capitalisedSearchName}: {searchData.length} Properties Found</div>
                                     </div>
                                     <hr/>
                                     <div className={`${style.blueBg}`}>
