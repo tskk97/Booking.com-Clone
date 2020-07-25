@@ -23,7 +23,8 @@ class ListResults extends Component {
             room: "1 room",
             searchName: "",
             filterData: [],
-            travelWorkCheckBox: false
+            travelWorkCheckBox: false,
+            renderOnce:true
         }
     }
 
@@ -64,15 +65,17 @@ class ListResults extends Component {
     onChangeInput = (e) => {
         let name = e.target.name;
         this.setState({
-            [e.target.name]: !this.state[e.target.name]
+            [e.target.name]: !this.state[e.target.name],
+            renderOnce:false
         });
+        e.target.checked = !this.state[e.target.name]
 
     }
 
     render() {
         console.log("this.state is", this.state);
         const {allData, searchData} = this.props;
-        const {filterData, travelWorkCheckBox} = this.state;
+        const {filterData, travelWorkCheckBox,renderOnce} = this.state;
         console.log(searchData, "jjjjj");
         console.log(allData, "all data is");
         let objArray;
@@ -82,7 +85,7 @@ class ListResults extends Component {
             objArray = [];
         }
         console.log(objArray);
-        objArray.forEach(item => {
+         renderOnce && objArray.forEach(item => {
             if (item !== "msg" && item !== "data") {
                 filterData.push([item, [...allData[item]]]);
             }
