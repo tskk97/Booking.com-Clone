@@ -42,7 +42,7 @@ class ListResults extends Component {
 
         const url = new URLSearchParams(query)
         const {staysSearchData} = this.props
-        console.log(url.get('city'))
+        // console.log(url.get('country'))   returns null if not found
 
         this.setState({
             searchName: url.get('city')
@@ -68,8 +68,7 @@ class ListResults extends Component {
             [e.target.name]: !this.state[e.target.name],
             renderOnce:false
         });
-        e.target.checked = !this.state[e.target.name]
-
+        e.target.checked = !this.state[e.target.name];
     }
 
     render() {
