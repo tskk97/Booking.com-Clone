@@ -44,7 +44,7 @@ class Navbar extends React.Component {
                                 </div>
                                 <div className={`${style.navFlexInside}`}>
                                     <div className={`${style.white}`} style={{color: "white", fontSize: "22px"}}>₹</div>
-                                    <div style={{color: "white", fontSize: "22px"}}><img src="india-flag-icon-32.png"
+                                    <div style={{color: "white", fontSize: "22px"}}><img style={{width:"20px",height:"15px"}} src="https://cdn.countryflags.com/thumbs/india/flag-800.png"
                                                                                          alt={"not found img"}/></div>
                                     <div style={{color: "white", fontSize: "22px"}}><FiHelpCircle/></div>
                                     <div>
