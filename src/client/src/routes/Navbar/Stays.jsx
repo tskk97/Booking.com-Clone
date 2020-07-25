@@ -155,37 +155,42 @@ class Stays extends React.Component {
                                                     id="button-addon1"><FiUser/>
                                             </button>
                                         </div>
-                                        <div class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#exampleModal">
-                                            {this.state.num_adults} adult . {this.state.num_child} children . {this.state.num_rooms} room
-                                        </div>
-                                        {/* <div class="dropdown" className={`form-control ${style.user}`}>
-                                          <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          {this.state.num_adults} adult . {this.state.num_child} children . {this.state.num_rooms} room
-                                          </button>
-                                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">                                          
-                                                <div>
+                    
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" className={`form-control ${style.user}`}>
+                                                {this.state.num_adults} adult . {this.state.num_child} children . {this.state.num_rooms} room
+                                        </button>
+
+                                        <div class="modal fade md-5 mt-5" id="exampleModal" tabindex="-10" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog modal-dialog-centered mt-5 mr-5 " role="document">
+                                            <div class="modal-content">  
+                                              <div class="modal-header">   
                                                      <h5>Adults</h5>
-                                                     <div>
-                                                        <button onClick={this.handleAdultDecrement}> - </button>
-                                                            {this.state.num_adults}
-                                                        <button onClick={this.handleAdultIncrement}>+</button>
-                                                     </div>
-                                                </div>                                             
-                                                <div>
-                                                     Childrens
-                                                    <button onClick={this.handleChildDecrement}> - </button>
+                                              <div class="modal-footer md-5">
+                                                    <button type="button" class="btn btn-primary"  onClick={this.handleAdultDecrement} >-</button>
+                                                        {this.state.num_adults}
+                                                    <button type="button" class="btn btn-primary"  onClick={this.handleAdultIncrement}>+</button>
+                                              </div>
+                                              </div>
+                                              <div class="modal-header">
+                                                  <h5>Childrens</h5>
+                                              <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary"  onClick={this.handleChildDecrement} >-</button>
                                                     {this.state.num_child}
-                                                    <button onClick={this.handleChildIncrement}>+</button>
-                                                </div>                                            
-                                                <div>
-                                                     Rooms
-                                                    <button onClick={this.handleRoomDecrement}> - </button>
-                                                    {this.state.num_rooms}
-                                                    <button onClick={this.handleRoomIncrement}>+</button>
-                                                </div>                                            
+                                                    <button type="button" class="btn btn-primary"  onClick={this.handleChildIncrement}>+</button>
+                                              </div>
+                                              </div>
+                                              <div class="modal-header">
+                                                  <h5>Rooms</h5>
+                                              <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary"  onClick={this.handleRoomDecrement} >-</button>
+                                                        {this.state.num_rooms}
+                                                    <button type="button" class="btn btn-primary"  onClick={this.handleRoomIncrement}>+</button>
+                                              </div>
+                                              </div>
                                             </div>
-                                        </div> */}
-                                        {/* <input type="text" className={`form-control ${style.user}`} placeholder=".."
+                                          </div>
+                                        </div>
+                                         {/* <input type="text" className={`form-control ${style.user}`} placeholder=".."
                                                aria-label="Example text with button addon"
                                                aria-describedby="button-addon1"
                                                value={this.state.num_rooms} name="num_rooms"
