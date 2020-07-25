@@ -192,7 +192,7 @@ class ListResults extends Component {
                                         <div style={{
                                             "textAlign": "left",
                                             "fontWeight": "700",
-                                            "borderBottom": "1px solid black"
+                                            "borderBottom": "1px solid #c6c6c6"
                                         }} className={`${style.baseFilter}`}>
                                             Filter By:
                                         </div>
