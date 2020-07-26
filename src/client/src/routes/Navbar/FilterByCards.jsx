@@ -6,30 +6,29 @@ class FilterByCards extends Component {
     constructor(props) {
         super(props);
         this.state={
-            displayFlag:false
+
         }
     }
-    handleClick = ()=>{
+
+    handleChange = (e) => {
         this.setState({
-            displayFlag:!this.state.displayFlag
+            [e.target.name]: !this.state[e.target.name]
         })
     }
+
     render() {
-        const {data,cb} = this.props;
-        console.log("data in card Filter is",data);
-        console.log("callback is",cb);
+        const {data} = this.props;
         return (
             <div className={`${style.container}`}>
-                <div>
+                <div className="mb-2">
                     {data[0]}
                 </div>
                 <div className={`${style.flexCol}`}>
                     {data[1].map((item,index) =>(
                         <div key={uuidv4()} className={`${style.flexRow}`}>
-                            <div className="custom-control custom-checkbox">
-                                <input type="checkbox"  onChange={e=>cb(e)} name={data[0] + item} className="custom-control-input"
-                                       id={`customCheck${index * 100}`} />
-                                <label className="custom-control-label" htmlFor={`customCheck${index * 100}`}>{item}</label>
+                            <div>
+                                <input type="checkbox" onChange={this.handleChange} name={data[0]+"_"+item} checked={this.state[data[0]+"_"+item] ? "checked" : ""} />
+                                <label className="ml-2">{item}</label>
                             </div>
                             <div className={`text-muted`}>{data.length}</div>
                         </div>

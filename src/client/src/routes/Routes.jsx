@@ -4,22 +4,20 @@ import Register from "./Registration/register";
 import RegisterPassword from "./Registration/RegisterPassword";
 import Login from "./Login/login";
 import LoginPassword from "./Login/LoginPassword";
+import Home from './Navbar/Home';
 import Stays from './Navbar/Stays'
 import Flights from './Navbar/Flights'
 import CarRentals from './Navbar/CarRentals';
 import Attractions from './Navbar/Attractions';
 import AirportTaxis from './Navbar/AirportTaxis';
-// import StaysList from './Stays/StaysList';
-// import ResultCard from './Navbar/ResultCard';
 import ListResults from "./Navbar/ListResults";
 import Entity from "./Navbar/Entity";
 
 const Routes = ()=>(
     <>
         <Switch>
-            <Route path ="/" exact component = {Stays} />
+            <Route path ="/" exact component = {Home} />
             <Route exact path ="/stays" component = {Stays} />
-            {/* <Route path ="/stays/results" component = {ListResults} /> */}
             <Route path ="/flights" component = {Flights} />
             <Route path = '/carrentals' component ={CarRentals} />
             <Route path = "/attractions" component={Attractions} />

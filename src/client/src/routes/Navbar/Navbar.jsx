@@ -11,7 +11,7 @@ import {GiPalmTree} from "react-icons/gi"
 class Navbar extends React.Component {
 
     render() {
-        console.log(this.props)
+        // console.log(this.props)
         const {activePath, r_isAuth, l_isAuth, r_userName, l_userName} = this.props
         let r_uname = "", l_uName = ""
         if(r_userName){
@@ -20,6 +20,7 @@ class Navbar extends React.Component {
         if(l_userName){
             l_uName = l_userName[0].toUpperCase()
         }
+        // console.log(activePath && activePath.toString().includes("/stays"))
         return (
             <>
                 <nav className={`container-fluid fixed-top navbar-expand-lg ${style.mainNav}`}>
@@ -68,14 +69,10 @@ class Navbar extends React.Component {
                             <div className={`${style.navFlexTabs}`}>
                                 <ul className="nav nav-tabs" id="myTab" role="tablist">
                                     <li>
-                                        <Link to="/stays"
-                                              className={activePath === "/stays" ? "nav-link active" : "nav-link"}><FaHome
-                                            style={{marginRight: "5px"}}/>Stays</Link>
+                                        <Link to="/stays" className={activePath === "/stays" ? "nav-link active" : "nav-link"}><FaHome style={{marginRight: "5px"}}/>Stays</Link>
                                     </li>
                                     <li>
-                                        <Link to="/flights"
-                                              className={activePath === "/flights" ? "nav-link active" : "nav-link"}><MdFlight
-                                            style={{marginRight: "5px"}}/>Flights</Link>
+                                        <Link to="/flights" className={activePath === "/flights" ? "nav-link active" : "nav-link"}><MdFlight style={{marginRight: "5px"}}/>Flights</Link>
                                     </li>
                                     <li>
                                         <Link to ="/carrentals" className={activePath === "/carrentals" ? "nav-link active" : "nav-link"}><FaCarAlt style={{marginRight:"5px"}}/>Car Rentals</Link>

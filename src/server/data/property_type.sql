@@ -1,0 +1,12 @@
+insert into property_types (property_type_name) values ("Hotels");
+insert into property_types (property_type_name) values ("Apartments");
+insert into property_types (property_type_name) values ("Guest houses");
+insert into property_types (property_type_name) values ("Homestays");
+insert into property_types (property_type_name) values ("Hostels");
+insert into property_types (property_type_name) values ("Villas");
+insert into property_types (property_type_name) values ("Resorts");
+insert into property_types (property_type_name) values ("Lodges");
+insert into property_types (property_type_name) values ("Holiday homes");
+insert into property_types (property_type_name) values ("Farm stays");
+insert into property_types (property_type_name) values ("Campsites");
+insert into property_types (property_type_name) values ("Country houses");

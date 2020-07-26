@@ -4,26 +4,29 @@ import style from "./Stays.module.css";
 import Navbar from "./Navbar";
 import {IoIosBed} from "react-icons/io";
 import {FaRegCalendarAlt} from "react-icons/fa";
-import {FiUser} from "react-icons/fi";
-import {Redirect, Link} from "react-router-dom";
+import {BsPersonFill} from "react-icons/bs";
+import { Link } from "react-router-dom";
 import "react-dates/initialize";
 import {DateRangePicker} from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
-// import {connect} from 'react-redux'
 import {staysSearchData} from '../../redux/Stays/action'
-// import { registerUserData } from '../../redux/Registration/action';
-// import {loginUserData} from '../../redux/Login/action';
 
 class Stays extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             city: "",
-            checkin: "",
-            checkout: "",
+            checkin_date: "",
+            checkin_month: "",
+            checkin_year: "",
+            checkout_date: "",
+            checkout_month: "",
+            checkout_year: "",
             num_adults: "",
             num_child: "",
             num_rooms: "",
+            startDate: "",
+            endDate: "",
             modalVisible: false
         }
     }
@@ -50,9 +53,10 @@ class Stays extends React.Component {
 
     render() {
         // console.log(this.props)  
-        const {city, checkin, checkout, num_child, num_adults, num_rooms} = this.state
+        // const {city, checkin, checkout, num_child, num_adults, num_rooms} = this.state
         const activePath = this.props.match.url
-        let styles = this.state.modalVisible ? {display: "block"} : {display: "none"};
+        // let styles = this.state.modalVisible ? {display: "block"} : {display: "none"};
+
         return (
             <>
                 <Navbar activePath={activePath}/>
@@ -65,10 +69,10 @@ class Stays extends React.Component {
                                     more...</h4>
                                 <small>From cosy country homes to funky city flats</small>
                                 <div className={`${style.flexRowInput}`}>
-                                    <div className="input-group mb-3">
+                                    <div className="input-group">
                                         <div className="input-group-prepend">
-                                            <button className="btn btn-outline-secondary" type="button"
-                                                    id="button-addon1"><IoIosBed/>
+                                            <button className="btn btn-outline-secondary px-3 py-1 bg-light border-dark" type="button"
+                                                    id="button-addon1"><IoIosBed size="1.4em" />
                                             </button>
                                         </div>
                                         <input type="text" className={`form-control ${style.bed}`}
@@ -78,26 +82,34 @@ class Stays extends React.Component {
                                                value={this.state.city} name="city" onChange={this.handleChange}
                                         />
                                     </div>
-                                    <div className="input-group mb-3">
+                                    <div className="input-group justify-content-center">
                                         <div className="input-group-prepend">
-                                            <button className="btn btn-outline-secondary" type="button"
-                                                    id="button-addon1"><FaRegCalendarAlt/>
+                                            <button className="btn btn-outline-secondary px-3 bg-light" type="button"
+                                                    id="button-addon1"><FaRegCalendarAlt className="mb-0" size="1.2em" />
                                             </button>
                                         </div>
-                                        {/* <input type="date" className={`form-control ${style.calendar}`} placeholder="Check-in - Check-out"
-                                               aria-label="Example text with button addon" aria-describedby="button-addon1" 
-                                               value={this.state.checkin} name="checkin" onChange={this.handleChange}
-                                               /> */}
                                         <DateRangePicker
                                             className={`form-control ${style.calendar}`}
                                             startDate={this.state.startDate}
                                             startDateId="your_unique_start_date_id"
                                             endDate={this.state.endDate}
                                             endDateId="your_unique_end_date_id"
-                                            onDatesChange={({startDate, endDate}) => this.setState({
-                                                startDate,
-                                                endDate
-                                            })}
+                                            onDatesChange={({startDate, endDate}) => 
+                                                {
+                                                    let cal_checkin = String(startDate._d).split(" ")
+                                                    let cal_checkout = String(endDate._d).split(" ")
+                                                    this.setState({
+                                                        startDate,
+                                                        endDate,
+                                                        checkin_date: cal_checkin[2],
+                                                        checkin_month: cal_checkin[1],
+                                                        checkin_year: cal_checkin[3],
+                                                        checkout_date: cal_checkout[2],
+                                                        checkout_month: cal_checkout[1],
+                                                        checkout_year: cal_checkout[3]
+                                                    })
+                                                }
+                                            }
                                             focusedInput={this.state.focusedInput}
                                             onFocusChange={(focusedInput) => this.setState({focusedInput})}
                                             startDatePlaceholderText="Check-in"
@@ -105,27 +117,24 @@ class Stays extends React.Component {
                                         >
                                         </DateRangePicker>
                                     </div>
-                                    <div className="input-group mb-3">
+                                    <div className="input-group">
                                         <div className="input-group-prepend">
-                                            <button className="btn btn-outline-secondary" type="button"
-                                                    id="button-addon1"><FiUser/>
+                                            <button className="btn btn-outline-secondary px-3 bg-light" type="button"
+                                                    id="button-addon1"><BsPersonFill size="1.5em" />
                                             </button>
                                         </div>
-                                        <input type="text" className={`form-control ${style.user}`} placeholder=".."
+                                        <input type="text" className={`form-control ${style.user}`} placeholder="No. of Persons"
                                                aria-label="Example text with button addon"
                                                aria-describedby="button-addon1"
                                                value={this.state.num_rooms} name="num_rooms"
                                                onChange={this.handleChange}
                                         />
                                     </div>
-
-                                    {/* // http://ngrok.io/stays/search_results?city=Bangalore&checkin_date=25&checkin_month=07&checkin_year=2020&checkout_date=30&checkout_month=07&checkout_year=2020&num_adults=2&num_child=1&num_rooms=2 */}
-
-                                    <Link style={{height:"54px"}} to={`/stays/search_results?city=${this.state.city}`}>
-                                        <button className={`${style.searchBtn}`}>Search</button>
+                                    <Link to={!this.state.city ? `/stays` : `/stays/search_results?city=${this.state.city}&checkin_date=${this.state.checkin_date}&checkin_month=${this.state.checkin_month}&checkin_year=${this.state.checkin_year}&checkout_date=${this.state.checkout_date}&checkout_month=${this.state.checkout_month}&checkout_year=${this.state.checkout_year}&num_adults=${this.state.num_adults}&num_child=${this.state.num_child}&num_rooms=${this.state.num_rooms}&page=1`}>
+                                        <button className={`${style.searchBtn} ml-1 my-auto`}>Search</button>
                                     </Link>
                                 </div>
-                                <div className={`${style.flexRow} form-check`}>
+                                <div className={`${style.flexRow} form-check mt-3`}>
                                     <input className="form-check-input" type="checkbox" style={{marginRight: "7px"}}/>
                                     <label className="form-check-label">I'm traveling for work </label>
                                 </div>
@@ -201,6 +210,3 @@ const mapDispatchToProps = dispatch => ({
     staysSearchData: payload => dispatch(staysSearchData(payload))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Stays);
-// export default Stays
- 
- 

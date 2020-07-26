@@ -1,0 +1,12 @@
+insert into room_facilities (room_facility_name) values ("Kitchen");
+insert into room_facilities (room_facility_name) values ("Private bathroom");
+insert into room_facilities (room_facility_name) values ("Air conditioning");
+insert into room_facilities (room_facility_name) values ("Bath");
+insert into room_facilities (room_facility_name) values ("Terrace");
+insert into room_facilities (room_facility_name) values ("Balcony");
+insert into room_facilities (room_facility_name) values ("Flat-screen TV");
+insert into room_facilities (room_facility_name) values ("Soundproofing");
+insert into room_facilities (room_facility_name) values ("View");
+insert into room_facilities (room_facility_name) values ("Electric Kettle");
+insert into room_facilities (room_facility_name) values ("Coffee/Tea maker");
+insert into room_facilities (room_facility_name) values ("Oven");
