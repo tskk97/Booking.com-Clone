@@ -22,7 +22,12 @@ class ListResults extends Component {
             searchName: "",
             filterData: [],
             travelWorkCheckBox: false,
-            renderOnce:true
+            renderOnce:true,
+            property_type: [],
+            star_rating: [],
+            review_score: [],
+            facility: [],
+            room_facility: []
         }
     }
 
@@ -40,12 +45,13 @@ class ListResults extends Component {
 
         const url = new URLSearchParams(query)
         const {staysSearchData} = this.props
-        console.log(url.get('page'))
+        // console.log(url.get('page'))
+        // console.log(url.get('property_type'))
 
         this.setState({
             searchName: url.get('city'),
             page: url.get('page') || 1,
-            per_page: 10
+            per_page: 10,
         })
 
         const obj = {
@@ -54,15 +60,19 @@ class ListResults extends Component {
             num_rooms: url.get('num_rooms'),
             page: url.get('page') || 1
         }
-        console.log(obj)
+        // console.log(obj)
         staysSearchData(obj)
 
     }
 
     componentDidMount() {
         const {location} = this.props
-        console.log(location)
+        // console.log(location)
         this.handleUrlChange(location.search)
+    }
+
+    handleChecked = (res) => {
+        console.log(res)
     }
 
     render() {
@@ -198,7 +208,7 @@ class ListResults extends Component {
                                         </div>
                                         <div>
                                             {filterData && filterData.map(item =>
-                                                <FilterByCards key={uuidv4()} data={item}/>
+                                                <FilterByCards key={uuidv4()} data={item} check={this.handleChecked}/>
                                             )}
                                         </div>
 
