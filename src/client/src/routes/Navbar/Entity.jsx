@@ -10,6 +10,7 @@ import filterData from "./filter.json";
 import ResultCard from "./ResultCard";
 import {v4 as uuidv4} from 'uuid';
 import FilterByCards from "./FilterByCards";
+import {GiRoyalLove} from "react-icons/gi";
 
 class Entity extends Component {
     constructor(props) {
@@ -29,6 +30,11 @@ class Entity extends Component {
                         <div className={`col-10 text-center container-fluid ${style.centralDiv}`}>
                             <div className={`row`}>
                                 <div className={`col-3 ${style.filters}`}>
+                                    <div className={`${style.reserveDiv}`}>
+                                        <button className={`${style.reserveBtn}`}>Reserve</button>
+                                        <button className={`${style.bookBtn}`}><GiRoyalLove style={{textAlign:"left",marginTop:"5%",fontSize:"20px"}}/> <p style={{marginTop:"2%"}}>Save <br/> so you remember to book</p></button>
+                                        <p className={`text-muted`} style={{fontSize:"12px",color:"#878787",textAlign:"center"}}>Saved to 1178 lists</p>
+                                    </div>
                                     <div className={`${style.basicFilter}`}>
                                         <h5>Search</h5>
                                         <div>

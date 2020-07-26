@@ -112,3 +112,37 @@
     /*padding: 10px;*/
     width: 100%;
 }
+.reserveDiv{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    background: #ebf3ff;
+    padding: 10px;
+    padding-top: 20px;
+    margin: 10px 0;
+}
+
+.reserveBtn{
+    background-color: #0071c2;
+    color: #f4f7fc;
+    width: 100%;
+    margin-bottom: 3%;
+    border: 1px solid #0071c2;
+    font-weight: 500;
+    padding: 7px 15px;
+}
+.bookBtn{
+    background: transparent;
+    color:#0071c2;
+    width: 100%;
+    height: 50px;
+    border: 1px solid #0071c2;
+    /*padding: 5px;*/
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
