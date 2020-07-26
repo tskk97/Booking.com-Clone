@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import Navbar from "./Navbar.jsx";
 import style from "./ListResults.module.css"
-import {IoIosBed} from "react-icons/io";
 import {BsSearch} from "react-icons/bs";
 import {FaRegCalendarPlus} from "react-icons/fa";
 import {FiHelpCircle} from "react-icons/fi";
-import data from "./data.json";
-// import filterData from "./filter.json";
 import ResultCard from "./ResultCard";
+import Pagination from "./Pagination"
 import {v4 as uuidv4} from 'uuid';
 import FilterByCards from "./FilterByCards";
 import {connect} from 'react-redux'
@@ -42,57 +40,57 @@ class ListResults extends Component {
 
         const url = new URLSearchParams(query)
         const {staysSearchData} = this.props
-        // console.log(url.get('country'))   returns null if not found
+        console.log(url.get('page'))
 
         this.setState({
-            searchName: url.get('city')
+            searchName: url.get('city'),
+            page: url.get('page') || 1,
+            per_page: 10
         })
 
         const obj = {
             city: url.get('city'),
             checkin: url.get('checkin'),
-            num_rooms: url.get('num_rooms')
+            num_rooms: url.get('num_rooms'),
+            page: url.get('page') || 1
         }
         console.log(obj)
         staysSearchData(obj)
+        
     }
 
     componentDidMount() {
         const {location} = this.props
+        console.log(location)
         this.handleUrlChange(location.search)
     }
 
-    onChangeInput = (e) => {
-        let name = e.target.name;
-        this.setState({
-            [e.target.name]: !this.state[e.target.name],
-            renderOnce:false
-        });
-        e.target.checked = !this.state[e.target.name];
-
-
-    }
-
     render() {
-        console.log("this.state is", this.state);
-        const {allData, searchData} = this.props;
+        const {allData, searchData, location} = this.props;
         const {filterData, travelWorkCheckBox,renderOnce} = this.state;
-        console.log(searchData, "jjjjj");
-        console.log(allData, "all data is");
+       
         let objArray;
         if (allData) {
             objArray = Object.keys(allData)
         } else {
             objArray = [];
         }
-        console.log(objArray);
-         renderOnce && objArray.forEach(item => {
-            if (item !== "msg" && item !== "data") {
-                filterData.push([item, [...allData[item]]]);
-            }
-        })
-        console.log("filter Data is", filterData);
-
+        
+        if(filterData.length === 0){
+            renderOnce && objArray.forEach(item => {
+                if (item !== "msg" && item !== "data" && item !== "page" && item !== "per_page" && item !== "total_pages" && item !== "total_found") {
+                    filterData.push([item, [...allData[item]]]);
+                }
+            })
+            let filter_headings = ["Star Rating", "Property Type", "Review Score", "Facility", "Room Facility"]
+            let x =filter_headings[0].toLowerCase()
+            console.log(x)
+            filterData && filterData.map((item, index) => {
+                item[0] = filter_headings[index]
+            })
+            
+        }
+        
         let capitalisedSearchName = this.state.searchName.charAt(0).toUpperCase() + this.state.searchName.slice(1);
         return (
             <div className={`${style.body}`}>
@@ -192,7 +190,7 @@ class ListResults extends Component {
                                         <button className={`${style.searchBtn}`} style={{textAlign: "center"}}>Search
                                         </button>
                                     </div>
-                                    <div className={`${style.filterBy}`} style={{textAlign: "left"}}>
+                                    <div className={`${style.filterBy} mb-5`} style={{textAlign: "left"}}>
                                         <div style={{
                                             "textAlign": "left",
                                             "fontWeight": "700",
@@ -202,7 +200,7 @@ class ListResults extends Component {
                                         </div>
                                         <div>
                                             {filterData && filterData.map(item =>
-                                                <FilterByCards cb={this.onChangeInput} key={uuidv4()} data={item}/>
+                                                <FilterByCards key={uuidv4()} data={item}/>
                                             )}
                                         </div>
                                     </div>
@@ -221,10 +219,9 @@ class ListResults extends Component {
 
                                 {/*Middle section*/}
 
-
                                 <div className={`col-9 ${style.Results}`}>
                                     <div className={`${style.flexColRes}`}>
-                                        <div style={{fontWeight: "bold", fontSize: "20px"}}>{capitalisedSearchName}: {searchData.length} Properties Found</div>
+                                        <div style={{fontWeight: "bold", fontSize: "20px"}}>{capitalisedSearchName}: {allData.total_found} Properties Found</div>
                                     </div>
                                     <hr/>
                                     <div className={`${style.blueBg}`}>
@@ -242,6 +239,7 @@ class ListResults extends Component {
                                             <ResultCard key={uuidv4()} searchData={item}/>
                                         )}
                                     </div>
+                                    <Pagination page={allData.page} total_pages={allData.total_pages} url={location.path+location.search} />
                                 </div>
                             </div>
                         </div>
@@ -267,6 +265,3 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListResults);
-
-
-// export default ListResults;

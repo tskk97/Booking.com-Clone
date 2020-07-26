@@ -17,3 +17,12 @@
     display: flex;
     flex-direction: column;
 }
+
+input[type=checkbox] {
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+    bottom: 1px;
+    height: 15px;
+    width: 15px;
+}

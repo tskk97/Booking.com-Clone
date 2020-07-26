@@ -1,0 +1,13 @@
+insert into facilities (facility_name) values ("Parking");
+insert into facilities (facility_name) values ("Restaurant");
+insert into facilities (facility_name) values ("Swimming Pool");
+insert into facilities (facility_name) values ("Room service");
+insert into facilities (facility_name) values ("Fitness center");
+insert into facilities (facility_name) values ("Non-smoking rooms");
+insert into facilities (facility_name) values ("Free WiFi");
+insert into facilities (facility_name) values ("Airport shuttle");
+insert into facilities (facility_name) values ("Family rooms");
+insert into facilities (facility_name) values ("Pets allowed");
+insert into facilities (facility_name) values ("Facilities for disabled guests");
+insert into facilities (facility_name) values ("Spa and wellness center");
+insert into facilities (facility_name) values ("Electric vehicle charging station");

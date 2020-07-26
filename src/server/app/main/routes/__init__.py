@@ -6,6 +6,7 @@ from app.main.routes.Users import Reg_Pwd
 from app.main.routes.Authentication import Login
 from app.main.routes.Authentication import Login_Pwd
 from app.main.routes.Authentication import Logout
+from app.main.routes.StaysSearch import DefaultSearch
 
 
 def add_resources(app):
@@ -20,6 +21,7 @@ def add_resources(app):
     api.add_resource(Login, '/login')
     api.add_resource(Login_Pwd, '/login/password')
     api.add_resource(Logout, '/logout')
+    api.add_resource(DefaultSearch, '/stays/search_results')
     
 
 def register_blueprints(app):
