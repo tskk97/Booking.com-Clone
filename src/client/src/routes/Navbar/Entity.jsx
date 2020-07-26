@@ -15,6 +15,9 @@ import {RiStarSLine} from "react-icons/ri";
 import {AiOutlineLike} from "react-icons/ai";
 import {GiTwoShadows} from "react-icons/gi";
 import {FcShare} from "react-icons/fc";
+import {GiBus} from "react-icons/gi";
+import {AiFillTag} from "react-icons/ai";
+import {MdLocationOn} from "react-icons/md";
 
 class Entity extends Component {
     constructor(props) {
@@ -179,15 +182,171 @@ class Entity extends Component {
                                             </div>
                                         </div>
                                         <div className={`${style.shareDiv}`}>
-                                            <GiRoyalLove style={{color:"#0071c2",border:"1px solid #fff",fontSize:"22px",marginTop:"7px"}}/>
-                                            <FcShare style={{marginTop:"7px"}}/>
+                                            <GiRoyalLove style={{
+                                                color: "#0071c2",
+                                                border: "1px solid #fff",
+                                                fontSize: "22px",
+                                                marginTop: "7px"
+                                            }}/>
+                                            <FcShare style={{marginTop: "7px"}}/>
                                             <button>Reserve</button>
                                         </div>
 
                                     </div>
-                                    <div className={`${style.showCards}`}>
-
+                                    <div className={`${style.priceMatchDiv}`}>
+                                        <div className={`${style.showCards}`} style={{marginTop: "1%"}}>
+                                            <div className={`d-flex flex-row ${style.threeFigures}`}
+                                                 style={{marginLeft: "0%"}}>
+                                                <div className={`rounded-circle text-center`} style={{
+                                                    backgroundColor: "white",
+                                                    border: "1px solid black",
+                                                    verticalAlign: "middle",
+                                                    width: "30px",
+                                                    height: "30px",
+                                                    marginTop: "3px"
+                                                }}><GiBus style={{marginTop: "2px"}}/></div>
+                                                <div style={{
+                                                    marginTop: "4px",
+                                                    fontSize: "12px",
+                                                    backgroundColor: "#ebf3ff",
+                                                    padding: "2px",
+                                                    border: "1px solid #ebf3ff"
+                                                }}>Airport Shuttle
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style={{marginTop:"4px",fontWeight:"bold",fontSize:"88%"}}>
+                                            <AiFillTag />We Price Match
+                                        </div>
                                     </div>
+                                    <div className={`${style.locationDetailsDiv}`} style={{fontSize:"small"}}>
+                                        <MdLocationOn style={{color:"#0071c2",fontSize:"22px"}}/>23 Old Airport Road, 560008 Bangalore, India – Great location - show map
+                                    </div>
+                                    <div style={{border:"1px solid #dae9ff",marginTop:"1%"}}/>
+
+                                    {/*Carousel*/}
+
+
+                                    <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+                                        <div className="carousel-inner">
+                                            <div className="carousel-item active"  data-interval="900000">
+                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/255/255549892.jpg" className="d-block w-100" alt="..."/>
+                                            </div>
+                                            <div className="carousel-item"  data-interval="9000000">
+                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/482/48254908.jpg" className="d-block w-100" alt="..."/>
+                                            </div>
+                                            <div className="carousel-item"  data-interval="900000">
+                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/341/34138027.jpg" className="d-block w-100" alt="..."/>
+                                            </div>
+                                            <div className="carousel-item"  data-interval="900000">
+                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/341/34137970.jpg" className="d-block w-100" alt="..."/>
+                                            </div>
+                                            <div className="carousel-item"  data-interval="900000">
+                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/341/34137960.jpg" className="d-block w-100" alt="..."/>
+                                            </div>
+                                            <div className="carousel-item"  data-interval="900000">
+                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/341/34138033.jpg" className="d-block w-100" alt="..."/>
+                                            </div>
+                                            <div className="carousel-item"  data-interval="900000">
+                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/341/34138017.jpg" className="d-block w-100" alt="..."/>
+                                            </div>
+                                            <div className="carousel-item"  data-interval="900000">
+                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/341/34137955.jpg" className="d-block w-100" alt="..."/>
+                                            </div>
+                                        </div>
+                                        <a className="carousel-control-prev" href="#carouselExampleControls"
+                                           role="button" data-slide="prev">
+                                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span className="sr-only">Previous</span>
+                                        </a>
+                                        <a className="carousel-control-next" href="#carouselExampleControls"
+                                           role="button" data-slide="next">
+                                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span className="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                    <div className={`${style.imgPreviewDiv}`}>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                    </div>
+                                    <div className={`${style.imgPreviewDiv}`}>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                        <a></a>
+                                    </div>
+
+                                    {/*Accordion*/}
+
+                                    {/*<div className="accordion" id="accordionExample">*/}
+                                    {/*    <div className="card">*/}
+                                    {/*        <div className="card-header" id="headingOne">*/}
+                                    {/*            <h2 className="mb-0">*/}
+                                    {/*                <button className="btn btn-link btn-block text-left" type="button"*/}
+                                    {/*                        data-toggle="collapse" data-target="#collapseOne"*/}
+                                    {/*                        aria-expanded="true" aria-controls="collapseOne">*/}
+                                    {/*                    Collapsible Group Item #1*/}
+                                    {/*                </button>*/}
+                                    {/*            </h2>*/}
+                                    {/*        </div>*/}
+
+                                    {/*        <div id="collapseOne" className="collapse show" aria-labelledby="headingOne"*/}
+                                    {/*             data-parent="#accordionExample">*/}
+                                    {/*            <div className="card-body">*/}
+                                    {/*                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus*/}
+                                    {/*                terry richardson ad squid. 3 wolf moon officia aute, non cupidatat*/}
+                                    {/*                skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.*/}
+                                    {/*                Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid*/}
+                                    {/*                single-origin coffee nulla assumenda shoreditch et. Nihil anim*/}
+                                    {/*                keffiyeh helvetica, craft beer labore wes anderson cred nesciunt*/}
+                                    {/*                sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings*/}
+                                    {/*                occaecat craft beer farm-to-table, raw denim aesthetic synth*/}
+                                    {/*                nesciunt you probably haven't heard of them accusamus labore*/}
+                                    {/*                sustainable VHS.*/}
+                                    {/*            </div>*/}
+                                    {/*        </div>*/}
+                                    {/*    </div>*/}
+
+                                    {/* */}
+                                    {/*</div>*/}
+
+
+
+
                                 </div>
                             </div>
                         </div>
