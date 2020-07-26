@@ -13,13 +13,13 @@ import FilterByCards from "./FilterByCards";
 import {GiRoyalLove} from "react-icons/gi";
 import {RiStarSLine} from "react-icons/ri";
 import {AiOutlineLike} from "react-icons/ai";
+import {GiTwoShadows} from "react-icons/gi";
+import {FcShare} from "react-icons/fc";
 
 class Entity extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-
-        }
+        this.state = {}
     }
 
     render() {
@@ -34,8 +34,12 @@ class Entity extends Component {
                                 <div className={`col-3 ${style.filters}`}>
                                     <div className={`${style.reserveDiv}`}>
                                         <button className={`${style.reserveBtn}`}>Reserve</button>
-                                        <button className={`${style.bookBtn}`}><GiRoyalLove style={{textAlign:"left",marginTop:"5%",fontSize:"20px"}}/> <p style={{marginTop:"2%"}}>Save <br/> so you remember to book</p></button>
-                                        <p className={`text-muted`} style={{fontSize:"12px",color:"#878787",textAlign:"center"}}>Saved to 1178 lists</p>
+                                        <button className={`${style.bookBtn}`}><GiRoyalLove
+                                            style={{textAlign: "left", marginTop: "5%", fontSize: "20px"}}/> <p
+                                            style={{marginTop: "2%"}}>Save <br/> so you remember to book</p></button>
+                                        <p className={`text-muted`}
+                                           style={{fontSize: "12px", color: "#878787", textAlign: "center"}}>Saved to
+                                            1178 lists</p>
                                     </div>
                                     <div className={`${style.basicFilter}`}>
                                         <h5>Search</h5>
@@ -145,18 +149,39 @@ class Entity extends Component {
                                     <div className={`${style.titleRow}`}>
                                         <div className={`d-flex flex-row`}>
                                             <div className={`${style.tag}`}>Hotel</div>
-                                            <h4 style={{fontWeight:"bold"}}>The Leela Palace Bangalore</h4>
-                                            <RiStarSLine style={{marginTop:"7px",color:"#febb02"}}/>
-                                            <RiStarSLine style={{marginTop:"7px",color:"#febb02"}}/>
-                                            <RiStarSLine style={{marginTop:"7px",color:"#febb02"}}/>
-                                            <RiStarSLine style={{marginTop:"7px",color:"#febb02"}}/>
-                                            <RiStarSLine style={{marginTop:"7px",color:"#febb02"}}/>
+                                            <h4 style={{fontWeight: "bold"}}>The Leela Palace Bangalore</h4>
+                                            <RiStarSLine
+                                                style={{marginTop: "7px", marginLeft: "12px", color: "#febb02"}}/>
+                                            <RiStarSLine style={{marginTop: "7px", color: "#febb02"}}/>
+                                            <RiStarSLine style={{marginTop: "7px", color: "#febb02"}}/>
+                                            <RiStarSLine style={{marginTop: "7px", color: "#febb02"}}/>
+                                            <RiStarSLine style={{marginTop: "7px", color: "#febb02"}}/>
                                             <div className={`${style.yellowLike}`}>
-                                                <AiOutlineLike/>
+                                                <AiOutlineLike style={{color: "white"}}/>
+                                            </div>
+                                            <div className={`d-flex flex-row ${style.threeFigures}`}>
+                                                <div className={`rounded-circle text-center`} style={{
+                                                    backgroundColor: "white",
+                                                    border: "1px solid black",
+                                                    verticalAlign: "middle",
+                                                    width: "30px",
+                                                    height: "30px",
+                                                    marginTop: "3px"
+                                                }}><GiTwoShadows style={{marginTop: "7px"}}/></div>
+                                                <div style={{
+                                                    marginTop: "4px",
+                                                    fontSize: "12px",
+                                                    backgroundColor: "#ebf3ff",
+                                                    padding: "2px",
+                                                    border: "1px solid #ebf3ff"
+                                                }}>Great for three travellers
+                                                </div>
                                             </div>
                                         </div>
-                                        <div>
-
+                                        <div className={`${style.shareDiv}`}>
+                                            <GiRoyalLove style={{color:"#0071c2",border:"1px solid #fff",fontSize:"22px",marginTop:"7px"}}/>
+                                            <FcShare style={{marginTop:"7px"}}/>
+                                            <button>Reserve</button>
                                         </div>
 
                                     </div>

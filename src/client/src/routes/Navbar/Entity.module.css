@@ -112,7 +112,8 @@
     display: flex;
     flex-direction: row;
     margin-top: 2%;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
+    justify-content: space-between;
 }
 .tag{
     background: #aeaeae;
@@ -129,8 +130,14 @@
     background-color: #febb02;
     width: 24px;
     height: 24px;
-    padding-bottom: 2px;
-    margin-top: 6px;
+    padding-bottom: 4px;
+    margin-top: 5px;
+    border-radius: 3px;
+    margin-left: 12px;
+}
+
+.threeFigures{
+    margin-left: 12px;
 }
 
 .reserveBtn{
@@ -183,4 +190,20 @@
 }
 .topBtnDiv :nth-child(4){
     width: 150px;
+}
+.shareDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /*border: 1px solid black;*/
+    width: 15%;
+}
+
+.shareDiv > button{
+    color: #fff;
+    background-color: #0071c2;
+    border:1px solid #0071c2;
+    margin-bottom: 4px;
+    /*border-radius: 3px;*/
+    padding: 5px;
 }
