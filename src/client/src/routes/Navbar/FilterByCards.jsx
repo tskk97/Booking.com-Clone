@@ -27,7 +27,7 @@ class FilterByCards extends Component {
                     {data[1].map((item,index) =>(
                         <div key={uuidv4()} className={`${style.flexRow}`}>
                             <div className="custom-control custom-checkbox">
-                                <input type="checkbox"  onChange={e=>cb(e)} name={item} className="custom-control-input"
+                                <input type="checkbox"  onChange={e=>cb(e)} name={data[0] + item} className="custom-control-input"
                                        id={`customCheck${index * 100}`} />
                                 <label className="custom-control-label" htmlFor={`customCheck${index * 100}`}>{item}</label>
                             </div>

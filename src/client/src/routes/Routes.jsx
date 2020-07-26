@@ -12,6 +12,7 @@ import AirportTaxis from './Navbar/AirportTaxis';
 // import StaysList from './Stays/StaysList';
 // import ResultCard from './Navbar/ResultCard';
 import ListResults from "./Navbar/ListResults";
+import Entity from "./Navbar/Entity";
 
 const Routes = ()=>(
     <>
@@ -28,6 +29,7 @@ const Routes = ()=>(
             <Route exact path ="/login" component = {Login}/>
             <Route path ="/login/password"  component = {LoginPassword}/>
             <Route path="/stays/:id"  component={ListResults}/>
+            <Route path="/entity" component={Entity}/>
         </Switch>
     </>
 )

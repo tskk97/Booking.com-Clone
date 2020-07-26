@@ -40,7 +40,7 @@ export const registerUserData = payload => dispatch => {
 
         var config = {
             method: 'post',
-            url: 'http://b8b4cb2b4039.ngrok.io/register',
+            url: 'http://4a6c43bc9d5d.ngrok.io/register',
             headers: {
                 'Content-Type': 'application/json'
             },

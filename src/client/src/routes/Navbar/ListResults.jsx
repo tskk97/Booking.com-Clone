@@ -77,7 +77,7 @@ class ListResults extends Component {
         console.log("this.state is", this.state);
         const {allData, searchData} = this.props;
         const {filterData, travelWorkCheckBox,renderOnce} = this.state;
-        console.log(searchData, "jjjjj");
+        // console.log(searchData, "jjjjj");
         console.log(allData, "all data is");
         let objArray;
         if (allData) {

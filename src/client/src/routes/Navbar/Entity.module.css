@@ -1,0 +1,114 @@
+/*.container{*/
+/*    margin-top: 15vh;*/
+/*}*/
+.body{
+    margin-top: 20vh;
+}
+.flexRow{
+    display: flex;
+    flex-direction: row;
+}
+.childRoom > *{
+    width: 50%;
+    margin-top: 2%;
+}
+.travelWork{
+    justify-content: space-between;
+    margin-top: 2%;
+}
+.flexColRes{
+    display: flex;
+    flex-direction: column;
+}
+
+.flexColRes > *{
+    text-align: left;
+}
+.filterBtn{
+    display: flex;
+    flex-direction: row;
+}
+.filterBtn > *{
+    font-size: smaller;
+    text-align: center;
+    background-color: white;
+    width: 30%;
+    border: 1px solid blue;
+    border-top: 3px solid blue;
+}
+.filterBtn :nth-child(1){
+    width: 40%;
+    text-align: center;
+}
+.filterBtn :nth-child(4){
+    width: 10%;
+    text-align: center;
+}
+.filterBtn :nth-child(6){
+    width: 5%;
+    text-align: left;
+    font-weight: bolder;
+    vertical-align: top;
+    padding-bottom: 3px;
+}
+
+.blueBg{
+    background-color: #003580;
+}
+
+.searchBtn{
+    background-color: #0071c2;
+    padding: 12px !important;
+    color: white;
+    cursor: pointer;
+    line-height: 24px;
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    border: 0px;
+    border-radius: 2px;
+    text-align: right;
+
+}
+
+.centralDiv > *{
+    /*border: 1px solid black;*/
+}
+.filters{
+    width: 100%;
+    height: auto;
+    /*border: 1px solid red;*/
+}
+
+.basicFilter{
+    background-color: #febb02 ;
+    /*height: 350px;*/
+    height: auto;
+    width: inherit;
+    border: 1px solid #c6c6c6;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 16px;
+}
+.basicFilter > *{
+    text-align: left;
+}
+.showCards{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+}
+.filterBy{
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #c6c6c6;
+    width: 100%;
+    padding: 10px;
+    height: auto;
+}
+.baseFilter{
+    /*padding: 10px;*/
+    width: 100%;
+}
