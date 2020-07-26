@@ -11,6 +11,8 @@ import ResultCard from "./ResultCard";
 import {v4 as uuidv4} from 'uuid';
 import FilterByCards from "./FilterByCards";
 import {GiRoyalLove} from "react-icons/gi";
+import {RiStarSLine} from "react-icons/ri";
+import {AiOutlineLike} from "react-icons/ai";
 
 class Entity extends Component {
     constructor(props) {
@@ -132,18 +134,31 @@ class Entity extends Component {
 
                                 <div className={`col-9 ${style.Results}`}>
                                     <div className={`${style.flexColRes}`}>
-                                        <div style={{fontWeight: "bold", fontSize: "20px"}}>(#filler Search): (length of search) Properties Found</div>
-                                    </div>
-                                    <hr/>
-                                    <div className={`${style.blueBg}`}>
-                                        <div className={`${style.filterBtn}`}>
-                                            <button className={`form-control btn`}>Top picks for families</button>
-                                            <button className={`form-control btn`}>show homes first</button>
-                                            <button className={`form-control btn`}>price(lowest first)</button>
-                                            <button className={`form-control btn`}>stars</button>
-                                            <button className={`form-control btn`}>star rating and price</button>
-                                            <button className={`form-control btn`}>...</button>
+                                        <div className={`${style.topBtnDiv}`}>
+                                            <button>Info & prices</button>
+                                            <button>Facilities</button>
+                                            <button>House Rules</button>
+                                            <button>The fine print</button>
+                                            <button>Guest reviews(#filler count)</button>
                                         </div>
+                                    </div>
+                                    <div className={`${style.titleRow}`}>
+                                        <div className={`d-flex flex-row`}>
+                                            <div className={`${style.tag}`}>Hotel</div>
+                                            <h4 style={{fontWeight:"bold"}}>The Leela Palace Bangalore</h4>
+                                            <RiStarSLine style={{marginTop:"7px",color:"#febb02"}}/>
+                                            <RiStarSLine style={{marginTop:"7px",color:"#febb02"}}/>
+                                            <RiStarSLine style={{marginTop:"7px",color:"#febb02"}}/>
+                                            <RiStarSLine style={{marginTop:"7px",color:"#febb02"}}/>
+                                            <RiStarSLine style={{marginTop:"7px",color:"#febb02"}}/>
+                                            <div className={`${style.yellowLike}`}>
+                                                <AiOutlineLike/>
+                                            </div>
+                                        </div>
+                                        <div>
+
+                                        </div>
+
                                     </div>
                                     <div className={`${style.showCards}`}>
 
