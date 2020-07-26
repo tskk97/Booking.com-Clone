@@ -10,19 +10,31 @@ import {v4 as uuidv4} from 'uuid';
 import FilterByCards from "./FilterByCards";
 import {connect} from 'react-redux'
 import {staysSearchData} from '../../redux/Stays/action'
-
+ 
 
 class ListResults extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            adults: "1 Adult",
-            children: "No Children",
-            room: "1 room",
+            adults: "",
+            children: "",
+            room: "",
             searchName: "",
             filterData: [],
             travelWorkCheckBox: false,
-            renderOnce:true
+            renderOnce:true,
+            property_type: [],
+            star_rating: [],
+            review_score: [],
+            facility: [],
+            room_facility: [],
+            checkin_date: "",
+            checkin_month: "",
+            checkin_year: "",
+            checkout_date: "",
+            checkout_month: "",
+            checkout_year: "",
+            propertiesArr: []
         }
     }
 
@@ -40,29 +52,151 @@ class ListResults extends Component {
 
         const url = new URLSearchParams(query)
         const {staysSearchData} = this.props
-        console.log(url.get('page'))
-
+        // console.log(url.get('page'))
+        // console.log(url.get('property_type'))
         this.setState({
             searchName: url.get('city'),
             page: url.get('page') || 1,
-            per_page: 10
+            per_page: 10,
+            checkin_date:url.get('chekin_date'),
+            checkin_month:url.get('checkin_month'),
+            checkin_year:url.get('checkin_year'),
+            checkout_date: url.get('checkout_date'),
+            checkout_month: url.get('checkout_month'),
+            checkout_year: url.get('checkout_year'),
+            adults:url.get('num_adults'),
+            children:url.get('num_child'),
+            room:url.get('num_rooms') 
         })
 
         const obj = {
             city: url.get('city'),
             checkin: url.get('checkin'),
-            num_rooms: url.get('num_rooms'),
+            num_rooms: url.get('num_rooms'),    
             page: url.get('page') || 1
         }
-        console.log(obj)
+        // console.log(obj)
         staysSearchData(obj)
         
     }
 
     componentDidMount() {
         const {location} = this.props
-        console.log(location)
+        let url =  new URL(window.location.href)
+        console.log(url.search)
+        let baseUrl = url.search.toString().slice(1)
+        let propertiesArr = baseUrl.split("&")
+        console.log(propertiesArr)
+         this.setState({
+              propertiesArr:propertiesArr
+         })
+        console.log(baseUrl,"loc")
         this.handleUrlChange(location.search)
+    }
+
+ 
+    handleChecked = (res) => {
+// <Link to={!this.state.city ? `/stays` : `/stays/search_results?city=${this.state.city}&checkin_date=${this.state.checkin_date}&checkin_month=${this.state.checkin_month}&checkin_year=${this.state.checkin_year}&checkout_date=${this.state.checkout_date}&checkout_month=${this.state.checkout_month}&checkout_year=${this.state.checkout_year}&num_adults=${this.state.num_adults}&num_child=${this.state.num_child}&num_rooms=${this.state.num_rooms}&page=1`}>
+        console.log(this.state)
+        let newCity = this.state.searchName
+        let newCheckInDate = this.state.checkin_date
+        let newCheckInMonth = this.state.checkin_month
+        let newCheckInYear = this.state.checkin_year
+        let newCheckOutDate = this.state.checkout_date
+        let newCheckOutMonth = this.state.checkout_month
+        let newCheckOutYear = this.state.checkout_year
+        let newAdults = this.state.adults
+        let newChildrens = this.state.children
+        let newRooms = this.state.room
+        let newPage = this.state.page
+        
+        // let newUrl = `/stays/search_results?city=${newCity}&checkin_date=${newCheckInDate}&checkin_month=${newCheckInMonth}&checkin_year=${newCheckInYear}&checkout_date=${newCheckOutDate}&checkout_month=${newCheckInMonth}&checkout_year=${newCheckOutYear}&num_adults=${newAdults}&num_child=${newChildrens}&num_rooms=${newRooms}&page=1`
+        let newUrl = `/stays/search_results?`
+
+        let newPropertyType = res.property_type
+        let newStarRating = res.star_rating
+        let newReviewScore = res.review_score
+        let newFacility = res.facility
+        let newRoomFacility = res.room_facility
+        let stateArray = this.state.propertiesArr
+        console.log(stateArray)
+
+        for(var i=0;i<stateArray.length;i++){
+            newUrl += stateArray[i]
+        }
+        newPropertyType && newPropertyType.forEach(item => {
+            // newUrl +=  "&"+"property_type"+"="+item
+            var productFlag = true
+            for(var i=0;i<stateArray.length;i++){
+                if(stateArray[i] === `property_type=${item}`){
+                    productFlag = false
+                    break
+                }               
+            }
+            if(productFlag){
+                newUrl += "&"+"property_type"+"="+item            
+            }
+        })
+        // console.log(newPropertyType)
+
+        newStarRating && newStarRating.forEach(item => {
+            var starFlag = true
+            for(var i=0;i<stateArray.length;i++){
+                if(stateArray[i] === `star_rating=${item}`){
+                    starFlag = false
+                    break
+                }               
+            }
+            if(starFlag){
+                 newUrl += "&"+"star_rating"+"="+item
+            }
+        })
+
+        
+        // console.log(newStarRating)
+
+        newReviewScore&&newReviewScore.forEach(item => {
+            var reviewFlag = true
+            for(var i=0;i<stateArray.length;i++){
+                if(stateArray[i] === `review_score=${item}`){
+                    reviewFlag = false
+                    break
+                }               
+            }
+            if(reviewFlag){
+                  newUrl += "&"+"review_score"+"="+item
+            }
+        })
+        newFacility&&newFacility.forEach(item => {
+            var facilityFlag = true
+            for(var i=0;i<stateArray.length;i++){
+                if(stateArray[i] === `facility=${item}`){
+                    facilityFlag = false
+                    break
+                }               
+            }
+            if(facilityFlag){
+                newUrl += "&"+"facility"+"="+item
+            }
+        })
+        newRoomFacility&&newRoomFacility.forEach(item => {
+            var facilityRoomFlag = true
+            for(var i=0;i<stateArray.length;i++){
+                if(stateArray[i] === `room_facility=${item}`){
+                    facilityRoomFlag = false
+                    break
+                }               
+            }
+            if(facilityRoomFlag){
+                 newUrl += "&"+"room_facility"+"="+item
+            }
+        })
+         
+        
+
+        // let newUrl = {`/stays/search_results?city=${newCity}&checkin_date=${this.state.checkin_date}&checkin_month=${this.state.checkin_month}&checkin_year=${this.state.checkin_year}&checkout_date=${this.state.checkout_date}&checkout_month=${this.state.checkout_month}&checkout_year=${this.state.checkout_year}&num_adults=${this.state.num_adults}&num_child=${this.state.num_child}&num_rooms=${this.state.num_rooms}&page=1`}
+        // console.log(res)
+        console.log(newUrl)
     }
 
     render() {
@@ -90,7 +224,7 @@ class ListResults extends Component {
             })
             
         }
-        
+        console.log(this.state.Property_Type_Hostels)
         let capitalisedSearchName = this.state.searchName.charAt(0).toUpperCase() + this.state.searchName.slice(1);
         return (
             <div className={`${style.body}`}>
@@ -200,7 +334,7 @@ class ListResults extends Component {
                                         </div>
                                         <div>
                                             {filterData && filterData.map(item =>
-                                                <FilterByCards key={uuidv4()} data={item}/>
+                                                <FilterByCards key={uuidv4()} data={item} check={this.handleChecked}/>
                                             )}
                                         </div>
                                     </div>
