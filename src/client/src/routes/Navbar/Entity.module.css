@@ -52,10 +52,6 @@
     padding-bottom: 3px;
 }
 
-.blueBg{
-    background-color: #003580;
-}
-
 .searchBtn{
     background-color: #0071c2;
     padding: 12px !important;
@@ -70,14 +66,9 @@
     text-align: right;
 
 }
-
-.centralDiv > *{
-    /*border: 1px solid black;*/
-}
 .filters{
     width: 100%;
     height: auto;
-    /*border: 1px solid red;*/
 }
 
 .basicFilter{
@@ -99,16 +90,228 @@
     flex-direction: column;
     margin-top: 5%;
 }
-.filterBy{
-    margin-top: 2%;
+.baseFilter{
+    width: 100%;
+}
+.reserveDiv{
     display: flex;
     flex-direction: column;
-    border: 1px solid #c6c6c6;
     width: 100%;
-    padding: 10px;
     height: auto;
+    background: #ebf3ff;
+    padding: 10px;
+    padding-top: 20px;
+    margin: 10px 0;
 }
-.baseFilter{
-    /*padding: 10px;*/
+.Results{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.titleRow{
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+    /*border: 1px solid black;*/
+    justify-content: space-between;
+}
+.tag{
+    background: #aeaeae;
+    color: #fff;
+    font-size: 12px;
+    padding: 0 4px;
+    height: 20px;
+    border-radius: 3px;
+    margin-right: 10px;
+    margin-top: 6px;
+}
+
+.yellowLike{
+    background-color: #febb02;
+    width: 24px;
+    height: 24px;
+    padding-bottom: 4px;
+    margin-top: 5px;
+    border-radius: 3px;
+    margin-left: 12px;
+}
+
+.threeFigures{
+    margin-left: 12px;
+}
+
+.reserveBtn{
+    background-color: #0071c2;
+    color: #f4f7fc;
     width: 100%;
+    margin-bottom: 3%;
+    border: 1px solid #0071c2;
+    font-weight: 500;
+    padding: 7px 15px;
+}
+.bookBtn{
+    background: transparent;
+    color:#0071c2;
+    width: 100%;
+    height: 50px;
+    border: 1px solid #0071c2;
+    /*padding: 5px;*/
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.topBtnDiv{
+    display: flex;
+    flex-direction: row;
+}
+.topBtnDiv > button{
+    color: #0071c2;
+    padding: 10px;
+    background: #ebf3ff;
+    border: #ebf3ff;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid #ebf3ff;
+    border-right: 1px solid #fff;
+    display: table-cell;
+}
+.topBtnDiv :nth-child(1){
+    width: 200px;
+}
+.topBtnDiv :nth-child(2){
+    width: 150px;
+}
+.topBtnDiv :nth-child(3){
+    width: 150px;
+}
+.topBtnDiv :nth-child(4){
+    width: 150px;
+}
+.shareDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /*border: 1px solid black;*/
+    width: 15%;
+}
+
+.shareDiv > button{
+    color: #fff;
+    background-color: #0071c2;
+    border:1px solid #0071c2;
+    margin-bottom: 4px;
+    /*border-radius: 3px;*/
+    padding: 5px;
+}
+
+.priceMatchDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.locationDetailsDiv{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1%;
+}
+.imgPreviewDiv{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+}
+.imgPreviewDiv > img{
+    /*max-width: 100%;*/
+    height: 40px;
+    width: 40px;
+    /*margin-right: 4px;*/
+    border: 1px solid #fff;
+}
+.imgPreviewDiv > a{
+    background: url("https://cf.bstatic.com/images/hotel/max1280x900/482/48254908.jpg");
+    height: 40px;
+    width: 40px;
+    /*margin-right: 4px;*/
+    margin: 0 .2em .291em 0;
+    border: 1px solid #fff;
+    /*color: #0071c2;*/
+    font-weight: bold;
+}
+.healthAndSafetyDiv{
+    display: flex;
+    flex-direction: column;
+    width: 265px;
+    /*border: 1px solid #e6e6e6;;*/
+    border: 1px solid #e6e6e6;;
+
+    border-radius: 2px;
+    margin: 7px 0 16px;
+    font-size: 80%;
+    height: auto;
+    padding: 16px;
+    background-color: #fff;
+}
+.healthFeaturesDiv{
+    display: flex;
+    flex-direction: row;
+    /*border: 1px solid black;*/
+    margin-bottom: 2%;
+}
+.middleDiv{
+    display: flex;
+    flex-direction: column;
+}
+.googleMapDiv{
+    width: 100%;
+    height: 150px;
+    border: 1px solid blue;
+    margin: 10px 0;
+}
+.modeOfTransport{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ebf3ff;
+    border-radius: 3px;
+    /*background-color: #f4f7fc;*/
+}
+.similarDiv{
+    margin: 10px 0;
+    background-color: #fafcff;
+    border: 1px solid #ebf3ff;
+    padding: 8px;
+}
+.similarDiv > button{
+    border:1px solid #0071c2;
+    background-color: transparent;
+    color:#6b6b6b;
+    font-size: 14px;
+}
+.rightSubDiv{
+    display: flex;
+    flex-direction: column;
+}
+.guestsLove{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    background-color: #ebf3ff;
+    border: 1px solid #ebf3ff;
+    border-radius: 3px;
+    padding: 15px;
+}
+.greenDiv{
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    background-color: #008009;
+    border-radius: 3px;
+    padding: 5px;
+    /*width: 100px;*/
+}
+.greenDiv > *{
+    font-size: 14px;
 }

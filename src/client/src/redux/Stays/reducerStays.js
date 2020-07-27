@@ -14,7 +14,7 @@ const reducerStays =(state = initState,action)=>{
                 ...state
             }
         case STAYS_SEARCH_SUCCESS:
-            // console.log(action.payload)
+            console.log(action.payload)
             return{
                 ...state,
                 isSearch:true,
