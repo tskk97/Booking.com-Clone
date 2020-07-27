@@ -240,3 +240,23 @@
     /*color: #0071c2;*/
     font-weight: bold;
 }
+.healthAndSafetyDiv{
+    display: flex;
+    flex-direction: column;
+    width: 265px;
+    /*border: 1px solid #e6e6e6;;*/
+    border: 1px solid black;
+    border-radius: 2px;
+    margin: 7px 0 16px;
+    font-size: 80%;
+    height: auto;
+    padding: 16px;
+    background-color: #fff;
+}
+.healthFeaturesDiv{
+    display: flex;
+    flex-direction: row;
+    /*border: 1px solid black;*/
+    margin-bottom: 2%;
+
+}

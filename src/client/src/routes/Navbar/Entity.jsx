@@ -18,6 +18,10 @@ import {FcShare} from "react-icons/fc";
 import {GiBus} from "react-icons/gi";
 import {AiFillTag} from "react-icons/ai";
 import {MdLocationOn} from "react-icons/md";
+import {GiMedicalPack} from "react-icons/gi";
+import {FaSprayCan} from "react-icons/fa";
+import {FaPeopleCarry} from "react-icons/fa";
+import {GiFoodChain} from "react-icons/gi";
 
 class Entity extends Component {
     constructor(props) {
@@ -345,7 +349,59 @@ class Entity extends Component {
                                     {/*</div>*/}
 
 
-
+                                    <div className={`row`}>
+                                        <div className={`col-8`} style={{fontSize:"18px",fontWeight:"bold",margin:"15px 0"}}>
+                                            <h5>Get the celebrity treatment with world-class service at (#Hotel Name)</h5>
+                                        </div>
+                                        <div className={`col-4`}>
+                                            <div className={`${style.healthAndSafetyDiv}`}>
+                                                <h4 style={{fontWeight:"700",fontSize:"16px"}}>Health & safety </h4>
+                                                <p style={{fontSize:"12px"}}><span style={{color:"#0071c2",fontSize:"12px",fontWeight:"400"}}>Cleanliness rated 9.7</span> by guests </p>
+                                                <div className={`${style.healthFeaturesDiv}`}>
+                                                    <div style={{marginRight:"8px",fontSize:"22px",verticalAlign:"middle"}}>
+                                                        <GiMedicalPack/>
+                                                    </div>
+                                                    <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
+                                                        <div style={{fontSize:"14px",fontWeight:"700"}}>Safety features</div>
+                                                        <div>(#No) measures</div>
+                                                    </div>
+                                                </div>
+                                                <div className={`${style.healthFeaturesDiv}`}>
+                                                    <div style={{marginRight:"8px",fontSize:"22px",verticalAlign:"middle"}}>
+                                                        <FaSprayCan/>
+                                                    </div>
+                                                    <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
+                                                        <div style={{fontSize:"14px",fontWeight:"700"}}>Cleanliness & disinfection</div>
+                                                        <div>(#No) measures</div>
+                                                    </div>
+                                                </div>
+                                                <div className={`${style.healthFeaturesDiv}`}>
+                                                    <div style={{marginRight:"8px",fontSize:"22px",verticalAlign:"middle"}}>
+                                                        <FaPeopleCarry/>
+                                                    </div>
+                                                    <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
+                                                        <div style={{fontSize:"14px",fontWeight:"700"}}>Physical distancing</div>
+                                                        <div>(#No) measures</div>
+                                                    </div>
+                                                </div>
+                                                <div className={`${style.healthFeaturesDiv}`}>
+                                                    <div style={{
+                                                        marginRight: "8px",
+                                                        fontSize: "22px",
+                                                        verticalAlign: "middle"
+                                                    }}>
+                                                        <GiFoodChain/>
+                                                    </div>
+                                                    <div className={`d-flex flex-column`}
+                                                         style={{width: "85%", textAlign: "left"}}>
+                                                        <div style={{fontSize: "14px", fontWeight: "700"}}>Food & drink safety
+                                                        </div>
+                                                        <div>(#No) measures</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
