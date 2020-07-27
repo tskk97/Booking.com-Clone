@@ -9,7 +9,7 @@ class FilterByCards extends Component {
 
         }
     }
-    
+
     handleChange = (e) => {
         const {data} = this.props;
         let cat =  data[0].toLowerCase().split(" ").join("_")

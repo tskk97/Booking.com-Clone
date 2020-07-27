@@ -96,12 +96,11 @@ class Stays extends React.Component {
             })
         }
     }
-    render() {
-        // console.log(this.props)  
+    render() { 
         // const {city, checkin, checkout, num_child, num_adults, num_rooms} = this.state
         const activePath = this.props.match.url
         // let styles = this.state.modalVisible ? {display: "block"} : {display: "none"};
-
+        console.log(this.props)
         return (
             <>
                 <Navbar activePath={activePath}/>

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import style from "./ResultCard.module.css";
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {staysSearchData} from '../../redux/Stays/action'
-
 class ResultCard extends Component {
     constructor(props) {
         super(props)
@@ -20,7 +20,9 @@ class ResultCard extends Component {
                     <img src={searchData.img_path_url}></img>
                 </div>
                 <div className={`${style.descr}`}>
-                    <h4 style={{color:"#0071c2",fontSize:"20px","fontWeight":"bold",padding:"3px 0"}}>{searchData.property_name}</h4>
+                    <Link to={`/stays/property/${searchData.id}`}>
+                        <h4 style={{color:"#0071c2",fontSize:"20px","fontWeight":"bold",padding:"3px 0"}}>{searchData.property_name}</h4>
+                    </Link>
                     <div className={`d-flex flex-row`} style={{textAlign:"left"}}>
                         <p style={{fontSize:"12px",color:"#0071c2"}}>{searchData.city_name}</p>
                         <p style={{fontSize:"12px",color:"#0071c2"}} className={`ml-2`}>Show on Map</p>

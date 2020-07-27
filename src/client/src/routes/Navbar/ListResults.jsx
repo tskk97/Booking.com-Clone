@@ -51,7 +51,7 @@ class ListResults extends Component {
 
     }
 
-    handleUrlChange = (query) => {
+    handleUrlChange = (query,baseURL) => {
 
         const url = new URLSearchParams(query)
         const {staysSearchData} = this.props
@@ -79,8 +79,9 @@ class ListResults extends Component {
             page: url.get('page') || 1
         }
         // console.log(obj)
-        staysSearchData(obj)
-        
+        console.log(query,baseURL)
+        staysSearchData(baseURL+query)
+
     }
 
     componentDidMount() {
@@ -135,7 +136,8 @@ class ListResults extends Component {
             newUrl:url.search
         })
         // console.log(baseUrl,"loc")
-        this.handleUrlChange(location.search)
+        // console.log(location)
+        this.handleUrlChange(location.search,location.pathname)
          
     }
 
@@ -318,14 +320,14 @@ class ListResults extends Component {
     render() {
         const {allData, searchData, location} = this.props;
         const {filterData, travelWorkCheckBox,renderOnce} = this.state;
-       
+
         let objArray;
         if (allData) {
             objArray = Object.keys(allData)
         } else {
             objArray = [];
         }
-        
+
         if(filterData.length === 0){
             renderOnce && objArray.forEach(item => {
                 if (item !== "msg" && item !== "data" && item !== "page" && item !== "per_page" && item !== "total_pages" && item !== "total_found") {
@@ -338,9 +340,10 @@ class ListResults extends Component {
             filterData && filterData.map((item, index) => {
                 item[0] = filter_headings[index]
             })
-            
+
         }
-        console.log(this.state.Property_Type_Hostels)
+        // console.log(this.state.Property_Type_Hostels)
+
         let capitalisedSearchName = this.state.searchName.charAt(0).toUpperCase() + this.state.searchName.slice(1);
         // if(this.state.testFlag){
         //     return (

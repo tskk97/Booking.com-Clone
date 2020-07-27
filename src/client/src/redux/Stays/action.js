@@ -16,9 +16,9 @@ export const staysSearchFailure = payload=>({
 })
 
 export const staysSearchData = payload=>dispatch=>{
-    // console.log(payload)
-    let city = payload.city
-    let page = payload.page
+    console.log(payload)
+    // let city = payload.city
+    // let page = payload.page
     // let checkin = payload.checkin.split("-")
     // let checkin_date = checkin[2]
     // let checkin_month = checkin[1]
@@ -27,13 +27,7 @@ export const staysSearchData = payload=>dispatch=>{
     // url_reference = http://ngrok.io/stays/search_results?city=Bangalore&checkin_date=25&checkin_month=07&checkin_year=2020&checkout_date=30&checkout_month=07&checkout_year=2020&num_adults=2&num_child=1&num_rooms=2
     
     dispatch(staysSearchRequest(payload))
-
-    axios.get("http://bbf519780d4f.ngrok.io/stays/search_results", {
-      params: {
-        city: city,
-        page: page
-      }
-    })
+    axios.get("http://bbf519780d4f.ngrok.io"+payload)
     .then(res => dispatch(staysSearchSuccess(res.data)))
     .catch(err => dispatch(staysSearchFailure(err)));
 }
