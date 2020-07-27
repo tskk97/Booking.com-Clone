@@ -40,7 +40,7 @@ export const registerUserData = payload => dispatch => {
 
         var config = {
             method: 'post',
-            url: 'http://b8b4cb2b4039.ngrok.io/register',
+            url: 'http://bbf519780d4f.ngrok.io/register',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -57,7 +57,7 @@ export const registerUserData = payload => dispatch => {
     
         var config = {
             method: 'post',
-            url: 'http://4a6c43bc9d5d.ngrok.io/register',
+            url: 'http://bbf519780d4f.ngrok.io/register',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -80,7 +80,7 @@ export const registerPasswordUserData = payload => dispatch => {
 
     var config = {
         method: 'post',
-        url: 'http://4a6c43bc9d5d.ngrok.io/register/password',
+        url: 'http://bbf519780d4f.ngrok.io/register/password',
         headers: {
             'Content-Type': 'application/json'
         },
