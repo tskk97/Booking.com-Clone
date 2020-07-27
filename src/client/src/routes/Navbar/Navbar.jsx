@@ -69,7 +69,7 @@ class Navbar extends React.Component {
                             <div className={`${style.navFlexTabs}`}>
                                 <ul className="nav nav-tabs" id="myTab" role="tablist">
                                     <li>
-                                        <Link to="/stays" className={activePath === "/stays" ? "nav-link active" : "nav-link"}><FaHome style={{marginRight: "5px"}}/>Stays</Link>
+                                        <Link to="/stays" className={activePath === "/stays" ? "nav-link active" : "nav-link"} ><FaHome style={{marginRight: "5px"}}/>Stays</Link>
                                     </li>
                                     <li>
                                         <Link to="/flights" className={activePath === "/flights" ? "nav-link active" : "nav-link"}><MdFlight style={{marginRight: "5px"}}/>Flights</Link>
