@@ -22,6 +22,7 @@ import {GiMedicalPack} from "react-icons/gi";
 import {FaSprayCan} from "react-icons/fa";
 import {FaPeopleCarry} from "react-icons/fa";
 import {GiFoodChain} from "react-icons/gi";
+import {MdStars} from "react-icons/md";
 
 class Entity extends Component {
     constructor(props) {
@@ -350,8 +351,9 @@ class Entity extends Component {
 
 
                                     <div className={`row`}>
-                                        <div className={`col-8`} style={{fontSize:"18px",fontWeight:"bold",margin:"15px 0"}}>
+                                        <div className={`col-8 ${style.middleDiv}`} style={{fontSize:"18px",fontWeight:"bold",margin:"15px 0"}}>
                                             <h5>Get the celebrity treatment with world-class service at (#Hotel Name)</h5>
+                                            <div style={{color:"#b65800",fontSize:"14px",fontWeight:"bold",textAlign:"left"}}><MdStars style={{fontSize:"25px"}}/> One of our top picks in (#Filler Location).</div>
                                         </div>
                                         <div className={`col-4`}>
                                             <div className={`${style.healthAndSafetyDiv}`}>

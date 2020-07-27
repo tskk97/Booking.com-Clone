@@ -258,5 +258,8 @@
     flex-direction: row;
     /*border: 1px solid black;*/
     margin-bottom: 2%;
-
+}
+.middleDiv{
+    display: flex;
+    flex-direction: column;
 }
