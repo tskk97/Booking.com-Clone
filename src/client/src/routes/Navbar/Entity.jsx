@@ -24,6 +24,8 @@ import {FaPeopleCarry} from "react-icons/fa";
 import {GiFoodChain} from "react-icons/gi";
 import {MdStars} from "react-icons/md";
 import {FaCarAlt} from "react-icons/fa";
+import {AiOutlineWifi} from "react-icons/ai";
+
 
 class Entity extends Component {
     constructor(props) {
@@ -369,7 +371,7 @@ class Entity extends Component {
                                             <h5>Get the celebrity treatment with world-class service at (#Hotel Name)</h5>
                                             <div style={{color:"#b65800",fontSize:"14px",fontWeight:"bold",textAlign:"left"}}><MdStars style={{fontSize:"25px"}}/> One of our top picks in (#Filler Location).</div>
                                         </div>
-                                        <div className={`col-4`}>
+                                        <div className={`col-4 ${style.rightSubDiv}`}>
                                             <div className={`${style.healthAndSafetyDiv}`}>
                                                 <h4 style={{fontWeight:"700",fontSize:"16px"}}>Health & safety </h4>
                                                 <p style={{fontSize:"12px"}}><span style={{color:"#0071c2",fontSize:"12px",fontWeight:"400"}}>Cleanliness rated 9.7</span> by guests </p>
@@ -416,7 +418,64 @@ class Entity extends Component {
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div className={`${style.guestsLove}`}>
+                                                <h5>Guests Love...</h5>
+                                                <div className={`${style.healthFeaturesDiv}`}>
+                                                    <div style={{marginRight:"8px",fontSize:"20px",verticalAlign:"middle"}}>
+                                                        <MdStars/>
+                                                    </div>
+                                                    <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
+                                                        <div style={{fontSize:"14px",fontWeight:"700"}}>"friendly staff"</div>
+                                                        <div style={{fontSize:"14px"}}>(#No) measures</div>
+                                                    </div>
+                                                </div>
+                                                <div className={`${style.healthFeaturesDiv}`}>
+                                                    <div style={{marginRight:"8px",fontSize:"20px",verticalAlign:"middle"}}>
+                                                        <MdStars/>
+                                                    </div>
+                                                    <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
+                                                        <div style={{fontSize:"14px",fontWeight:"700"}}>"excellent breakfast"</div>
+                                                        <div style={{fontSize:"14px"}}>(#No) measures</div>
+                                                    </div>
+                                                </div>
+                                                <div className={`${style.healthFeaturesDiv}`}>
+                                                    <div style={{marginRight:"8px",fontSize:"20px",verticalAlign:"middle"}}>
+                                                        <MdStars/>
+                                                    </div>
+                                                    <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
+                                                        <div style={{fontSize:"14px",fontWeight:"700"}}>breakfast buffet</div>
+                                                        <div style={{fontSize:"14px"}}>(#No) measures</div>
+                                                    </div>
+                                                </div>
+                                                <div className={`${style.healthFeaturesDiv}`}>
+                                                    <div style={{marginRight:"8px",fontSize:"20px",verticalAlign:"middle"}}>
+                                                        <MdLocationOn/>
+                                                    </div>
+                                                    <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
+                                                        <div style={{fontSize:"14px"}}>Top Location: Highly rated by recent guests (8.7)</div>
+                                                    </div>
+                                                </div>
+                                                <div className={`${style.healthFeaturesDiv}`}>
+                                                    <div style={{marginRight:"8px",fontSize:"20px",verticalAlign:"middle"}}>
+                                                        <IoIosBed/>
+                                                    </div>
+                                                    <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
+                                                        <div style={{fontSize:"14px"}}>Want a great night's sleep? This hotel was highly-rated for its very comfy beds.</div>
+                                                    </div>
+                                                </div>
+                                                <h4 style={{color:"#838383",fontSize:"15px",padding:"0 0 5px 0",textAlign:"left"}}>Breakfast Info</h4>
+                                                <div style={{fontSize:"14px"}}>Continental, Italian, Vegetarian, Vegan, Halal, Gluten-free, Asian, American, Buffet</div>
+                                                 <div className={`d-flex flex-row justify-content-between`}>
+                                                     <AiOutlineWifi style={{fontSize:"22px",padding:"2px"}}/>
+                                                     <div className={`${style.greenDiv}`}>
+                                                         <p>Free Wifi</p>
+                                                         <p>Guests consistently rate the wifi as Excellent</p>
+                                                     </div>
+                                                 </div>
+                                            </div>
+
                                         </div>
+
                                     </div>
 
                                 </div>

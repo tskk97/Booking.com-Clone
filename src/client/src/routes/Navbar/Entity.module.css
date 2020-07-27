@@ -289,3 +289,29 @@
     color:#6b6b6b;
     font-size: 14px;
 }
+.rightSubDiv{
+    display: flex;
+    flex-direction: column;
+}
+.guestsLove{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    background-color: #ebf3ff;
+    border: 1px solid #ebf3ff;
+    border-radius: 3px;
+    padding: 15px;
+}
+.greenDiv{
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    background-color: #008009;
+    border-radius: 3px;
+    padding: 5px;
+    /*width: 100px;*/
+}
+.greenDiv > *{
+    font-size: 14px;
+}
