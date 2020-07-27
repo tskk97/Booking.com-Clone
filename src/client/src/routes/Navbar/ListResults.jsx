@@ -11,7 +11,6 @@ import FilterByCards from "./FilterByCards";
 import {connect} from 'react-redux'
 import {staysSearchData} from '../../redux/Stays/action'
 import { Redirect } from 'react-router-dom';
- 
 
 class ListResults extends Component {
     constructor(props) {
@@ -117,13 +116,17 @@ class ListResults extends Component {
             }
         }
         console.log(obj)
-        let filterTitles = Object.keys(obj)
+        // let filterTitles = Object.keys(obj)
+        let filterTitles = []
         let filterResults = []
         for(var key in obj){
-            filterResults.push(obj[key])
+            if(key!=="page"){
+                filterTitles.push(key)
+                filterResults.push(obj[key])
+            }
         }
 
-        // console.log(filterTitles)
+        console.log(filterTitles)
         // console.log(filterResults)
         this.setState({
             filterTitles:filterTitles,
@@ -155,25 +158,35 @@ class ListResults extends Component {
         
         let newUrl = `/stays/search_results?city=${newCity}&checkin_date=${newCheckInDate}&checkin_month=${newCheckInMonth}&checkin_year=${newCheckInYear}&checkout_date=${newCheckOutDate}&checkout_month=${newCheckInMonth}&checkout_year=${newCheckOutYear}&num_adults=${newAdults}&num_child=${newChildrens}&num_rooms=${newRooms}`
         // let newUrl = `/stays/search_results?`
-        // console.log(res[filterTitles[10]])
+        // console.log(res[filterTitles])
         let flag = false
 
-        for(var i=0;i<filterTitles.length;i++){
+        for(var i=10;i<filterTitles.length;i++){
+            console.log("befpre")
             if(res.compareFilter === filterTitles[i]){
-                // console.log(res.filterTitles[0])
+                console.log(filterTitles.length,"after")
                 flag = true
                 if(filterResults[i].length<res[filterTitles[i]].length){
                     for(var j=0;j<res[filterTitles[i]].length;j++){
                         newUrl += "&"+filterTitles[i]+"="+res[filterTitles[i]][j]
                     }
                 }
-                else {
+                else if(filterResults[i].length > res[filterTitles[i]].length) {
+                    console.log("asdf")
                     for(var k=0;k<filterResults[i].length;k++){
                         for(var l=0;l<res[filterTitles[i]].length;l++){
                             if(filterResults[i][k] === res[filterTitles[i]][l]){
-                                newUrl += "&"+filterTitles[i]+"="+res[filterTitles[i]][l]
+                                newUrl += "&"+filterTitles[i]+"="+filterResults[i][k]
+                                console.log(newUrl)
                             }
                         }
+                    }
+                }
+            }
+            else{
+                if(filterResults[i].length!==0){
+                    for(var m=0;m<filterResults[i].length;m++){
+                        newUrl += "&"+filterTitles[i]+"="+filterResults[i][m]    
                     }
                 }
             }
@@ -188,14 +201,13 @@ class ListResults extends Component {
         this.setState({
             newUrl:newUrl
         })
-        // window.location.href= newUrl;
-        // window.location(href=newUrl)
+        window.location.href= newUrl;
         // this.props.history.push(newUrl)
         // this.forceUpdate()
         // return (<Redirect to='/stays' />)
-        this.setState({
-            testFlag:!this.state.testFlag
-        })
+        // this.setState({
+        //     testFlag:!this.state.testFlag
+        // })
 
         // let newPropertyType = res.property_type
         // let newStarRating = res.star_rating
@@ -281,17 +293,27 @@ class ListResults extends Component {
         // let newUrl = {`/stays/search_results?city=${newCity}&checkin_date=${this.state.checkin_date}&checkin_month=${this.state.checkin_month}&checkin_year=${this.state.checkin_year}&checkout_date=${this.state.checkout_date}&checkout_month=${this.state.checkout_month}&checkout_year=${this.state.checkout_year}&num_adults=${this.state.num_adults}&num_child=${this.state.num_child}&num_rooms=${this.state.num_rooms}&page=1`}
         // console.log(res)
         
-        this.props.history.push(newUrl)
+        // this.props.history.push(newUrl)
     }
     
-    componentWillReceiveProps(newProps){
-        const { location } = newProps
-        console.log(newProps)
-        console.log(location.search !== this.props.location.search )
-        if( location.search !== this.props.location.search ){
-            this.handleUrlChange(location.search)
-        }
-    }
+    // componentWillReceiveProps(newProps){
+    //     const { location } = newProps
+    //     console.log(newProps)
+    //     console.log(location.search !== this.props.location.search )
+    //     if( location.search !== this.props.location.search ){
+    //         this.handleUrlChange(location.search)
+    //     }
+    // }
+
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     if (this.props.color !== nextProps.color) {
+    //       return true;
+    //     }
+    //     if (this.state.count !== nextState.count) {
+    //       return true;
+    //     }
+    //     return false;
+    //   }
 
     render() {
         const {allData, searchData, location} = this.props;
@@ -320,12 +342,12 @@ class ListResults extends Component {
         }
         console.log(this.state.Property_Type_Hostels)
         let capitalisedSearchName = this.state.searchName.charAt(0).toUpperCase() + this.state.searchName.slice(1);
-        if(this.state.testFlag){
-            return (
-                <Redirect to={this.state.newUrl}/> 
-            )
-        }
-        else{
+        // if(this.state.testFlag){
+        //     return (
+        //         <Redirect to={this.state.newUrl}/> 
+        //     )
+        // }
+        // else{
             return (
                 <div className={`${style.body}`}>
                     <Navbar/>
@@ -484,7 +506,7 @@ class ListResults extends Component {
                     </div>
                 </div>
             );
-        }
+       // }
     }
 }
 
