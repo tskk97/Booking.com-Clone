@@ -28,7 +28,7 @@ export const staysSearchData = payload=>dispatch=>{
     
     dispatch(staysSearchRequest(payload))
 
-    axios.get("http://4a6c43bc9d5d.ngrok.io/stays/search_results", {
+    axios.get("http://bbf519780d4f.ngrok.io/stays/search_results", {
       params: {
         city: city,
         page: page
