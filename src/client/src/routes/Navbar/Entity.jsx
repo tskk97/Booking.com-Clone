@@ -23,6 +23,7 @@ import {FaSprayCan} from "react-icons/fa";
 import {FaPeopleCarry} from "react-icons/fa";
 import {GiFoodChain} from "react-icons/gi";
 import {MdStars} from "react-icons/md";
+import {FaCarAlt} from "react-icons/fa";
 
 class Entity extends Component {
     constructor(props) {
@@ -137,6 +138,19 @@ class Entity extends Component {
                                         </div>
                                         <button className={`${style.searchBtn}`} style={{textAlign: "center"}}>Search
                                         </button>
+                                    </div>
+                                    <div className={`${style.googleMapDiv}`}>(#Google Map Section)</div>
+                                    <div className={`${style.modeOfTransport}`}>
+                                        <div style={{backgroundColor:"#ebf3ff",fontSize:"14px",fontWeight:"bold",padding:"10px",border:"1px solid #ebf3ff"}}>How to get to The Leela Palace Bangalore from Kempegowda International Airport </div>
+                                        <div className={`d-flex flex-row justify-content-between`} style={{borderBottom:"1px solid #ebf3ff"}}>
+                                            <div><FaCarAlt/><span style={{marginTop:"4px",marginLeft:"4px"}}>Car</span></div>
+                                            <div style={{fontSize:"14px"}}>45 minutes</div>
+                                        </div>
+
+                                    </div>
+                                    <div className={`d-flex flex-column ${style.similarDiv}`}>
+                                        <div style={{marginTop:"3px",marginBottom:"12px",fontSize:"14px"}}>Like this one but not totally sure yet? </div>
+                                        <button>Show similar hotels</button>
                                     </div>
 
                                 </div>
