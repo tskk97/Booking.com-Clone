@@ -9,3 +9,4 @@ from app.main.models.RoomFacilitiesModel import RoomFacilitiesModel
 from app.main.models.BedroomTypeModel import BedroomTypeModel
 from app.main.models.PropertyModel import PropertyModel
 from app.main.models.PropFacilitiesModel import PropFacilitiesModel
+from app.main.models.ReviewsModel import ReviewsModel

@@ -238,7 +238,7 @@ class Stays extends React.Component {
                                         <button className={`${style.searchBtn} ml-1 my-auto`}>Search</button>
                                     </Link>
                                 </div>
-                                <div className={`${style.flexRow} form-check mt-3`}>
+                                <div className={`${style.flexRow} form-check mt-3 ml-1`}>
                                     <input className="form-check-input" type="checkbox" style={{marginRight: "7px"}}/>
                                     <label className="form-check-label">I'm traveling for work </label>
                                 </div>
