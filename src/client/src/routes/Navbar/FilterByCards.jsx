@@ -94,14 +94,16 @@ class FilterByCards extends Component {
         console.log(this.state)
         return (
             <div className={`${style.container}`}>
-                <div className="mb-2">
-                    {data[0]}
+                <div className={`${style.titleColor} mb-2`}>
+                    {data[0]}:
                 </div>
                 <div className={`${style.flexCol}`}>
                     {data[1].map((item) =>(
                         <div key={uuidv4()} className={`${style.flexRow}`}>
                             <div>
-                            <input className={data[0].toLowerCase().split(" ").join("_")} type="checkbox" onChange={this.handleChange} name={data[0].toLowerCase().split(" ").join("_")+"_"+item} value={item} checked={this.state[data[0].toLowerCase().split(" ").join("_")+"_"+item] ? "checked" : ""} />                                <label className="ml-2">{item}</label>
+                                <input className={data[0].toLowerCase().split(" ").join("_")} type="checkbox" onChange={this.handleChange} name={data[0].toLowerCase().split(" ").join("_")+"_"+item} value={item} checked={this.state[data[0].toLowerCase().split(" ").join("_")+"_"+item] ? "checked" : ""} />                                
+                                <label className={data[0] === "Review Score" ? "ml-2" : "d-none"}>{item} +</label>
+                                <label className={data[0] !== "Review Score" ? "ml-2" : "d-none"}>{item}</label>
                             </div>
                             <div className={`text-muted`}>{data.length}</div>
                         </div>

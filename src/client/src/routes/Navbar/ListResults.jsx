@@ -327,7 +327,7 @@ class ListResults extends Component {
 
     render() {
         const {allData, searchData, location} = this.props;
-        const {filterData, travelWorkCheckBox,renderOnce} = this.state;
+        const {filterData, renderOnce} = this.state;
 
         let objArray;
         if (allData) {
@@ -506,7 +506,7 @@ class ListResults extends Component {
                                                 <ResultCard key={uuidv4()} searchData={item}/>
                                             )}
                                         </div>
-                                        <Pagination page={allData.page} total_pages={allData.total_pages} url={location.path+location.search} />
+                                        <Pagination page={allData.page} total_pages={allData.total_pages} url={location.pathname+location.search} />
                                     </div>
                                 </div>
                             </div>

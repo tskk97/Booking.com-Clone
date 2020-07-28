@@ -26,3 +26,7 @@ input[type=checkbox] {
     height: 15px;
     width: 15px;
 }
+
+.titleColor{
+    color: #0071c2;
+}

@@ -42,7 +42,7 @@ class ResultCard extends Component {
                         <div className={`${style.ratingDiv}`}>{searchData.review_score}</div>
                     </div>
                     <div className={`${style.priceBtn}`}>
-                        <button>Show prices</button>
+                        <Link to={`/stays/property/${searchData.id}`}><button>Show prices</button></Link>
                     </div>
                 </div>
             </div>
