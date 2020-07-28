@@ -48,7 +48,7 @@
     border-radius: 6px 6px 6px 0;
     background-color: #003580;
 }
-.priceBtn > button{
+.priceBtn button{
     padding:8px 16px;
     background-color: #0071c2;
     color: #f4f7fc;
@@ -56,6 +56,6 @@
     border-radius: 3px;
 }
 
-.priceBtn > button:hover{
+.priceBtn button:hover{
     background-color: #015c9e;
 }
