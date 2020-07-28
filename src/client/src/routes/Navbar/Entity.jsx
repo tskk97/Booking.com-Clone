@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import Navbar from "./Navbar.jsx";
 import style from "./Entity.module.css"
+import ReviewItem from "./ReviewItem";
 import {IoIosBed} from "react-icons/io";
 import {BsSearch} from "react-icons/bs";
 import {FaRegCalendarPlus} from "react-icons/fa";
 import {FiHelpCircle} from "react-icons/fi";
 import data from "./data.json";
-import filterData from "./filter.json";
-import ResultCard from "./ResultCard";
 import {v4 as uuidv4} from 'uuid';
 import FilterByCards from "./FilterByCards";
 import {GiRoyalLove} from "react-icons/gi";
@@ -35,6 +34,8 @@ import {IoIosRestaurant} from "react-icons/io";
 import { BsUnlockFill } from "react-icons/bs";
 import { BsInfoCircle } from "react-icons/bs";
 import {DateRangePicker} from "react-dates";
+import {AiOutlineDislike} from "react-icons/ai";
+
 
 class Entity extends Component {
     constructor(props) {
@@ -53,6 +54,7 @@ class Entity extends Component {
     render() {
         const{entityData} = this.props
         console.log(entityData["city_name"])
+        const reviewArray = [["Rooms are beautiful, staff is amazing, as is breakfast","Sarah","USA"]]
         return (
             <div className={`${style.body}`}>
                 <Navbar/>
@@ -182,9 +184,71 @@ class Entity extends Component {
                                         <div style={{marginTop: "3px", marginBottom: "12px", fontSize: "14px"}}>Like
                                             this one but not totally sure yet?
                                         </div>
-                                        <button>Show similar hotels</button>
+                                        <button style={{color: "#0071c2"}}>Show similar hotels</button>
                                     </div>
 
+                                    <div className={`d-flex flex-column ${style.similarDiv}`}
+                                         style={{borderBottom: "1px solid #e6e6e6"}}>
+                                        <h4 style={{fontWeight: "700", fontSize: "16px", textAlign: "left"}}>Questions
+                                            you may have</h4>
+                                        <p style={{fontSize: "14px", textAlign: "left"}} className={`text-muted`}>Find
+                                            quick answers or ask questions to the property</p>
+                                    </div>
+                                    <div className={`d-flex flex-column ${style.similarDiv}`}
+                                         style={{borderBottom: "1px solid #e6e6e6"}}>
+                                        <h4 style={{fontWeight: "700", fontSize: "14px", textAlign: "left"}}>My wife is
+                                            disabled we need a room for disabled with enough space next to toilet so
+                                            that my wife can move from wheelchair on toilet Please let us know e.g. do
+                                            you offer room service? </h4>
+                                        <p style={{fontSize: "14px", textAlign: "left"}} className={`text-muted`}>Dear
+                                            Guest, We have room as requested, since hotel is operation in phases request
+                                            to confirm with us before arriva.Room service will be available. </p>
+                                        <div className={`d-flex flex-row justify-content-between`}>
+                                            <p style={{color: "#0071c2", fontSize: "14px"}}><AiOutlineLike/> Helpful</p>
+                                            <p style={{color: "#0071c2", fontSize: "14px"}}><AiOutlineDislike/> Helpful
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className={`d-flex flex-column ${style.similarDiv}`}
+                                         style={{borderBottom: "1px solid #e6e6e6"}}>
+                                        <h4 style={{fontWeight: "700", fontSize: "14px", textAlign: "left"}}>Can the
+                                            room be arranged for a honeymoon night.</h4>
+                                        <p style={{fontSize: "14px", textAlign: "left"}} className={`text-muted`}>Dear
+                                            Guest Our rooms are very well appointed please be informed to maintain the
+                                            hygine and standards of our product we dont do any decorations.</p>
+                                        <div className={`d-flex flex-row justify-content-between`}>
+                                            <p style={{color: "#0071c2", fontSize: "14px"}}><AiOutlineLike/> Helpful</p>
+                                            <p style={{color: "#0071c2", fontSize: "14px"}}><AiOutlineDislike/> Helpful
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className={`d-flex flex-column ${style.similarDiv}`}
+                                         style={{borderBottom: "1px solid #e6e6e6"}}>
+                                        <h4 style={{fontWeight: "700", fontSize: "14px", textAlign: "left"}}>Can you
+                                            bring an extra bed into the room for third person </h4>
+                                        <p style={{fontSize: "14px", textAlign: "left"}} className={`text-muted`}>Dear
+                                            Guest , Extra bed for third person is available and can be arranged on
+                                            request with an additional charge of INR 2500++ Taxes</p>
+                                        <div className={`d-flex flex-row justify-content-between`}>
+                                            <p style={{color: "#0071c2", fontSize: "14px"}}><AiOutlineLike/> Helpful</p>
+                                            <p style={{color: "#0071c2", fontSize: "14px"}}><AiOutlineDislike/> Helpful
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <button className={`${style.askQuestion}`} style={{color: "#0071c2",width:"100%",padding:"7px 16px"}}>Ask a question</button>
+
+                                    <div className={`${style.rating}`}>
+                                        <div className={`d-flex flex-row`}>
+                                            <div className={`${style.ratingDiv}`}>9.1</div>
+                                            <div className={`d-flex flex-column`}>
+                                                <h4 style={{fontSize:"large"}}>Very good</h4>
+                                                <p style={{fontSize:"small"}}>284 reviews</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {reviewArray && reviewArray.map((item,index)=>(
+                                        <ReviewItem data={item} index = {index} key={uuidv4()}/>
+                                    ))}
                                 </div>
 
                                 {/*Middle section*/}
@@ -434,7 +498,8 @@ class Entity extends Component {
                                                 Proin ullamcorper erat quam, sit amet condimentum velit tincidunt quis.
                                                 Proin et mi mattis, pretium metus vel, pellentesque justo.
                                             </div>
-                                            <div className={`${style.descr}`}>Nam tellus ex, feugiat ut arcu aliquam, lobortis fringilla ante. Cras
+                                            <div className={`${style.descr}`}>Nam tellus ex, feugiat ut arcu aliquam,
+                                                lobortis fringilla ante. Cras
                                                 metus turpis, sagittis eget mi eget, dapibus sodales ex. Mauris mollis
                                                 turpis sollicitudin velit scelerisque, eu commodo dui blandit. Maecenas
                                                 vel lorem sit amet dolor accumsan varius rutrum id mauris. Etiam
@@ -445,7 +510,8 @@ class Entity extends Component {
                                                 enim. Orci varius natoque penatibus et magnis dis parturient montes,
                                                 nascetur ridiculus mus.
                                             </div>
-                                            <div className={`${style.descr}`}>Nam tellus ex, feugiat ut arcu aliquam, lobortis fringilla ante. Cras
+                                            <div className={`${style.descr}`}>Nam tellus ex, feugiat ut arcu aliquam,
+                                                lobortis fringilla ante. Cras
                                                 metus turpis, sagittis eget mi eget, dapibus sodales ex. Mauris mollis
                                                 turpis sollicitudin velit scelerisque, eu commodo dui blandit. Maecenas
                                                 vel lorem sit amet dolor accumsan varius rutrum id mauris. Etiam
@@ -458,29 +524,40 @@ class Entity extends Component {
                                             </div>
 
                                             <div>
-                                                <h4 style={{fontSize:"16px",textAlign:"left",marginTop:"10px"}}>Most popular facilities </h4>
+                                                <h4 style={{
+                                                    fontSize: "16px",
+                                                    textAlign: "left",
+                                                    marginTop: "10px"
+                                                }}>Most popular facilities </h4>
                                                 <div className={`${style.facilityDiv}`}>
                                                     <div className={`d-flex flex-row`}>
-                                                        <MdPool style={{color:"green",fontSize:"26px"}}/>
-                                                        <p style={{fontWeight:"normal",fontSize:"14px"}}>Swimming Pool</p>
+                                                        <MdPool style={{color: "green", fontSize: "26px"}}/>
+                                                        <p style={{fontWeight: "normal", fontSize: "14px"}}>Swimming
+                                                            Pool</p>
                                                     </div>
                                                     <div className={`d-flex flex-row ml-2`}>
-                                                        <GiBus style={{color:"green",fontSize:"26px"}}/>
-                                                        <p style={{fontWeight:"normal",fontSize:"14px"}}>Airport shuttle</p>
+                                                        <GiBus style={{color: "green", fontSize: "26px"}}/>
+                                                        <p style={{fontWeight: "normal", fontSize: "14px"}}>Airport
+                                                            shuttle</p>
                                                     </div>
                                                     <div className={`d-flex flex-row ml-2`}>
-                                                        <GiFamilyHouse style={{color:"green",fontSize:"26px"}}/>
-                                                        <p style={{fontWeight:"normal",fontSize:"14px"}}>Family rooms</p>
+                                                        <GiFamilyHouse style={{color: "green", fontSize: "26px"}}/>
+                                                        <p style={{fontWeight: "normal", fontSize: "14px"}}>Family
+                                                            rooms</p>
                                                     </div>
                                                     <div className={`d-flex flex-row ml-2`}>
-                                                        <IoIosRestaurant style={{color:"green",fontSize:"26px"}}/>
-                                                        <p style={{fontWeight:"normal",fontSize:"14px"}}>Restaurant</p>
+                                                        <IoIosRestaurant style={{color: "green", fontSize: "26px"}}/>
+                                                        <p style={{
+                                                            fontWeight: "normal",
+                                                            fontSize: "14px"
+                                                        }}>Restaurant</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <p style={{fontSize:"14px",fontWeight:"normal",textAlign:"left"}}>
+                                            <p style={{fontSize: "14px", fontWeight: "normal", textAlign: "left"}}>
                                                 <strong>ATM & Currency Exchange:</strong>
-                                                Need cash? There's an ATM and a currency exchange service at this property.
+                                                Need cash? There's an ATM and a currency exchange service at this
+                                                property.
                                             </p>
 
                                             <div className={`${style.descr}`}>

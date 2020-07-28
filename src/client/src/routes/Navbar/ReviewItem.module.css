@@ -1,0 +1,21 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #ebf3ff;
+}
+.para{
+    font-size: 14px;
+    text-align: justify;
+}
+.profile{
+    display: flex;
+    flex-direction: row;
+}
+.pic{
+    font-size: 14px;
+    width: 25px;
+    height: 25px;
+    border: 1px solid black;
+    color: #ffffff;
+    background: #0071c2;
+}

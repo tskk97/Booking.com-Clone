@@ -245,7 +245,7 @@
     flex-direction: column;
     width: 265px;
     /*border: 1px solid #e6e6e6;;*/
-    border: 1px solid #e6e6e6;;
+    border: 1px solid #e6e6e6;
 
     border-radius: 2px;
     margin: 7px 0 16px;
@@ -283,11 +283,27 @@
     border: 1px solid #ebf3ff;
     padding: 8px;
 }
-.similarDiv > button{
+.similarDiv > button,.askQuestion{
     border:1px solid #0071c2;
     background-color: transparent;
     color:#6b6b6b;
     font-size: 14px;
+}
+.rating{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+    border-bottom: 1px solid dimgray;
+}
+.ratingDiv{
+    width: 30px;
+    height: 30px;
+    color: #f4f7fc;
+    font-weight: 500;
+    align-items: center;
+    min-width: 32px;
+    border-radius: 6px 6px 6px 0;
+    background-color: #003580;
 }
 .rightSubDiv{
     display: flex;
