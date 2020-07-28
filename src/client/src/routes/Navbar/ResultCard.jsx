@@ -3,6 +3,8 @@ import style from "./ResultCard.module.css";
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {staysSearchData} from '../../redux/Stays/action'
+import {AiFillStar} from 'react-icons/ai'
+
 class ResultCard extends Component {
     constructor(props) {
         super(props)
@@ -20,7 +22,7 @@ class ResultCard extends Component {
                     <img src={searchData.img_path_url}></img>
                 </div>
                 <div className={`${style.descr}`}>
-                    <Link to={`/stays/property/${searchData.id}`}>
+                    <Link to={`/stays/property/id=${searchData.id}`}>
                         <h4 style={{color:"#0071c2",fontSize:"20px","fontWeight":"bold",padding:"3px 0"}}>{searchData.property_name}</h4>
                     </Link>
                     <div className={`d-flex flex-row`} style={{textAlign:"left"}}>
@@ -34,8 +36,8 @@ class ResultCard extends Component {
                 <div className={`${style.rating}`}>
                     <div className={`d-flex flex-row justify-content-between`}>
                         <div className={`d-flex flex-column`}>
-                            <h4 style={{fontSize:"large"}}>Very good</h4>
-                            <p style={{fontSize:"small"}}>{searchData.rating} reviews</p>
+                            <h4 className="mr-2" style={{fontSize:"large"}}>Very good</h4>
+                            <p><AiFillStar size="1.2em" color="#e8b923" /> {searchData.rating}</p>
                         </div>
                         <div className={`${style.ratingDiv}`}>{searchData.review_score}</div>
                     </div>

@@ -25,12 +25,34 @@ import {GiFoodChain} from "react-icons/gi";
 import {MdStars} from "react-icons/md";
 import {FaCarAlt} from "react-icons/fa";
 import {AiOutlineWifi} from "react-icons/ai";
-
+import arr_id1 from './id1.json'
+import ImgsEntity from './ImgsEntity.jsx';
+import {connect} from 'react-redux'
+import { entityListData } from '../../redux/EntityDetails/action.js';
 
 class Entity extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            entityId:""
+        }
+    }
+
+    handleUrlChange = (query)=>{
+        
+        const url = new URLSearchParams(query)
+        console.log(url)
+        console.log(url.get('id'))
+
+        // this.setState({
+        //      entityId: url.get('id')
+        // })
+    }
+
+    componentDidMount(){
+        const {location} = this.props
+        console.log(location)
+        this.handleUrlChange(location.pathname)  
     }
 
     render() {
@@ -250,10 +272,13 @@ class Entity extends Component {
 
                                     <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                                         <div className="carousel-inner">
-                                            <div className="carousel-item active"  data-interval="900000">
-                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/255/255549892.jpg" className="d-block w-100" alt="..."/>
-                                            </div>
-                                            <div className="carousel-item"  data-interval="9000000">
+                                            {/* <div className="carousel-item active"  data-interval="900000"> */}
+                                                {/* <img src="https://cf.bstatic.com/images/hotel/max1280x900/255/255549892.jpg" className="d-block w-100" alt="..."/> */}
+                                                {arr_id1 && arr_id1.map((item,index)=>
+                                                        <ImgsEntity dataImg = {item} indexImg = {index} key={item}/>
+                                                )}
+                                            {/* </div> */}
+                                            {/* <div className="carousel-item"  data-interval="9000000">
                                                 <img src="https://cf.bstatic.com/images/hotel/max1280x900/482/48254908.jpg" className="d-block w-100" alt="..."/>
                                             </div>
                                             <div className="carousel-item"  data-interval="900000">
@@ -273,7 +298,7 @@ class Entity extends Component {
                                             </div>
                                             <div className="carousel-item"  data-interval="900000">
                                                 <img src="https://cf.bstatic.com/images/hotel/max1280x900/341/34137955.jpg" className="d-block w-100" alt="..."/>
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <a className="carousel-control-prev" href="#carouselExampleControls"
                                            role="button" data-slide="prev">
@@ -491,7 +516,18 @@ class Entity extends Component {
     }
 }
 
-export default Entity;
+const mapStateToProps = state => ({
+    entityListData: state.entityList.entityListData,
+    entityData: state.entityList.entityData,
+    isEntity: state.entityList.isEntity
+})
+
+const mapDispatchToProps = dispatch => ({
+    entityListData: payload => dispatch(entityListData(payload))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Entity);
+// export default Entity;
 
 
 // export default ListResults;

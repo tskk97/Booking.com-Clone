@@ -31,7 +31,7 @@ export const registerPasswordUserFailure = payload=>({
 })
 
 export const registerUserData = payload => dispatch => {
-    console.log(payload)
+    // console.log(payload)
     dispatch(registerUserRequest(payload))
     var mode = payload.mode
     var axios = require('axios');
@@ -40,7 +40,7 @@ export const registerUserData = payload => dispatch => {
 
         var config = {
             method: 'post',
-            url: 'http://bbf519780d4f.ngrok.io/register',
+            url: 'http://6ea6ae63c2d0.ngrok.io/register',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -57,7 +57,7 @@ export const registerUserData = payload => dispatch => {
     
         var config = {
             method: 'post',
-            url: 'http://bbf519780d4f.ngrok.io/register',
+            url: 'http://6ea6ae63c2d0.ngrok.io/register',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -80,7 +80,7 @@ export const registerPasswordUserData = payload => dispatch => {
 
     var config = {
         method: 'post',
-        url: 'http://bbf519780d4f.ngrok.io/register/password',
+        url: 'http://6ea6ae63c2d0.ngrok.io/register/password',
         headers: {
             'Content-Type': 'application/json'
         },

@@ -8,3 +8,4 @@ from app.main.models.FacilitiesModel import FacilitiesModel
 from app.main.models.RoomFacilitiesModel import RoomFacilitiesModel
 from app.main.models.BedroomTypeModel import BedroomTypeModel
 from app.main.models.PropertyModel import PropertyModel
+from app.main.models.PropFacilitiesModel import PropFacilitiesModel

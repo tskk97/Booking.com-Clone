@@ -32,7 +32,7 @@ export const loginPasswordUserFailure = payload =>({
 })
 
 export const loginUserData = payload =>dispatch=>{
-    console.log(payload)
+    // console.log(payload)
     dispatch(loginUserRequest(payload))
     var mode = payload.mode
     var axios = require('axios');
@@ -41,7 +41,7 @@ export const loginUserData = payload =>dispatch=>{
     
         var config = {
             method: 'post',
-            url: 'http://bbf519780d4f.ngrok.io/login',
+            url: 'http://6ea6ae63c2d0.ngrok.io/login',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -58,7 +58,7 @@ export const loginUserData = payload =>dispatch=>{
     
         var config = {
             method: 'post',
-            url: 'http://bbf519780d4f.ngrok.io/login',
+            url: ' http://6ea6ae63c2d0.ngrok.io/login',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -73,14 +73,14 @@ export const loginUserData = payload =>dispatch=>{
 }
 
 export const loginPasswordUserData = payload =>dispatch=>{
-    console.log(payload)
+    // console.log(payload)
     dispatch(loginPasswordUserRequest(payload))
     var axios = require('axios');
     var data = JSON.stringify({"email":payload.email, "password":payload.password});
 
     var config = {
         method: 'post',
-        url: 'http://bbf519780d4f.ngrok.io/login/password',
+        url: 'http://6ea6ae63c2d0.ngrok.io/login/password',
         headers: {
             'Content-Type': 'application/json'
         },
