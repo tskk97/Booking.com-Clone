@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import Navbar from "./Navbar.jsx";
 import style from "./Entity.module.css"
+import ReviewItem from "./ReviewItem";
 import {IoIosBed} from "react-icons/io";
 import {BsSearch} from "react-icons/bs";
 import {FaRegCalendarPlus} from "react-icons/fa";
 import {FiHelpCircle} from "react-icons/fi";
 import data from "./data.json";
-import filterData from "./filter.json";
-import ResultCard from "./ResultCard";
 import {v4 as uuidv4} from 'uuid';
 import FilterByCards from "./FilterByCards";
 import {GiRoyalLove} from "react-icons/gi";
@@ -25,15 +24,37 @@ import {GiFoodChain} from "react-icons/gi";
 import {MdStars} from "react-icons/md";
 import {FaCarAlt} from "react-icons/fa";
 import {AiOutlineWifi} from "react-icons/ai";
+import arr_id1 from './id1.json'
+import ImgsEntity from './ImgsEntity.jsx';
+import {connect} from 'react-redux'
+import { entityListData } from '../../redux/EntityDetails/action.js';
+import {MdPool} from "react-icons/md";
+import {GiFamilyHouse} from "react-icons/gi";
+import {IoIosRestaurant} from "react-icons/io";
+import { BsUnlockFill } from "react-icons/bs";
+import { BsInfoCircle } from "react-icons/bs";
+import {DateRangePicker} from "react-dates";
+import {AiOutlineDislike} from "react-icons/ai";
 
 
 class Entity extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            entityId:""
+        }
+    }
+
+    componentDidMount(){
+        const {location,match,entityListData} = this.props
+        entityListData(match.params.prop_id)
+        // console.log(match.params)   
     }
 
     render() {
+        const{entityData} = this.props
+        console.log(entityData["city_name"])
+        const reviewArray = [["Rooms are beautiful, staff is amazing, as is breakfast","Sarah","USA"]]
         return (
             <div className={`${style.body}`}>
                 <Navbar/>
@@ -143,18 +164,91 @@ class Entity extends Component {
                                     </div>
                                     <div className={`${style.googleMapDiv}`}>(#Google Map Section)</div>
                                     <div className={`${style.modeOfTransport}`}>
-                                        <div style={{backgroundColor:"#ebf3ff",fontSize:"14px",fontWeight:"bold",padding:"10px",border:"1px solid #ebf3ff"}}>How to get to The Leela Palace Bangalore from Kempegowda International Airport </div>
-                                        <div className={`d-flex flex-row justify-content-between`} style={{borderBottom:"1px solid #ebf3ff"}}>
-                                            <div><FaCarAlt/><span style={{marginTop:"4px",marginLeft:"4px"}}>Car</span></div>
-                                            <div style={{fontSize:"14px"}}>45 minutes</div>
+                                        <div style={{
+                                            backgroundColor: "#ebf3ff",
+                                            fontSize: "14px",
+                                            fontWeight: "bold",
+                                            padding: "10px",
+                                            border: "1px solid #ebf3ff"
+                                        }}>How to come from Airport
+                                        </div>
+                                        <div className={`d-flex flex-row justify-content-between`}
+                                             style={{borderBottom: "1px solid #ebf3ff"}}>
+                                            <div><FaCarAlt/><span
+                                                style={{marginTop: "4px", marginLeft: "4px"}}>Car</span></div>
+                                            <div style={{fontSize: "14px"}}>45 minutes</div>
                                         </div>
 
                                     </div>
                                     <div className={`d-flex flex-column ${style.similarDiv}`}>
-                                        <div style={{marginTop:"3px",marginBottom:"12px",fontSize:"14px"}}>Like this one but not totally sure yet? </div>
-                                        <button>Show similar hotels</button>
+                                        <div style={{marginTop: "3px", marginBottom: "12px", fontSize: "14px"}}>Like
+                                            this one but not totally sure yet?
+                                        </div>
+                                        <button style={{color: "#0071c2"}}>Show similar hotels</button>
                                     </div>
 
+                                    <div className={`d-flex flex-column ${style.similarDiv}`}
+                                         style={{borderBottom: "1px solid #e6e6e6"}}>
+                                        <h4 style={{fontWeight: "700", fontSize: "16px", textAlign: "left"}}>Questions
+                                            you may have</h4>
+                                        <p style={{fontSize: "14px", textAlign: "left"}} className={`text-muted`}>Find
+                                            quick answers or ask questions to the property</p>
+                                    </div>
+                                    <div className={`d-flex flex-column ${style.similarDiv}`}
+                                         style={{borderBottom: "1px solid #e6e6e6"}}>
+                                        <h4 style={{fontWeight: "700", fontSize: "14px", textAlign: "left"}}>My wife is
+                                            disabled we need a room for disabled with enough space next to toilet so
+                                            that my wife can move from wheelchair on toilet Please let us know e.g. do
+                                            you offer room service? </h4>
+                                        <p style={{fontSize: "14px", textAlign: "left"}} className={`text-muted`}>Dear
+                                            Guest, We have room as requested, since hotel is operation in phases request
+                                            to confirm with us before arriva.Room service will be available. </p>
+                                        <div className={`d-flex flex-row justify-content-between`}>
+                                            <p style={{color: "#0071c2", fontSize: "14px"}}><AiOutlineLike/> Helpful</p>
+                                            <p style={{color: "#0071c2", fontSize: "14px"}}><AiOutlineDislike/> Helpful
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className={`d-flex flex-column ${style.similarDiv}`}
+                                         style={{borderBottom: "1px solid #e6e6e6"}}>
+                                        <h4 style={{fontWeight: "700", fontSize: "14px", textAlign: "left"}}>Can the
+                                            room be arranged for a honeymoon night.</h4>
+                                        <p style={{fontSize: "14px", textAlign: "left"}} className={`text-muted`}>Dear
+                                            Guest Our rooms are very well appointed please be informed to maintain the
+                                            hygine and standards of our product we dont do any decorations.</p>
+                                        <div className={`d-flex flex-row justify-content-between`}>
+                                            <p style={{color: "#0071c2", fontSize: "14px"}}><AiOutlineLike/> Helpful</p>
+                                            <p style={{color: "#0071c2", fontSize: "14px"}}><AiOutlineDislike/> Helpful
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className={`d-flex flex-column ${style.similarDiv}`}
+                                         style={{borderBottom: "1px solid #e6e6e6"}}>
+                                        <h4 style={{fontWeight: "700", fontSize: "14px", textAlign: "left"}}>Can you
+                                            bring an extra bed into the room for third person </h4>
+                                        <p style={{fontSize: "14px", textAlign: "left"}} className={`text-muted`}>Dear
+                                            Guest , Extra bed for third person is available and can be arranged on
+                                            request with an additional charge of INR 2500++ Taxes</p>
+                                        <div className={`d-flex flex-row justify-content-between`}>
+                                            <p style={{color: "#0071c2", fontSize: "14px"}}><AiOutlineLike/> Helpful</p>
+                                            <p style={{color: "#0071c2", fontSize: "14px"}}><AiOutlineDislike/> Helpful
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <button className={`${style.askQuestion}`} style={{color: "#0071c2",width:"100%",padding:"7px 16px"}}>Ask a question</button>
+
+                                    <div className={`${style.rating}`}>
+                                        <div className={`d-flex flex-row`}>
+                                            <div className={`${style.ratingDiv}`}>9.1</div>
+                                            <div className={`d-flex flex-column`}>
+                                                <h4 style={{fontSize:"large"}}>Very good</h4>
+                                                <p style={{fontSize:"small"}}>284 reviews</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {reviewArray && reviewArray.map((item,index)=>(
+                                        <ReviewItem data={item} index = {index} key={uuidv4()}/>
+                                    ))}
                                 </div>
 
                                 {/*Middle section*/}
@@ -167,13 +261,13 @@ class Entity extends Component {
                                             <button>Facilities</button>
                                             <button>House Rules</button>
                                             <button>The fine print</button>
-                                            <button>Guest reviews(#filler count)</button>
+                                            <button>Guest reviews {entityData["rating"]}</button>
                                         </div>
                                     </div>
                                     <div className={`${style.titleRow}`}>
                                         <div className={`d-flex flex-row`}>
-                                            <div className={`${style.tag}`}>Hotel</div>
-                                            <h4 style={{fontWeight: "bold"}}>The Leela Palace Bangalore</h4>
+                                    <div className={`${style.tag}`}>{entityData["property_type_name"]}</div>
+                                            <h4 style={{fontWeight: "bold"}}>{entityData["property_name"]}</h4>
                                             <RiStarSLine
                                                 style={{marginTop: "7px", marginLeft: "12px", color: "#febb02"}}/>
                                             <RiStarSLine style={{marginTop: "7px", color: "#febb02"}}/>
@@ -236,44 +330,58 @@ class Entity extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div style={{marginTop:"4px",fontWeight:"bold",fontSize:"88%"}}>
-                                            <AiFillTag />We Price Match
+                                        <div style={{marginTop: "4px", fontWeight: "bold", fontSize: "88%"}}>
+                                            <AiFillTag/>We Price Match
                                         </div>
                                     </div>
-                                    <div className={`${style.locationDetailsDiv}`} style={{fontSize:"small"}}>
-                                        <MdLocationOn style={{color:"#0071c2",fontSize:"22px"}}/>23 Old Airport Road, 560008 Bangalore, India – Great location - show map
+                                    <div className={`${style.locationDetailsDiv}`} style={{fontSize: "small"}}>
+                                        <MdLocationOn style={{color: "#0071c2", fontSize: "22px"}}/>23 Old Airport Road,
+                                        560008 Bangalore, India – Great location - show map
                                     </div>
-                                    <div style={{border:"1px solid #dae9ff",marginTop:"1%"}}/>
+                                    <div style={{border: "1px solid #dae9ff", marginTop: "1%"}}/>
 
                                     {/*Carousel*/}
 
 
                                     <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                                         <div className="carousel-inner">
-                                            <div className="carousel-item active"  data-interval="900000">
-                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/255/255549892.jpg" className="d-block w-100" alt="..."/>
-                                            </div>
-                                            <div className="carousel-item"  data-interval="9000000">
+                                            {/* <div className="carousel-item active"  data-interval="900000"> */}
+                                                {/* <img src="https://cf.bstatic.com/images/hotel/max1280x900/255/255549892.jpg" className="d-block w-100" alt="..."/> */}
+                                                {arr_id1 && arr_id1.map((item,index)=>
+                                                        <ImgsEntity dataImg = {item} indexImg = {index} key={item}/>
+                                                )}
+                                            {/* </div> */}
+                                            {/* <div className="carousel-item"  data-interval="9000000">
                                                 <img src="https://cf.bstatic.com/images/hotel/max1280x900/482/48254908.jpg" className="d-block w-100" alt="..."/>
                                             </div>
-                                            <div className="carousel-item"  data-interval="900000">
-                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/341/34138027.jpg" className="d-block w-100" alt="..."/>
+                                            <div className="carousel-item" data-interval="900000">
+                                                <img
+                                                    src="https://cf.bstatic.com/images/hotel/max1280x900/341/34138027.jpg"
+                                                    className="d-block w-100" alt="..."/>
                                             </div>
-                                            <div className="carousel-item"  data-interval="900000">
-                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/341/34137970.jpg" className="d-block w-100" alt="..."/>
+                                            <div className="carousel-item" data-interval="900000">
+                                                <img
+                                                    src="https://cf.bstatic.com/images/hotel/max1280x900/341/34137970.jpg"
+                                                    className="d-block w-100" alt="..."/>
                                             </div>
-                                            <div className="carousel-item"  data-interval="900000">
-                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/341/34137960.jpg" className="d-block w-100" alt="..."/>
+                                            <div className="carousel-item" data-interval="900000">
+                                                <img
+                                                    src="https://cf.bstatic.com/images/hotel/max1280x900/341/34137960.jpg"
+                                                    className="d-block w-100" alt="..."/>
                                             </div>
-                                            <div className="carousel-item"  data-interval="900000">
-                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/341/34138033.jpg" className="d-block w-100" alt="..."/>
+                                            <div className="carousel-item" data-interval="900000">
+                                                <img
+                                                    src="https://cf.bstatic.com/images/hotel/max1280x900/341/34138033.jpg"
+                                                    className="d-block w-100" alt="..."/>
                                             </div>
-                                            <div className="carousel-item"  data-interval="900000">
-                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/341/34138017.jpg" className="d-block w-100" alt="..."/>
+                                            <div className="carousel-item" data-interval="900000">
+                                                <img
+                                                    src="https://cf.bstatic.com/images/hotel/max1280x900/341/34138017.jpg"
+                                                    className="d-block w-100" alt="..."/>
                                             </div>
                                             <div className="carousel-item"  data-interval="900000">
                                                 <img src="https://cf.bstatic.com/images/hotel/max1280x900/341/34137955.jpg" className="d-block w-100" alt="..."/>
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <a className="carousel-control-prev" href="#carouselExampleControls"
                                            role="button" data-slide="prev">
@@ -367,38 +475,222 @@ class Entity extends Component {
 
 
                                     <div className={`row`}>
-                                        <div className={`col-8 ${style.middleDiv}`} style={{fontSize:"18px",fontWeight:"bold",margin:"15px 0"}}>
-                                            <h5>Get the celebrity treatment with world-class service at (#Hotel Name)</h5>
-                                            <div style={{color:"#b65800",fontSize:"14px",fontWeight:"bold",textAlign:"left"}}><MdStars style={{fontSize:"25px"}}/> One of our top picks in (#Filler Location).</div>
+                                        <div className={`col-8 ${style.middleDiv}`}
+                                             style={{fontSize: "18px", fontWeight: "bold", margin: "15px 0"}}>
+                                            <h5>Get the celebrity treatment with world-class service at {entityData["property_name"]}</h5>
+                                            <div style={{
+                                                color: "#b65800",
+                                                fontSize: "14px",
+                                                fontWeight: "bold",
+                                                textAlign: "left"
+                                            }}><MdStars style={{fontSize: "25px"}}/> One of our top picks in {entityData["city_name"]}.
+                                            </div>
+
+                                            <div className={`${style.descr}`}>{entityData["description"]}</div>
+
+                                            <div className={`${style.descr}`}>Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Ut et volutpat
+                                                diam. Pellentesque in consectetur tellus, vitae dignissim felis.
+                                                Vestibulum et laoreet eros, in blandit dui. Pellentesque tempus
+                                                ullamcorper mi et auctor. Morbi a eros eget tellus imperdiet ullamcorper
+                                                vitae ac est. Mauris posuere quam non hendrerit blandit. Fusce vel
+                                                congue felis. Mauris dapibus enim arcu, non varius nunc laoreet vitae.
+                                                Proin ullamcorper erat quam, sit amet condimentum velit tincidunt quis.
+                                                Proin et mi mattis, pretium metus vel, pellentesque justo.
+                                            </div>
+                                            <div className={`${style.descr}`}>Nam tellus ex, feugiat ut arcu aliquam,
+                                                lobortis fringilla ante. Cras
+                                                metus turpis, sagittis eget mi eget, dapibus sodales ex. Mauris mollis
+                                                turpis sollicitudin velit scelerisque, eu commodo dui blandit. Maecenas
+                                                vel lorem sit amet dolor accumsan varius rutrum id mauris. Etiam
+                                                dignissim urna sit amet velit volutpat, quis tincidunt mi dictum. In vel
+                                                sapien sit amet velit imperdiet maximus in vel nibh. Duis accumsan
+                                                gravida dolor, vel vehicula mauris condimentum id. Curabitur rutrum
+                                                tortor vestibulum tincidunt varius. Integer in pharetra odio, et rutrum
+                                                enim. Orci varius natoque penatibus et magnis dis parturient montes,
+                                                nascetur ridiculus mus.
+                                            </div>
+                                            <div className={`${style.descr}`}>Nam tellus ex, feugiat ut arcu aliquam,
+                                                lobortis fringilla ante. Cras
+                                                metus turpis, sagittis eget mi eget, dapibus sodales ex. Mauris mollis
+                                                turpis sollicitudin velit scelerisque, eu commodo dui blandit. Maecenas
+                                                vel lorem sit amet dolor accumsan varius rutrum id mauris. Etiam
+                                                dignissim urna sit amet velit volutpat, quis tincidunt mi dictum. In vel
+                                                sapien sit amet velit imperdiet maximus in vel nibh. Duis accumsan
+                                                gravida dolor, vel vehicula mauris condimentum id. Curabitur rutrum
+                                                tortor vestibulum tincidunt varius. Integer in pharetra odio, et rutrum
+                                                enim. Orci varius natoque penatibus et magnis dis parturient montes,
+                                                nascetur ridiculus mus.
+                                            </div>
+
+                                            <div>
+                                                <h4 style={{
+                                                    fontSize: "16px",
+                                                    textAlign: "left",
+                                                    marginTop: "10px"
+                                                }}>Most popular facilities </h4>
+                                                <div className={`${style.facilityDiv}`}>
+                                                    <div className={`d-flex flex-row`}>
+                                                        <MdPool style={{color: "green", fontSize: "26px"}}/>
+                                                        <p style={{fontWeight: "normal", fontSize: "14px"}}>Swimming
+                                                            Pool</p>
+                                                    </div>
+                                                    <div className={`d-flex flex-row ml-2`}>
+                                                        <GiBus style={{color: "green", fontSize: "26px"}}/>
+                                                        <p style={{fontWeight: "normal", fontSize: "14px"}}>Airport
+                                                            shuttle</p>
+                                                    </div>
+                                                    <div className={`d-flex flex-row ml-2`}>
+                                                        <GiFamilyHouse style={{color: "green", fontSize: "26px"}}/>
+                                                        <p style={{fontWeight: "normal", fontSize: "14px"}}>Family
+                                                            rooms</p>
+                                                    </div>
+                                                    <div className={`d-flex flex-row ml-2`}>
+                                                        <IoIosRestaurant style={{color: "green", fontSize: "26px"}}/>
+                                                        <p style={{
+                                                            fontWeight: "normal",
+                                                            fontSize: "14px"
+                                                        }}>Restaurant</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p style={{fontSize: "14px", fontWeight: "normal", textAlign: "left"}}>
+                                                <strong>ATM & Currency Exchange:</strong>
+                                                Need cash? There's an ATM and a currency exchange service at this
+                                                property.
+                                            </p>
+
+                                            <div className={`${style.descr}`}>
+                                                 <div class="border border-success text-black col-12" style={{backgroundColor:"#ecf3f2"}}>
+                                                    <div className={`d-flex flex-row`} style={{padding:15}}>
+                                                        <div >
+                                                            <BsUnlockFill style={{color:"green",fontSize:"40px"}}/>
+                                                        </div>
+                                                        <div style={{paddingLeft:10}}>
+                                                            <h4>
+                                                                 Lock in a great price for your upcoming stay
+                                                            </h4>
+                                                             <p>
+                                                                 Prices may go up, so secure your reservation today.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                 </div>
+                                                <br/>
+                                                <div class="border border-success text-black col-12" style={{backgroundColor:"#fefbf0"}}>
+                                                   <div className={`d-flex flex-row`} style={{padding:15}}>
+                                                       <div>
+                                                           <BsInfoCircle style={{color:"green",fontSize:"40px"}}/>
+                                                       </div>
+                                                       <div style={{paddingLeft:10}}>
+                                                           <h4>
+                                                               Find a cancellation policy that works for you
+                                                           </h4>
+                                                           <p>
+                                                               From 6 April 2020, your chosen cancellation policy will apply, regardless of Coronavirus. We recommend booking a free cancellation option in case your travel plans need to change.
+                                                           </p>
+                                                       </div>
+                                                   </div>
+                                                </div>
+                                                <br/>
+                                                
+                                                <div class="border border-success text-black col-12" style={{backgroundColor:"#c6c6c6"}}>
+                                                    <div  style={{padding:15}}>
+                                                        <div>
+                                                            <h4 className="text-danger">Price:{entityData["adult_budget_per_night"]}/-</h4>
+                                                        </div>
+                                                        <div className={`d-flex flex-row`}>
+                                                            {/* <input type="date" placeholder="checkIn"/>
+                                                                                <input type="date" placeholder="checkOut"/> */}
+                                                            <DateRangePicker
+                                                                className={`form-control ${style.calendar}`}
+                                                                startDate={this.state.startDate}
+                                                                startDateId="your_unique_start_date_id"
+                                                                endDate={this.state.endDate}
+                                                                endDateId="your_unique_end_date_id"
+                                                                onDatesChange={({startDate, endDate}) => 
+                                                                    {
+                                                                        let cal_checkin = String(startDate._d).split(" ")
+                                                                        let cal_checkout = String(endDate._d).split(" ")
+                                                                        this.setState({
+                                                                            startDate,
+                                                                            endDate,
+                                                                            checkin_date: cal_checkin[2],
+                                                                            checkin_month: cal_checkin[1],
+                                                                            checkin_year: cal_checkin[3],
+                                                                            checkout_date: cal_checkout[2],
+                                                                            checkout_month: cal_checkout[1],
+                                                                            checkout_year: cal_checkout[3]
+                                                                        })
+                                                                    }
+                                                                }
+                                                                focusedInput={this.state.focusedInput}
+                                                                onFocusChange={(focusedInput) => this.setState({focusedInput})}
+                                                                startDatePlaceholderText="Check-in"
+                                                                endDatePlaceholderText="Check-out"
+                                                            >
+                                                            </DateRangePicker>
+                                                        </div>
+                                                        <br/>
+                                                        
+                                                        <div style={{paddingLeft:10}}>
+                                                             <button type="button" class="btn btn-danger">CheckAvailability</button>
+                                                        </div>
+                                                    </div>
+                                                 </div>
+                                            </div>
                                         </div>
                                         <div className={`col-4 ${style.rightSubDiv}`}>
                                             <div className={`${style.healthAndSafetyDiv}`}>
-                                                <h4 style={{fontWeight:"700",fontSize:"16px"}}>Health & safety </h4>
-                                                <p style={{fontSize:"12px"}}><span style={{color:"#0071c2",fontSize:"12px",fontWeight:"400"}}>Cleanliness rated 9.7</span> by guests </p>
+                                                <h4 style={{fontWeight: "700", fontSize: "16px"}}>Health & safety </h4>
+                                                <p style={{fontSize: "12px"}}><span
+                                                    style={{color: "#0071c2", fontSize: "12px", fontWeight: "400"}}>Cleanliness rated 9.7</span> by
+                                                    guests </p>
                                                 <div className={`${style.healthFeaturesDiv}`}>
-                                                    <div style={{marginRight:"8px",fontSize:"22px",verticalAlign:"middle"}}>
+                                                    <div style={{
+                                                        marginRight: "8px",
+                                                        fontSize: "22px",
+                                                        verticalAlign: "middle"
+                                                    }}>
                                                         <GiMedicalPack/>
                                                     </div>
-                                                    <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
-                                                        <div style={{fontSize:"14px",fontWeight:"700"}}>Safety features</div>
+                                                    <div className={`d-flex flex-column`}
+                                                         style={{width: "85%", textAlign: "left"}}>
+                                                        <div style={{fontSize: "14px", fontWeight: "700"}}>Safety
+                                                            features
+                                                        </div>
                                                         <div>(#No) measures</div>
                                                     </div>
                                                 </div>
                                                 <div className={`${style.healthFeaturesDiv}`}>
-                                                    <div style={{marginRight:"8px",fontSize:"22px",verticalAlign:"middle"}}>
+                                                    <div style={{
+                                                        marginRight: "8px",
+                                                        fontSize: "22px",
+                                                        verticalAlign: "middle"
+                                                    }}>
                                                         <FaSprayCan/>
                                                     </div>
-                                                    <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
-                                                        <div style={{fontSize:"14px",fontWeight:"700"}}>Cleanliness & disinfection</div>
+                                                    <div className={`d-flex flex-column`}
+                                                         style={{width: "85%", textAlign: "left"}}>
+                                                        <div style={{fontSize: "14px", fontWeight: "700"}}>Cleanliness &
+                                                            disinfection
+                                                        </div>
                                                         <div>(#No) measures</div>
                                                     </div>
                                                 </div>
                                                 <div className={`${style.healthFeaturesDiv}`}>
-                                                    <div style={{marginRight:"8px",fontSize:"22px",verticalAlign:"middle"}}>
+                                                    <div style={{
+                                                        marginRight: "8px",
+                                                        fontSize: "22px",
+                                                        verticalAlign: "middle"
+                                                    }}>
                                                         <FaPeopleCarry/>
                                                     </div>
-                                                    <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
-                                                        <div style={{fontSize:"14px",fontWeight:"700"}}>Physical distancing</div>
+                                                    <div className={`d-flex flex-column`}
+                                                         style={{width: "85%", textAlign: "left"}}>
+                                                        <div style={{fontSize: "14px", fontWeight: "700"}}>Physical
+                                                            distancing
+                                                        </div>
                                                         <div>(#No) measures</div>
                                                     </div>
                                                 </div>
@@ -412,7 +704,8 @@ class Entity extends Component {
                                                     </div>
                                                     <div className={`d-flex flex-column`}
                                                          style={{width: "85%", textAlign: "left"}}>
-                                                        <div style={{fontSize: "14px", fontWeight: "700"}}>Food & drink safety
+                                                        <div style={{fontSize: "14px", fontWeight: "700"}}>Food & drink
+                                                            safety
                                                         </div>
                                                         <div>(#No) measures</div>
                                                     </div>
@@ -421,57 +714,99 @@ class Entity extends Component {
                                             <div className={`${style.guestsLove}`}>
                                                 <h5>Guests Love...</h5>
                                                 <div className={`${style.healthFeaturesDiv}`}>
-                                                    <div style={{marginRight:"8px",fontSize:"20px",verticalAlign:"middle"}}>
+                                                    <div style={{
+                                                        marginRight: "8px",
+                                                        fontSize: "20px",
+                                                        verticalAlign: "middle"
+                                                    }}>
                                                         <MdStars/>
                                                     </div>
-                                                    <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
-                                                        <div style={{fontSize:"14px",fontWeight:"700"}}>"friendly staff"</div>
-                                                        <div style={{fontSize:"14px"}}>(#No) measures</div>
+                                                    <div className={`d-flex flex-column`}
+                                                         style={{width: "85%", textAlign: "left"}}>
+                                                        <div style={{fontSize: "14px", fontWeight: "700"}}>"friendly
+                                                            staff"
+                                                        </div>
+                                                        <div style={{fontSize: "14px"}}>(#No) measures</div>
                                                     </div>
                                                 </div>
                                                 <div className={`${style.healthFeaturesDiv}`}>
-                                                    <div style={{marginRight:"8px",fontSize:"20px",verticalAlign:"middle"}}>
+                                                    <div style={{
+                                                        marginRight: "8px",
+                                                        fontSize: "20px",
+                                                        verticalAlign: "middle"
+                                                    }}>
                                                         <MdStars/>
                                                     </div>
-                                                    <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
-                                                        <div style={{fontSize:"14px",fontWeight:"700"}}>"excellent breakfast"</div>
-                                                        <div style={{fontSize:"14px"}}>(#No) measures</div>
+                                                    <div className={`d-flex flex-column`}
+                                                         style={{width: "85%", textAlign: "left"}}>
+                                                        <div style={{fontSize: "14px", fontWeight: "700"}}>"excellent
+                                                            breakfast"
+                                                        </div>
+                                                        <div style={{fontSize: "14px"}}>(#No) measures</div>
                                                     </div>
                                                 </div>
                                                 <div className={`${style.healthFeaturesDiv}`}>
-                                                    <div style={{marginRight:"8px",fontSize:"20px",verticalAlign:"middle"}}>
+                                                    <div style={{
+                                                        marginRight: "8px",
+                                                        fontSize: "20px",
+                                                        verticalAlign: "middle"
+                                                    }}>
                                                         <MdStars/>
                                                     </div>
-                                                    <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
-                                                        <div style={{fontSize:"14px",fontWeight:"700"}}>breakfast buffet</div>
-                                                        <div style={{fontSize:"14px"}}>(#No) measures</div>
+                                                    <div className={`d-flex flex-column`}
+                                                         style={{width: "85%", textAlign: "left"}}>
+                                                        <div style={{fontSize: "14px", fontWeight: "700"}}>breakfast
+                                                            buffet
+                                                        </div>
+                                                        <div style={{fontSize: "14px"}}>(#No) measures</div>
                                                     </div>
                                                 </div>
                                                 <div className={`${style.healthFeaturesDiv}`}>
-                                                    <div style={{marginRight:"8px",fontSize:"20px",verticalAlign:"middle"}}>
+                                                    <div style={{
+                                                        marginRight: "8px",
+                                                        fontSize: "20px",
+                                                        verticalAlign: "middle"
+                                                    }}>
                                                         <MdLocationOn/>
                                                     </div>
-                                                    <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
-                                                        <div style={{fontSize:"14px"}}>Top Location: Highly rated by recent guests (8.7)</div>
+                                                    <div className={`d-flex flex-column`}
+                                                         style={{width: "85%", textAlign: "left"}}>
+                                                        <div style={{fontSize: "14px"}}>Top Location: Highly rated by
+                                                            recent guests (8.7)
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div className={`${style.healthFeaturesDiv}`}>
-                                                    <div style={{marginRight:"8px",fontSize:"20px",verticalAlign:"middle"}}>
+                                                    <div style={{
+                                                        marginRight: "8px",
+                                                        fontSize: "20px",
+                                                        verticalAlign: "middle"
+                                                    }}>
                                                         <IoIosBed/>
                                                     </div>
-                                                    <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
-                                                        <div style={{fontSize:"14px"}}>Want a great night's sleep? This hotel was highly-rated for its very comfy beds.</div>
+                                                    <div className={`d-flex flex-column`}
+                                                         style={{width: "85%", textAlign: "left"}}>
+                                                        <div style={{fontSize: "14px"}}>Want a great night's sleep? This
+                                                            hotel was highly-rated for its very comfy beds.
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <h4 style={{color:"#838383",fontSize:"15px",padding:"0 0 5px 0",textAlign:"left"}}>Breakfast Info</h4>
-                                                <div style={{fontSize:"14px"}}>Continental, Italian, Vegetarian, Vegan, Halal, Gluten-free, Asian, American, Buffet</div>
-                                                 <div className={`d-flex flex-row justify-content-between`}>
-                                                     <AiOutlineWifi style={{fontSize:"22px",padding:"2px"}}/>
-                                                     <div className={`${style.greenDiv}`}>
-                                                         <p>Free Wifi</p>
-                                                         <p>Guests consistently rate the wifi as Excellent</p>
-                                                     </div>
-                                                 </div>
+                                                <h4 style={{
+                                                    color: "#838383",
+                                                    fontSize: "15px",
+                                                    padding: "0 0 5px 0",
+                                                    textAlign: "left"
+                                                }}>Breakfast Info</h4>
+                                                <div style={{fontSize: "14px"}}>Continental, Italian, Vegetarian, Vegan,
+                                                    Halal, Gluten-free, Asian, American, Buffet
+                                                </div>
+                                                <div className={`d-flex flex-row justify-content-between`}>
+                                                    <AiOutlineWifi style={{fontSize: "22px", padding: "2px"}}/>
+                                                    <div className={`${style.greenDiv}`}>
+                                                        <p>Free Wifi</p>
+                                                        <p>Guests consistently rate the wifi as Excellent</p>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                         </div>
@@ -491,7 +826,18 @@ class Entity extends Component {
     }
 }
 
-export default Entity;
+const mapStateToProps = state => ({
+    entityListData: state.entityList.entityListData,
+    entityData: state.entityList.entityData,
+    isEntity: state.entityList.isEntity
+})
+
+const mapDispatchToProps = dispatch => ({
+    entityListData: payload => dispatch(entityListData(payload))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Entity);
+// export default Entity;
 
 
 // export default ListResults;

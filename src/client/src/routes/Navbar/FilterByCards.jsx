@@ -41,7 +41,7 @@ class FilterByCards extends Component {
             this.props.check(checked)
         })
     }
-    
+
     handleIncomingChange = () => {
         const {data, filterTitles, filterResults} = this.props
         for(var i = 0; i < filterTitles.length; i++){
@@ -49,13 +49,13 @@ class FilterByCards extends Component {
                 console.log(filterTitles, filterResults)
                 for(var j = 0; j < filterResults[i].length; j++){
                     let val = filterResults[i][j]
-                    let new_cat = this.state[filterTitles[i]] || []            
+                    let new_cat = this.state[filterTitles[i]] || []
                     var flag = false
                     for(var k = 0; k < new_cat.length; k++){
                         if(new_cat[k] === val)
                             flag = true
                     }
-            
+
                     if(flag){
                         new_cat = this.state[filterTitles[i]] && this.state[filterTitles[i]].filter(item => {
                             return item !== val
@@ -64,7 +64,7 @@ class FilterByCards extends Component {
                     else{
                         new_cat.push(val)
                     }
-            
+
                     this.setState({
                         [filterTitles[i]+"_"+filterResults[i][j]]: !this.state[filterTitles[i]+"_"+filterResults[i][j]],
                         [filterTitles[i]] : new_cat,

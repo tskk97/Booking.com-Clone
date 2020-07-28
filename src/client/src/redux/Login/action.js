@@ -41,7 +41,7 @@ export const loginUserData = payload =>dispatch=>{
     
         var config = {
             method: 'post',
-            url: 'http://6ea6ae63c2d0.ngrok.io',
+            url: 'http://6ea6ae63c2d0.ngrok.io/login',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -58,7 +58,7 @@ export const loginUserData = payload =>dispatch=>{
     
         var config = {
             method: 'post',
-            url: 'http://6ea6ae63c2d0.ngrok.io',
+            url: ' http://6ea6ae63c2d0.ngrok.io/login',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -80,7 +80,7 @@ export const loginPasswordUserData = payload =>dispatch=>{
 
     var config = {
         method: 'post',
-        url: 'http://6ea6ae63c2d0.ngrok.io/password',
+        url: 'http://6ea6ae63c2d0.ngrok.io/login/password',
         headers: {
             'Content-Type': 'application/json'
         },

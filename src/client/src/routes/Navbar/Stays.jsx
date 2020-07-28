@@ -10,6 +10,8 @@ import "react-dates/initialize";
 import {DateRangePicker} from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
 import {staysSearchData} from '../../redux/Stays/action'
+import ProfileDetails from './ProfileDetails';
+import $ from 'jquery';
 
 class Stays extends React.Component {
     constructor(props) {
@@ -29,7 +31,8 @@ class Stays extends React.Component {
             checkout_year: "",
             startDate: "",
             endDate: "",
-            modalVisible: false
+            modalVisible: false,
+            isProfile:false,
         }
     }
 
@@ -40,6 +43,12 @@ class Stays extends React.Component {
     }
 
     componentDidMount() {
+        // let newModal = document.getElementById('basicModal')
+        // $(document).ready(function(){
+        //     $("#basicModal").modal('show');
+        // });
+
+        this.profileDisplayModal()
         setTimeout(() => {
             this.setState({
                 modalVisible: !this.state.modalVisible
@@ -96,11 +105,22 @@ class Stays extends React.Component {
             })
         }
     }
+
+    profileDisplayModal=()=>{
+        const {l_isAuth,r_isAuth} = this.props
+        if(l_isAuth || r_isAuth){
+            console.log("ashh")
+            this.setState({
+                isProfile: !this.state.isProfile
+            })
+        }
+    }
     render() { 
-        // const {city, checkin, checkout, num_child, num_adults, num_rooms} = this.state
+        const { isProfile} = this.state
         const activePath = this.props.match.url
-        // let styles = this.state.modalVisible ? {display: "block"} : {display: "none"};
+         // let styles = this.state.modalVisible ? {display: "block"} : {display: "none"};
         console.log(this.props)
+        console.log(isProfile)
         return (
             <>
                 <Navbar activePath={activePath}/>
@@ -115,15 +135,19 @@ class Stays extends React.Component {
                                 <div className={`${style.flexRowInput}`}>
                                     <div className="input-group">
                                         <div className="input-group-prepend">
-                                            <button className="btn btn-outline-secondary px-3 py-1 bg-light border-dark" type="button"
-                                                    id="button-addon1"><IoIosBed size="1.4em" />
-                                            </button>
+                                            <button className="btn btn-outline-secondary px-3 py-1 bg-light border-dark" type="button"  
+                                                    id="button-addon1" data-toggle="modal" data-target="#basicModal"><IoIosBed size="1.4em" />
+                                            </button> 
+                                            {isProfile && <ProfileDetails/>}
+                                            {/* if(!modalVisible){
+                                              return  <ProfileDetails />
+                                            }                                           */}
                                         </div>
-                                        <input type="text" className={`form-control ${style.bed}`}
+                                        <input type="text" className={`form-control ${style.bed}` }
                                                placeholder="Where are you going?"
                                                aria-label="Example text with button addon"
                                                aria-describedby="button-addon1"
-                                               value={this.state.city} name="city" onChange={this.handleChange}
+                                               value={this.state.city} name="city" onChange={this.handleChange}                               
                                         />
                                     </div>
                                     <div className="input-group justify-content-center">
@@ -224,7 +248,10 @@ class Stays extends React.Component {
                         <div className={`col-1`}></div>
                     </div>
                 </div>
-                {/* <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                {/* Display Profile Modal */}
+
+            {/* <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -280,6 +307,8 @@ const mapStateToProps = state => ({
     l_userToken: state.login.userToken,
     l_userData: state.login.userData,
     l_userName: state.login.userName,
+
+    message: state.login.message,
 
     staysSearchData: state.staysSearch.staysSearchData,
     isSearch: state.staysSearch.isSearch
