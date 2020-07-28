@@ -426,7 +426,7 @@ class Entity extends Component {
                                                     </div>
                                                     <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
                                                         <div style={{fontSize:"14px",fontWeight:"700"}}>"friendly staff"</div>
-                                                        <div style={{fontSize:"14px"}}>(#No) measures</div>
+                                                        <div style={{fontSize:"14px"}}>(#No) related reviews</div>
                                                     </div>
                                                 </div>
                                                 <div className={`${style.healthFeaturesDiv}`}>
@@ -435,7 +435,7 @@ class Entity extends Component {
                                                     </div>
                                                     <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
                                                         <div style={{fontSize:"14px",fontWeight:"700"}}>"excellent breakfast"</div>
-                                                        <div style={{fontSize:"14px"}}>(#No) measures</div>
+                                                        <div style={{fontSize:"14px"}}>(#No) related reviews</div>
                                                     </div>
                                                 </div>
                                                 <div className={`${style.healthFeaturesDiv}`}>
@@ -444,7 +444,7 @@ class Entity extends Component {
                                                     </div>
                                                     <div className={`d-flex flex-column`} style={{width:"85%",textAlign:"left"}}>
                                                         <div style={{fontSize:"14px",fontWeight:"700"}}>breakfast buffet</div>
-                                                        <div style={{fontSize:"14px"}}>(#No) measures</div>
+                                                        <div style={{fontSize:"14px"}}>(#No) related reviews</div>
                                                     </div>
                                                 </div>
                                                 <div className={`${style.healthFeaturesDiv}`}>
@@ -465,11 +465,12 @@ class Entity extends Component {
                                                 </div>
                                                 <h4 style={{color:"#838383",fontSize:"15px",padding:"0 0 5px 0",textAlign:"left"}}>Breakfast Info</h4>
                                                 <div style={{fontSize:"14px"}}>Continental, Italian, Vegetarian, Vegan, Halal, Gluten-free, Asian, American, Buffet</div>
-                                                 <div className={`d-flex flex-row justify-content-between`}>
-                                                     <AiOutlineWifi style={{fontSize:"22px",padding:"2px"}}/>
+                                                 <div className={`d-flex flex-row justify-content-between mt-2`}>
+                                                     <AiOutlineWifi style={{fontSize:"26px",padding:"2px"}}/>
                                                      <div className={`${style.greenDiv}`}>
                                                          <p>Free Wifi</p>
                                                          <p>Guests consistently rate the wifi as Excellent</p>
+
                                                      </div>
                                                  </div>
                                             </div>
