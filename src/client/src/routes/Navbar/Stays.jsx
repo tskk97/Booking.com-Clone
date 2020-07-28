@@ -11,6 +11,7 @@ import {DateRangePicker} from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
 import {staysSearchData} from '../../redux/Stays/action'
 import ProfileDetails from './ProfileDetails';
+import $ from 'jquery';
 
 class Stays extends React.Component {
     constructor(props) {
@@ -30,7 +31,8 @@ class Stays extends React.Component {
             checkout_year: "",
             startDate: "",
             endDate: "",
-            modalVisible: false
+            modalVisible: false,
+            isProfile:false,
         }
     }
 
@@ -41,6 +43,12 @@ class Stays extends React.Component {
     }
 
     componentDidMount() {
+        // let newModal = document.getElementById('basicModal')
+        // $(document).ready(function(){
+        //     $("#basicModal").modal('show');
+        // });
+
+        this.profileDisplayModal()
         setTimeout(() => {
             this.setState({
                 modalVisible: !this.state.modalVisible
@@ -97,11 +105,22 @@ class Stays extends React.Component {
             })
         }
     }
+
+    profileDisplayModal=()=>{
+        const {l_isAuth,r_isAuth} = this.props
+        if(l_isAuth || r_isAuth){
+            console.log("ashh")
+            this.setState({
+                isProfile: !this.state.isProfile
+            })
+        }
+    }
     render() { 
-        // const {city, checkin, checkout, num_child, num_adults, num_rooms} = this.state
+        const { isProfile} = this.state
         const activePath = this.props.match.url
          // let styles = this.state.modalVisible ? {display: "block"} : {display: "none"};
         console.log(this.props)
+        console.log(isProfile)
         return (
             <>
                 <Navbar activePath={activePath}/>
@@ -118,8 +137,11 @@ class Stays extends React.Component {
                                         <div className="input-group-prepend">
                                             <button className="btn btn-outline-secondary px-3 py-1 bg-light border-dark" type="button"  
                                                     id="button-addon1" data-toggle="modal" data-target="#basicModal"><IoIosBed size="1.4em" />
-                                            </button>                                            
-                                            <ProfileDetails />
+                                            </button> 
+                                            {isProfile && <ProfileDetails/>}
+                                            {/* if(!modalVisible){
+                                              return  <ProfileDetails />
+                                            }                                           */}
                                         </div>
                                         <input type="text" className={`form-control ${style.bed}` }
                                                placeholder="Where are you going?"

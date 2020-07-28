@@ -14,7 +14,7 @@ class ProfileDetails extends React.Component{
         console.log(this.props,"Ashok")
         const {l_message,r_message,l_userData,l_userEmail} = this.props
         console.log(l_userEmail.length)
-         if(l_message === "Login Successful" || r_message === "Login Successful"){
+        // if(l_message === "Login Successful" || r_message === "Login Successful"){
             //   l_userData&&l_userData.map(item =>{
             //       console.log(item.email.length)
             //       if(l_userEmail.length === item.email.length){
@@ -43,7 +43,7 @@ class ProfileDetails extends React.Component{
                                     </div>
                                   </div>
                                   <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
                                     <button type="button" class="btn btn-primary">Submit</button>
                                   </div>
                                 </div>
@@ -55,13 +55,9 @@ class ProfileDetails extends React.Component{
              // }
             //  )
             
-        }
+      //  }
 
-        return(
-            <div>
-                Ashok
-            </div>
-        )
+        
          
     }
 }
