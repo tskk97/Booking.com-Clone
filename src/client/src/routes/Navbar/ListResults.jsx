@@ -350,7 +350,7 @@ class ListResults extends Component {
             })
 
         }
-        // console.log(this.state.Property_Type_Hostels)
+
 
         let capitalisedSearchName = this.state.searchName.charAt(0).toUpperCase() + this.state.searchName.slice(1);
         // if(this.state.testFlag){

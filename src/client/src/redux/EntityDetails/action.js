@@ -16,6 +16,7 @@ export const entityListFailure = payload=>({
 })
 
 export const entityListData = payload=> dispatch=>{
+    console.log(payload)
     dispatch(entityListRequest(payload))
     axios.get(" http://6ea6ae63c2d0.ngrok.io/stays/property/"+payload)
     .then(res => dispatch(entityListSuccess(res.data)))

@@ -315,3 +315,14 @@
 .greenDiv > *{
     font-size: 14px;
 }
+.descr{
+    margin-top: 3%;
+    justify-content: left;
+    font-size: 14px;
+    text-align: justify;
+    font-weight: normal;
+}
+.facilityDiv{
+    display: flex;
+    flex-direction: row;
+}

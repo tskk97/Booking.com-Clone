@@ -22,7 +22,7 @@ class ResultCard extends Component {
                     <img src={searchData.img_path_url}></img>
                 </div>
                 <div className={`${style.descr}`}>
-                    <Link to={`/stays/property/id=${searchData.id}`}>
+                    <Link to={`/stays/property/${searchData.id}`}>
                         <h4 style={{color:"#0071c2",fontSize:"20px","fontWeight":"bold",padding:"3px 0"}}>{searchData.property_name}</h4>
                     </Link>
                     <div className={`d-flex flex-row`} style={{textAlign:"left"}}>

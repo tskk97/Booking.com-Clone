@@ -13,11 +13,11 @@ const reducerEntity =(state = initState,action)=>{
                 ...state
             }
         case ENTITY_LIST_SUCCESS:
-            console.log(action.payload)
+            console.log(action.payload.data[0])
             return{
                 ...state,
                 isEntity:true,
-                entityData:action.payload.data
+                entityData:action.payload.data[0]
             }
         case ENTITY_LIST_FAILURE:
             return{
