@@ -466,13 +466,12 @@ class Entity extends Component {
                                                         <IoIosRestaurant style={{color:"green",fontSize:"26px"}}/>
                                                         <p style={{fontWeight:"normal",fontSize:"14px"}}>Restaurant</p>
                                                     </div>
-
-
-                                                </div>
-                                                <div className={`${style.facilityDiv}`}>
-
                                                 </div>
                                             </div>
+                                            <p style={{fontSize:"14px",fontWeight:"normal",textAlign:"left"}}>
+                                                <strong>ATM & Currency Exchange:</strong>
+                                                Need cash? There's an ATM and a currency exchange service at this property.
+                                            </p>
                                         </div>
                                         <div className={`col-4 ${style.rightSubDiv}`}>
                                             <div className={`${style.healthAndSafetyDiv}`}>
