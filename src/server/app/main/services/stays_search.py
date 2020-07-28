@@ -13,7 +13,7 @@ def get_default_search_result(city, page, per_page, property_type_name, rating, 
     # property_type_name = tuple(property_type_name)
 
     print(property_type_name, rating, review_score, facilities)
-    query = 'select property.id, property.property_name, property.description, property_types.property_type_name, city.city_name, states.state_name, country.country_name, property.img_path_url, property.budget_per_night, property.rating, property.review_score, property.all_day_reception, property.payment_mode, property.breakfast, property.lunch, property.dinner, GROUP_CONCAT(facilities.facility_name) as "facilities" from property join property_types on property_type_id = property_types.id join city on property.city_id = city.id join states on property.state_id = states.id join country on property.country_id = country.id join prop_facilities on property.id = prop_facilities.property_id join facilities on prop_facilities.facility_id = facilities.id where city_name = "%s" GROUP BY property.id;' % (city) 
+    query = 'select property.id, property.property_name, property.description, property_types.property_type_name, city.city_name, states.state_name, country.country_name, property.img_path_url, property.adult_budget_per_night, property.child_budget_per_night, property.rating, property.review_score, property.all_day_reception, property.payment_mode, property.breakfast, property.lunch, property.dinner, property.total_rooms, property.available_rooms, property.occupied_rooms, GROUP_CONCAT(facilities.facility_name) as "facilities" from property join property_types on property_type_id = property_types.id join city on property.city_id = city.id join states on property.state_id = states.id join country on property.country_id = country.id join prop_facilities on property.id = prop_facilities.property_id join facilities on prop_facilities.facility_id = facilities.id where city_name = "%s" GROUP BY property.id;' % (city) 
     
     
     data_raw = db.engine.execute(query)
@@ -36,7 +36,12 @@ def get_default_search_result(city, page, per_page, property_type_name, rating, 
                 flag = True
         
         if len(facilities) != 0:
-            if item['facilities'] not in facilities:
+            db_facilities = item['facilities'].split(",")
+            for eachFacility in facilities:
+                eachFacility = eachFacility.split("%20")
+                " ".join(eachFacility)
+
+            if(all(facility not in facilities for facility in db_facilities)):
                 flag = True
         
         if flag == False:
@@ -48,7 +53,8 @@ def get_default_search_result(city, page, per_page, property_type_name, rating, 
             temp['state_name'] = item['state_name']
             temp['country_name'] = item['country_name']
             temp['img_path_url'] = item['img_path_url']
-            temp['budget_per_night'] = item['budget_per_night']
+            temp['adult_budget_per_night'] = item['adult_budget_per_night']
+            temp['child_budget_per_night'] = item['child_budget_per_night']
             temp['rating'] = item['rating']
             temp['review_score'] = item['review_score']
             temp['all_day_reception'] = item['all_day_reception']
@@ -56,7 +62,10 @@ def get_default_search_result(city, page, per_page, property_type_name, rating, 
             temp['breakfast'] = item['breakfast']
             temp['lunch'] = item['lunch']
             temp['dinner'] = item['dinner']
-            temp['facilities'] = item['facilities']
+            temp['facilities'] = item['facilities'].split(",")
+            temp['total_rooms'] = item['total_rooms']
+            temp['available_rooms'] = item['available_rooms']
+            temp['occupied_rooms'] = item['occupied_rooms']
             data.append(temp)
     
     total = len(data)
