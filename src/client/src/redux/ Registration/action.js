@@ -31,7 +31,7 @@ export const registerPasswordUserFailure = payload=>({
 })
 
 export const registerUserData = payload => dispatch => {
-    console.log(payload)
+    // console.log(payload)
     dispatch(registerUserRequest(payload))
     var mode = payload.mode
     var axios = require('axios');

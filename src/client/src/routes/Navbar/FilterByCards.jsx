@@ -44,9 +44,9 @@ class FilterByCards extends Component {
     
     handleIncomingChange = () => {
         const {data, filterTitles, filterResults} = this.props
-        console.log(filterTitles, filterResults)
         for(var i = 0; i < filterTitles.length; i++){
             if(data[0].toLowerCase().split(" ").join("_") === filterTitles[i]){
+                console.log(filterTitles, filterResults)
                 for(var j = 0; j < filterResults[i].length; j++){
                     let val = filterResults[i][j]
                     let new_cat = this.state[filterTitles[i]] || []            
@@ -68,15 +68,15 @@ class FilterByCards extends Component {
                     this.setState({
                         [filterTitles[i]+"_"+filterResults[i][j]]: !this.state[filterTitles[i]+"_"+filterResults[i][j]],
                         [filterTitles[i]] : new_cat,
-                    },console.log(this.state))
+                    },() => {})
                 }
             }
         }
     }
     componentDidMount(){
         const {data} = this.props
-        const {location} = this.props
-        console.log(location,"loc")
+        // const {location} = this.props
+        // console.log(location,"loc")
          
         // this.handleUrlChange(location.search,"filter")
         let cat =  data[0].toLowerCase().split(" ").join("_")
@@ -91,7 +91,7 @@ class FilterByCards extends Component {
 
     render() {
         const {data} = this.props;
-        // console.log(this.state)
+        console.log(this.state)
         return (
             <div className={`${style.container}`}>
                 <div className="mb-2">

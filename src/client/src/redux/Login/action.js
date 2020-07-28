@@ -32,7 +32,7 @@ export const loginPasswordUserFailure = payload =>({
 })
 
 export const loginUserData = payload =>dispatch=>{
-    console.log(payload)
+    // console.log(payload)
     dispatch(loginUserRequest(payload))
     var mode = payload.mode
     var axios = require('axios');
@@ -73,7 +73,7 @@ export const loginUserData = payload =>dispatch=>{
 }
 
 export const loginPasswordUserData = payload =>dispatch=>{
-    console.log(payload)
+    // console.log(payload)
     dispatch(loginPasswordUserRequest(payload))
     var axios = require('axios');
     var data = JSON.stringify({"email":payload.email, "password":payload.password});

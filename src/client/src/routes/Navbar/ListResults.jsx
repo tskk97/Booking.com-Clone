@@ -10,7 +10,7 @@ import {v4 as uuidv4} from 'uuid';
 import FilterByCards from "./FilterByCards";
 import {connect} from 'react-redux'
 import {staysSearchData} from '../../redux/Stays/action'
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 
 class ListResults extends Component {
     constructor(props) {
@@ -72,14 +72,14 @@ class ListResults extends Component {
             room:url.get('num_rooms') 
         })
 
-        const obj = {
-            city: url.get('city'),
-            checkin: url.get('checkin'),
-            num_rooms: url.get('num_rooms'),    
-            page: url.get('page') || 1
-        }
+        // const obj = {
+        //     city: url.get('city'),
+        //     checkin: url.get('checkin'),
+        //     num_rooms: url.get('num_rooms'),    
+        //     page: url.get('page') || 1
+        // }
         // console.log(obj)
-        console.log(query,baseURL)
+        // console.log(query,baseURL)
         staysSearchData(baseURL+query)
 
     }
@@ -87,7 +87,7 @@ class ListResults extends Component {
     componentDidMount() {
         const {location} = this.props
         let url =  new URL(window.location.href)
-        console.log(url.search)
+        // console.log(url.search)
         let baseUrl = url.search.toString().slice(1)
         let propertiesArr = baseUrl.split("&")
         
@@ -116,7 +116,7 @@ class ListResults extends Component {
                 obj[propertiesArr[j][0]].push(propertiesArr[j][1])
             }
         }
-        console.log(obj)
+        // console.log(obj)
         // let filterTitles = Object.keys(obj)
         let filterTitles = []
         let filterResults = []
@@ -127,7 +127,7 @@ class ListResults extends Component {
             }
         }
 
-        console.log(filterTitles)
+        // console.log(filterTitles)
         // console.log(filterResults)
         this.setState({
             filterTitles:filterTitles,
@@ -145,7 +145,7 @@ class ListResults extends Component {
     handleChecked = (res) => {
         console.log(res)
         const {filterTitles,filterResults} = this.state
-        console.log(filterResults,filterTitles)
+        // console.log(filterResults,filterTitles)
         let newCity = this.state.searchName
         let newCheckInDate = this.state.checkin_date
         let newCheckInMonth = this.state.checkin_month
@@ -158,34 +158,37 @@ class ListResults extends Component {
         let newRooms = this.state.room
         let newPage = this.state.page
         
-        let newUrl = `/stays/search_results?city=${newCity}&checkin_date=${newCheckInDate}&checkin_month=${newCheckInMonth}&checkin_year=${newCheckInYear}&checkout_date=${newCheckOutDate}&checkout_month=${newCheckInMonth}&checkout_year=${newCheckOutYear}&num_adults=${newAdults}&num_child=${newChildrens}&num_rooms=${newRooms}`
+        let newUrl = `/stays/search_results?city=${newCity}&checkin_date=${newCheckInDate}&checkin_month=${newCheckInMonth}&checkin_year=${newCheckInYear}&checkout_date=${newCheckOutDate}&checkout_month=${newCheckOutMonth}&checkout_year=${newCheckOutYear}&num_adults=${newAdults}&num_child=${newChildrens}&num_rooms=${newRooms}`
         // let newUrl = `/stays/search_results?`
         // console.log(res[filterTitles])
         let flag = false
 
         for(var i=10;i<filterTitles.length;i++){
-            console.log("befpre")
+            console.log("start check")
             if(res.compareFilter === filterTitles[i]){
-                console.log(filterTitles.length,"after")
+                console.log(filterTitles[i],"matched category found")
                 flag = true
-                if(filterResults[i].length<res[filterTitles[i]].length){
+                if(filterResults[i].length < res[filterTitles[i]].length){
                     for(var j=0;j<res[filterTitles[i]].length;j++){
                         newUrl += "&"+filterTitles[i]+"="+res[filterTitles[i]][j]
                     }
+                    console.log("new filter added")
                 }
                 else if(filterResults[i].length > res[filterTitles[i]].length) {
-                    console.log("asdf")
                     for(var k=0;k<filterResults[i].length;k++){
                         for(var l=0;l<res[filterTitles[i]].length;l++){
                             if(filterResults[i][k] === res[filterTitles[i]][l]){
+                                console.log("filter found to add")
                                 newUrl += "&"+filterTitles[i]+"="+filterResults[i][k]
-                                console.log(newUrl)
+                                // console.log(newUrl)
                             }
                         }
                     }
+                    console.log("removed a filter")
                 }
             }
             else{
+                console.log("other category, just add")
                 if(filterResults[i].length!==0){
                     for(var m=0;m<filterResults[i].length;m++){
                         newUrl += "&"+filterTitles[i]+"="+filterResults[i][m]    
@@ -204,6 +207,11 @@ class ListResults extends Component {
             newUrl:newUrl
         })
         window.location.href= newUrl;
+
+        // setTimeout(() => {
+        //     window.location.href= newUrl;
+        // },5000)
+
         // this.props.history.push(newUrl)
         // this.forceUpdate()
         // return (<Redirect to='/stays' />)
@@ -335,8 +343,8 @@ class ListResults extends Component {
                 }
             })
             let filter_headings = ["Star Rating", "Property Type", "Review Score", "Facility", "Room Facility"]
-            let x =filter_headings[0].toLowerCase()
-            console.log(x)
+            // let x =filter_headings[0].toLowerCase()
+            // console.log(x)
             filterData && filterData.map((item, index) => {
                 item[0] = filter_headings[index]
             })
@@ -464,16 +472,16 @@ class ListResults extends Component {
                                             </div>
                                         </div>
     
-                                        <div className={`${style.filterBy}`} style={{textAlign:"left"}}>
+                                        {/* <div className={`${style.filterBy}`} style={{textAlign:"left"}}>
                                             <div style={{textAlign:"left","fontWeight":"700","borderBottom":"1px solid black"}} className={`${style.baseFilter}`}>
                                                  ReviewScore:
                                             </div>
-                                            {/* <div>
+                                            <div>
                                                 {reviewData&& reviewData.map(item =>
                                                     <FilterByCards  reviews= {item}/>
                                                  )} 
-                                            </div> */}
-                                        </div>
+                                            </div>
+                                        </div> */}
                                     </div>
     
                                     {/*Middle section*/}
