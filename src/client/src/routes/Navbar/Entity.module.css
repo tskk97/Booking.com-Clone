@@ -245,7 +245,7 @@
     flex-direction: column;
     width: 265px;
     /*border: 1px solid #e6e6e6;;*/
-    border: 1px solid #e6e6e6;;
+    border: 1px solid #e6e6e6;
 
     border-radius: 2px;
     margin: 7px 0 16px;
@@ -283,7 +283,7 @@
     border: 1px solid #ebf3ff;
     padding: 8px;
 }
-.similarDiv > button{
+.similarDiv > button,.askQuestion{
     border:1px solid #0071c2;
     background-color: transparent;
     color:#6b6b6b;
