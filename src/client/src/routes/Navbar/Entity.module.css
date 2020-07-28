@@ -289,6 +289,22 @@
     color:#6b6b6b;
     font-size: 14px;
 }
+.rating{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+    border-bottom: 1px solid dimgray;
+}
+.ratingDiv{
+    width: 30px;
+    height: 30px;
+    color: #f4f7fc;
+    font-weight: 500;
+    align-items: center;
+    min-width: 32px;
+    border-radius: 6px 6px 6px 0;
+    background-color: #003580;
+}
 .rightSubDiv{
     display: flex;
     flex-direction: column;

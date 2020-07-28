@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Navbar from "./Navbar.jsx";
 import style from "./Entity.module.css"
+import ReviewItem from "./ReviewItem";
 import {IoIosBed} from "react-icons/io";
 import {BsSearch} from "react-icons/bs";
 import {FaRegCalendarPlus} from "react-icons/fa";
@@ -36,6 +37,7 @@ class Entity extends Component {
     }
 
     render() {
+        const reviewArray = [["Rooms are beautiful, staff is amazing, as is breakfast","Sarah","USA"]]
         return (
             <div className={`${style.body}`}>
                 <Navbar/>
@@ -219,6 +221,18 @@ class Entity extends Component {
                                     </div>
                                     <button className={`${style.askQuestion}`} style={{color: "#0071c2",width:"100%",padding:"7px 16px"}}>Ask a question</button>
 
+                                    <div className={`${style.rating}`}>
+                                        <div className={`d-flex flex-row`}>
+                                            <div className={`${style.ratingDiv}`}>9.1</div>
+                                            <div className={`d-flex flex-column`}>
+                                                <h4 style={{fontSize:"large"}}>Very good</h4>
+                                                <p style={{fontSize:"small"}}>284 reviews</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {reviewArray && reviewArray.map((item,index)=>(
+                                        <ReviewItem data={item} index = {index} key={uuidv4()}/>
+                                    ))}
                                 </div>
 
                                 {/*Middle section*/}
