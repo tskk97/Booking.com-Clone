@@ -10,8 +10,8 @@ class ReviewItem extends Component {
                 <div className={`${style.profile}`}>
                     <div className={`rounded-circle ${style.pic}`}>{data[1][0].toUpperCase()}</div>
                     <div className={`d-flex flex-column ml-2`}>
-                        <div>{data[1]}</div>
-                        <div>{data[2]}</div>
+                        <div style={{fontSize:"14px"}}>{data[1]}</div>
+                        <div style={{fontSize:"14px"}}>{data[2]}</div>
                     </div>
                 </div>
             </div>
