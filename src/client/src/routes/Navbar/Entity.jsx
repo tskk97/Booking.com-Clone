@@ -828,54 +828,54 @@ class Entity extends Component {
                                         </div>
 
                                     </div>
-                                    <div className="border border-primary text-black"
-                                         style={{backgroundColor: "#fff"}}>
-                                        <div style={{padding: 15}}>
-                                            <div className="mb-3">
-                                                <span
-                                                    className="h5">Adult Price/Night :{entityData["adult_budget_per_night"]}/-</span><span
-                                                className="ml-4 h5">Child Price/Night :{entityData["child_budget_per_night"]}/-</span>
-                                            </div>
-                                            <div className={`d-flex flex-row`}>
-                                                <DateRangePicker
-                                                    className={`form-control ${style.calendar}`}
-                                                    startDate={this.state.startDate}
-                                                    startDateId="your_unique_start_date_id"
-                                                    endDate={this.state.endDate}
-                                                    endDateId="your_unique_end_date_id"
-                                                    onDatesChange={({startDate, endDate}) => {
-                                                        let cal_checkin = String(startDate._d).split(" ")
-                                                        let cal_checkout = String(endDate._d).split(" ")
-                                                        this.setState({
-                                                            startDate,
-                                                            endDate,
-                                                            checkin_date: cal_checkin[2],
-                                                            checkin_month: cal_checkin[1],
-                                                            checkin_year: cal_checkin[3],
-                                                            checkout_date: cal_checkout[2],
-                                                            checkout_month: cal_checkout[1],
-                                                            checkout_year: cal_checkout[3]
-                                                        })
-                                                    }
-                                                    }
-                                                    focusedInput={this.state.focusedInput}
-                                                    onFocusChange={(focusedInput) => this.setState({focusedInput})}
-                                                    startDatePlaceholderText="Check-in"
-                                                    endDatePlaceholderText="Check-out"
-                                                >
-                                                </DateRangePicker>
-                                            </div>
-                                            <br/>
-                                            <div>
-                                                <button type="button" className="btn" style={{
-                                                    color: "#fff",
-                                                    backgroundColor: "#0071c2"
-                                                }}>CheckAvailability
-                                                </button>
-                                            </div>
-                                        </div>
+                                    {/*<div className="border border-primary text-black"*/}
+                                    {/*     style={{backgroundColor: "#fff"}}>*/}
+                                    {/*    <div style={{padding: 15}}>*/}
+                                    {/*        <div className="mb-3">*/}
+                                    {/*            <span*/}
+                                    {/*                className="h5">Adult Price/Night :{entityData["adult_budget_per_night"]}/-</span><span*/}
+                                    {/*            className="ml-4 h5">Child Price/Night :{entityData["child_budget_per_night"]}/-</span>*/}
+                                    {/*        </div>*/}
+                                    {/*        <div className={`d-flex flex-row`}>*/}
+                                    {/*            <DateRangePicker*/}
+                                    {/*                className={`form-control ${style.calendar}`}*/}
+                                    {/*                startDate={this.state.startDate}*/}
+                                    {/*                startDateId="your_unique_start_date_id"*/}
+                                    {/*                endDate={this.state.endDate}*/}
+                                    {/*                endDateId="your_unique_end_date_id"*/}
+                                    {/*                onDatesChange={({startDate, endDate}) => {*/}
+                                    {/*                    let cal_checkin = String(startDate._d).split(" ")*/}
+                                    {/*                    let cal_checkout = String(endDate._d).split(" ")*/}
+                                    {/*                    this.setState({*/}
+                                    {/*                        startDate,*/}
+                                    {/*                        endDate,*/}
+                                    {/*                        checkin_date: cal_checkin[2],*/}
+                                    {/*                        checkin_month: cal_checkin[1],*/}
+                                    {/*                        checkin_year: cal_checkin[3],*/}
+                                    {/*                        checkout_date: cal_checkout[2],*/}
+                                    {/*                        checkout_month: cal_checkout[1],*/}
+                                    {/*                        checkout_year: cal_checkout[3]*/}
+                                    {/*                    })*/}
+                                    {/*                }*/}
+                                    {/*                }*/}
+                                    {/*                focusedInput={this.state.focusedInput}*/}
+                                    {/*                onFocusChange={(focusedInput) => this.setState({focusedInput})}*/}
+                                    {/*                startDatePlaceholderText="Check-in"*/}
+                                    {/*                endDatePlaceholderText="Check-out"*/}
+                                    {/*            >*/}
+                                    {/*            </DateRangePicker>*/}
+                                    {/*        </div>*/}
+                                    {/*        <br/>*/}
+                                    {/*        <div>*/}
+                                    {/*            <button type="button" className="btn" style={{*/}
+                                    {/*                color: "#fff",*/}
+                                    {/*                backgroundColor: "#0071c2"*/}
+                                    {/*            }}>CheckAvailability*/}
+                                    {/*            </button>*/}
+                                    {/*        </div>*/}
+                                    {/*    </div>*/}
 
-                                    </div>
+                                    {/*</div>*/}
 
                                     <div className="border border-success text-black mt-3"
                                          style={{backgroundColor: "#ecf3f2"}}>
@@ -883,8 +883,8 @@ class Entity extends Component {
                                             <div>
                                                 <BsUnlockFill style={{color: "green"}} size={`1em`}/>
                                             </div>
-                                            <div style={{marginLeft: 10,fontSize:"14px"}}>
-                                                <h4>
+                                            <div style={{marginLeft: 10,fontSize:"14px",textAlign:"left"}}>
+                                                <h4 style={{fontSize:"18px"}}>
                                                     Lock in a great price for your upcoming stay
                                                 </h4>
                                                 <div>
@@ -902,7 +902,7 @@ class Entity extends Component {
                                                     <BsInfoCircle style={{color: "#f0ad4e"}} size={`1em`}/>
                                                 </div>
                                                 <div style={{marginLeft: 10,fontSize:"14px",textAlign:"left"}}>
-                                                    <h4>
+                                                    <h4 style={{fontSize:"18px"}}>
                                                         Find a cancellation policy that works for you
                                                     </h4>
                                                     <p>
@@ -913,6 +913,54 @@ class Entity extends Component {
                                                     </p>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div className="border border-primary text-black mt-3"
+                                             style={{backgroundColor: "#fff"}}>
+                                            <div style={{padding: 15}}>
+                                                <div className="mb-3">
+                                                <span
+                                                    className="h5">Adult Price/Night :{entityData["adult_budget_per_night"]}/-</span><span
+                                                    className="ml-4 h5">Child Price/Night :{entityData["child_budget_per_night"]}/-</span>
+                                                </div>
+                                                <div className={`d-flex flex-row`}>
+                                                    <DateRangePicker
+                                                        className={`form-control ${style.calendar}`}
+                                                        startDate={this.state.startDate}
+                                                        startDateId="your_unique_start_date_id"
+                                                        endDate={this.state.endDate}
+                                                        endDateId="your_unique_end_date_id"
+                                                        onDatesChange={({startDate, endDate}) => {
+                                                            let cal_checkin = String(startDate._d).split(" ")
+                                                            let cal_checkout = String(endDate._d).split(" ")
+                                                            this.setState({
+                                                                startDate,
+                                                                endDate,
+                                                                checkin_date: cal_checkin[2],
+                                                                checkin_month: cal_checkin[1],
+                                                                checkin_year: cal_checkin[3],
+                                                                checkout_date: cal_checkout[2],
+                                                                checkout_month: cal_checkout[1],
+                                                                checkout_year: cal_checkout[3]
+                                                            })
+                                                        }
+                                                        }
+                                                        focusedInput={this.state.focusedInput}
+                                                        onFocusChange={(focusedInput) => this.setState({focusedInput})}
+                                                        startDatePlaceholderText="Check-in"
+                                                        endDatePlaceholderText="Check-out"
+                                                    >
+                                                    </DateRangePicker>
+                                                </div>
+                                                <br/>
+                                                <div>
+                                                    <button type="button" className="btn" style={{
+                                                        color: "#fff",
+                                                        backgroundColor: "#0071c2"
+                                                    }}>CheckAvailability
+                                                    </button>
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <div className={`${style.recommendDiv}`}>
                                             <h4 style={{fontSize: "23px"}}>Popular properties similar
