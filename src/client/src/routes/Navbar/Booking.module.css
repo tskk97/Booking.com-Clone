@@ -1,0 +1,15 @@
+.greenDiv{
+    margin-top: 5%;
+    background-color: #f1fef2;
+    border: 1px solid #97e59c;
+    border-radius: 2px;
+    padding: 16px;
+}
+.body{
+    margin-top: 15vh;
+}
+
+.leftDiv{
+    width: 100%;
+    height: auto;
+}
