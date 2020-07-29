@@ -757,8 +757,6 @@ class Entity extends Component {
                                                 className="ml-4 h5">Child Price/Night :{entityData["child_budget_per_night"]}/-</span>
                                             </div>
                                             <div className={`d-flex flex-row`}>
-                                                {/* <input type="date" placeholder="checkIn"/>
-                                                                                <input type="date" placeholder="checkOut"/> */}
                                                 <DateRangePicker
                                                     className={`form-control ${style.calendar}`}
                                                     startDate={this.state.startDate}
@@ -799,19 +797,19 @@ class Entity extends Component {
 
                                     </div>
 
-                                    <div className="border border-success text-black"
+                                    <div className="border border-success text-black mt-3"
                                          style={{backgroundColor: "#ecf3f2"}}>
                                         <div className={`d-flex flex-row`} style={{padding: 15}}>
                                             <div>
-                                                <BsUnlockFill style={{color: "green", fontSize: "40px"}}/>
+                                                <BsUnlockFill style={{color: "green"}} size={`1em`}/>
                                             </div>
-                                            <div style={{paddingLeft: 10}}>
+                                            <div style={{marginLeft: 10,fontSize:"14px"}}>
                                                 <h4>
                                                     Lock in a great price for your upcoming stay
                                                 </h4>
-                                                <p>
+                                                <div>
                                                     Prices may go up, so secure your reservation today.
-                                                </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -821,9 +819,9 @@ class Entity extends Component {
                                              style={{backgroundColor: "#fefbf0"}}>
                                             <div className={`d-flex flex-row`} style={{padding: 15}}>
                                                 <div>
-                                                    <BsInfoCircle style={{color: "#f0ad4e", fontSize: "40px"}}/>
+                                                    <BsInfoCircle style={{color: "#f0ad4e"}} size={`1em`}/>
                                                 </div>
-                                                <div style={{paddingLeft: 10}}>
+                                                <div style={{marginLeft: 10,fontSize:"14px",textAlign:"left"}}>
                                                     <h4>
                                                         Find a cancellation policy that works for you
                                                     </h4>
@@ -872,7 +870,3 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Entity);
-// export default Entity;
-
-
-// export default ListResults;
