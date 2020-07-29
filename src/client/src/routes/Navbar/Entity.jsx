@@ -581,7 +581,7 @@ class Entity extends Component {
                                                 <div className="border border-warning text-black col-12" style={{backgroundColor:"#fefbf0"}}>
                                                    <div className={`d-flex flex-row`} style={{padding:15}}>
                                                        <div>
-                                                           <BsInfoCircle style={{color:"#f1e1a7",fontSize:"40px"}}/>
+                                                           <BsInfoCircle style={{color:"#f0ad4e",fontSize:"40px"}}/>
                                                        </div>
                                                        <div style={{paddingLeft:10}}>
                                                            <h4>
@@ -801,10 +801,10 @@ class Entity extends Component {
                                                     Halal, Gluten-free, Asian, American, Buffet
                                                 </div>
                                                 <div className={`d-flex flex-row justify-content-between`}>
-                                                    <AiOutlineWifi style={{fontSize: "22px", padding: "2px"}}/>
-                                                    <div className={`${style.greenDiv}`}>
-                                                        <p>Free Wifi</p>
-                                                        <p>Guests consistently rate the wifi as Excellent</p>
+                                                    <AiOutlineWifi size="2em" />
+                                                    <div className={`${style.greenDiv} text-left`}>
+                                                        <div>Free Wifi</div>
+                                                        <div>Guests consistently rate the wifi as Excellent</div>
                                                     </div>
                                                 </div>
                                             </div>
