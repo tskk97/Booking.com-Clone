@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    margin-right: 5px;
+    border-right: 1px solid #ebf3ff;
+}
+
+.container > img{
+    height: 150px;
+    width: 150px;
+}

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Navbar from "./Navbar.jsx";
 import style from "./Entity.module.css"
 import ReviewItem from "./ReviewItem";
+import RecommendCard from "./RecommendCard";
 import {IoIosBed} from "react-icons/io";
 import {BsSearch} from "react-icons/bs";
 import {FaRegCalendarPlus} from "react-icons/fa";
@@ -53,6 +54,50 @@ class Entity extends Component {
 
     render() {
         const{entityData, reviewData, recommendationsData} = this.props
+        // const recommendations = entityData["recommendations"];
+        const recommendations = [
+            {
+                "id": 5,
+                "property_name": "Radisson Bengaluru City Center",
+                "property_type_name": "Hotels",
+                "city_name": "Bangalore",
+                "img_path_url": "https://cf.bstatic.com/xdata/images/hotel/square600/232847950.webp?k=eaa659d084fca9e43fd6f0f0c40d0c4f72c284a161031e4adc9090cbae63a4b6&o=",
+                "budget": "4800",
+                "rating": "5",
+                "review_score": "8.6"
+            },
+            {
+                "id": 9,
+                "property_name": "Taj Yeshwantpur Bengaluru",
+                "property_type_name": "Hotels",
+                "city_name": "Bangalore",
+                "img_path_url": "https://cf.bstatic.com/xdata/images/hotel/square600/17173782.webp?k=2f452278302c012ba3eae7f27386b2cf94c3b6cb18b2135f7ecd2082dd2d2f87&o=",
+                "budget": "5300",
+                "rating": "5",
+                "review_score": "8.8"
+            },
+            {
+                "id": 13,
+                "property_name": "The Oberoi Bengaluru Opens in new window",
+                "property_type_name": "Hotels",
+                "city_name": "Bangalore",
+                "img_path_url": "https://cf.bstatic.com/xdata/images/hotel/square600/31211348.webp?k=c469403df80f10e33120c7be42b61d458746716a4e04c62ad4b9afc1c22edc98&o=",
+                "budget": "5600",
+                "rating": "5",
+                "review_score": "9.2"
+            },
+            {
+                "id": 17,
+                "property_name": "The Chancery Pavilion",
+                "property_type_name": "Hotels",
+                "city_name": "Bangalore",
+                "img_path_url": "https://cf.bstatic.com/xdata/images/hotel/square600/124204205.jpg?k=9591887684f038b53d392759c54c1e6be698e404d008c7a4566cb7ecae68fe2f&o=",
+                "budget": "5300",
+                "rating": "4",
+                "review_score": "7.1"
+            }
+        ]
+        console.log("entity data is",entityData)
         console.log(entityData["city_name"])
         const reviewArray = [["Rooms are beautiful, staff is amazing, as is breakfast","Sarah","USA"]]
         return (
@@ -636,6 +681,15 @@ class Entity extends Component {
                                                         <div>
                                                              <button type="button" class="btn" style={{color: "#fff", backgroundColor: "#0071c2"}}>CheckAvailability</button>
                                                         </div>
+                                                    </div>
+
+                                                </div>
+                                                <div className={`${style.recommendDiv}`}>
+                                                    <h4 style={{fontSize:"23px"}}>Popular properties similar to {entityData["property_name"]}</h4>
+                                                    <div className={`${style.recommendFlex}`}>
+                                                        {recommendations && recommendations.map((item,index)=>(
+                                                            <RecommendCard key={uuidv4()} data={item}/>
+                                                        ))}
                                                     </div>
                                                 </div>
                                             </div>

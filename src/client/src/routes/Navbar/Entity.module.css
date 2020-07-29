@@ -344,3 +344,14 @@
     display: flex;
     flex-direction: row;
 }
+.recommendDiv{
+    padding:10px;
+    border:1px solid #ebf3ff;
+    margin-top: 10px;
+    background-color: white;
+}
+.recommendFlex{
+    display: flex;
+    flex-direction: row;
+    /*justify-content: space-between;*/
+}
