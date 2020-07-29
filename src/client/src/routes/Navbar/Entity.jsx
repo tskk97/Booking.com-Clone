@@ -35,7 +35,9 @@ import {IoIosRestaurant} from "react-icons/io";
 import {BsUnlockFill} from "react-icons/bs";
 import {BsInfoCircle} from "react-icons/bs";
 import {DateRangePicker} from "react-dates";
+import {SingleDatePicker} from "react-dates/esm";
 import {AiOutlineDislike} from "react-icons/ai";
+import Carousel from "react-elastic-carousel";
 
 
 class Entity extends Component {
@@ -54,7 +56,12 @@ class Entity extends Component {
 
     render() {
         const {entityData, reviewData, recommendationsData} = this.props
-        // const recommendations = entityData["recommendations"];
+        const breakPoints = [
+            { width: 1, itemsToShow: 3 },
+            { width: 550, itemsToShow: 3 },
+            { width: 768, itemsToShow: 4 },
+            { width: 1200, itemsToShow: 4 }
+        ];
         const recommendations = [
             {
                 "id": 5,
@@ -393,44 +400,9 @@ class Entity extends Component {
 
                                     <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                                         <div className="carousel-inner">
-                                            {/* <div className="carousel-item active"  data-interval="900000"> */}
-
-                                            {/* <img src="https://cf.bstatic.com/images/hotel/max1280x900/255/255549892.jpg" className="d-block w-100" alt="..."/> */}
                                             {arr_id1["arr_id1"] && arr_id1["arr_id1"].map((item, index) =>
                                                 <ImgsEntity dataImg={item} indexImg={index} key={item}/>
                                             )}
-                                            {/* </div> */}
-                                            {/* <div className="carousel-item"  data-interval="9000000">
-                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/482/48254908.jpg" className="d-block w-100" alt="..."/>
-                                            </div>
-                                            <div className="carousel-item" data-interval="900000">
-                                                <img
-                                                    src="https://cf.bstatic.com/images/hotel/max1280x900/341/34138027.jpg"
-                                                    className="d-block w-100" alt="..."/>
-                                            </div>
-                                            <div className="carousel-item" data-interval="900000">
-                                                <img
-                                                    src="https://cf.bstatic.com/images/hotel/max1280x900/341/34137970.jpg"
-                                                    className="d-block w-100" alt="..."/>
-                                            </div>
-                                            <div className="carousel-item" data-interval="900000">
-                                                <img
-                                                    src="https://cf.bstatic.com/images/hotel/max1280x900/341/34137960.jpg"
-                                                    className="d-block w-100" alt="..."/>
-                                            </div>
-                                            <div className="carousel-item" data-interval="900000">
-                                                <img
-                                                    src="https://cf.bstatic.com/images/hotel/max1280x900/341/34138033.jpg"
-                                                    className="d-block w-100" alt="..."/>
-                                            </div>
-                                            <div className="carousel-item" data-interval="900000">
-                                                <img
-                                                    src="https://cf.bstatic.com/images/hotel/max1280x900/341/34138017.jpg"
-                                                    className="d-block w-100" alt="..."/>
-                                            </div>
-                                            <div className="carousel-item"  data-interval="900000">
-                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/341/34137955.jpg" className="d-block w-100" alt="..."/>
-                                            </div> */}
                                         </div>
                                         <a className="carousel-control-prev" href="#carouselExampleControls"
                                            role="button" data-slide="prev">
@@ -575,86 +547,6 @@ class Entity extends Component {
                                                 Need cash? There's an ATM and a currency exchange service at this
                                                 property.
                                             </p>
-
-                                            <div className={`${style.descr}`}>
-                                                {/*<div class="border border-success text-black col-12" style={{backgroundColor:"#ecf3f2"}}>*/}
-                                                {/*    <div className={`d-flex flex-row`} style={{padding:15}}>*/}
-                                                {/*        <div >*/}
-                                                {/*            <BsUnlockFill style={{color:"green",fontSize:"40px"}}/>*/}
-                                                {/*        </div>*/}
-                                                {/*        <div style={{paddingLeft:10}}>*/}
-                                                {/*            <h4>*/}
-                                                {/*                Lock in a great price for your upcoming stay*/}
-                                                {/*            </h4>*/}
-                                                {/*            <p>*/}
-                                                {/*                Prices may go up, so secure your reservation today.*/}
-                                                {/*            </p>*/}
-                                                {/*        </div>*/}
-                                                {/*    </div>*/}
-                                                {/*</div>*/}
-                                                {/*<br/>*/}
-                                                {/*<div className="border border-warning text-black col-12" style={{backgroundColor:"#fefbf0"}}>*/}
-                                                {/*   <div className={`d-flex flex-row`} style={{padding:15}}>*/}
-                                                {/*       <div>*/}
-                                                {/*           <BsInfoCircle style={{color:"#f0ad4e",fontSize:"40px"}}/>*/}
-                                                {/*       </div>*/}
-                                                {/*       <div style={{paddingLeft:10}}>*/}
-                                                {/*           <h4>*/}
-                                                {/*               Find a cancellation policy that works for you*/}
-                                                {/*           </h4>*/}
-                                                {/*           <p>*/}
-                                                {/*               From 6 April 2020, your chosen cancellation policy will apply, regardless of Coronavirus. We recommend booking a free cancellation option in case your travel plans need to change.*/}
-                                                {/*           </p>*/}
-                                                {/*       </div>*/}
-                                                {/*   </div>*/}
-                                                {/*</div>*/}
-                                                <br/>
-
-                                                {/*<div className="border border-primary text-black col-12" style={{backgroundColor:"#fff"}}>*/}
-                                                {/*    <div  style={{padding:15}}>*/}
-                                                {/*        <div className="mb-3">*/}
-                                                {/*            <span className="h5">Adult Price/Night :{entityData["adult_budget_per_night"]}/-</span><span className="ml-4 h5">Child Price/Night :{entityData["child_budget_per_night"]}/-</span>*/}
-                                                {/*        </div>*/}
-                                                {/*        <div className={`d-flex flex-row`}>*/}
-                                                {/*            /!* <input type="date" placeholder="checkIn"/>*/}
-                                                {/*                                <input type="date" placeholder="checkOut"/> *!/*/}
-                                                {/*            <DateRangePicker*/}
-                                                {/*                className={`form-control ${style.calendar}`}*/}
-                                                {/*                startDate={this.state.startDate}*/}
-                                                {/*                startDateId="your_unique_start_date_id"*/}
-                                                {/*                endDate={this.state.endDate}*/}
-                                                {/*                endDateId="your_unique_end_date_id"*/}
-                                                {/*                onDatesChange={({startDate, endDate}) =>*/}
-                                                {/*                {*/}
-                                                {/*                    let cal_checkin = String(startDate._d).split(" ")*/}
-                                                {/*                    let cal_checkout = String(endDate._d).split(" ")*/}
-                                                {/*                    this.setState({*/}
-                                                {/*                        startDate,*/}
-                                                {/*                        endDate,*/}
-                                                {/*                        checkin_date: cal_checkin[2],*/}
-                                                {/*                        checkin_month: cal_checkin[1],*/}
-                                                {/*                        checkin_year: cal_checkin[3],*/}
-                                                {/*                        checkout_date: cal_checkout[2],*/}
-                                                {/*                        checkout_month: cal_checkout[1],*/}
-                                                {/*                        checkout_year: cal_checkout[3]*/}
-                                                {/*                    })*/}
-                                                {/*                }*/}
-                                                {/*                }*/}
-                                                {/*                focusedInput={this.state.focusedInput}*/}
-                                                {/*                onFocusChange={(focusedInput) => this.setState({focusedInput})}*/}
-                                                {/*                startDatePlaceholderText="Check-in"*/}
-                                                {/*                endDatePlaceholderText="Check-out"*/}
-                                                {/*            >*/}
-                                                {/*            </DateRangePicker>*/}
-                                                {/*        </div>*/}
-                                                {/*        <br/>*/}
-                                                {/*        <div>*/}
-                                                {/*             <button type="button" class="btn" style={{color: "#fff", backgroundColor: "#0071c2"}}>CheckAvailability</button>*/}
-                                                {/*        </div>*/}
-                                                {/*    </div>*/}
-
-                                                {/*</div>*/}
-                                            </div>
                                         </div>
                                         <div className={`col-4 ${style.rightSubDiv}`}>
                                             <div className={`${style.healthAndSafetyDiv}`}>
@@ -824,60 +716,9 @@ class Entity extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
-
                                     </div>
-                                    {/*<div className="border border-primary text-black"*/}
-                                    {/*     style={{backgroundColor: "#fff"}}>*/}
-                                    {/*    <div style={{padding: 15}}>*/}
-                                    {/*        <div className="mb-3">*/}
-                                    {/*            <span*/}
-                                    {/*                className="h5">Adult Price/Night :{entityData["adult_budget_per_night"]}/-</span><span*/}
-                                    {/*            className="ml-4 h5">Child Price/Night :{entityData["child_budget_per_night"]}/-</span>*/}
-                                    {/*        </div>*/}
-                                    {/*        <div className={`d-flex flex-row`}>*/}
-                                    {/*            <DateRangePicker*/}
-                                    {/*                className={`form-control ${style.calendar}`}*/}
-                                    {/*                startDate={this.state.startDate}*/}
-                                    {/*                startDateId="your_unique_start_date_id"*/}
-                                    {/*                endDate={this.state.endDate}*/}
-                                    {/*                endDateId="your_unique_end_date_id"*/}
-                                    {/*                onDatesChange={({startDate, endDate}) => {*/}
-                                    {/*                    let cal_checkin = String(startDate._d).split(" ")*/}
-                                    {/*                    let cal_checkout = String(endDate._d).split(" ")*/}
-                                    {/*                    this.setState({*/}
-                                    {/*                        startDate,*/}
-                                    {/*                        endDate,*/}
-                                    {/*                        checkin_date: cal_checkin[2],*/}
-                                    {/*                        checkin_month: cal_checkin[1],*/}
-                                    {/*                        checkin_year: cal_checkin[3],*/}
-                                    {/*                        checkout_date: cal_checkout[2],*/}
-                                    {/*                        checkout_month: cal_checkout[1],*/}
-                                    {/*                        checkout_year: cal_checkout[3]*/}
-                                    {/*                    })*/}
-                                    {/*                }*/}
-                                    {/*                }*/}
-                                    {/*                focusedInput={this.state.focusedInput}*/}
-                                    {/*                onFocusChange={(focusedInput) => this.setState({focusedInput})}*/}
-                                    {/*                startDatePlaceholderText="Check-in"*/}
-                                    {/*                endDatePlaceholderText="Check-out"*/}
-                                    {/*            >*/}
-                                    {/*            </DateRangePicker>*/}
-                                    {/*        </div>*/}
-                                    {/*        <br/>*/}
-                                    {/*        <div>*/}
-                                    {/*            <button type="button" className="btn" style={{*/}
-                                    {/*                color: "#fff",*/}
-                                    {/*                backgroundColor: "#0071c2"*/}
-                                    {/*            }}>CheckAvailability*/}
-                                    {/*            </button>*/}
-                                    {/*        </div>*/}
-                                    {/*    </div>*/}
-
-                                    {/*</div>*/}
-
-                                    <div className="border border-success text-black mt-3"
+                                    <div className="border border-success text-black mt-4"
                                          style={{backgroundColor: "#ecf3f2"}}>
                                         <div className={`d-flex flex-row`} style={{padding: 15}}>
                                             <div>
@@ -895,7 +736,7 @@ class Entity extends Component {
                                     </div>
                                     <br/>
                                     <>
-                                        <div className="border border-warning text-black"
+                                        <div className="border border-warning text-black mt-3"
                                              style={{backgroundColor: "#fefbf0"}}>
                                             <div className={`d-flex flex-row`} style={{padding: 15}}>
                                                 <div>
@@ -915,65 +756,82 @@ class Entity extends Component {
                                             </div>
                                         </div>
                                         <div className="border border-primary text-black mt-3"
-                                             style={{backgroundColor: "#fff"}}>
-                                            <div style={{padding: 15}}>
-                                                <div className="mb-3">
-                                                <span
-                                                    className="h5">Adult Price/Night :{entityData["adult_budget_per_night"]}/-</span><span
-                                                    className="ml-4 h5">Child Price/Night :{entityData["child_budget_per_night"]}/-</span>
-                                                </div>
-                                                <div className={`d-flex flex-row`}>
-                                                    <DateRangePicker
-                                                        className={`form-control ${style.calendar}`}
-                                                        startDate={this.state.startDate}
-                                                        startDateId="your_unique_start_date_id"
-                                                        endDate={this.state.endDate}
-                                                        endDateId="your_unique_end_date_id"
-                                                        onDatesChange={({startDate, endDate}) => {
-                                                            let cal_checkin = String(startDate._d).split(" ")
-                                                            let cal_checkout = String(endDate._d).split(" ")
-                                                            this.setState({
-                                                                startDate,
-                                                                endDate,
-                                                                checkin_date: cal_checkin[2],
-                                                                checkin_month: cal_checkin[1],
-                                                                checkin_year: cal_checkin[3],
-                                                                checkout_date: cal_checkout[2],
-                                                                checkout_month: cal_checkout[1],
-                                                                checkout_year: cal_checkout[3]
-                                                            })
-                                                        }
-                                                        }
-                                                        focusedInput={this.state.focusedInput}
-                                                        onFocusChange={(focusedInput) => this.setState({focusedInput})}
-                                                        startDatePlaceholderText="Check-in"
-                                                        endDatePlaceholderText="Check-out"
-                                                    >
-                                                    </DateRangePicker>
+                                             style={{backgroundColor: "#ebf3ff"}}>
+                                            <div style={{padding: 15}} className={`d-flex flex-column`}>
+                                                {/*<div className="mb-3">*/}
+                                                {/*<span*/}
+                                                {/*    className="h5">Adult Price/Night :{entityData["adult_budget_per_night"]}/-</span><span*/}
+                                                {/*    className="ml-4 h5">Child Price/Night :{entityData["child_budget_per_night"]}/-</span>*/}
+                                                {/*</div>*/}
+                                                <div className={`text-left`}>When would you like to stay at {entityData["property_name"]}? </div>
+                                                <div className={`d-flex flex-row justify-content-between`}>
+                                                    <div className={`d-flex flex-column mt-2`}>
+                                                        <h5 style={{fontSize:"14px",textAlign:"left"}}>Check-in-date</h5>
+                                                        <SingleDatePicker
+                                                            className = {`${style.calendar}`}
+                                                            small={true}
+                                                            regular = {true}
+                                                            date={this.state.date} // momentPropTypes.momentObj or null
+                                                            onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
+                                                            focused={this.state.focused} // PropTypes.bool
+                                                            onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
+                                                            id="your_unique_id" // PropTypes.string.isRequired,
+                                                        />
+                                                    </div>
+                                                    <div className={`d-flex flex-column mt-2`}>
+                                                        <h5 style={{fontSize:"14px",textAlign:"left"}}>Check-out-date</h5>
+                                                        <SingleDatePicker
+                                                            className = {`${style.calendar}`}
+                                                            // regular = {true}
+                                                            small={true}
+                                                            date={this.state.date} // momentPropTypes.momentObj or null
+                                                            onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
+                                                            focused={this.state.focused} // PropTypes.bool
+                                                            onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
+                                                            id="your_unique_id" // PropTypes.string.isRequired,
+                                                        />
+                                                    </div>
+                                                    <div className={`d-flex flex-column mt-2`}>
+                                                        <h5 style={{fontSize:"14px",textAlign:"left",visibility:"hidden"}}>&nbsp</h5>
+                                                        <button type="button" className="btn" style={{
+                                                            color: "#fff",
+                                                            backgroundColor: "#0071c2"
+                                                        }}>Check Availability
+                                                        </button>
+                                                    </div>
+                                                    <div style={{width:"30%"}}></div>
                                                 </div>
                                                 <br/>
-                                                <div>
-                                                    <button type="button" className="btn" style={{
-                                                        color: "#fff",
-                                                        backgroundColor: "#0071c2"
-                                                    }}>CheckAvailability
-                                                    </button>
+                                                <div className={`d-flex flex-row`}>
+                                                    <div className={`mr-3 mt-2`}>
+                                                        Rooms
+                                                        <select type={`number`} className={`ml-1`}/>
+                                                    </div>
+                                                    <div className={`mr-3 mt-2`}>
+                                                        Adults
+                                                        <select type={`number`} className={`ml-1`}/>
+                                                    </div>
+                                                    <div className={`mr-3 mt-2`}>
+                                                        Children
+                                                        <select type={`number`} className={`ml-1`}/>
+                                                    </div>
                                                 </div>
+
                                             </div>
 
-                                        </div>
-                                        <div className={`${style.recommendDiv}`}>
-                                            <h4 style={{fontSize: "23px"}}>Popular properties similar
-                                                to {entityData["property_name"]}</h4>
-                                            <div className={`${style.recommendFlex}`}>
-                                                {recommendations && recommendations.map((item, index) => (
-                                                    <RecommendCard key={uuidv4()} data={item}/>
-                                                ))}
-                                            </div>
                                         </div>
                                     </>
 
                                 </div>
+                            </div>
+                            <div className={`${style.recommendDiv}`}>
+                                <h4 style={{fontSize: "18px",textAlign:"left",marginLeft:"8%"}}>Popular properties similar
+                                    to {entityData["property_name"]}</h4>
+                                <Carousel breakPoints={breakPoints} showArrows={true} pagination={false}>
+                                    {recommendations && recommendations.map((item, index) => (
+                                        <RecommendCard key={uuidv4()} data={item}/>
+                                    ))}
+                                </Carousel>
                             </div>
                         </div>
                         <div className={`col-1`}>

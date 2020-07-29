@@ -353,5 +353,7 @@
 .recommendFlex{
     display: flex;
     flex-direction: row;
-    /*justify-content: space-between;*/
+}
+.calendar{
+    width: 80%;
 }
