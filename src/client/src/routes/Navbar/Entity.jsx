@@ -852,7 +852,6 @@ class Entity extends Component {
                         </div>
                         <div className={`col-1`}>
                         </div>
-                        </div>
                     </div>
                </div>
             </div>    
