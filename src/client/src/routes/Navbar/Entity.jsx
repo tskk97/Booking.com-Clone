@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Navbar from "./Navbar.jsx";
 import style from "./Entity.module.css"
 import ReviewItem from "./ReviewItem";
+import RecommendCard from "./RecommendCard";
 import {IoIosBed} from "react-icons/io";
 import {BsSearch} from "react-icons/bs";
 import {FaRegCalendarPlus} from "react-icons/fa";
@@ -53,6 +54,50 @@ class Entity extends Component {
 
     render() {
         const{entityData, reviewData, recommendationsData} = this.props
+        // const recommendations = entityData["recommendations"];
+        const recommendations = [
+            {
+                "id": 5,
+                "property_name": "Radisson Bengaluru City Center",
+                "property_type_name": "Hotels",
+                "city_name": "Bangalore",
+                "img_path_url": "https://cf.bstatic.com/xdata/images/hotel/square600/232847950.webp?k=eaa659d084fca9e43fd6f0f0c40d0c4f72c284a161031e4adc9090cbae63a4b6&o=",
+                "budget": "4800",
+                "rating": "5",
+                "review_score": "8.6"
+            },
+            {
+                "id": 9,
+                "property_name": "Taj Yeshwantpur Bengaluru",
+                "property_type_name": "Hotels",
+                "city_name": "Bangalore",
+                "img_path_url": "https://cf.bstatic.com/xdata/images/hotel/square600/17173782.webp?k=2f452278302c012ba3eae7f27386b2cf94c3b6cb18b2135f7ecd2082dd2d2f87&o=",
+                "budget": "5300",
+                "rating": "5",
+                "review_score": "8.8"
+            },
+            {
+                "id": 13,
+                "property_name": "The Oberoi Bengaluru Opens in new window",
+                "property_type_name": "Hotels",
+                "city_name": "Bangalore",
+                "img_path_url": "https://cf.bstatic.com/xdata/images/hotel/square600/31211348.webp?k=c469403df80f10e33120c7be42b61d458746716a4e04c62ad4b9afc1c22edc98&o=",
+                "budget": "5600",
+                "rating": "5",
+                "review_score": "9.2"
+            },
+            {
+                "id": 17,
+                "property_name": "The Chancery Pavilion",
+                "property_type_name": "Hotels",
+                "city_name": "Bangalore",
+                "img_path_url": "https://cf.bstatic.com/xdata/images/hotel/square600/124204205.jpg?k=9591887684f038b53d392759c54c1e6be698e404d008c7a4566cb7ecae68fe2f&o=",
+                "budget": "5300",
+                "rating": "4",
+                "review_score": "7.1"
+            }
+        ]
+        console.log("entity data is",entityData)
         console.log(entityData["city_name"])
         const reviewArray = [["Rooms are beautiful, staff is amazing, as is breakfast","Sarah","USA"]]
         return (
@@ -266,7 +311,7 @@ class Entity extends Component {
                                     </div>
                                     <div className={`${style.titleRow}`}>
                                         <div className={`d-flex flex-row`}>
-                                    <div className={`${style.tag}`}>{entityData["property_type_name"]}</div>
+                                            <div className={`${style.tag}`}>{entityData["property_type_name"]}</div>
                                             <h4 style={{fontWeight: "bold"}}>{entityData["property_name"]}</h4>
                                             <RiStarSLine
                                                 style={{marginTop: "7px", marginLeft: "12px", color: "#febb02"}}/>
@@ -346,6 +391,7 @@ class Entity extends Component {
                                     <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                                         <div className="carousel-inner">
                                             {/* <div className="carousel-item active"  data-interval="900000"> */}
+
                                                 {/* <img src="https://cf.bstatic.com/images/hotel/max1280x900/255/255549892.jpg" className="d-block w-100" alt="..."/> */}
                                                 {arr_id1["arr_id1"] && arr_id1["arr_id1"].map((item,index)=>
                                                         <ImgsEntity dataImg = {item} indexImg = {index} key={item}/>
@@ -569,14 +615,14 @@ class Entity extends Component {
                                                         </div>
                                                         <div style={{paddingLeft:10}}>
                                                             <h4>
-                                                                 Lock in a great price for your upcoming stay
+                                                                Lock in a great price for your upcoming stay
                                                             </h4>
-                                                             <p>
-                                                                 Prices may go up, so secure your reservation today.
+                                                            <p>
+                                                                Prices may go up, so secure your reservation today.
                                                             </p>
                                                         </div>
                                                     </div>
-                                                 </div>
+                                                </div>
                                                 <br/>
                                                 <div className="border border-warning text-black col-12" style={{backgroundColor:"#fefbf0"}}>
                                                 <div className={`d-flex flex-row`} style={{padding:15}}>
@@ -611,21 +657,21 @@ class Entity extends Component {
                                                                 startDateId="your_unique_start_date_id"
                                                                 endDate={this.state.endDate}
                                                                 endDateId="your_unique_end_date_id"
-                                                                onDatesChange={({startDate, endDate}) => 
-                                                                    {
-                                                                        let cal_checkin = String(startDate._d).split(" ")
-                                                                        let cal_checkout = String(endDate._d).split(" ")
-                                                                        this.setState({
-                                                                            startDate,
-                                                                            endDate,
-                                                                            checkin_date: cal_checkin[2],
-                                                                            checkin_month: cal_checkin[1],
-                                                                            checkin_year: cal_checkin[3],
-                                                                            checkout_date: cal_checkout[2],
-                                                                            checkout_month: cal_checkout[1],
-                                                                            checkout_year: cal_checkout[3]
-                                                                        })
-                                                                    }
+                                                                onDatesChange={({startDate, endDate}) =>
+                                                                {
+                                                                    let cal_checkin = String(startDate._d).split(" ")
+                                                                    let cal_checkout = String(endDate._d).split(" ")
+                                                                    this.setState({
+                                                                        startDate,
+                                                                        endDate,
+                                                                        checkin_date: cal_checkin[2],
+                                                                        checkin_month: cal_checkin[1],
+                                                                        checkin_year: cal_checkin[3],
+                                                                        checkout_date: cal_checkout[2],
+                                                                        checkout_month: cal_checkout[1],
+                                                                        checkout_year: cal_checkout[3]
+                                                                    })
+                                                                }
                                                                 }
                                                                 focusedInput={this.state.focusedInput}
                                                                 onFocusChange={(focusedInput) => this.setState({focusedInput})}
@@ -668,6 +714,18 @@ class Entity extends Component {
                                                                  </select>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                        <div>
+                                                             <button type="button" class="btn" style={{color: "#fff", backgroundColor: "#0071c2"}}>CheckAvailability</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className={`${style.recommendDiv}`}>
+                                                    <h4 style={{fontSize:"23px"}}>Popular properties similar to {entityData["property_name"]}</h4>
+                                                    <div className={`${style.recommendFlex}`}>
+                                                        {recommendations && recommendations.map((item,index)=>(
+                                                            <RecommendCard key={uuidv4()} data={item}/>
+                                                        ))}
                                                     </div>
                                                 </div>
                                             </div>
@@ -848,12 +906,12 @@ class Entity extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className={`col-1`}>
-
+                        {/* <div className={`col-1`}> */}
+                        </div>
                         </div>
                     </div>
-                </div>
-            </div>
+               </div>
+            </div>    
         );
     }
 }

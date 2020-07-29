@@ -77,7 +77,7 @@ class FilterByCards extends Component {
         const {data} = this.props
         // const {location} = this.props
         // console.log(location,"loc")
-         
+
         // this.handleUrlChange(location.search,"filter")
         let cat =  data[0].toLowerCase().split(" ").join("_")
 
@@ -101,7 +101,7 @@ class FilterByCards extends Component {
                     {data[1].map((item) =>(
                         <div key={uuidv4()} className={`${style.flexRow}`}>
                             <div>
-                                <input className={data[0].toLowerCase().split(" ").join("_")} type="checkbox" onChange={this.handleChange} name={data[0].toLowerCase().split(" ").join("_")+"_"+item} value={item} checked={this.state[data[0].toLowerCase().split(" ").join("_")+"_"+item] ? "checked" : ""} />                                
+                                <input className={data[0].toLowerCase().split(" ").join("_")} type="checkbox" onChange={this.handleChange} name={data[0].toLowerCase().split(" ").join("_")+"_"+item} value={item} checked={this.state[data[0].toLowerCase().split(" ").join("_")+"_"+item] ? "checked" : ""} />
                                 <label className={data[0] === "Review Score" ? "ml-2" : "d-none"}>{item} +</label>
                                 <label className={data[0] !== "Review Score" ? "ml-2" : "d-none"}>{item}</label>
                             </div>

@@ -37,7 +37,6 @@ export const registerUserData = payload => dispatch => {
     var axios = require('axios');
     if(mode === "Google"){
         var data = JSON.stringify({"email": payload.email, "password": payload.password, "mode": mode});
-
         var config = {
             method: 'post',
             url: 'http://4be0e3fbd5d4.ngrok.io/register',
