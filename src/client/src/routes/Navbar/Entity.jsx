@@ -52,7 +52,7 @@ class Entity extends Component {
     }
 
     render() {
-        const{entityData} = this.props
+        const{entityData, reviewData, recommendationsData} = this.props
         console.log(entityData["city_name"])
         const reviewArray = [["Rooms are beautiful, staff is amazing, as is breakfast","Sarah","USA"]]
         return (
@@ -240,14 +240,14 @@ class Entity extends Component {
                                     <div className={`${style.rating}`}>
                                         <div className={`d-flex flex-row`}>
                                             <div className={`${style.ratingDiv}`}>9.1</div>
-                                            <div className={`d-flex flex-column`}>
+                                            <div className={`d-flex flex-column ml-3`}>
                                                 <h4 style={{fontSize:"large"}}>Very good</h4>
                                                 <p style={{fontSize:"small"}}>284 reviews</p>
                                             </div>
                                         </div>
                                     </div>
-                                    {reviewArray && reviewArray.map((item,index)=>(
-                                        <ReviewItem data={item} index = {index} key={uuidv4()}/>
+                                    {reviewData && reviewData.map((item,index)=>(
+                                        <ReviewItem data={item}  index = {index} key={uuidv4()}/>
                                     ))}
                                 </div>
 
@@ -346,10 +346,11 @@ class Entity extends Component {
                                     <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                                         <div className="carousel-inner">
                                             {/* <div className="carousel-item active"  data-interval="900000"> */}
-                                            {/* <img src="https://cf.bstatic.com/images/hotel/max1280x900/255/255549892.jpg" className="d-block w-100" alt="..."/> */}
-                                            {arr_id1 && arr_id1.map((item,index)=>
-                                                <ImgsEntity dataImg = {item} indexImg = {index} key={item}/>
-                                            )}
+
+                                                {/* <img src="https://cf.bstatic.com/images/hotel/max1280x900/255/255549892.jpg" className="d-block w-100" alt="..."/> */}
+                                                {arr_id1["arr_id1"] && arr_id1["arr_id1"].map((item,index)=>
+                                                        <ImgsEntity dataImg = {item} indexImg = {index} key={item}/>
+                                                )}
                                             {/* </div> */}
                                             {/* <div className="carousel-item"  data-interval="9000000">
                                                 <img src="https://cf.bstatic.com/images/hotel/max1280x900/482/48254908.jpg" className="d-block w-100" alt="..."/>
@@ -577,27 +578,27 @@ class Entity extends Component {
                                                     </div>
                                                 </div>
                                                 <br/>
-                                                <div class="border border-success text-black col-12" style={{backgroundColor:"#fefbf0"}}>
-                                                    <div className={`d-flex flex-row`} style={{padding:15}}>
-                                                        <div>
-                                                            <BsInfoCircle style={{color:"green",fontSize:"40px"}}/>
-                                                        </div>
-                                                        <div style={{paddingLeft:10}}>
-                                                            <h4>
-                                                                Find a cancellation policy that works for you
-                                                            </h4>
-                                                            <p>
-                                                                From 6 April 2020, your chosen cancellation policy will apply, regardless of Coronavirus. We recommend booking a free cancellation option in case your travel plans need to change.
-                                                            </p>
-                                                        </div>
-                                                    </div>
+                                                <div className="border border-warning text-black col-12" style={{backgroundColor:"#fefbf0"}}>
+                                                   <div className={`d-flex flex-row`} style={{padding:15}}>
+                                                       <div>
+                                                           <BsInfoCircle style={{color:"#f1e1a7",fontSize:"40px"}}/>
+                                                       </div>
+                                                       <div style={{paddingLeft:10}}>
+                                                           <h4>
+                                                               Find a cancellation policy that works for you
+                                                           </h4>
+                                                           <p>
+                                                               From 6 April 2020, your chosen cancellation policy will apply, regardless of Coronavirus. We recommend booking a free cancellation option in case your travel plans need to change.
+                                                           </p>
+                                                       </div>
+                                                   </div>
                                                 </div>
                                                 <br/>
-
-                                                <div class="border border-success text-black col-12" style={{backgroundColor:"#c6c6c6"}}>
+                                                
+                                                <div className="border border-primary text-black col-12" style={{backgroundColor:"#fff"}}>
                                                     <div  style={{padding:15}}>
-                                                        <div>
-                                                            <h4 className="text-danger">Price:{entityData["adult_budget_per_night"]}/-</h4>
+                                                        <div className="mb-3">
+                                                            <span className="h5">Adult Price/Night :{entityData["adult_budget_per_night"]}/-</span><span className="ml-4 h5">Child Price/Night :{entityData["child_budget_per_night"]}/-</span>
                                                         </div>
                                                         <div className={`d-flex flex-row`}>
                                                             {/* <input type="date" placeholder="checkIn"/>
@@ -632,9 +633,8 @@ class Entity extends Component {
                                                             </DateRangePicker>
                                                         </div>
                                                         <br/>
-
-                                                        <div style={{paddingLeft:10}}>
-                                                            <button type="button" class="btn btn-danger">CheckAvailability</button>
+                                                        <div>
+                                                             <button type="button" class="btn" style={{color: "#fff", backgroundColor: "#0071c2"}}>CheckAvailability</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -829,6 +829,8 @@ class Entity extends Component {
 const mapStateToProps = state => ({
     entityListData: state.entityList.entityListData,
     entityData: state.entityList.entityData,
+    reviewData: state.entityList.reviewData,
+    recommendationsData: state.entityList.recommendationsData,
     isEntity: state.entityList.isEntity
 })
 
