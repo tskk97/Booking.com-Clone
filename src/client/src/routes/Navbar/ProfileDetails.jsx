@@ -14,11 +14,7 @@ class ProfileDetails extends React.Component{
         console.log(this.props,"Ashok")
         const {l_message,r_message,l_userData,l_userEmail} = this.props
         console.log(l_userEmail.length)
-        // if(l_message === "Login Successful" || r_message === "Login Successful"){
-            //   l_userData&&l_userData.map(item =>{
-            //       console.log(item.email.length)
-            //       if(l_userEmail.length === item.email.length){
-            //           console.log("ash")
+        
                     return(                        
                         <div>
                             <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -26,8 +22,8 @@ class ProfileDetails extends React.Component{
                                 <div class="modal-content">
                                   <div class="modal-header">
                                   <img src="..." class="rounded mr-2" alt="..." />
-                                    {/* <strong class="mr-auto">Bootstrap</strong> */}
-                                    {/* <h4 class="modal-title" id="myModalLabel">Basic Modal</h4> */}
+                                    <strong class="mr-auto">Bootstrap</strong>
+                                    <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
@@ -39,7 +35,7 @@ class ProfileDetails extends React.Component{
                                         <input type="password" class="form-control" id="inputPassword2" placeholder="FirstName" />
                                         <br/>
                                         <input type="password" class="form-control" id="inputPassword2" placeholder="LastName" />
-                                         {/* <button className={`mt-4 ${style.submitBtn}`} onClick={this.handleSubmit}>Sign in</button> */}
+                                         <button className={`mt-4 ${style.submitBtn}`} onClick={this.handleSubmit}>Sign in</button>
                                     </div>
                                   </div>
                                   <div class="modal-footer">
@@ -50,15 +46,7 @@ class ProfileDetails extends React.Component{
                               </div>
                             </div>            
                        </div>
-                    )
-                //  }
-             // }
-            //  )
-            
-      //  }
-
-        
-         
+                    )    
     }
 }
 

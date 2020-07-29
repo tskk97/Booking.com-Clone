@@ -43,12 +43,11 @@ class Stays extends React.Component {
     }
 
     componentDidMount() {
-        // let newModal = document.getElementById('basicModal')
-        // $(document).ready(function(){
-        //     $("#basicModal").modal('show');
-        // });
-
+        
         this.profileDisplayModal()
+        // $(document).ready(function(){
+        //     $("#myModal").modal('show');
+        // });
         setTimeout(() => {
             this.setState({
                 modalVisible: !this.state.modalVisible
@@ -109,18 +108,25 @@ class Stays extends React.Component {
     profileDisplayModal=()=>{
         const {l_isAuth,r_isAuth} = this.props
         if(l_isAuth || r_isAuth){
-            console.log("ashh")
+            // console.log("ashh")
+            
             this.setState({
                 isProfile: !this.state.isProfile
             })
+            console.log(document.getElementById("profileBtnId"))
+            let hiddenBtn = document.getElementById("profileBtnId")
+            hiddenBtn.addEventListener("click",function(){
+                console.log("i'm clicked")
+            })
+            hiddenBtn.click()
         }
     }
     render() { 
         const { isProfile} = this.state
         const activePath = this.props.match.url
          // let styles = this.state.modalVisible ? {display: "block"} : {display: "none"};
-        console.log(this.props)
-        console.log(isProfile)
+        // console.log(this.props)
+        // console.log(isProfile)
         return (
             <>
                 <Navbar activePath={activePath}/>
@@ -130,15 +136,17 @@ class Stays extends React.Component {
                         <div className={`col-10`}>
                             <div className={`${style.flexCol} mt-5`}>
                                 <h4 style={{fontWeight: "bold", marginTop: "7px"}}>Find deals on hotels, homes and much
-                                    more...</h4>
+                                    more...
+                                    <button  data-toggle="modal" data-target="#basicModal" id="profileBtnId"></button>
+                                </h4>
                                 <small>From cosy country homes to funky city flats</small>
                                 <div className={`${style.flexRowInput}`}>
                                     <div className="input-group">
                                         <div className="input-group-prepend">
                                             <button className="btn btn-outline-secondary px-3 py-1 bg-light border-dark" type="button"  
-                                                    id="button-addon1" data-toggle="modal" data-target="#basicModal"><IoIosBed size="1.4em" />
+                                                    id="button-addon1"><IoIosBed size="1.4em" />
                                             </button> 
-                                            {isProfile && <ProfileDetails/>}
+                                            {isProfile && <ProfileDetails />}
                                             {/* if(!modalVisible){
                                               return  <ProfileDetails />
                                             }                                           */}
