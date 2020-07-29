@@ -2,7 +2,9 @@ import {ENTITY_LIST_REQUEST,ENTITY_LIST_SUCCESS,ENTITY_LIST_FAILURE} from './act
 
 const initState = {
     isEntity:false,
-    entityData:""
+    entityData:"",
+    reviewData: "",
+    recommendationsData: ""
 }
 
 const reducerEntity =(state = initState,action)=>{
@@ -17,7 +19,9 @@ const reducerEntity =(state = initState,action)=>{
             return{
                 ...state,
                 isEntity:true,
-                entityData:action.payload.data[0]
+                entityData:action.payload.data[0],
+                reviewData: action.payload.reviews,
+                recommendationsData: action.payload.recommendations
             }
         case ENTITY_LIST_FAILURE:
             return{
