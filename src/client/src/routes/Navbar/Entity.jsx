@@ -52,7 +52,7 @@ class Entity extends Component {
     }
 
     render() {
-        const{entityData} = this.props
+        const{entityData, reviewData, recommendationsData} = this.props
         console.log(entityData["city_name"])
         const reviewArray = [["Rooms are beautiful, staff is amazing, as is breakfast","Sarah","USA"]]
         return (
@@ -240,14 +240,14 @@ class Entity extends Component {
                                     <div className={`${style.rating}`}>
                                         <div className={`d-flex flex-row`}>
                                             <div className={`${style.ratingDiv}`}>9.1</div>
-                                            <div className={`d-flex flex-column`}>
+                                            <div className={`d-flex flex-column ml-3`}>
                                                 <h4 style={{fontSize:"large"}}>Very good</h4>
                                                 <p style={{fontSize:"small"}}>284 reviews</p>
                                             </div>
                                         </div>
                                     </div>
-                                    {reviewArray && reviewArray.map((item,index)=>(
-                                        <ReviewItem data={item} index = {index} key={uuidv4()}/>
+                                    {reviewData && reviewData.map((item,index)=>(
+                                        <ReviewItem data={item}  index = {index} key={uuidv4()}/>
                                     ))}
                                 </div>
 
@@ -347,7 +347,7 @@ class Entity extends Component {
                                         <div className="carousel-inner">
                                             {/* <div className="carousel-item active"  data-interval="900000"> */}
                                                 {/* <img src="https://cf.bstatic.com/images/hotel/max1280x900/255/255549892.jpg" className="d-block w-100" alt="..."/> */}
-                                                {arr_id1 && arr_id1.map((item,index)=>
+                                                {arr_id1["arr_id1"] && arr_id1["arr_id1"].map((item,index)=>
                                                         <ImgsEntity dataImg = {item} indexImg = {index} key={item}/>
                                                 )}
                                             {/* </div> */}
@@ -559,8 +559,9 @@ class Entity extends Component {
                                                 Need cash? There's an ATM and a currency exchange service at this
                                                 property.
                                             </p>
-
-                                            <div className={`${style.descr}`}>
+                                            <br/>
+                                            <br/>
+                                            <div className={`${style.descrborder}`}>
                                                  <div class="border border-success text-black col-12" style={{backgroundColor:"#ecf3f2"}}>
                                                     <div className={`d-flex flex-row`} style={{padding:15}}>
                                                         <div >
@@ -577,10 +578,10 @@ class Entity extends Component {
                                                     </div>
                                                  </div>
                                                 <br/>
-                                                <div class="border border-success text-black col-12" style={{backgroundColor:"#fefbf0"}}>
-                                                   <div className={`d-flex flex-row`} style={{padding:15}}>
+                                                <div className="border border-warning text-black col-12" style={{backgroundColor:"#fefbf0"}}>
+                                                <div className={`d-flex flex-row`} style={{padding:15}}>
                                                        <div>
-                                                           <BsInfoCircle style={{color:"green",fontSize:"40px"}}/>
+                                                           <BsInfoCircle style={{color:"#f0ad4e",fontSize:"40px"}}/>
                                                        </div>
                                                        <div style={{paddingLeft:10}}>
                                                            <h4>
@@ -593,11 +594,13 @@ class Entity extends Component {
                                                    </div>
                                                 </div>
                                                 <br/>
-                                                
-                                                <div class="border border-success text-black col-12" style={{backgroundColor:"#c6c6c6"}}>
-                                                    <div  style={{padding:15}}>
-                                                        <div>
-                                                            <h4 className="text-danger">Price:{entityData["adult_budget_per_night"]}/-</h4>
+                                                <h3>Availability</h3>
+
+                                                <div className="border border-primary text-black col-12" style={{backgroundColor:"#fff"}}>
+                                                    <p style={{fontSize:20}}>When would you like to stay at {entityData["property_name"]} ?</p>
+                                                    <div  style={{padding:20}}>
+                                                        <div className="mb-3">
+                                                            <span className="h5">Adult Price/Night :{entityData["adult_budget_per_night"]}/-</span><span className="ml-4 h5">Child Price/Night :{entityData["child_budget_per_night"]}/-</span>
                                                         </div>
                                                         <div className={`d-flex flex-row`}>
                                                             {/* <input type="date" placeholder="checkIn"/>
@@ -630,14 +633,43 @@ class Entity extends Component {
                                                                 endDatePlaceholderText="Check-out"
                                                             >
                                                             </DateRangePicker>
+                                                             <button type="button" class="btn ml-5" style={{color: "#fff", backgroundColor: "#0071c2"}}>Check availability</button>
                                                         </div>
                                                         <br/>
-                                                        
-                                                        <div style={{paddingLeft:10}}>
-                                                             <button type="button" class="btn btn-danger">CheckAvailability</button>
+                                                        <div className={`d-flex flex-row`} style={{margin:15}}>
+                                                            <div>
+                                                                <label htmlFor="">Rooms</label>
+                                                                 <select name="1" id="" type="number">
+                                                                     <option value="1">1</option>
+                                                                     <option value="2">2</option>
+                                                                     <option value="3">3</option>
+                                                                     <option value="4">4</option>
+                                                                     <option value="5">5</option>
+                                                                 </select>
+                                                            </div>
+                                                            <div>
+                                                                <label htmlFor="">Adults</label>
+                                                                <select name="1" id="" type="number">
+                                                                     <option value="1">1</option>
+                                                                     <option value="2">2</option>
+                                                                     <option value="3">3</option>
+                                                                     <option value="4">4</option>
+                                                                     <option value="5">5</option>
+                                                                 </select>
+                                                            </div> 
+                                                            <div>
+                                                                <label htmlFor="">Children</label>
+                                                                <select name="1" id="" type="number">
+                                                                     <option value="1">1</option>
+                                                                     <option value="2">2</option>
+                                                                     <option value="3">3</option>
+                                                                     <option value="4">4</option>
+                                                                     <option value="5">5</option>
+                                                                 </select>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                 </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className={`col-4 ${style.rightSubDiv}`}>
@@ -801,10 +833,10 @@ class Entity extends Component {
                                                     Halal, Gluten-free, Asian, American, Buffet
                                                 </div>
                                                 <div className={`d-flex flex-row justify-content-between`}>
-                                                    <AiOutlineWifi style={{fontSize: "22px", padding: "2px"}}/>
-                                                    <div className={`${style.greenDiv}`}>
-                                                        <p>Free Wifi</p>
-                                                        <p>Guests consistently rate the wifi as Excellent</p>
+                                                    <AiOutlineWifi size="2em" />
+                                                    <div className={`${style.greenDiv} text-left`}>
+                                                        <div>Free Wifi</div>
+                                                        <div>Guests consistently rate the wifi as Excellent</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -829,6 +861,8 @@ class Entity extends Component {
 const mapStateToProps = state => ({
     entityListData: state.entityList.entityListData,
     entityData: state.entityList.entityData,
+    reviewData: state.entityList.reviewData,
+    recommendationsData: state.entityList.recommendationsData,
     isEntity: state.entityList.isEntity
 })
 

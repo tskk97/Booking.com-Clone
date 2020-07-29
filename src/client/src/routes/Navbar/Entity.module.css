@@ -338,6 +338,15 @@
     text-align: justify;
     font-weight: normal;
 }
+
+.descrborder{
+    margin-top: 3%;
+    justify-content: left;
+    font-size: 14px;
+    text-align: justify;
+    font-weight: normal;
+    width: 850px;
+}
 .facilityDiv{
     display: flex;
     flex-direction: row;
