@@ -19,11 +19,7 @@ export const entityListData = payload=> dispatch=>{
     
     dispatch(entityListRequest(payload))
     if(Object.keys(payload).length == 1){
-        axios.get("http://4be0e3fbd5d4.ngrok.io/stays/property/"+payload["prop_id"],{
-            "num_rooms":payload["num_rooms"],
-            "num_adults":payload["num_aduts"],
-            "num_child":payload["num_child"]
-        })
+        axios.get("http://4be0e3fbd5d4.ngrok.io/stays/property/"+payload["prop_id"])
         .then(res => dispatch(entityListSuccess(res.data)))
         .catch(err => dispatch(entityListFailure(err)));
     }

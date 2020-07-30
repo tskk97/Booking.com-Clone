@@ -11,6 +11,12 @@ import {DateRangePicker} from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
 import {staysSearchData} from '../../redux/Stays/action'
 import ProfileDetails from './ProfileDetails';
+import Carousel from "react-elastic-carousel";
+import data from "./browserData.json";
+import BrowserByType from './BrowserByType';
+import Autocomplete from 'react-google-autocomplete';
+import {v4 as uuidv4} from 'uuid';
+
 // import $ from 'jquery';
 
 class Stays extends React.Component {
@@ -43,14 +49,11 @@ class Stays extends React.Component {
     }
 
     componentDidMount() {
-        
         this.profileDisplayModal()
-        // $(document).ready(function(){
-        //     $("#myModal").modal('show');
-        // });
         setTimeout(() => {
             this.setState({
-                modalVisible: !this.state.modalVisible
+                modalVisible: !this.state.modalVisible,
+                // isProfile:true
             })
         }, 1000)
     }
@@ -106,27 +109,33 @@ class Stays extends React.Component {
     }
 
     profileDisplayModal=()=>{
-        const {l_isAuth,r_isAuth} = this.props
+        const {l_isAuth,r_isAuth,l_userData,r_userData} = this.props
+        const profData=l_userData[0]
+        console.log(profData)
         if(l_isAuth || r_isAuth){
-            // console.log("ashh")
-            
-            this.setState({
-                isProfile: !this.state.isProfile
-            })
-            console.log(document.getElementById("profileBtnId"))
-            let hiddenBtn = document.getElementById("profileBtnId")
-            hiddenBtn.addEventListener("click",function(){
-                console.log("i'm clicked")
-            })
-            hiddenBtn.click()
+            // if(l_userData[0].firstname=== null || l_userData[0].lastname===null || l_userData[0].mobile_num===null){
+                console.log("ashh")
+                setTimeout(() => {
+                    this.setState({
+                         isProfile:true
+                    })
+                }, 2000)
+            // }
         }
     }
     render() { 
         const { isProfile} = this.state
         const activePath = this.props.match.url
+        // const {data} = data
+        // console.log(data.crousel1)
          // let styles = this.state.modalVisible ? {display: "block"} : {display: "none"};
         // console.log(this.props)
-        // console.log(isProfile)
+        // console.log(isProfile).
+        const breakPoints = [
+            { width: 1, itemsToShow: 1 },
+            { width: 550, itemsToShow: 2 },
+            { width: 768, itemsToShow: 4 },
+        ];
         return (
             <>
                 <Navbar activePath={activePath}/>
@@ -151,6 +160,14 @@ class Stays extends React.Component {
                                               return  <ProfileDetails />
                                             }                                           */}
                                         </div>
+                                        {/* <Autocomplete
+                                            style={{width: '90%'}}
+                                            onPlaceSelected={(place) => {
+                                              console.log(place);
+                                            }}
+                                            types={['(regions)']}
+                                            componentRestrictions={{country: "ru"}}
+                                        /> */}
                                         <input type="text" className={`form-control ${style.bed}` }
                                                placeholder="Where are you going?"
                                                aria-label="Example text with button addon"
@@ -250,7 +267,17 @@ class Stays extends React.Component {
                                     <input className="form-check-input" type="checkbox" style={{marginRight: "7px"}}/>
                                     <label className="form-check-label">I'm traveling for work </label>
                                 </div>
-
+                            </div>
+                            <br/>
+                            <h3>Browse by property type</h3>
+                            <br/>
+                            <div className={`${style.recommendDiv}`}>
+                                {/* <h1 style={{fontSize: "18px",textAlign:"left",marginLeft:"8%"}}></h1> */}
+                                <Carousel breakPoints={breakPoints} showArrows={true} pagination={false}>
+                                    { data.crousel1 && data.crousel1.map((item, index) => (
+                                        <BrowserByType key={uuidv4()} data={item}/>
+                                    ))}
+                                </Carousel>
                             </div>
                         </div>
                         <div className={`col-1`}></div>

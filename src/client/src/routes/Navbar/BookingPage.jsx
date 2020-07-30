@@ -243,7 +243,7 @@ class BookingPage extends React.Component {
                                             <div className={`mt-1`}>(Name)</div>
                                         </div>
                                         <div className={`${style.form} mt-2`}>
-                                            {basicInfoFlag ?  <MobileInfo/> : <BasicInfo cb={this.handleBasicInfoFlag}/>}
+                                            {basicInfoFlag ?  <MobileInfo cb={this.handleBasicInfoFlag}/> : <BasicInfo cb={this.handleBasicInfoFlag}/>}
                                         </div>
                                     </div>
                                 </div>

@@ -39,6 +39,7 @@ import {SingleDatePicker} from "react-dates/esm";
 import {AiOutlineDislike} from "react-icons/ai";
 import Carousel from "react-elastic-carousel";
 import {bookingSearchData} from '../../redux/Booking/action'
+import {Link} from 'react-router-dom'
 
 class Entity extends Component {
     constructor(props) {
@@ -70,7 +71,7 @@ class Entity extends Component {
 
     handleBooking=()=>{
         const {roomBookPage,childrenBookPage,adultBookPage} = this.state
-        const {entityListData,match} = this.props
+        const {entityListData,match,bookingSearchData} = this.props
         console.log("arun")
         let obj = {
             num_rooms:roomBookPage,
@@ -88,7 +89,7 @@ class Entity extends Component {
     render() {
         const {entityData, reviewData, recommendationsData} = this.props
         const {roomBookPage,childrenBookPage,adultBookPage} = this.state
-        console.log(roomBookPage,childrenBookPage,adultBookPage)
+        console.log(entityData)
         const breakPoints = [
             { width: 1, itemsToShow: 3 },
             { width: 550, itemsToShow: 3 },
@@ -838,6 +839,14 @@ class Entity extends Component {
                                                     </div>
                                                     <div className={`d-flex flex-column mt-2`}>
                                                         <h5 style={{fontSize:"14px",textAlign:"left",visibility:"hidden"}}>&nbsp</h5>
+                                                        {/* <button type="button" className="btn" style={{
+                                                            color: "#fff",
+                                                            backgroundColor: "#0071c2"
+                                                        }}
+                                                        onClick={this.handleBooking}
+                                                        >Check Availability
+                                                        </button> */}
+                                                        <Link to="/booking">
                                                         <button type="button" className="btn" style={{
                                                             color: "#fff",
                                                             backgroundColor: "#0071c2"
@@ -845,6 +854,7 @@ class Entity extends Component {
                                                         onClick={this.handleBooking}
                                                         >Check Availability
                                                         </button>
+                                                        </Link>
                                                     </div>
                                                     <div style={{width:"30%"}}></div>
                                                 </div>

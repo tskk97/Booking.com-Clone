@@ -4,11 +4,12 @@ const initState = {
     isEntity:false,
     entityData:"",
     reviewData: "",
-    recommendationsData: ""
+    recommendationsData: "",
+    
 }
 
 const reducerEntity =(state = initState,action)=>{
-    // console.log(action.payload)
+    console.log(action.payload)
     switch(action.type){
         case  ENTITY_LIST_REQUEST:
             return{
