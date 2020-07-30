@@ -15,7 +15,7 @@ class RecommendCard extends Component {
         }
         return (
             <div className={`${style.container}`}>
-                <img src={data.img_path_url}/>
+                <img src={data.img_path_url} alt="notfound"/>
                 <div style={{fontWeight:"bold",fontSize:"14px",textAlign:"left"}}>{newName}</div>
                 <div className={`d-flex flex-row`}>
                     <div className={`mr-2 text-muted`} style={{fontSize:"14px"}}>{data.review_score}</div>

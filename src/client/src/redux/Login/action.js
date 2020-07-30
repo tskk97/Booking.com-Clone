@@ -1,6 +1,6 @@
 import {LOGIN_USER_FAILURE,LOGIN_USER_REQUEST,LOGIN_USER_SUCCESS,LOGIN_PASSWORD_REQUEST,LOGIN_PASSWORD_SUCCESS,LOGIN_PASSWORD_FAILURE} from './actionType'
 
-import axios from 'axios'
+// import axios from 'axios'
 export const loginUserRequest = payload =>({
     type:LOGIN_USER_REQUEST,
     payload:payload

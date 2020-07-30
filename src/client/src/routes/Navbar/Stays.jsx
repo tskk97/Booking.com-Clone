@@ -11,7 +11,7 @@ import {DateRangePicker} from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
 import {staysSearchData} from '../../redux/Stays/action'
 import ProfileDetails from './ProfileDetails';
-import $ from 'jquery';
+// import $ from 'jquery';
 
 class Stays extends React.Component {
     constructor(props) {

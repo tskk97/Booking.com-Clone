@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import style from "./ResultCard.module.css";
-import {connect} from 'react-redux'
+// import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {staysSearchData} from '../../redux/Stays/action'
 import {AiFillStar} from 'react-icons/ai'

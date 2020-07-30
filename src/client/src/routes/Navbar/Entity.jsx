@@ -7,9 +7,9 @@ import {IoIosBed} from "react-icons/io";
 import {BsSearch} from "react-icons/bs";
 import {FaRegCalendarPlus} from "react-icons/fa";
 import {FiHelpCircle} from "react-icons/fi";
-import data from "./data.json";
+// import data from "./data.json";
 import {v4 as uuidv4} from 'uuid';
-import FilterByCards from "./FilterByCards";
+// import FilterByCards from "./FilterByCards";
 import {GiRoyalLove} from "react-icons/gi";
 import {RiStarSLine} from "react-icons/ri";
 import {AiOutlineLike} from "react-icons/ai";
@@ -34,34 +34,79 @@ import {GiFamilyHouse} from "react-icons/gi";
 import {IoIosRestaurant} from "react-icons/io";
 import {BsUnlockFill} from "react-icons/bs";
 import {BsInfoCircle} from "react-icons/bs";
-import {DateRangePicker} from "react-dates";
+// import {DateRangePicker} from "react-dates";
 import {SingleDatePicker} from "react-dates/esm";
 import {AiOutlineDislike} from "react-icons/ai";
 import Carousel from "react-elastic-carousel";
-
+import {bookingSearchData} from '../../redux/Booking/action'
 
 class Entity extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            entityId: ""
+            entityId: "",
+            roomBookPage:"",
+            adultBookPage:"",
+            childrenBookPage:"",
+            checkInDate:"",
+            checkOutDate:""    
         }
+    }
+
+    handleChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
 
     componentDidMount() {
         const {location, match, entityListData} = this.props
-        entityListData(match.params.prop_id)
+        let obj = {
+            prop_id:match.params.prop_id
+        }
+        entityListData(obj)
         // console.log(match.params)   
+    }
+
+    handleBooking=()=>{
+        const {roomBookPage,childrenBookPage,adultBookPage} = this.state
+        const {entityListData,match} = this.props
+        console.log("arun")
+        let obj = {
+            num_rooms:roomBookPage,
+            num_adults:adultBookPage,
+            num_child:childrenBookPage,
+            prop_id:match.params.prop_id
+        }
+
+        // bookingSearchData(obj)
+        console.log(Object.keys(obj).length)
+        entityListData(obj)
+
     }
 
     render() {
         const {entityData, reviewData, recommendationsData} = this.props
+        const {roomBookPage,childrenBookPage,adultBookPage} = this.state
+        console.log(roomBookPage,childrenBookPage,adultBookPage)
         const breakPoints = [
             { width: 1, itemsToShow: 3 },
             { width: 550, itemsToShow: 3 },
             { width: 768, itemsToShow: 4 },
             { width: 1200, itemsToShow: 4 }
         ];
+        const roomNum = entityData.available_rooms
+        const adultNum = Number(roomNum*2)
+        // const childNum = roomNum
+        const roomArr =[]
+        const adultArr = []
+        // const childArr = []
+        for(var i=1;i<=roomNum;i++){
+            roomArr.push(i)
+        }
+        for(var j=1;j<=adultNum;j++){
+            adultArr.push(j)
+        }
         const recommendations = [
             {
                 "id": 5,
@@ -104,7 +149,7 @@ class Entity extends Component {
                 "review_score": "7.1"
             }
         ]
-        console.log("entity data is", entityData)
+        // console.log("entity data is", entityData)
         console.log(entityData["city_name"])
         const reviewArray = [["Rooms are beautiful, staff is amazing, as is breakfast", "Sarah", "USA"]]
         return (
@@ -782,7 +827,7 @@ class Entity extends Component {
                                                         <h5 style={{fontSize:"14px",textAlign:"left"}}>Check-out-date</h5>
                                                         <SingleDatePicker
                                                             className = {`${style.calendar}`}
-                                                            // regular = {true}
+                                                            regular = {true}
                                                             small={true}
                                                             date={this.state.date} // momentPropTypes.momentObj or null
                                                             onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
@@ -796,7 +841,9 @@ class Entity extends Component {
                                                         <button type="button" className="btn" style={{
                                                             color: "#fff",
                                                             backgroundColor: "#0071c2"
-                                                        }}>Check Availability
+                                                        }}
+                                                        onClick={this.handleBooking}
+                                                        >Check Availability
                                                         </button>
                                                     </div>
                                                     <div style={{width:"30%"}}></div>
@@ -805,15 +852,33 @@ class Entity extends Component {
                                                 <div className={`d-flex flex-row`}>
                                                     <div className={`mr-3 mt-2`}>
                                                         Rooms
-                                                        <select type={`number`} className={`ml-1`}/>
+                                                        <select type={`number`} className={`ml-1`} name ="roomBookPage" onChange={this.handleChange}>
+                                                            {roomArr && roomArr.map(item =>(
+                                                                <option value={item} key={item}>
+                                                                    {item}
+                                                                </option>
+                                                            ))}
+                                                        </select>
                                                     </div>
                                                     <div className={`mr-3 mt-2`}>
                                                         Adults
-                                                        <select type={`number`} className={`ml-1`}/>
+                                                        <select type={`number`} className={`ml-1`} name ="adultBookPage" onChange={this.handleChange}>
+                                                        {adultArr && adultArr.map(item =>(
+                                                                <option value={item} key={item}>
+                                                                    {item}
+                                                                </option>
+                                                            ))}
+                                                        </select>
                                                     </div>
                                                     <div className={`mr-3 mt-2`}>
                                                         Children
-                                                        <select type={`number`} className={`ml-1`}/>
+                                                        <select type={`number`} className={`ml-1`} name ="childrenBookPage" onChange={this.handleChange}>
+                                                            {roomArr && roomArr.map(item =>(
+                                                                <option value={item} key={item}>
+                                                                    {item}
+                                                                </option>
+                                                            ))}
+                                                        </select>
                                                     </div>
                                                 </div>
 
@@ -848,11 +913,14 @@ const mapStateToProps = state => ({
     entityData: state.entityList.entityData,
     reviewData: state.entityList.reviewData,
     recommendationsData: state.entityList.recommendationsData,
-    isEntity: state.entityList.isEntity
+    isEntity: state.entityList.isEntity,
+
+    bookingSearchData:state.bookingList.bookingSearchData
 })
 
 const mapDispatchToProps = dispatch => ({
-    entityListData: payload => dispatch(entityListData(payload))
+    entityListData: payload => dispatch(entityListData(payload)),
+    bookingSearchData:payload => dispatch(bookingSearchData(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Entity);

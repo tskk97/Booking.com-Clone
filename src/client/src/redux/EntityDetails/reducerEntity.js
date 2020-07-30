@@ -15,7 +15,7 @@ const reducerEntity =(state = initState,action)=>{
                 ...state
             }
         case ENTITY_LIST_SUCCESS:
-            console.log(action.payload.data[0])
+            console.log(action.payload)
             return{
                 ...state,
                 isEntity:true,
