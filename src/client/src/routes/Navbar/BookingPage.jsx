@@ -18,9 +18,24 @@ import {GiBus, GiTwoShadows} from "react-icons/gi";
 import {IoIosRestaurant} from "react-icons/io";
 import {MdLocationOn} from "react-icons/md";
 import {TiTickOutline} from "react-icons/ti";
+import BasicInfo from "./BasicInfo";
+import MobileInfo from "./MobileInfo";
 
 class BookingPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            basicInfoFlag : false
+        }
+    }
+    handleBasicInfoFlag = (e)=>{
+        this.setState({
+            basicInfoFlag:!this.state.basicInfoFlag
+        })
+        console.log("onClick worked");
+    }
     render() {
+        const {basicInfoFlag} = this.state;
         return (
             <>
                 <Navbar/>
@@ -228,7 +243,7 @@ class BookingPage extends React.Component {
                                             <div className={`mt-1`}>(Name)</div>
                                         </div>
                                         <div className={`${style.form} mt-2`}>
-
+                                            {basicInfoFlag ?  <MobileInfo/> : <BasicInfo cb={this.handleBasicInfoFlag}/>}
                                         </div>
                                     </div>
                                 </div>
