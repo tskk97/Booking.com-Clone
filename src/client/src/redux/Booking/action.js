@@ -18,7 +18,7 @@ export const bookingSearchFailure = payload=>({
 })
 
 export const bookingSearchData = payload=>dispatch=>{
-    console.log(payload,"Booking")    
+    // console.log(payload,"Booking")    
     dispatch(bookingSearchRequest(payload))
     axios.get("http://4be0e3fbd5d4.ngrok.io/stays/property/"+payload["prop_id"],{
         "num_rooms":payload["num_rooms"],

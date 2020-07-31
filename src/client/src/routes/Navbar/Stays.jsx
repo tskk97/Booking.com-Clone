@@ -16,6 +16,7 @@ import data from "./browserData.json";
 import BrowserByType from './BrowserByType';
 import Autocomplete from 'react-google-autocomplete';
 import {v4 as uuidv4} from 'uuid';
+import ConnectTraveller from './ConnectTraveller';
 
 // import $ from 'jquery';
 
@@ -155,10 +156,7 @@ class Stays extends React.Component {
                                             <button className="btn btn-outline-secondary px-3 py-1 bg-light border-dark" type="button"  
                                                     id="button-addon1"><IoIosBed size="1.4em" />
                                             </button> 
-                                            {isProfile && <ProfileDetails />}
-                                            {/* if(!modalVisible){
-                                              return  <ProfileDetails />
-                                            }                                           */}
+                                            {isProfile && <ProfileDetails />}                                          
                                         </div>
                                         {/* <Autocomplete
                                             style={{width: '90%'}}
@@ -276,6 +274,17 @@ class Stays extends React.Component {
                                 <Carousel breakPoints={breakPoints} showArrows={true} pagination={false}>
                                     { data.crousel1 && data.crousel1.map((item, index) => (
                                         <BrowserByType key={uuidv4()} data={item}/>
+                                    ))}
+                                </Carousel>
+                            </div>
+                            <br/>
+                            <h3>Connect with other travellers</h3>
+                            <br/>
+                            <div className={`${style.recommendDiv}`}>
+                                {/* <h1 style={{fontSize: "18px",textAlign:"left",marginLeft:"8%"}}></h1> */}
+                                <Carousel breakPoints={breakPoints} pagination={false}>
+                                    { data.crousel1 && data.crousel1.map((item, index) => (
+                                        <ConnectTraveller key={uuidv4()} data={item}/>
                                     ))}
                                 </Carousel>
                             </div>

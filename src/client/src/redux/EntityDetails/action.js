@@ -25,7 +25,7 @@ export const entityListData = payload=> dispatch=>{
     }
     else{
         console.log(payload)
-        axios.get("http://4be0e3fbd5d4.ngrok.io/stays/property/"+payload["prop_id"],{
+        axios.post("http://4be0e3fbd5d4.ngrok.io/stays/property/"+payload["prop_id"],{
             "num_rooms":payload["num_rooms"],
             "num_adults":payload["num_aduts"],
             "num_child":payload["num_child"]

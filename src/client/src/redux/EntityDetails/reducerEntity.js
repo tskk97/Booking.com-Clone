@@ -5,6 +5,7 @@ const initState = {
     entityData:"",
     reviewData: "",
     recommendationsData: "",
+    checkAvailability:""
     
 }
 
@@ -22,7 +23,8 @@ const reducerEntity =(state = initState,action)=>{
                 isEntity:true,
                 entityData:action.payload.data[0],
                 reviewData: action.payload.reviews,
-                recommendationsData: action.payload.recommendations
+                recommendationsData: action.payload.recommendations,
+                checkAvailability:action.payload.status
             }
         case ENTITY_LIST_FAILURE:
             return{

@@ -6,14 +6,14 @@ const initState = {
 }
 
 const reducerBooking =(state = initState,action)=>{
-    console.log(action.payload,"booking")
+    // console.log(action.payload,"booking")
     switch(action.type){
         case BOOKING_SEARCH_REQUEST:
             return{
                 ...state
             }
         case BOOKING_SEARCH_SUCCESS:
-            console.log(action.payload)
+            // console.log(action.payload)
             return{
                 ...state,
                 isBooking:true,

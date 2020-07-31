@@ -50,7 +50,8 @@ class Entity extends Component {
             adultBookPage:"",
             childrenBookPage:"",
             checkInDate:"",
-            checkOutDate:""    
+            checkOutDate:"",
+            checkAvailFlag:true
         }
     }
 
@@ -68,11 +69,15 @@ class Entity extends Component {
         entityListData(obj)
         // console.log(match.params)   
     }
-
-    handleBooking=()=>{
+    
+    handleCheckAvailable=()=>{
         const {roomBookPage,childrenBookPage,adultBookPage} = this.state
-        const {entityListData,match,bookingSearchData} = this.props
-        console.log("arun")
+        const {entityListData,match,bookingSearchData,checkAvailability} = this.props
+        console.log(checkAvailability)
+             console.log("arun")
+            this.setState({
+                checkAvailFlag:false
+            })
         let obj = {
             num_rooms:roomBookPage,
             num_adults:adultBookPage,
@@ -83,13 +88,19 @@ class Entity extends Component {
         // bookingSearchData(obj)
         console.log(Object.keys(obj).length)
         entityListData(obj)
+    }
+
+    handleChangeNow=()=>{
+        const {roomBookPage,childrenBookPage,adultBookPage} = this.state
 
     }
 
+
+
     render() {
-        const {entityData, reviewData, recommendationsData} = this.props
-        const {roomBookPage,childrenBookPage,adultBookPage} = this.state
-        console.log(entityData)
+        const {entityData, reviewData, recommendationsData,checkAvailability} = this.props
+        const {checkInDate,checkOutDate} = this.state
+        console.log(checkAvailability)
         const breakPoints = [
             { width: 1, itemsToShow: 3 },
             { width: 550, itemsToShow: 3 },
@@ -101,12 +112,15 @@ class Entity extends Component {
         // const childNum = roomNum
         const roomArr =[]
         const adultArr = []
-        // const childArr = []
+        const childArr = []
         for(var i=1;i<=roomNum;i++){
             roomArr.push(i)
         }
         for(var j=1;j<=adultNum;j++){
             adultArr.push(j)
+        }
+        for(var i=0;i<=roomNum;i++){
+            childArr.push(i)
         }
         const recommendations = [
             {
@@ -151,7 +165,7 @@ class Entity extends Component {
             }
         ]
         // console.log("entity data is", entityData)
-        console.log(entityData["city_name"])
+        console.log(checkInDate,checkOutDate)
         const reviewArray = [["Rooms are beautiful, staff is amazing, as is breakfast", "Sarah", "USA"]]
         return (
             <div className={`${style.body}`}>
@@ -813,50 +827,46 @@ class Entity extends Component {
                                                 <div className={`d-flex flex-row justify-content-between`}>
                                                     <div className={`d-flex flex-column mt-2`}>
                                                         <h5 style={{fontSize:"14px",textAlign:"left"}}>Check-in-date</h5>
-                                                        <SingleDatePicker
-                                                            className = {`${style.calendar}`}
-                                                            small={true}
-                                                            regular = {true}
-                                                            date={this.state.date} // momentPropTypes.momentObj or null
-                                                            onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
-                                                            focused={this.state.focused} // PropTypes.bool
-                                                            onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
-                                                            id="your_unique_id" // PropTypes.string.isRequired,
-                                                        />
+                                                        <input type="date" value={this.state.checkInDate} name="checkInDate" onChange={this.handleChange} />                                                         
                                                     </div>
                                                     <div className={`d-flex flex-column mt-2`}>
                                                         <h5 style={{fontSize:"14px",textAlign:"left"}}>Check-out-date</h5>
-                                                        <SingleDatePicker
-                                                            className = {`${style.calendar}`}
-                                                            regular = {true}
-                                                            small={true}
-                                                            date={this.state.date} // momentPropTypes.momentObj or null
-                                                            onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
-                                                            focused={this.state.focused} // PropTypes.bool
-                                                            onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
-                                                            id="your_unique_id" // PropTypes.string.isRequired,
-                                                        />
+                                                        <input type="date" value={this.state.checkOutDate} name="checkOutDate" onChange={this.handleChange}/>
                                                     </div>
                                                     <div className={`d-flex flex-column mt-2`}>
                                                         <h5 style={{fontSize:"14px",textAlign:"left",visibility:"hidden"}}>&nbsp</h5>
-                                                        {/* <button type="button" className="btn" style={{
+                                                        {/* <Link to="/booking"> */}
+                                                        <button type="button" className={checkAvailability==="Available" ? "d-none": "btn"} style={{
                                                             color: "#fff",
-                                                            backgroundColor: "#0071c2"
-                                                        }}
-                                                        onClick={this.handleBooking}
-                                                        >Check Availability
-                                                        </button> */}
-                                                        <Link to="/booking">
-                                                        <button type="button" className="btn" style={{
-                                                            color: "#fff",
-                                                            backgroundColor: "#0071c2"
-                                                        }}
-                                                        onClick={this.handleBooking}
+                                                            backgroundColor: "#0071c2",
+                                                            // this.state.checkAvailFlag? {display:"none"} : {display:"block"}
+                                                         }}
+                                                        onClick={this.handleCheckAvailable}
                                                         >Check Availability
                                                         </button>
-                                                        </Link>
+                                                        {/* </Link> */}
                                                     </div>
                                                     <div style={{width:"30%"}}></div>
+                                                </div>
+                                                    <br/>
+                                                <div>
+                                                    <div>
+                                                        <button type="button" className= {this.state.checkAvailFlag ? "d-none": "btn mr-2"} style={{
+                                                            color: "#fff",
+                                                            backgroundColor: "#0071c2"
+                                                        }}
+                                                        onClick={this.handleCheckAvailable}
+                                                        >Change Search</button>
+                                                        <Link to="/booking">
+                                                        <button type="button" className={this.state.checkAvailFlag ? "d-none": "btn"} style={{
+                                                            color: "#fff",
+                                                            backgroundColor: "#0071c2"
+                                                        }} 
+                                                        >Book Now</button>
+                                                        </Link>
+                                                    </div>
+                                                    <div>
+                                                    </div>
                                                 </div>
                                                 <br/>
                                                 <div className={`d-flex flex-row`}>
@@ -883,7 +893,7 @@ class Entity extends Component {
                                                     <div className={`mr-3 mt-2`}>
                                                         Children
                                                         <select type={`number`} className={`ml-1`} name ="childrenBookPage" onChange={this.handleChange}>
-                                                            {roomArr && roomArr.map(item =>(
+                                                            {childArr && childArr.map(item =>(
                                                                 <option value={item} key={item}>
                                                                     {item}
                                                                 </option>
@@ -924,7 +934,7 @@ const mapStateToProps = state => ({
     reviewData: state.entityList.reviewData,
     recommendationsData: state.entityList.recommendationsData,
     isEntity: state.entityList.isEntity,
-
+    checkAvailability:state.entityList.checkAvailability,
     bookingSearchData:state.bookingList.bookingSearchData
 })
 
