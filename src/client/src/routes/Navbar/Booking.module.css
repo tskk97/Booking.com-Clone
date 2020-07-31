@@ -1,0 +1,65 @@
+.greenDiv{
+    margin-top: 5%;
+    background-color: #f1fef2;
+    border: 1px solid #97e59c;
+    border-radius: 2px;
+    padding: 16px;
+    font-weight: bold;
+}
+.body{
+    margin-top: 15vh;
+}
+
+.leftDiv{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.greenHollow{
+    border: 1px solid #006607;
+    color: #006607;
+    padding: 5px;
+    height: 100%;
+    font-size: 14px;
+}
+.bookingDiv{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #bad4f7;
+    border-radius: 3px;
+    /*padding: 10px;*/
+    background-color:#fff;
+}
+.detailsDiv{
+    display: flex;
+    flex-direction: column;
+}
+.middleDiv{
+    display: flex;
+    flex-direction: row;
+    /*justify-content: space-between;*/
+}
+.yellowLike{
+    background-color: #febb02;
+    width: 24px;
+    height: 24px;
+    padding-bottom: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+    margin-left: 12px;
+}
+.threeFigures{
+    margin-left: 12px;
+}
+.locationDetailsDiv{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1%;
+}
+.form{
+    background-color: #ebf3ff;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+}

@@ -4,7 +4,7 @@ import style from "./ReviewItem.module.css";
 class ReviewItem extends Component {
     render() {
         const {data,index} = this.props;
-        console.log(data)
+        // console.log(data)
         return (
             <div className="py-3 border-bottom border-dark">
                 <p className={`${style.para}`}>{`"${data["user_review"]}"`}</p>

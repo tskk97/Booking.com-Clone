@@ -1,6 +1,6 @@
 import React from "react"
 import {connect} from "react-redux"
-import {Link} from "react-router-dom";
+import {NavLink,Link} from "react-router-dom";
 import style from "./Navbar.module.css";
 import {FiHelpCircle} from "react-icons/fi";
 import {FaHome, FaTaxi, FaCarAlt} from "react-icons/fa";
@@ -69,7 +69,7 @@ class Navbar extends React.Component {
                             <div className={`${style.navFlexTabs}`}>
                                 <ul className="nav nav-tabs" id="myTab" role="tablist">
                                     <li>
-                                        <Link to="/stays" className={activePath === "/stays" ? "nav-link active" : "nav-link"} ><FaHome style={{marginRight: "5px"}}/>Stays</Link>
+                                        <NavLink to="/stays" className={"nav-link"} activeClassName="active" ><FaHome style={{marginRight: "5px"}}/>Stays</NavLink>
                                     </li>
                                     <li>
                                         <Link to="/flights" className={activePath === "/flights" ? "nav-link active" : "nav-link"}><MdFlight style={{marginRight: "5px"}}/>Flights</Link>

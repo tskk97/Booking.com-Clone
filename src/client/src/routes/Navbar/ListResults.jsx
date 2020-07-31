@@ -205,6 +205,8 @@ class ListResults extends Component {
         console.log(newUrl)
         this.setState({
             newUrl:newUrl
+        },()=>{
+            
         })
         window.location.href= newUrl;
 

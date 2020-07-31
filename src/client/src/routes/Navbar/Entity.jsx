@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import Navbar from "./Navbar.jsx";
 import style from "./Entity.module.css"
 import ReviewItem from "./ReviewItem";
+import RecommendCard from "./RecommendCard";
 import {IoIosBed} from "react-icons/io";
 import {BsSearch} from "react-icons/bs";
 import {FaRegCalendarPlus} from "react-icons/fa";
 import {FiHelpCircle} from "react-icons/fi";
-import data from "./data.json";
+// import data from "./data.json";
 import {v4 as uuidv4} from 'uuid';
-import FilterByCards from "./FilterByCards";
+// import FilterByCards from "./FilterByCards";
 import {GiRoyalLove} from "react-icons/gi";
 import {RiStarSLine} from "react-icons/ri";
 import {AiOutlineLike} from "react-icons/ai";
@@ -27,34 +28,120 @@ import {AiOutlineWifi} from "react-icons/ai";
 import arr_id1 from './id1.json'
 import ImgsEntity from './ImgsEntity.jsx';
 import {connect} from 'react-redux'
-import { entityListData } from '../../redux/EntityDetails/action.js';
+import {entityListData} from '../../redux/EntityDetails/action.js';
 import {MdPool} from "react-icons/md";
 import {GiFamilyHouse} from "react-icons/gi";
 import {IoIosRestaurant} from "react-icons/io";
-import { BsUnlockFill } from "react-icons/bs";
-import { BsInfoCircle } from "react-icons/bs";
-import {DateRangePicker} from "react-dates";
+import {BsUnlockFill} from "react-icons/bs";
+import {BsInfoCircle} from "react-icons/bs";
+// import {DateRangePicker} from "react-dates";
+import {SingleDatePicker} from "react-dates/esm";
 import {AiOutlineDislike} from "react-icons/ai";
+import Carousel from "react-elastic-carousel";
+import {bookingSearchData} from '../../redux/Booking/action'
+import {Link} from 'react-router-dom'
+import BillingPage from './BillingPage.jsx';
+import BillingDetails from "./BillingDetails";
 
 
 class Entity extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            entityId:""
+            entityId: "",
+            roomBookPage:1,
+            adultBookPage:1,
+            childrenBookPage:0,
+            checkInDate:"",
+            checkOutDate:"",
+            checkAvailFlag:true
         }
     }
 
-    componentDidMount(){
-        const {location,match,entityListData} = this.props
-        entityListData(match.params.prop_id)
+    handleChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    componentDidMount() {
+        const {location, match, entityListData} = this.props
+        let obj = {
+            prop_id:match.params.prop_id
+        }
+        entityListData(obj)
         // console.log(match.params)   
+    }
+    
+    handleCheckAvailable=()=>{
+        const {roomBookPage,childrenBookPage,adultBookPage} = this.state
+        const {entityListData,match,bookingSearchData,checkAvailability,entityData} = this.props
+        console.log(checkAvailability)
+             console.log("arun")
+            this.setState({
+                checkAvailFlag:false
+            })
+        let obj = {
+            num_rooms:roomBookPage,
+            num_adults:adultBookPage,
+            num_child:childrenBookPage,
+            prop_id:match.params.prop_id
+        }
+
+        // bookingSearchData(obj)
+        console.log(Object.keys(obj).length)
+        entityListData(obj)
+    }
+
+    handleChangeNow=()=>{
+        const {roomBookPage,childrenBookPage,adultBookPage} = this.state
+
     }
 
     render() {
-        const{entityData, reviewData, recommendationsData} = this.props
-        console.log(entityData["city_name"])
-        const reviewArray = [["Rooms are beautiful, staff is amazing, as is breakfast","Sarah","USA"]]
+        const {entityData, reviewData, recommendationsData,checkAvailability} = this.props
+        const {checkInDate,checkOutDate,roomBookPage,childrenBookPage,adultBookPage} = this.state
+        console.log(entityData)
+        const adultCount = entityData["adult_budget_per_night"] * adultBookPage
+        const childCount = entityData['child_budget_per_night'] * childrenBookPage
+        const total = roomBookPage * (adultCount + childCount + 1000 + 500 +50)
+        // console.log(total)
+        let obj = {
+            name:entityData["property_name"],
+            adultPrice:entityData["adult_budget_per_night"],
+            childPrice:entityData["child_budget_per_night"],
+            num_rooms:roomBookPage,
+            num_adults:adultBookPage,
+            num_child:childrenBookPage,
+            total:total
+        }
+        // console.log(obj)
+        const breakPoints = [
+            { width: 1, itemsToShow: 3 },
+            { width: 550, itemsToShow: 3 },
+            { width: 768, itemsToShow: 4 },
+            { width: 1200, itemsToShow: 4 }
+        ];
+        const roomNum = entityData.available_rooms
+        const adultNum = Number(roomNum*2)
+        // const childNum = roomNum
+        const roomArr =[]
+        const adultArr = []
+        const childArr = []
+        for(var i=1;i<=roomNum;i++){
+            roomArr.push(i)
+        }
+        for(var j=1;j<=adultNum;j++){
+            adultArr.push(j)
+        }
+        for(var i=0;i<=roomNum;i++){
+            childArr.push(i)
+        }
+        console.log(recommendationsData)
+        const recommendations = recommendationsData
+        // console.log("entity data is", entityData)
+        // console.log(checkInDate,checkOutDate)
+        const reviewArray = [["Rooms are beautiful, staff is amazing, as is breakfast", "Sarah", "USA"]]
         return (
             <div className={`${style.body}`}>
                 <Navbar/>
@@ -235,19 +322,22 @@ class Entity extends Component {
                                             </p>
                                         </div>
                                     </div>
-                                    <button className={`${style.askQuestion}`} style={{color: "#0071c2",width:"100%",padding:"7px 16px"}}>Ask a question</button>
+                                    <button className={`${style.askQuestion}`}
+                                            style={{color: "#0071c2", width: "100%", padding: "7px 16px"}}>Ask a
+                                        question
+                                    </button>
 
                                     <div className={`${style.rating}`}>
                                         <div className={`d-flex flex-row`}>
                                             <div className={`${style.ratingDiv}`}>9.1</div>
                                             <div className={`d-flex flex-column ml-3`}>
-                                                <h4 style={{fontSize:"large"}}>Very good</h4>
-                                                <p style={{fontSize:"small"}}>284 reviews</p>
+                                                <h4 style={{fontSize: "large"}}>Very good</h4>
+                                                <p style={{fontSize: "small"}}>284 reviews</p>
                                             </div>
                                         </div>
                                     </div>
-                                    {reviewData && reviewData.map((item,index)=>(
-                                        <ReviewItem data={item}  index = {index} key={uuidv4()}/>
+                                    {reviewData && reviewData.map((item, index) => (
+                                        <ReviewItem data={item} index={index} key={uuidv4()}/>
                                     ))}
                                 </div>
 
@@ -266,7 +356,7 @@ class Entity extends Component {
                                     </div>
                                     <div className={`${style.titleRow}`}>
                                         <div className={`d-flex flex-row`}>
-                                    <div className={`${style.tag}`}>{entityData["property_type_name"]}</div>
+                                            <div className={`${style.tag}`}>{entityData["property_type_name"]}</div>
                                             <h4 style={{fontWeight: "bold"}}>{entityData["property_name"]}</h4>
                                             <RiStarSLine
                                                 style={{marginTop: "7px", marginLeft: "12px", color: "#febb02"}}/>
@@ -345,43 +435,9 @@ class Entity extends Component {
 
                                     <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                                         <div className="carousel-inner">
-                                            {/* <div className="carousel-item active"  data-interval="900000"> */}
-                                                {/* <img src="https://cf.bstatic.com/images/hotel/max1280x900/255/255549892.jpg" className="d-block w-100" alt="..."/> */}
-                                                {arr_id1["arr_id1"] && arr_id1["arr_id1"].map((item,index)=>
-                                                        <ImgsEntity dataImg = {item} indexImg = {index} key={item}/>
-                                                )}
-                                            {/* </div> */}
-                                            {/* <div className="carousel-item"  data-interval="9000000">
-                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/482/48254908.jpg" className="d-block w-100" alt="..."/>
-                                            </div>
-                                            <div className="carousel-item" data-interval="900000">
-                                                <img
-                                                    src="https://cf.bstatic.com/images/hotel/max1280x900/341/34138027.jpg"
-                                                    className="d-block w-100" alt="..."/>
-                                            </div>
-                                            <div className="carousel-item" data-interval="900000">
-                                                <img
-                                                    src="https://cf.bstatic.com/images/hotel/max1280x900/341/34137970.jpg"
-                                                    className="d-block w-100" alt="..."/>
-                                            </div>
-                                            <div className="carousel-item" data-interval="900000">
-                                                <img
-                                                    src="https://cf.bstatic.com/images/hotel/max1280x900/341/34137960.jpg"
-                                                    className="d-block w-100" alt="..."/>
-                                            </div>
-                                            <div className="carousel-item" data-interval="900000">
-                                                <img
-                                                    src="https://cf.bstatic.com/images/hotel/max1280x900/341/34138033.jpg"
-                                                    className="d-block w-100" alt="..."/>
-                                            </div>
-                                            <div className="carousel-item" data-interval="900000">
-                                                <img
-                                                    src="https://cf.bstatic.com/images/hotel/max1280x900/341/34138017.jpg"
-                                                    className="d-block w-100" alt="..."/>
-                                            </div>
-                                            <div className="carousel-item"  data-interval="900000">
-                                                <img src="https://cf.bstatic.com/images/hotel/max1280x900/341/34137955.jpg" className="d-block w-100" alt="..."/>
-                                            </div> */}
+                                            {arr_id1["arr_id1"] && arr_id1["arr_id1"].map((item, index) =>
+                                                <ImgsEntity dataImg={item} indexImg={index} key={item}/>
+                                            )}
                                         </div>
                                         <a className="carousel-control-prev" href="#carouselExampleControls"
                                            role="button" data-slide="prev">
@@ -439,51 +495,18 @@ class Entity extends Component {
                                         <a></a>
                                     </div>
 
-                                    {/*Accordion*/}
-
-                                    {/*<div className="accordion" id="accordionExample">*/}
-                                    {/*    <div className="card">*/}
-                                    {/*        <div className="card-header" id="headingOne">*/}
-                                    {/*            <h2 className="mb-0">*/}
-                                    {/*                <button className="btn btn-link btn-block text-left" type="button"*/}
-                                    {/*                        data-toggle="collapse" data-target="#collapseOne"*/}
-                                    {/*                        aria-expanded="true" aria-controls="collapseOne">*/}
-                                    {/*                    Collapsible Group Item #1*/}
-                                    {/*                </button>*/}
-                                    {/*            </h2>*/}
-                                    {/*        </div>*/}
-
-                                    {/*        <div id="collapseOne" className="collapse show" aria-labelledby="headingOne"*/}
-                                    {/*             data-parent="#accordionExample">*/}
-                                    {/*            <div className="card-body">*/}
-                                    {/*                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus*/}
-                                    {/*                terry richardson ad squid. 3 wolf moon officia aute, non cupidatat*/}
-                                    {/*                skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.*/}
-                                    {/*                Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid*/}
-                                    {/*                single-origin coffee nulla assumenda shoreditch et. Nihil anim*/}
-                                    {/*                keffiyeh helvetica, craft beer labore wes anderson cred nesciunt*/}
-                                    {/*                sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings*/}
-                                    {/*                occaecat craft beer farm-to-table, raw denim aesthetic synth*/}
-                                    {/*                nesciunt you probably haven't heard of them accusamus labore*/}
-                                    {/*                sustainable VHS.*/}
-                                    {/*            </div>*/}
-                                    {/*        </div>*/}
-                                    {/*    </div>*/}
-
-                                    {/* */}
-                                    {/*</div>*/}
-
-
                                     <div className={`row`}>
                                         <div className={`col-8 ${style.middleDiv}`}
                                              style={{fontSize: "18px", fontWeight: "bold", margin: "15px 0"}}>
-                                            <h5>Get the celebrity treatment with world-class service at {entityData["property_name"]}</h5>
+                                            <h5>Get the celebrity treatment with world-class service
+                                                at {entityData["property_name"]}</h5>
                                             <div style={{
                                                 color: "#b65800",
                                                 fontSize: "14px",
                                                 fontWeight: "bold",
                                                 textAlign: "left"
-                                            }}><MdStars style={{fontSize: "25px"}}/> One of our top picks in {entityData["city_name"]}.
+                                            }}><MdStars style={{fontSize: "25px"}}/> One of our top picks
+                                                in {entityData["city_name"]}.
                                             </div>
 
                                             <div className={`${style.descr}`}>{entityData["description"]}</div>
@@ -559,86 +582,6 @@ class Entity extends Component {
                                                 Need cash? There's an ATM and a currency exchange service at this
                                                 property.
                                             </p>
-
-                                            <div className={`${style.descr}`}>
-                                                 <div class="border border-success text-black col-12" style={{backgroundColor:"#ecf3f2"}}>
-                                                    <div className={`d-flex flex-row`} style={{padding:15}}>
-                                                        <div >
-                                                            <BsUnlockFill style={{color:"green",fontSize:"40px"}}/>
-                                                        </div>
-                                                        <div style={{paddingLeft:10}}>
-                                                            <h4>
-                                                                 Lock in a great price for your upcoming stay
-                                                            </h4>
-                                                             <p>
-                                                                 Prices may go up, so secure your reservation today.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                 </div>
-                                                <br/>
-                                                <div className="border border-warning text-black col-12" style={{backgroundColor:"#fefbf0"}}>
-                                                   <div className={`d-flex flex-row`} style={{padding:15}}>
-                                                       <div>
-                                                           <BsInfoCircle style={{color:"#f0ad4e",fontSize:"40px"}}/>
-                                                       </div>
-                                                       <div style={{paddingLeft:10}}>
-                                                           <h4>
-                                                               Find a cancellation policy that works for you
-                                                           </h4>
-                                                           <p>
-                                                               From 6 April 2020, your chosen cancellation policy will apply, regardless of Coronavirus. We recommend booking a free cancellation option in case your travel plans need to change.
-                                                           </p>
-                                                       </div>
-                                                   </div>
-                                                </div>
-                                                <br/>
-                                                
-                                                <div className="border border-primary text-black col-12" style={{backgroundColor:"#fff"}}>
-                                                    <div  style={{padding:15}}>
-                                                        <div className="mb-3">
-                                                            <span className="h5">Adult Price/Night :{entityData["adult_budget_per_night"]}/-</span><span className="ml-4 h5">Child Price/Night :{entityData["child_budget_per_night"]}/-</span>
-                                                        </div>
-                                                        <div className={`d-flex flex-row`}>
-                                                            {/* <input type="date" placeholder="checkIn"/>
-                                                                                <input type="date" placeholder="checkOut"/> */}
-                                                            <DateRangePicker
-                                                                className={`form-control ${style.calendar}`}
-                                                                startDate={this.state.startDate}
-                                                                startDateId="your_unique_start_date_id"
-                                                                endDate={this.state.endDate}
-                                                                endDateId="your_unique_end_date_id"
-                                                                onDatesChange={({startDate, endDate}) => 
-                                                                    {
-                                                                        let cal_checkin = String(startDate._d).split(" ")
-                                                                        let cal_checkout = String(endDate._d).split(" ")
-                                                                        this.setState({
-                                                                            startDate,
-                                                                            endDate,
-                                                                            checkin_date: cal_checkin[2],
-                                                                            checkin_month: cal_checkin[1],
-                                                                            checkin_year: cal_checkin[3],
-                                                                            checkout_date: cal_checkout[2],
-                                                                            checkout_month: cal_checkout[1],
-                                                                            checkout_year: cal_checkout[3]
-                                                                        })
-                                                                    }
-                                                                }
-                                                                focusedInput={this.state.focusedInput}
-                                                                onFocusChange={(focusedInput) => this.setState({focusedInput})}
-                                                                startDatePlaceholderText="Check-in"
-                                                                endDatePlaceholderText="Check-out"
-                                                            >
-                                                            </DateRangePicker>
-                                                        </div>
-                                                        <br/>
-                                                        
-                                                        <div>
-                                                             <button type="button" class="btn" style={{color: "#fff", backgroundColor: "#0071c2"}}>CheckAvailability</button>
-                                                        </div>
-                                                    </div>
-                                                 </div>
-                                            </div>
                                         </div>
                                         <div className={`col-4 ${style.rightSubDiv}`}>
                                             <div className={`${style.healthAndSafetyDiv}`}>
@@ -801,27 +744,157 @@ class Entity extends Component {
                                                     Halal, Gluten-free, Asian, American, Buffet
                                                 </div>
                                                 <div className={`d-flex flex-row justify-content-between`}>
-                                                    <AiOutlineWifi size="2em" />
+                                                    <AiOutlineWifi size="2em"/>
                                                     <div className={`${style.greenDiv} text-left`}>
                                                         <div>Free Wifi</div>
                                                         <div>Guests consistently rate the wifi as Excellent</div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div className="border border-success text-black mt-4"
+                                         style={{backgroundColor: "#ecf3f2"}}>
+                                        <div className={`d-flex flex-row`} style={{padding: 15}}>
+                                            <div>
+                                                <BsUnlockFill style={{color: "green"}} size={`1em`}/>
+                                            </div>
+                                            <div style={{marginLeft: 10,fontSize:"14px",textAlign:"left"}}>
+                                                <h4 style={{fontSize:"18px"}}>
+                                                    Lock in a great price for your upcoming stay
+                                                </h4>
+                                                <div>
+                                                    Prices may go up, so secure your reservation today.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <>
+                                        <div className="border border-warning text-black mt-3"
+                                             style={{backgroundColor: "#fefbf0"}}>
+                                            <div className={`d-flex flex-row`} style={{padding: 15}}>
+                                                <div>
+                                                    <BsInfoCircle style={{color: "#f0ad4e"}} size={`1em`}/>
+                                                </div>
+                                                <div style={{marginLeft: 10,fontSize:"14px",textAlign:"left"}}>
+                                                    <h4 style={{fontSize:"18px"}}>
+                                                        Find a cancellation policy that works for you
+                                                    </h4>
+                                                    <p>
+                                                        From 6 April 2020, your chosen cancellation policy will apply,
+                                                        regardless of Coronavirus. We recommend booking a free
+                                                        cancellation
+                                                        option in case your travel plans need to change.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="border border-primary text-black mt-3"
+                                             style={{backgroundColor: "#ebf3ff"}}>
+                                            <div style={{padding: 15}} className={`d-flex flex-column`}>
+                                                <div className={`text-left`}>When would you like to stay at {entityData["property_name"]}? </div>
+                                                <div className={`d-flex flex-row justify-content-between`}>
+                                                    <div className={`d-flex flex-column mt-2`}>
+                                                        <h5 style={{fontSize:"14px",textAlign:"left"}}>Check-in-date</h5>
+                                                        <input type="date" value={this.state.checkInDate} name="checkInDate" onChange={this.handleChange} />                                                         
+                                                    </div>
+                                                    <div className={`d-flex flex-column mt-2`}>
+                                                        <h5 style={{fontSize:"14px",textAlign:"left"}}>Check-out-date</h5>
+                                                        <input type="date" value={this.state.checkOutDate} name="checkOutDate" onChange={this.handleChange}/>
+                                                    </div>
+                                                    <div className={`d-flex flex-column mt-2`}>
+                                                        <h5 style={{fontSize:"14px",textAlign:"left",visibility:"hidden"}}>&nbsp</h5>
+                                                        {/* <Link to="/booking"> */}
+                                                        <button type="button" className={checkAvailability==="Available" ? "d-none": "btn"} style={{
+                                                            color: "#fff",
+                                                            backgroundColor: "#0071c2",
+                                                            // this.state.checkAvailFlag? {display:"none"} : {display:"block"}
+                                                         }}
+                                                        onClick={this.handleCheckAvailable}
+                                                        >Check Availability
+                                                        </button>
+                                                        {/* </Link> */}
+                                                    </div>
+                                                    <div style={{width:"30%"}}></div>
+                                                </div>
+                                                    <br/>
+                                                <div>
+                                                    <div>
+                                                        <button type="button" className= {this.state.checkAvailFlag ? "d-none": "btn mr-2"} style={{
+                                                            color: "#fff",
+                                                            backgroundColor: "#0071c2"
+                                                        }}
+                                                        onClick={this.handleCheckAvailable}
+                                                        >Change Search</button>
+                                                        {/* <Link to="/booking">
+                                                        <button type="button" className={this.state.checkAvailFlag ? "d-none": "btn"} style={{
+                                                            color: "#fff",
+                                                            backgroundColor: "#0071c2"
+                                                        }} 
+                                                        >Book Now</button>
+                                                        </Link> */}
+                                                    </div>
+                                                    <div>
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <div className={`d-flex flex-row`}>
+                                                    <div className={`mr-3 mt-2`}>
+                                                        Rooms
+                                                        <select type={`number`} className={`ml-1`} name ="roomBookPage" onChange={this.handleChange}>
+                                                            {roomArr && roomArr.map(item =>(
+                                                                <option value={item} key={item}>
+                                                                    {item}
+                                                                </option>
+                                                            ))}
+                                                        </select>
+                                                    </div>
+                                                    <div className={`mr-3 mt-2`}>
+                                                        Adults
+                                                        <select type={`number`} className={`ml-1`} name ="adultBookPage" onChange={this.handleChange}>
+                                                        {adultArr && adultArr.map(item =>(
+                                                                <option value={item} key={item}>
+                                                                    {item}
+                                                                </option>
+                                                            ))}
+                                                        </select>
+                                                    </div>
+                                                    <div className={`mr-3 mt-2`}>
+                                                        Children
+                                                        <select type={`number`} className={`ml-1`} name ="childrenBookPage" onChange={this.handleChange}>
+                                                            {childArr && childArr.map(item =>(
+                                                                <option value={item} key={item}>
+                                                                    {item}
+                                                                </option>
+                                                            ))}
+                                                        </select>
+                                                    </div>
+                                                </div>
 
+                                            </div>
                                         </div>
 
-                                    </div>
+                                        {checkAvailability ==="Available" ? <BillingDetails data={obj}/> : ""}
+                                    </>
 
                                 </div>
                             </div>
+                            <div className={`${style.recommendDiv}`}>
+                                <h4 style={{fontSize: "18px",textAlign:"left",marginLeft:"8%"}}>Popular properties similar
+                                    to {entityData["property_name"]}</h4>
+                                <Carousel breakPoints={breakPoints} showArrows={true} pagination={false}>
+                                    {recommendations && recommendations.map((item, index) => (
+                                        <RecommendCard key={uuidv4()} data={item}/>
+                                    ))}
+                                </Carousel>
+                            </div>
                         </div>
                         <div className={`col-1`}>
-
                         </div>
                     </div>
-                </div>
-            </div>
+               </div>
+            </div>    
         );
     }
 }
@@ -831,15 +904,14 @@ const mapStateToProps = state => ({
     entityData: state.entityList.entityData,
     reviewData: state.entityList.reviewData,
     recommendationsData: state.entityList.recommendationsData,
-    isEntity: state.entityList.isEntity
+    isEntity: state.entityList.isEntity,
+    checkAvailability:state.entityList.checkAvailability,
+    bookingSearchData:state.bookingList.bookingSearchData
 })
 
 const mapDispatchToProps = dispatch => ({
-    entityListData: payload => dispatch(entityListData(payload))
+    entityListData: payload => dispatch(entityListData(payload)),
+    bookingSearchData:payload => dispatch(bookingSearchData(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Entity);
-// export default Entity;
-
-
-// export default ListResults;

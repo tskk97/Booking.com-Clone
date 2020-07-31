@@ -5,13 +5,15 @@ import reducerLogin from './Login/reducerLogin'
 import thunk from "redux-thunk";
 import reducerStays from './Stays/reducerStays';
 import reducerEntity from './EntityDetails/reducerEntity';
+import reducerBooking from './Booking/reducerBooking'
 
  
 const rootReducer =combineReducers({
     register:reducer,
     login:reducerLogin,
     staysSearch:reducerStays,
-    entityList:reducerEntity
+    entityList:reducerEntity,
+    bookingList:reducerBooking
 })
 
 const createComposer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
