@@ -1,6 +1,22 @@
 import React, {Component} from 'react';
 
 class BasicInfo extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+          isModal:true,
+          firstName:"",
+          lastName:"",
+          address:"",
+          address2:""
+        }
+    }
+
+    handleChange =(e)=>{
+        this.setState({
+            [e.target.name] : e.target.value
+        })
+    }
     render() {
         const {cb} = this.props;
         return (
@@ -8,7 +24,7 @@ class BasicInfo extends Component {
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <label htmlFor="inputEmail4">First Name</label>
-                        <input type="email" className="form-control" id="inputEmail4"/>
+                        <input type="email" className="form-control" id="inputEmail4" value={this.state.firstName} name="firstname" onChange={this.handleChange}/>
                     </div>
                     <div className="form-group col-md-6">
                         <label htmlFor="inputPassword4">Last Name</label>

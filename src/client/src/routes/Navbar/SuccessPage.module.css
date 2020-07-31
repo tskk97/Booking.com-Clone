@@ -1,0 +1,28 @@
+.body{
+    margin-top: 15vh;
+    background-color: #f4f4f4;
+}
+.confirmDiv{
+    margin-top: 5%;
+    background-color: #fff;
+    border: 1px solid #f4f4f4;
+    border-radius: 2px;
+    padding: 16px;
+    font-weight: bold;
+}
+.yellowLike{
+    background-color: #febb02;
+    width: 24px;
+    height: 24px;
+    padding-bottom: 4px;
+    /*padding-left: 2px;*/
+    /*margin-top: 3px;*/
+    border-radius: 3px;
+    margin-left: 12px;
+}
+.separationDiv{
+    background: url("https://cf.bstatic.com/static/img/profile/mb_redesign/mb-icon-blue-arrow-right/de464536903ca22b05bf0037a9b0cbf13e4ef0d2.png");
+    min-width: 20px;
+    font-size: 36px;
+    margin-top: 15px;
+}

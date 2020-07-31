@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 import {IoIosBed} from "react-icons/io";
 import {FaRegCalendarAlt} from "react-icons/fa";
 import {BsPersonFill} from "react-icons/bs";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import "react-dates/initialize";
 import {DateRangePicker} from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
@@ -39,7 +39,7 @@ class Stays extends React.Component {
             startDate: "",
             endDate: "",
             modalVisible: false,
-            isProfile:false,
+            isProfile: false,
         }
     }
 
@@ -65,46 +65,46 @@ class Stays extends React.Component {
         })
     }
 
-    handleAdultIncrement=()=>{ 
+    handleAdultIncrement = () => {
         this.setState({
-            num_adults:this.state.num_adults+1
+            num_adults: this.state.num_adults + 1
         })
     }
-    handleAdultDecrement=()=>{
+    handleAdultDecrement = () => {
         const num_adults = this.state.num_adults
-        console.log(num_adults,"dec")
-        if(num_adults>1){
+        console.log(num_adults, "dec")
+        if (num_adults > 1) {
             this.setState({
-                num_adults:this.state.num_adults-1
+                num_adults: this.state.num_adults - 1
             })
         }
     }
-    handleChildIncrement=()=>{
+    handleChildIncrement = () => {
         this.setState({
-            num_child:this.state.num_child+1
+            num_child: this.state.num_child + 1
         })
     }
 
-    handleChildDecrement=()=>{
+    handleChildDecrement = () => {
         const num_child = this.state.num_child
-        if(num_child>0){
+        if (num_child > 0) {
             this.setState({
-                num_child:this.state.num_child-1
+                num_child: this.state.num_child - 1
             })
         }
     }
 
-    handleRoomIncrement=()=>{
+    handleRoomIncrement = () => {
         this.setState({
-            num_rooms:this.state.num_rooms+1
+            num_rooms: this.state.num_rooms + 1
         })
     }
 
-    handleRoomDecrement=()=>{
+    handleRoomDecrement = () => {
         const num_rooms = this.state.num_rooms
-        if(num_rooms>1){
+        if (num_rooms > 1) {
             this.setState({
-                num_rooms:this.state.num_rooms-1
+                num_rooms: this.state.num_rooms - 1
             })
         }
     }
@@ -124,8 +124,9 @@ class Stays extends React.Component {
             // }
         }
     }
-    render() { 
-        const { isProfile} = this.state
+
+    render() {
+        const {isProfile} = this.state
         const activePath = this.props.match.url
         // const {data} = data
         // console.log(data.crousel1)
@@ -170,13 +171,13 @@ class Stays extends React.Component {
                                                placeholder="Where are you going?"
                                                aria-label="Example text with button addon"
                                                aria-describedby="button-addon1"
-                                               value={this.state.city} name="city" onChange={this.handleChange}                               
+                                               value={this.state.city} name="city" onChange={this.handleChange}
                                         />
                                     </div>
                                     <div className="input-group justify-content-center">
                                         <div className="input-group-prepend">
                                             <button className="btn btn-outline-secondary px-3 bg-light" type="button"
-                                                    id="button-addon1"><FaRegCalendarAlt className="mb-0" size="1.2em" />
+                                                    id="button-addon1"><FaRegCalendarAlt className="mb-0" size="1.2em"/>
                                             </button>
                                         </div>
                                         <DateRangePicker
@@ -185,21 +186,20 @@ class Stays extends React.Component {
                                             startDateId="your_unique_start_date_id"
                                             endDate={this.state.endDate}
                                             endDateId="your_unique_end_date_id"
-                                            onDatesChange={({startDate, endDate}) => 
-                                                {
-                                                    let cal_checkin = String(startDate._d).split(" ")
-                                                    let cal_checkout = String(endDate._d).split(" ")
-                                                    this.setState({
-                                                        startDate,
-                                                        endDate,
-                                                        checkin_date: cal_checkin[2],
-                                                        checkin_month: cal_checkin[1],
-                                                        checkin_year: cal_checkin[3],
-                                                        checkout_date: cal_checkout[2],
-                                                        checkout_month: cal_checkout[1],
-                                                        checkout_year: cal_checkout[3]
-                                                    })
-                                                }
+                                            onDatesChange={({startDate, endDate}) => {
+                                                let cal_checkin = String(startDate._d).split(" ")
+                                                let cal_checkout = String(endDate._d).split(" ")
+                                                this.setState({
+                                                    startDate,
+                                                    endDate,
+                                                    checkin_date: cal_checkin[2],
+                                                    checkin_month: cal_checkin[1],
+                                                    checkin_year: cal_checkin[3],
+                                                    checkout_date: cal_checkout[2],
+                                                    checkout_month: cal_checkout[1],
+                                                    checkout_year: cal_checkout[3]
+                                                })
+                                            }
                                             }
                                             focusedInput={this.state.focusedInput}
                                             onFocusChange={(focusedInput) => this.setState({focusedInput})}
@@ -211,45 +211,60 @@ class Stays extends React.Component {
                                     <div className="input-group">
                                         <div className="input-group-prepend">
                                             <button className="btn btn-outline-secondary px-3 bg-light" type="button"
-                                                    id="button-addon1"><BsPersonFill size="1.5em" />
+                                                    id="button-addon1"><BsPersonFill size="1.5em"/>
                                             </button>
                                         </div>
-                    
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" className={`form-control ${style.user}`}>
-                                                {this.state.num_adults} adult . {this.state.num_child} children . {this.state.num_rooms} room
+
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#exampleModal" className={`form-control ${style.user}`}>
+                                            {this.state.num_adults} adult . {this.state.num_child} children
+                                            . {this.state.num_rooms} room
                                         </button>
 
-                                        <div class="modal fade md-5 mt-5" id="exampleModal" tabindex="-10" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                          <div class="modal-dialog modal-dialog-centered mt-5 mr-5 " role="document">
-                                            <div class="modal-content">  
-                                              <div class="modal-header">   
-                                                     <h5>Adults</h5>
-                                              <div class="modal-footer md-5">
-                                                    <button type="button" class="btn btn-primary"  onClick={this.handleAdultDecrement} >-</button>
-                                                        {this.state.num_adults}
-                                                    <button type="button" class="btn btn-primary"  onClick={this.handleAdultIncrement}>+</button>
-                                              </div>
-                                              </div>
-                                              <div class="modal-header">
-                                                  <h5>Childrens</h5>
-                                              <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary"  onClick={this.handleChildDecrement} >-</button>
-                                                    {this.state.num_child}
-                                                    <button type="button" class="btn btn-primary"  onClick={this.handleChildIncrement}>+</button>
-                                              </div>
-                                              </div>
-                                              <div class="modal-header">
-                                                  <h5>Rooms</h5>
-                                              <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary"  onClick={this.handleRoomDecrement} >-</button>
-                                                        {this.state.num_rooms}
-                                                    <button type="button" class="btn btn-primary"  onClick={this.handleRoomIncrement}>+</button>
-                                              </div>
-                                              </div>
+                                        <div class="modal fade md-5 mt-5" id="exampleModal" tabindex="-10" role="dialog"
+                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered mt-5 mr-5 " role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5>Adults</h5>
+                                                        <div class="modal-footer md-5">
+                                                            <button type="button" class="btn btn-primary"
+                                                                    onClick={this.handleAdultDecrement}>-
+                                                            </button>
+                                                            {this.state.num_adults}
+                                                            <button type="button" class="btn btn-primary"
+                                                                    onClick={this.handleAdultIncrement}>+
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-header">
+                                                        <h5>Childrens</h5>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-primary"
+                                                                    onClick={this.handleChildDecrement}>-
+                                                            </button>
+                                                            {this.state.num_child}
+                                                            <button type="button" class="btn btn-primary"
+                                                                    onClick={this.handleChildIncrement}>+
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-header">
+                                                        <h5>Rooms</h5>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-primary"
+                                                                    onClick={this.handleRoomDecrement}>-
+                                                            </button>
+                                                            {this.state.num_rooms}
+                                                            <button type="button" class="btn btn-primary"
+                                                                    onClick={this.handleRoomIncrement}>+
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                          </div>
                                         </div>
-                                         {/* <input type="text" className={`form-control ${style.user}`} placeholder=".."
+                                        {/* <input type="text" className={`form-control ${style.user}`} placeholder=".."
                                         <input type="text" className={`form-control ${style.user}`} placeholder="No. of Persons"
                                                aria-label="Example text with button addon"
                                                aria-describedby="button-addon1"
@@ -257,7 +272,8 @@ class Stays extends React.Component {
                                                onChange={this.handleChange}
                                         /> */}
                                     </div>
-                                    <Link to={!this.state.city ? `/stays` : `/stays/search_results?city=${this.state.city}&checkin_date=${this.state.checkin_date}&checkin_month=${this.state.checkin_month}&checkin_year=${this.state.checkin_year}&checkout_date=${this.state.checkout_date}&checkout_month=${this.state.checkout_month}&checkout_year=${this.state.checkout_year}&num_adults=${this.state.num_adults}&num_child=${this.state.num_child}&num_rooms=${this.state.num_rooms}&page=1`}>
+                                    <Link
+                                        to={!this.state.city ? `/stays` : `/stays/search_results?city=${this.state.city}&checkin_date=${this.state.checkin_date}&checkin_month=${this.state.checkin_month}&checkin_year=${this.state.checkin_year}&checkout_date=${this.state.checkout_date}&checkout_month=${this.state.checkout_month}&checkout_year=${this.state.checkout_year}&num_adults=${this.state.num_adults}&num_child=${this.state.num_child}&num_rooms=${this.state.num_rooms}&page=1`}>
                                         <button className={`${style.searchBtn} ml-1 my-auto`}>Search</button>
                                     </Link>
                                 </div>
@@ -295,7 +311,7 @@ class Stays extends React.Component {
 
                 {/* Display Profile Modal */}
 
-            {/* <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                {/* <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
