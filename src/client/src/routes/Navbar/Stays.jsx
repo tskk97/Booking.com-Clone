@@ -14,7 +14,7 @@ import ProfileDetails from './ProfileDetails';
 import Carousel from "react-elastic-carousel";
 import data from "./browserData.json";
 import BrowserByType from './BrowserByType';
-import Autocomplete from 'react-google-autocomplete';
+// import Autocomplete from 'react-google-autocomplete';
 import {v4 as uuidv4} from 'uuid';
 import ConnectTraveller from './ConnectTraveller';
 
@@ -110,7 +110,7 @@ class Stays extends React.Component {
     }
 
     profileDisplayModal=()=>{
-        const {l_isAuth,r_isAuth,l_userData,r_userData} = this.props
+        const {l_isAuth,r_isAuth,l_userData} = this.props
         const profData=l_userData[0]
         console.log(profData)
         if(l_isAuth || r_isAuth){

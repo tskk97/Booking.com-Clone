@@ -41,15 +41,17 @@ import Carousel from "react-elastic-carousel";
 import {bookingSearchData} from '../../redux/Booking/action'
 import {Link} from 'react-router-dom'
 import BillingPage from './BillingPage.jsx';
+import BillingDetails from "./BillingDetails";
+
 
 class Entity extends Component {
     constructor(props) {
         super(props);
         this.state = {
             entityId: "",
-            roomBookPage:"",
-            adultBookPage:"",
-            childrenBookPage:"",
+            roomBookPage:1,
+            adultBookPage:1,
+            childrenBookPage:0,
             checkInDate:"",
             checkOutDate:"",
             checkAvailFlag:true
@@ -73,7 +75,7 @@ class Entity extends Component {
     
     handleCheckAvailable=()=>{
         const {roomBookPage,childrenBookPage,adultBookPage} = this.state
-        const {entityListData,match,bookingSearchData,checkAvailability} = this.props
+        const {entityListData,match,bookingSearchData,checkAvailability,entityData} = this.props
         console.log(checkAvailability)
              console.log("arun")
             this.setState({
@@ -96,8 +98,6 @@ class Entity extends Component {
 
     }
 
-
-
     render() {
         const {entityData, reviewData, recommendationsData,checkAvailability} = this.props
         const {checkInDate,checkOutDate,roomBookPage,childrenBookPage,adultBookPage} = this.state
@@ -105,14 +105,17 @@ class Entity extends Component {
         const adultCount = entityData["adult_budget_per_night"] * adultBookPage
         const childCount = entityData['child_budget_per_night'] * childrenBookPage
         const total = roomBookPage * (adultCount + childCount + 1000 + 500 +50)
-        console.log(total)
+        // console.log(total)
         let obj = {
+            name:entityData["property_name"],
+            adultPrice:entityData["adult_budget_per_night"],
+            childPrice:entityData["child_budget_per_night"],
             num_rooms:roomBookPage,
             num_adults:adultBookPage,
             num_child:childrenBookPage,
             total:total
         }
-        console.log(obj)
+        // console.log(obj)
         const breakPoints = [
             { width: 1, itemsToShow: 3 },
             { width: 550, itemsToShow: 3 },
@@ -134,48 +137,8 @@ class Entity extends Component {
         for(var i=0;i<=roomNum;i++){
             childArr.push(i)
         }
-        const recommendations = [
-            {
-                "id": 5,
-                "property_name": "Radisson Bengaluru City Center",
-                "property_type_name": "Hotels",
-                "city_name": "Bangalore",
-                "img_path_url": "https://cf.bstatic.com/xdata/images/hotel/square600/232847950.webp?k=eaa659d084fca9e43fd6f0f0c40d0c4f72c284a161031e4adc9090cbae63a4b6&o=",
-                "budget": "4800",
-                "rating": "5",
-                "review_score": "8.6"
-            },
-            {
-                "id": 9,
-                "property_name": "Taj Yeshwantpur Bengaluru",
-                "property_type_name": "Hotels",
-                "city_name": "Bangalore",
-                "img_path_url": "https://cf.bstatic.com/xdata/images/hotel/square600/17173782.webp?k=2f452278302c012ba3eae7f27386b2cf94c3b6cb18b2135f7ecd2082dd2d2f87&o=",
-                "budget": "5300",
-                "rating": "5",
-                "review_score": "8.8"
-            },
-            {
-                "id": 13,
-                "property_name": "The Oberoi Bengaluru Opens in new window",
-                "property_type_name": "Hotels",
-                "city_name": "Bangalore",
-                "img_path_url": "https://cf.bstatic.com/xdata/images/hotel/square600/31211348.webp?k=c469403df80f10e33120c7be42b61d458746716a4e04c62ad4b9afc1c22edc98&o=",
-                "budget": "5600",
-                "rating": "5",
-                "review_score": "9.2"
-            },
-            {
-                "id": 17,
-                "property_name": "The Chancery Pavilion",
-                "property_type_name": "Hotels",
-                "city_name": "Bangalore",
-                "img_path_url": "https://cf.bstatic.com/xdata/images/hotel/square600/124204205.jpg?k=9591887684f038b53d392759c54c1e6be698e404d008c7a4566cb7ecae68fe2f&o=",
-                "budget": "5300",
-                "rating": "4",
-                "review_score": "7.1"
-            }
-        ]
+        console.log(recommendationsData)
+        const recommendations = recommendationsData
         // console.log("entity data is", entityData)
         // console.log(checkInDate,checkOutDate)
         const reviewArray = [["Rooms are beautiful, staff is amazing, as is breakfast", "Sarah", "USA"]]
@@ -864,13 +827,13 @@ class Entity extends Component {
                                                         }}
                                                         onClick={this.handleCheckAvailable}
                                                         >Change Search</button>
-                                                        <Link to="/booking">
+                                                        {/* <Link to="/booking">
                                                         <button type="button" className={this.state.checkAvailFlag ? "d-none": "btn"} style={{
                                                             color: "#fff",
                                                             backgroundColor: "#0071c2"
                                                         }} 
                                                         >Book Now</button>
-                                                        </Link>
+                                                        </Link> */}
                                                     </div>
                                                     <div>
                                                     </div>
@@ -911,71 +874,8 @@ class Entity extends Component {
 
                                             </div>
                                         </div>
-                                        <div>
-                                            {/* <div className={`${style.confirmDiv}`} style={{marginTop:"5%"}}> */}
-                                                 <BillingPage /> 
-                                            {/* </div> */}
-                                        </div>  
-                                         
-                                        <div>
-                                            <div className={`${style.confirmDiv}`} style={{marginTop:"3%"}}>
-                                                <div className={`d-flex flex-column`}>
-                                                    <div className={`d-flex flex-row`}>
-                                                        <div style={{fontSize:"18px",fontWeight:"bold"}}>The Leela Palace Bangalore</div>
-                                                        <RiStarSLine
-                                                            style={{marginTop: "7px", marginLeft: "12px", color: "#febb02"}}/>
-                                                        <RiStarSLine style={{marginTop: "7px", color: "#febb02"}}/>
-                                                        <RiStarSLine style={{marginTop: "7px", color: "#febb02"}}/>
-                                                        <RiStarSLine style={{marginTop: "7px", color: "#febb02"}}/>
-                                                        <RiStarSLine style={{marginTop: "7px", color: "#febb02"}}/>
-                                                        <div className={`${style.yellowLike}`}>
-                                                            <AiOutlineLike style={{color: "white",marginLeft:"2px",marginBottom:"2px"}}/>
-                                                        </div>
-                                                    </div>
-                                                    <div className={`d-flex flex-column mt-3`} style={{textAlign:"left"}}>
-                                                        <div style={{fontSize:"14px"}} className={`d-flex flex-row`}>
-                                                            <div style={{width:"20%"}}>No.of Rooms</div>
-                                                            <div className={`ml-4`}>{roomBookPage}</div>
-                                                        </div>
-                                                        <div style={{fontSize:"14px"}} className={`d-flex flex-row mt-2`}>
-                                                            <div style={{width:"20%"}}>No.of Adults</div>
-                                                            <div className={`ml-4`}>{adultBookPage}</div>
-                                                        </div>
-                                                        <div style={{fontSize:"14px"}} className={`d-flex flex-row mt-2`}>
-                                                            <div style={{width:"20%"}}>No.of Children</div>
-                                                            <div className={`ml-4`}>{childrenBookPage}</div>
-                                                        </div>
-                                                        <div style={{fontSize:"14px"}} className={`d-flex flex-row mt-2`}>
-                                                            <div style={{width:"20%"}}>Price per adult</div>
-                                                            <div className={`ml-4`}>₹{entityData["adult_budget_per_night"]}</div>
-                                                        </div>
-                                                        <div style={{fontSize:"14px"}} className={`d-flex flex-row mt-2`}>
-                                                            <div style={{width:"20%"}}>Price per child</div>
-                                                            <div className={`ml-4`}>₹{entityData["child_budget_per_night"]}</div>
-                                                        </div>
-                                                        <div style={{fontSize:"14px"}} className={`d-flex flex-row mt-2`}>
-                                                            <div style={{width:"20%"}}>Service Fee</div>
-                                                            <div className={`ml-4`}>₹1000</div>
-                                                        </div>
-                                                        <div style={{fontSize:"14px"}} className={`d-flex flex-row mt-2`}>
-                                                            <div style={{width:"20%"}}>GST</div>
-                                                            <div className={`ml-4`}>₹500</div>
-                                                        </div>
-                                                        <div style={{fontSize:"14px"}} className={`d-flex flex-row mt-2`}>
-                                                            <div style={{width:"20%"}}>Processing Fee</div>
-                                                            <div className={`ml-4`}>₹50</div>
-                                                        </div>
-                                                        <div style={{fontSize:"24px"}} className={`d-flex flex-row mt-2`}>
-                                                            <div style={{width:"20%"}}>Total</div>
-                                                            <div className={`ml-4`}>{total}</div>
-                                                        </div>
-                                                        <Link to="/booking">
-                                                            <button className={`btn mt-4 btn-small`} style={{backgroundColor:"#0071c2",color:"white",width:"20%",margin:"0px auto"}}>Proceed to Pay</button>
-                                                        </Link>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                        {checkAvailability ==="Available" ? <BillingDetails data={obj}/> : ""}
                                     </>
 
                                 </div>
