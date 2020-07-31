@@ -12,6 +12,8 @@ import Attractions from './Navbar/Attractions';
 import AirportTaxis from './Navbar/AirportTaxis';
 import ListResults from "./Navbar/ListResults";
 import Entity from "./Navbar/Entity";
+import BookingPage from "./Navbar/BookingPage";
+import SuccessPage from "./Navbar/SuccessPage";
 
 const Routes = ()=>(
     <>
@@ -28,6 +30,8 @@ const Routes = ()=>(
             <Route path ="/login/password" component = {LoginPassword}/>
             <Route exact path="/stays/:id" component={ListResults}/>
             <Route path="/stays/property/:prop_id" component={Entity}/>
+            <Route path="/booking" component={BookingPage}/>
+            <Route path="/success" component={SuccessPage}/>
         </Switch>
     </>
 )

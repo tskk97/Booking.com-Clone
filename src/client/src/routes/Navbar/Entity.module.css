@@ -330,6 +330,8 @@
 }
 .greenDiv > *{
     font-size: 14px;
+    text-align: left;
+    width: 200px;
 }
 .descr{
     margin-top: 3%;
@@ -338,7 +340,37 @@
     text-align: justify;
     font-weight: normal;
 }
+
+.descrborder{
+    margin-top: 3%;
+    justify-content: left;
+    font-size: 14px;
+    text-align: justify;
+    font-weight: normal;
+    width: 850px;
+}
 .facilityDiv{
     display: flex;
     flex-direction: row;
+}
+.recommendDiv{
+    padding:10px;
+    border:1px solid #ebf3ff;
+    margin-top: 10px;
+    background-color: white;
+}
+.recommendFlex{
+    display: flex;
+    flex-direction: row;
+}
+.calendar{
+    width: 80%;
+}
+.confirmDiv{
+    margin-top: 5%;
+    background-color: #fff;
+    border: 1px solid #f4f4f4;
+    border-radius: 2px;
+    padding: 16px;
+    font-weight: bold;
 }
