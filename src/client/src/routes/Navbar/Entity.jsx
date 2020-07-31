@@ -42,9 +42,8 @@ import {bookingSearchData} from '../../redux/Booking/action'
 import {Link} from 'react-router-dom'
 // import BillingPage from './BillingPage.jsx';
 import BillingDetails from "./BillingDetails";
+import GoogleMap from './GoogleMap.jsx';
 import diffDates from 'diff-dates'
-
-
 
 class Entity extends Component {
     constructor(props) {
@@ -57,6 +56,7 @@ class Entity extends Component {
             checkInDate:"",
             checkOutDate:"",
             checkAvailFlag:true,
+            IsMap:false,
             num_nights: ""
         }
     }
@@ -115,6 +115,13 @@ class Entity extends Component {
 
     }
 
+    handleMap=()=>{
+        console.log("modal")
+        this.setState({
+            IsMap:true
+        })
+    }
+
     render() {
         const {entityData, reviewData, recommendationsData, checkAvailability, match, l_isAuth, r_isAuth} = this.props
         const {checkInDate, checkOutDate, roomBookPage, childrenBookPage, adultBookPage} = this.state
@@ -123,7 +130,7 @@ class Entity extends Component {
         const adultCount = entityData["adult_budget_per_night"] * adultBookPage
         const childCount = entityData['child_budget_per_night'] * childrenBookPage
         const total = roomBookPage * (adultCount + childCount + 1000 + 500 +50)
-        // console.log(total)
+        console.log(this.state.IsMap)
         let obj = {
             name:entityData["property_name"],
             adultPrice:entityData["adult_budget_per_night"],
@@ -167,6 +174,7 @@ class Entity extends Component {
                     <div className={`row`}>
                         <div className={`col-1`}></div>
                         <div className={`col-10 text-center container-fluid ${style.centralDiv}`}>
+                            {this.state.IsMap && <GoogleMap />} 
                             <div className={`row`}>
                                 <div className={`col-3 ${style.filters}`}>
                                     <div className={`${style.reserveDiv}`}>
@@ -267,7 +275,14 @@ class Entity extends Component {
                                         <button className={`${style.searchBtn}`} style={{textAlign: "center"}}>Search
                                         </button>
                                     </div>
-                                    <div className={`${style.googleMapDiv}`}>(#Google Map Section)</div>
+                                    <div className={`${style.googleMapDiv}`} 
+                                        style={{backgroundImage : "url('http://www.antradar.com/medialib/img-26-paddington2.png')"}} 
+                                        >
+                                        <button class="btn btn-primary my-5" data-toggle="modal" data-target="#exampleModal"
+                                            onClick={this.handleMap}>
+                                            Show Map
+                                        </button>
+                                    </div>
                                     <div className={`${style.modeOfTransport}`}>
                                         <div style={{
                                             backgroundColor: "#ebf3ff",
