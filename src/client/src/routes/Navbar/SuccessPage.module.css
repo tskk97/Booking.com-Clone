@@ -20,3 +20,9 @@
     border-radius: 3px;
     margin-left: 12px;
 }
+.separationDiv{
+    background: url("https://cf.bstatic.com/static/img/profile/mb_redesign/mb-icon-blue-arrow-right/de464536903ca22b05bf0037a9b0cbf13e4ef0d2.png");
+    min-width: 20px;
+    font-size: 36px;
+    margin-top: 15px;
+}
