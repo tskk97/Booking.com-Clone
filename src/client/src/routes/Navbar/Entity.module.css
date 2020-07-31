@@ -357,3 +357,11 @@
 .calendar{
     width: 80%;
 }
+.confirmDiv{
+    margin-top: 5%;
+    background-color: #fff;
+    border: 1px solid #f4f4f4;
+    border-radius: 2px;
+    padding: 16px;
+    font-weight: bold;
+}
