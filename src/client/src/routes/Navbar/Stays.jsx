@@ -14,7 +14,7 @@ import ProfileDetails from './ProfileDetails';
 import Carousel from "react-elastic-carousel";
 import data from "./browserData.json";
 import BrowserByType from './BrowserByType';
-// import Autocomplete from 'react-google-autocomplete';
+import Autocomplete from 'react-google-autocomplete';
 import {v4 as uuidv4} from 'uuid';
 import ConnectTraveller from './ConnectTraveller';
 
@@ -159,20 +159,27 @@ class Stays extends React.Component {
                                             </button> 
                                             {isProfile && <ProfileDetails />}                                          
                                         </div>
-                                        {/* <Autocomplete
-                                            style={{width: '90%'}}
+                                        <Autocomplete
+                                            className={`form-control ${style.bed}`}
+                                            aria-label="Example text with button addon"
+                                            aria-describedby="button-addon1"
+                                            // style={{width: '90%'}}
+                                            placeholder="Where are you going?"
                                             onPlaceSelected={(place) => {
-                                              console.log(place);
+                                              console.log(place)
+                                              this.setState({
+                                                  city:"Bangalore"
+                                              })
                                             }}
                                             types={['(regions)']}
-                                            componentRestrictions={{country: "ru"}}
-                                        /> */}
-                                        <input type="text" className={`form-control ${style.bed}` }
+                                            componentRestrictions={{country: "in"}}
+                                        />
+                                        {/* <input type="text" className={`form-control ${style.bed}` }
                                                placeholder="Where are you going?"
                                                aria-label="Example text with button addon"
                                                aria-describedby="button-addon1"
                                                value={this.state.city} name="city" onChange={this.handleChange}
-                                        />
+                                        /> */}
                                     </div>
                                     <div className="input-group justify-content-center">
                                         <div className="input-group-prepend">

@@ -24,23 +24,25 @@ class BasicInfo extends Component {
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <label htmlFor="inputEmail4">First Name</label>
-                        <input type="email" className="form-control" id="inputEmail4" value={this.state.firstName} name="firstname" onChange={this.handleChange}/>
+                        <input type="email" className="form-control" id="inputEmail4" value={this.state.firstName} name="firstName" onChange={this.handleChange}/>
                     </div>
                     <div className="form-group col-md-6">
                         <label htmlFor="inputPassword4">Last Name</label>
                         <input type="password" className="form-control"
-                               id="inputPassword4"/>
+                               id="inputPassword4"
+                               value={this.state.lastName} name="lastName" onChange={this.handleChange}
+                               />
                     </div>
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputAddress">Address</label>
                     <input type="text" className="form-control" id="inputAddress"
-                           placeholder="1234 Main St"/>
+                           placeholder="1234 Main St" value={this.state.address} name="address" onChange={this.handleChange}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputAddress2">Address 2</label>
                     <input type="text" className="form-control" id="inputAddress2"
-                           placeholder="Apartment, studio, or floor"/>
+                           placeholder="Apartment, studio, or floor" value={this.state.address2} name="address2" onChange={this.handleChange}/>
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-6">
