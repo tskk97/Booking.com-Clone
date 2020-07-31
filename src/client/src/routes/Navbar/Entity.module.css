@@ -1,8 +1,8 @@
-/*.container{*/
-/*    margin-top: 15vh;*/
-/*}*/
+
 .body{
     margin-top: 20vh;
+    position: relative;
+    min-height: 100vh;
 }
 .flexRow{
     display: flex;
@@ -348,6 +348,7 @@
     padding:10px;
     border:1px solid #ebf3ff;
     margin-top: 10px;
+    margin-bottom: 10px;
     background-color: white;
 }
 .recommendFlex{

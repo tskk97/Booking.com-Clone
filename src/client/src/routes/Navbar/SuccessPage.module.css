@@ -1,6 +1,8 @@
 .body{
     margin-top: 15vh;
     background-color: #f4f4f4;
+    position: relative;
+    min-height: 100vh;
 }
 .confirmDiv{
     margin-top: 5%;

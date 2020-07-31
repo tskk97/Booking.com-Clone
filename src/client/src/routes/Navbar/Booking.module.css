@@ -8,6 +8,8 @@
 }
 .body{
     margin-top: 15vh;
+    position: relative;
+    min-height: 100vh;
 }
 
 .leftDiv{
