@@ -90,8 +90,8 @@ class Login extends Component {
                                                 cookiePolicy={'single_host_origin'}
                                                 />
                                             </div>
-                                            <div>F</div>
-                                            <div>A</div>
+                                            {/* <div>F</div>
+                                            <div>A</div> */}
                                         </div>
                                         <div className={`${style.signInDiv}`}>
                                             <p className={"text-center mt-4"}>New User? <Link to="/register">Register</Link></p>

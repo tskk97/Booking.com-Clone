@@ -158,6 +158,7 @@ class Entity extends Component {
                     <div className={`row`}>
                         <div className={`col-1`}></div>
                         <div className={`col-10 text-center container-fluid ${style.centralDiv}`}>
+                            {this.state.IsMap && <GoogleMap />} 
                             <div className={`row`}>
                                 <div className={`col-3 ${style.filters}`}>
                                     <div className={`${style.reserveDiv}`}>
@@ -266,7 +267,6 @@ class Entity extends Component {
                                             Show Map
                                         </button>
                                     </div>
-                                    {this.state.IsMap && <GoogleMap />  }
                                     <div className={`${style.modeOfTransport}`}>
                                         <div style={{
                                             backgroundColor: "#ebf3ff",

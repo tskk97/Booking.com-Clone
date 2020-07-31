@@ -93,8 +93,8 @@ class Register extends Component {
                                                 cookiePolicy={'single_host_origin'}
                                             />
                                             </div>
-                                            <div>F</div>
-                                            <div>A</div>
+                                            {/* <div>F</div>
+                                            <div>A</div> */}
                                         </div>
                                         <div className={`${style.signInDiv}`}>
                                             <p className={"text-center mt-4"}>Already have an account? <Link to="/login">Sign in</Link></p>
