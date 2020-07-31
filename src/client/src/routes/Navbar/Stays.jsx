@@ -148,7 +148,6 @@ class Stays extends React.Component {
                             <div className={`${style.flexCol} mt-5`}>
                                 <h4 style={{fontWeight: "bold", marginTop: "7px"}}>Find deals on hotels, homes and much
                                     more...
-                                    {/* <button  data-toggle="modal" data-target="#basicModal" id="profileBtnId"></button> */}
                                 </h4>
                                 <small>From cosy country homes to funky city flats</small>
                                 <div className={`${style.flexRowInput}`}>
