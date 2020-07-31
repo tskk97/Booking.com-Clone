@@ -17,6 +17,7 @@ class Register(Resource):
     @classmethod
     def post(self):
         data = Register.parser.parse_args()
+        print(data)
         if data.mode == "Manual":
             flag_register_request, msg = manualRegister(data)
             if flag_register_request:

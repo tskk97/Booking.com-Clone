@@ -8,6 +8,8 @@ from app.main.routes.Authentication import Login_Pwd
 from app.main.routes.Authentication import Logout
 from app.main.routes.StaysSearch import DefaultSearch
 from app.main.routes.EntityProperty import GetPropertyDetails
+from app.main.routes.Payment import Payment_OrderId
+from app.main.routes.Payment import Payment_Validation
 
 
 def add_resources(app):
@@ -24,6 +26,9 @@ def add_resources(app):
     api.add_resource(Logout, '/logout')
     api.add_resource(DefaultSearch, '/stays/search_results')
     api.add_resource(GetPropertyDetails, '/stays/property/<prop_id>')
+    api.add_resource(Payment_OrderId, '/stays/property/<prop_id>/booking/getOrderId')
+    api.add_resource(Payment_Validation, '/stays/property/<prop_id>/booking/getValidation')
+
     
 
 def register_blueprints(app):

@@ -7,10 +7,13 @@ from app.main.utils.save_db import save_db
 from app.main import db
 
 
-def get_property_details(prop_id):
+def get_property_details(user_data, prop_id):
 
+    status = ""
     recommended_property_type = ""
     recommended_property_id = ""
+    totalRooms = ""
+    availableRooms = ""
 
     query = 'select property.id, property.property_name, property.description, property_types.property_type_name, city.city_name, states.state_name, country.country_name, property.img_path_url, property.adult_budget_per_night, property.child_budget_per_night, property.rating, property.review_score, property.all_day_reception, property.payment_mode, property.breakfast, property.lunch, property.dinner, property.total_rooms, property.available_rooms, property.occupied_rooms, GROUP_CONCAT(facilities.facility_name) as "facilities" from property join property_types on property_type_id = property_types.id join city on property.city_id = city.id join states on property.state_id = states.id join country on property.country_id = country.id join prop_facilities on property.id = prop_facilities.property_id join facilities on prop_facilities.facility_id = facilities.id where property.id = "%d" GROUP BY property.id;' % (int(prop_id)) 
     
@@ -39,8 +42,13 @@ def get_property_details(prop_id):
         temp['lunch'] = item['lunch']
         temp['dinner'] = item['dinner']
         temp['facilities'] = item['facilities'].split(",")
+
         temp['total_rooms'] = item['total_rooms']
+        totalRooms = item['total_rooms']
+
         temp['available_rooms'] = item['available_rooms']
+        availableRooms = item['available_rooms']
+
         temp['occupied_rooms'] = item['occupied_rooms']
         data.append(temp)
 
@@ -82,4 +90,19 @@ def get_property_details(prop_id):
             temp['review_score'] = item['review_score']
             recommendations.append(temp)
 
-    return True, data, reviews, recommendations
+    print("done")
+
+    state = False
+    if user_data != None:
+        for elem in user_data.values():
+            if elem != None:
+                state = True
+    # print(user_data)
+    print(state)
+    if state == True:
+        if (int(availableRooms) - int(user_data["num_rooms"])) >= 0:
+            status = "Available"
+        else:
+            status = "Not Available"
+
+    return True, data, reviews, recommendations, status
