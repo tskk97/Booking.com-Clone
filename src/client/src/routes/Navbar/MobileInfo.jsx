@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
+import Payment from "../Navbar/Payment"
 
 class MobileInfo extends Component {
     render() {
-        const {cb} = this.props
+        const {cb, match} = this.props
         return (
             <form className={`p-3`}>
 
@@ -16,8 +17,9 @@ class MobileInfo extends Component {
                     <input type="text" className="form-control" id="inputAddress"
                            placeholder="1234 Main St" style={{width:"100px"}}/>
                 </div>
-                <button type="submit" className="btn mr-3" style={{backgroundColor:"#0071c2",color:"white"}}>Proceed to Pay</button>
-                <button type="submit" onClick={()=>cb()} className="btn" style={{backgroundColor:"#0071c2",color:"white"}}>Back</button>
+                <button type="submit" onClick={()=>cb()} className="btn mr-3" style={{backgroundColor:"#0071c2",color:"white"}}>Back</button>
+                {/* <Link to={`${match.url}/payment/getOrderId`}><button type="submit" className="btn mr-3" style={{backgroundColor:"#0071c2",color:"white"}}>Proceed to Pay</button></Link> */}
+                <Payment match={match} />
             </form>
 
         );

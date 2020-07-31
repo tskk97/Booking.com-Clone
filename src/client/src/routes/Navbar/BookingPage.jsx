@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import {connect} from 'react-redux'
 import style from "./Booking.module.css";
 import Navbar from "./Navbar";
@@ -9,7 +10,7 @@ import {Link} from "react-router-dom";
 import "react-dates/initialize";
 import {DateRangePicker} from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
-import {staysSearchData} from '../../redux/Stays/action'
+import {bookingSearchRequest} from '../../redux/Booking/action'
 import ProfileDetails from './ProfileDetails';
 import $ from 'jquery';
 import {RiStarSLine} from "react-icons/ri";
@@ -18,24 +19,111 @@ import {GiBus, GiTwoShadows} from "react-icons/gi";
 import {IoIosRestaurant} from "react-icons/io";
 import {MdLocationOn} from "react-icons/md";
 import {TiTickOutline} from "react-icons/ti";
-import BasicInfo from "./BasicInfo";
-import MobileInfo from "./MobileInfo";
+// import BasicInfo from "./BasicInfo";
+// import MobileInfo from "./MobileInfo";
+// import Payment from "./Payment"
 
 class BookingPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            basicInfoFlag : false
+            basicInfoFlag : false, 
+            firstName:"",
+            lastName:"",
+            address:"",
+            address2:""
         }
     }
+    componentDidMount(){
+        // const {location} = this.props
+        let url =  new URL(window.location.href)
+        // console.log(url.search)
+        let baseUrl = url.search.toString().slice(1)
+        let propertiesArr = baseUrl.split("&")
+        
+        let obj = {}
+
+        for(var j=0;j<propertiesArr.length;j++){
+            propertiesArr[j] = propertiesArr[j].split("=")
+            
+            if(!obj[propertiesArr[j][0]]){
+                obj[propertiesArr[j][0]] = []
+                obj[propertiesArr[j][0]].push(propertiesArr[j][1])
+            }
+            else{
+                obj[propertiesArr[j][0]].push(propertiesArr[j][1])
+            }
+        }
+        console.log(obj)
+    }
     handleBasicInfoFlag = (e)=>{
+        e.preventDefault()
         this.setState({
             basicInfoFlag:!this.state.basicInfoFlag
         })
         console.log("onClick worked");
     }
+
+    razorPay = async() => {
+    const { history, match } = this.props;
+    const orderId_url = "http://4be0e3fbd5d4.ngrok.io" + match.url
+    console.log(orderId_url)
+        try {
+            let order_res = await axios.post(orderId_url,{
+            "amount": 490 * 100,
+            "currency": "INR",
+            "receipt": "1#Saikiran#" + Date.now(),
+            "payment_capture":"1",
+        })
+        console.log(order_res)
+        var options = {
+            "key": "rzp_test_atM2YwdkGw4EC6", // Enter the Key ID generated from the Dashboard
+            "amount": 490 * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Saikiran",
+            "description": "Booking.com",
+            "image": "https://cdn.worldvectorlogo.com/logos/bookingcom-1.svg",
+            "order_id": order_res['data']['id'], //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "prefill": {
+                "name": "Saikiran",
+                "email": "sai@mail.com",
+                "contact": "9366535775"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#003072"
+            },
+            handler: async (response) => {
+                console.log(response)
+                const validation_url = "http://4be0e3fbd5d4.ngrok.io/stays/property/"+match.params.prop_id+"/booking/getValidation"
+                let final_res = await axios.post(validation_url, {
+                    ...response,
+                })
+                console.log(final_res)
+                if(final_res['data']['status'] === 'Success'){
+                    // alert(final_res['data']['message'])
+                    const redirect_url = "/stays/property/"+match.params.prop_id+"/success"
+                    history.push(redirect_url)
+                }
+                else{
+                    alert(final_res['data']['message']+", Redirecting...")
+                    history.push("/stays/property/"+match.params.prop_id)
+                }
+            },
+        };
+        const rzp_trial = window.Razorpay(options);
+        rzp_trial.open();
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
     render() {
         const {basicInfoFlag} = this.state;
+        // const {match} = this.props
         return (
             <>
                 <Navbar/>
@@ -126,7 +214,7 @@ class BookingPage extends React.Component {
                                             Free parking
                                         </div>
                                     </div>
-                                    <div className={`${style.bookingDiv} mt-3`}>
+                                    <div className={`${style.bookingDiv} mt-3 mb-5`}>
                                         <div style={{
                                             fontWeight: "bold",
                                             fontSize: "14px",
@@ -242,8 +330,61 @@ class BookingPage extends React.Component {
                                             <div className={`rounded-circle text-center`} style={{border:"1px solid black",width:"30px",height:"30px",padding:"2px",color:"white",backgroundColor:"blue"}}>B</div>
                                             <div className={`mt-1`}>(Name)</div>
                                         </div>
-                                        <div className={`${style.form} mt-2`}>
-                                            {basicInfoFlag ?  <MobileInfo cb={this.handleBasicInfoFlag}/> : <BasicInfo cb={this.handleBasicInfoFlag}/>}
+                                       
+                                        <div className={!this.state.basicInfoFlag ? `${style.form} mt-2 mb-5` : "d-none"}>
+                                            <div>
+                                                <div className="form-row">
+                                                    <div className="form-group col-md-6">
+                                                        <label htmlFor="inputEmail4">First Name</label>
+                                                        <input type="email" className="form-control" id="inputEmail4" value={this.state.firstName} name="firstname" onChange={this.handleChange}/>
+                                                    </div>
+                                                    <div className="form-group col-md-6">
+                                                        <label htmlFor="inputPassword4">Last Name</label>
+                                                        <input type="password" className="form-control"
+                                                            id="inputPassword4"/>
+                                                    </div>
+                                                </div>
+                                                <div className="form-group">
+                                                    <label htmlFor="inputAddress">Address</label>
+                                                    <input type="text" className="form-control" id="inputAddress"
+                                                        placeholder="1234 Main St"/>
+                                                </div>
+                                                <div className="form-group">
+                                                    <label htmlFor="inputAddress2">Address 2</label>
+                                                    <input type="text" className="form-control" id="inputAddress2"
+                                                        placeholder="Apartment, studio, or floor"/>
+                                                </div>
+                                                <div className="form-row">
+                                                    <div className="form-group col-md-6">
+                                                        <label htmlFor="inputCity">City</label>
+                                                        <input type="text" className="form-control" id="inputCity"/>
+                                                    </div>
+
+                                                    <div className="form-group col-md-2">
+                                                        <label htmlFor="inputZip">Zip</label>
+                                                        <input type="text" className="form-control" id="inputZip"/>
+                                                    </div>
+                                                </div>
+                                                <button className="btn" onClick={this.handleBasicInfoFlag} style={{backgroundColor:"#0071c2",color:"white"}}>Proceed to Final Details</button>
+                                            </div>
+                                        </div>
+                                        <div className={this.state.basicInfoFlag ? `${style.form} mt-2 mb-5` : "d-none"}>
+                                            {/* {basicInfoFlag ?  <MobileInfo cb={this.handleBasicInfoFlag} match={match}/> : <BasicInfo cb={this.handleBasicInfoFlag}/>} */}
+                                            <div className={`p-3`}>
+                                                <div className="form-group">
+                                                    <label htmlFor="inputAddress">Mobile Number</label>
+                                                    <input type="text" className="form-control" id="inputAddress"
+                                                        placeholder="1234 Main St" style={{width:"170px"}}/>
+                                                </div>
+                                                <div className="form-group">
+                                                    <label htmlFor="inputAddress">OTP</label>
+                                                    <input type="text" className="form-control" id="inputAddress"
+                                                        placeholder="1234 Main St" style={{width:"100px"}}/>
+                                                </div>
+                                                <button type="submit" onClick={this.handleBasicInfoFlag} className="btn mr-3" style={{backgroundColor:"#0071c2",color:"white"}}>Back</button>
+                                                {/* <Link to={`${match.url}/payment/getOrderId`}><button type="submit" className="btn mr-3" style={{backgroundColor:"#0071c2",color:"white"}}>Proceed to Pay</button></Link> */}
+                                                <button className="btn mr-3" style={{backgroundColor:"#0071c2",color:"white"}} onClick={this.razorPay}>Pay</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -279,11 +420,11 @@ const mapStateToProps = state => ({
     message: state.login.message,
 
     staysSearchData: state.staysSearch.staysSearchData,
-    isSearch: state.staysSearch.isSearch
-
+    isSearch: state.staysSearch.isSearch,
+    bookingSearchRequest: state.bookingList.bookingSearchRequest
 })
 
 const mapDispatchToProps = dispatch => ({
-    staysSearchData: payload => dispatch(staysSearchData(payload))
+    bookingSearchRequest: payload => dispatch(bookingSearchRequest(payload))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(BookingPage);

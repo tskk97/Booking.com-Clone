@@ -29,9 +29,10 @@ const Routes = ()=>(
             <Route exact path ="/login" component = {Login}/>
             <Route path ="/login/password" component = {LoginPassword}/>
             <Route exact path="/stays/:id" component={ListResults}/>
-            <Route path="/stays/property/:prop_id" component={Entity}/>
-            <Route path="/booking" component={BookingPage}/>
-            <Route path="/success" component={SuccessPage}/>
+            <Route path="/stays/property/:prop_id" exact component={Entity}/>
+            <Route path="/stays/property/:prop_id/booking/getOrderId" component={BookingPage}/>
+            {/* <Route path="/stays/property/:prop_id/booking/getValidation" component={BookingPage}/> */}
+            <Route path="/stays/property/:prop_id/success" component={SuccessPage}/>
         </Switch>
     </>
 )

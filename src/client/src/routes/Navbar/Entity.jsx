@@ -40,8 +40,10 @@ import {AiOutlineDislike} from "react-icons/ai";
 import Carousel from "react-elastic-carousel";
 import {bookingSearchData} from '../../redux/Booking/action'
 import {Link} from 'react-router-dom'
-import BillingPage from './BillingPage.jsx';
+// import BillingPage from './BillingPage.jsx';
 import BillingDetails from "./BillingDetails";
+import diffDates from 'diff-dates'
+
 
 
 class Entity extends Component {
@@ -54,7 +56,8 @@ class Entity extends Component {
             childrenBookPage:0,
             checkInDate:"",
             checkOutDate:"",
-            checkAvailFlag:true
+            checkAvailFlag:true,
+            num_nights: ""
         }
     }
 
@@ -77,10 +80,24 @@ class Entity extends Component {
         const {roomBookPage,childrenBookPage,adultBookPage} = this.state
         const {entityListData,match,bookingSearchData,checkAvailability,entityData} = this.props
         console.log(checkAvailability)
-             console.log("arun")
+        if(this.state.checkInDate !== "" && this.state.checkOutDate !== ""){
+
+            let inDate = this.state.checkInDate.split("-").map(Number)
+            let outDate = this.state.checkOutDate.split("-").map(Number)
+            // let check_out = new Date(outDate[0], outDate[1], outDate[2])
+            // let check_in = new Date(inDate[0], inDate[1], inDate[2])
+
+            const numNights = diffDates(new Date(outDate[0], outDate[1], outDate[2]), new Date(inDate[0], inDate[1], inDate[2]), "days")
+            console.log(numNights)
+
             this.setState({
-                checkAvailFlag:false
+                checkAvailFlag: !this.state.checkAvailFlag,
+                num_nights: numNights
             })
+        }
+        else{
+            alert("Please select CheckIn and CheckOut dates.")
+        }
         let obj = {
             num_rooms:roomBookPage,
             num_adults:adultBookPage,
@@ -89,7 +106,7 @@ class Entity extends Component {
         }
 
         // bookingSearchData(obj)
-        console.log(Object.keys(obj).length)
+        // console.log(Object.keys(obj).length)
         entityListData(obj)
     }
 
@@ -99,9 +116,10 @@ class Entity extends Component {
     }
 
     render() {
-        const {entityData, reviewData, recommendationsData,checkAvailability} = this.props
-        const {checkInDate,checkOutDate,roomBookPage,childrenBookPage,adultBookPage} = this.state
+        const {entityData, reviewData, recommendationsData, checkAvailability, match, l_isAuth, r_isAuth} = this.props
+        const {checkInDate, checkOutDate, roomBookPage, childrenBookPage, adultBookPage} = this.state
         console.log(entityData)
+        console.log(match)
         const adultCount = entityData["adult_budget_per_night"] * adultBookPage
         const childCount = entityData['child_budget_per_night'] * childrenBookPage
         const total = roomBookPage * (adultCount + childCount + 1000 + 500 +50)
@@ -122,13 +140,13 @@ class Entity extends Component {
             { width: 768, itemsToShow: 4 },
             { width: 1200, itemsToShow: 4 }
         ];
-        const roomNum = entityData.available_rooms
-        const adultNum = Number(roomNum*2)
+        const roomNum = entityData.total_rooms
+        const adultNum = Number(roomNum)
         // const childNum = roomNum
         const roomArr =[]
         const adultArr = []
         const childArr = []
-        for(var i=1;i<=roomNum;i++){
+        for(var i=1;i<=Number(roomNum)+1;i++){
             roomArr.push(i)
         }
         for(var j=1;j<=adultNum;j++){
@@ -790,23 +808,33 @@ class Entity extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="border border-primary text-black mt-3"
+                                        <div className="border border-primary text-black mt-5"
                                              style={{backgroundColor: "#ebf3ff"}}>
                                             <div style={{padding: 15}} className={`d-flex flex-column`}>
-                                                <div className={`text-left`}>When would you like to stay at {entityData["property_name"]}? </div>
+                                                <h5 className={`text-left mb-4`}>When would you like to stay at {entityData["property_name"]}? </h5>
                                                 <div className={`d-flex flex-row justify-content-between`}>
                                                     <div className={`d-flex flex-column mt-2`}>
-                                                        <h5 style={{fontSize:"14px",textAlign:"left"}}>Check-in-date</h5>
-                                                        <input type="date" value={this.state.checkInDate} name="checkInDate" onChange={this.handleChange} />                                                         
+                                                        <h5 style={{fontSize:"16px",textAlign:"left"}}>Check-in-date</h5>
+                                                        {
+                                                            this.state.checkAvailFlag ? 
+                                                            <input style={{fontSize: "18px"}} type="date" value={this.state.checkInDate} name="checkInDate" onChange={this.handleChange} />
+                                                            :
+                                                            <h5>{this.state.checkInDate}</h5>                                                         
+                                                        }
                                                     </div>
                                                     <div className={`d-flex flex-column mt-2`}>
-                                                        <h5 style={{fontSize:"14px",textAlign:"left"}}>Check-out-date</h5>
-                                                        <input type="date" value={this.state.checkOutDate} name="checkOutDate" onChange={this.handleChange}/>
+                                                        <h5 style={{fontSize:"16px",textAlign:"left"}}>Check-out-date</h5>
+                                                        {
+                                                            this.state.checkAvailFlag ?
+                                                            <input style={{fontSize: "18px"}} type="date" value={this.state.checkOutDate} name="checkOutDate" onChange={this.handleChange}/>
+                                                            :
+                                                            <h5>{this.state.checkOutDate}</h5>
+                                                        }
                                                     </div>
                                                     <div className={`d-flex flex-column mt-2`}>
                                                         <h5 style={{fontSize:"14px",textAlign:"left",visibility:"hidden"}}>&nbsp</h5>
                                                         {/* <Link to="/booking"> */}
-                                                        <button type="button" className={checkAvailability==="Available" ? "d-none": "btn"} style={{
+                                                        <button type="button" className={!this.state.checkAvailFlag ? "d-none": "btn"} style={{
                                                             color: "#fff",
                                                             backgroundColor: "#0071c2",
                                                             // this.state.checkAvailFlag? {display:"none"} : {display:"block"}
@@ -814,6 +842,12 @@ class Entity extends Component {
                                                         onClick={this.handleCheckAvailable}
                                                         >Check Availability
                                                         </button>
+                                                        <button type="button" className= {this.state.checkAvailFlag ? "d-none": "btn mr-2"} style={{
+                                                            color: "#fff",
+                                                            backgroundColor: "#0071c2"
+                                                        }}
+                                                        onClick={this.handleCheckAvailable}
+                                                        >Change Search</button>
                                                         {/* </Link> */}
                                                     </div>
                                                     <div style={{width:"30%"}}></div>
@@ -821,12 +855,12 @@ class Entity extends Component {
                                                     <br/>
                                                 <div>
                                                     <div>
-                                                        <button type="button" className= {this.state.checkAvailFlag ? "d-none": "btn mr-2"} style={{
+                                                        {/* <button type="button" className= {this.state.checkAvailFlag ? "d-none": "btn mr-2"} style={{
                                                             color: "#fff",
                                                             backgroundColor: "#0071c2"
                                                         }}
                                                         onClick={this.handleCheckAvailable}
-                                                        >Change Search</button>
+                                                        >Change Search</button> */}
                                                         {/* <Link to="/booking">
                                                         <button type="button" className={this.state.checkAvailFlag ? "d-none": "btn"} style={{
                                                             color: "#fff",
@@ -841,41 +875,56 @@ class Entity extends Component {
                                                 <br/>
                                                 <div className={`d-flex flex-row`}>
                                                     <div className={`mr-3 mt-2`}>
-                                                        Rooms
-                                                        <select type={`number`} className={`ml-1`} name ="roomBookPage" onChange={this.handleChange}>
-                                                            {roomArr && roomArr.map(item =>(
-                                                                <option value={item} key={item}>
-                                                                    {item}
-                                                                </option>
-                                                            ))}
-                                                        </select>
+                                                        Rooms: 
+                                                        {
+                                                            this.state.checkAvailFlag ? 
+                                                            <select type={`number`} className={`ml-1`} name ="roomBookPage" onChange={this.handleChange}>
+                                                                {roomArr && roomArr.map(item =>(
+                                                                    <option value={item} key={item}>
+                                                                        {item}
+                                                                    </option>
+                                                                ))}
+                                                            </select>
+                                                            :
+                                                             this.state.roomBookPage
+                                                        }
                                                     </div>
                                                     <div className={`mr-3 mt-2`}>
-                                                        Adults
-                                                        <select type={`number`} className={`ml-1`} name ="adultBookPage" onChange={this.handleChange}>
-                                                        {adultArr && adultArr.map(item =>(
-                                                                <option value={item} key={item}>
-                                                                    {item}
-                                                                </option>
-                                                            ))}
-                                                        </select>
+                                                        Adults: 
+                                                        {
+                                                            this.state.checkAvailFlag ? 
+                                                            <select type={`number`} className={`ml-1`} name ="adultBookPage" onChange={this.handleChange}>
+                                                            {adultArr && adultArr.map(item =>(
+                                                                    <option value={item} key={item}>
+                                                                        {item}
+                                                                    </option>
+                                                                ))}
+                                                            </select>
+                                                            :
+                                                             this.state.adultBookPage
+                                                        }
                                                     </div>
                                                     <div className={`mr-3 mt-2`}>
-                                                        Children
-                                                        <select type={`number`} className={`ml-1`} name ="childrenBookPage" onChange={this.handleChange}>
-                                                            {childArr && childArr.map(item =>(
-                                                                <option value={item} key={item}>
-                                                                    {item}
-                                                                </option>
-                                                            ))}
-                                                        </select>
+                                                        Children: 
+                                                        {
+                                                            this.state.checkAvailFlag ? 
+                                                            <select type={`number`} className={`ml-1`} name ="childrenBookPage" onChange={this.handleChange}>
+                                                                {childArr && childArr.map(item =>(
+                                                                    <option value={item} key={item}>
+                                                                        {item}
+                                                                    </option>
+                                                                ))}
+                                                            </select>
+                                                            :
+                                                             this.state.childrenBookPage
+                                                        }
                                                     </div>
                                                 </div>
 
                                             </div>
                                         </div>
 
-                                        {checkAvailability ==="Available" ? <BillingDetails data={obj}/> : ""}
+                                        {!this.state.checkAvailFlag ? <BillingDetails data={obj} match={match} checkAvailability={checkAvailability} checkInDate={this.state.checkInDate} checkOutDate={this.state.checkOutDate} num_rooms={this.state.roomBookPage} num_adults={this.state.adultBookPage} num_child={this.state.childrenBookPage} num_nights={this.state.num_nights} l_isAuth={l_isAuth} r_isAuth={r_isAuth} /> : ""}
                                     </>
 
                                 </div>
@@ -906,7 +955,26 @@ const mapStateToProps = state => ({
     recommendationsData: state.entityList.recommendationsData,
     isEntity: state.entityList.isEntity,
     checkAvailability:state.entityList.checkAvailability,
-    bookingSearchData:state.bookingList.bookingSearchData
+    bookingSearchData:state.bookingList.bookingSearchData,
+
+    isRegister: state.register.isRegister,
+    r_message: state.register.message,
+    r_isAuth: state.register.isAuth,
+    r_userEmail: state.register.userEmail,
+    r_userToken: state.register.userToken,
+    r_userData: state.register.userData,
+    r_userName: state.register.userName,
+
+    isLogin: state.login.isLogin,
+    l_message: state.login.message,
+    l_isAuth: state.login.isAuth,
+    l_userEmail: state.login.userEmail,
+    l_userToken: state.login.userToken,
+    l_userData: state.login.userData,
+    l_userName: state.login.userName,
+
+    message: state.login.message,
+
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -64,7 +64,7 @@ class SuccessPage extends React.Component {
                                         </div>
                                     </div>
                                     <div className={`d-flex flex-column pr-4`}>
-                                        <div style={{fontSize:"small",color:"#777"}}>Check-in</div>
+                                        <div style={{fontSize:"small",color:"#777"}}>Check-out</div>
                                         <div className={`pr-4`}>
                                             <div style={{fontSize:"46px",fontWeight:"bold",textAlign:"center"}}>1</div>
                                             <div style={{fontSize:"12px",marginTop:"0px",textAlign:"center",fontWeight:"bold"}}>AUG 2020</div>
