@@ -40,6 +40,7 @@ import {AiOutlineDislike} from "react-icons/ai";
 import Carousel from "react-elastic-carousel";
 import {bookingSearchData} from '../../redux/Booking/action'
 import {Link} from 'react-router-dom'
+import BillingPage from './BillingPage.jsx';
 
 class Entity extends Component {
     constructor(props) {
@@ -99,8 +100,19 @@ class Entity extends Component {
 
     render() {
         const {entityData, reviewData, recommendationsData,checkAvailability} = this.props
-        const {checkInDate,checkOutDate} = this.state
-        console.log(checkAvailability)
+        const {checkInDate,checkOutDate,roomBookPage,childrenBookPage,adultBookPage} = this.state
+        console.log(entityData)
+        const adultCount = entityData["adult_budget_per_night"] * adultBookPage
+        const childCount = entityData['child_budget_per_night'] * childrenBookPage
+        const total = roomBookPage * (adultCount + childCount + 1000 + 500 +50)
+        console.log(total)
+        let obj = {
+            num_rooms:roomBookPage,
+            num_adults:adultBookPage,
+            num_child:childrenBookPage,
+            total:total
+        }
+        console.log(obj)
         const breakPoints = [
             { width: 1, itemsToShow: 3 },
             { width: 550, itemsToShow: 3 },
@@ -165,7 +177,7 @@ class Entity extends Component {
             }
         ]
         // console.log("entity data is", entityData)
-        console.log(checkInDate,checkOutDate)
+        // console.log(checkInDate,checkOutDate)
         const reviewArray = [["Rooms are beautiful, staff is amazing, as is breakfast", "Sarah", "USA"]]
         return (
             <div className={`${style.body}`}>
@@ -899,13 +911,17 @@ class Entity extends Component {
 
                                             </div>
                                         </div>
-
+                                        <div>
+                                            {/* <div className={`${style.confirmDiv}`} style={{marginTop:"5%"}}> */}
+                                                 <BillingPage /> 
+                                            {/* </div> */}
+                                        </div>  
+                                         
                                         <div>
                                             <div className={`${style.confirmDiv}`} style={{marginTop:"3%"}}>
                                                 <div className={`d-flex flex-column`}>
                                                     <div className={`d-flex flex-row`}>
                                                         <div style={{fontSize:"18px",fontWeight:"bold"}}>The Leela Palace Bangalore</div>
-
                                                         <RiStarSLine
                                                             style={{marginTop: "7px", marginLeft: "12px", color: "#febb02"}}/>
                                                         <RiStarSLine style={{marginTop: "7px", color: "#febb02"}}/>
@@ -919,23 +935,23 @@ class Entity extends Component {
                                                     <div className={`d-flex flex-column mt-3`} style={{textAlign:"left"}}>
                                                         <div style={{fontSize:"14px"}} className={`d-flex flex-row`}>
                                                             <div style={{width:"20%"}}>No.of Rooms</div>
-                                                            <div className={`ml-4`}>2</div>
+                                                            <div className={`ml-4`}>{roomBookPage}</div>
                                                         </div>
                                                         <div style={{fontSize:"14px"}} className={`d-flex flex-row mt-2`}>
                                                             <div style={{width:"20%"}}>No.of Adults</div>
-                                                            <div className={`ml-4`}>2</div>
+                                                            <div className={`ml-4`}>{adultBookPage}</div>
                                                         </div>
                                                         <div style={{fontSize:"14px"}} className={`d-flex flex-row mt-2`}>
                                                             <div style={{width:"20%"}}>No.of Children</div>
-                                                            <div className={`ml-4`}>2</div>
+                                                            <div className={`ml-4`}>{childrenBookPage}</div>
                                                         </div>
                                                         <div style={{fontSize:"14px"}} className={`d-flex flex-row mt-2`}>
                                                             <div style={{width:"20%"}}>Price per adult</div>
-                                                            <div className={`ml-4`}>₹3000</div>
+                                                            <div className={`ml-4`}>₹{entityData["adult_budget_per_night"]}</div>
                                                         </div>
                                                         <div style={{fontSize:"14px"}} className={`d-flex flex-row mt-2`}>
                                                             <div style={{width:"20%"}}>Price per child</div>
-                                                            <div className={`ml-4`}>₹500</div>
+                                                            <div className={`ml-4`}>₹{entityData["child_budget_per_night"]}</div>
                                                         </div>
                                                         <div style={{fontSize:"14px"}} className={`d-flex flex-row mt-2`}>
                                                             <div style={{width:"20%"}}>Service Fee</div>
@@ -951,13 +967,14 @@ class Entity extends Component {
                                                         </div>
                                                         <div style={{fontSize:"24px"}} className={`d-flex flex-row mt-2`}>
                                                             <div style={{width:"20%"}}>Total</div>
-                                                            <div className={`ml-4`}>(#Total Amount)</div>
+                                                            <div className={`ml-4`}>{total}</div>
                                                         </div>
-                                                        <button className={`btn mt-4 btn-small`} style={{backgroundColor:"#0071c2",color:"white",width:"20%",margin:"0px auto"}}>Proceed to Pay</button>
+                                                        <Link to="/booking">
+                                                            <button className={`btn mt-4 btn-small`} style={{backgroundColor:"#0071c2",color:"white",width:"20%",margin:"0px auto"}}>Proceed to Pay</button>
+                                                        </Link>
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </>
 
