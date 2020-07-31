@@ -1,0 +1,104 @@
+.footer{
+    /* background-color: #303036; */
+    background-color: black;
+    background-color: #fff;
+    color:#d3d3d3;
+    height: 800px;
+    position: relative;
+    margin-top: 2em;
+    left:0;
+    bottom:0;
+    right:0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.footerHeader{
+    width: 100%;
+    background-color: #003580;
+    padding: 10px;
+}
+
+.headerFirstDiv{
+    min-height: 30px;
+    margin: 0px auto;
+    padding: 10px;
+}
+
+.headerFirstDiv button{
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    font-size: 13px;
+
+}
+.buttonDiv{
+    margin: 0px auto;
+}
+
+
+.footerContent{
+    height: 350px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.descr{
+    font-size: 12px;
+    border-top: 1px solid #fafcff;
+    border-bottom: 1px solid #fafcff;
+    padding: 11px 8px 11px 8px;
+    color: #333;
+    margin-top: 1%;
+    text-align: justify;
+}
+.footerAbout{
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+}
+.footerAbout > *{
+    margin-bottom: 5%;
+    color:#0071c2;
+    font-size: 13px;
+    font-weight: 400;
+}
+.footer > *{
+    color: white;
+}
+
+.footerBottom{
+    background-color: #343a40;
+    color: #686868;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding-top: 20px;
+}
+.pageWrapper{
+    min-height: 100%;
+}
+.blueDivListings > *{
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 2%;
+}
+.logos{
+    display: flex;
+    flex-direction: row;
+    /*border: 1px solid black;*/
+    width: 100%;
+    /*text-align: center;*/
+}
+.logos > *{
+    margin-left: 5%;
+}
