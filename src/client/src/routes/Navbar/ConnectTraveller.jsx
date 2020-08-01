@@ -3,13 +3,11 @@ import style from "./RecommendCard.module.css";
 
 class ConnectTraveller extends React.Component{
     render(){
-        // console.log(this.props,"Ashok")
-        // const activePath = this.props.match.url
         const {data} = this.props;
         return(
             
             <div className={`${style.container}`}>
-                <img src={data.address} alt="notfound"/>
+                <img src={data.address} alt="notfound" style={{height:"100%",width:"100%"}}/>
                 <br/>
                 <div style={{fontWeight:"bold",fontSize:"14px",textAlign:"left"}}> <h5>{data.name}</h5></div>
                 <div className={`d-flex flex-row`}>

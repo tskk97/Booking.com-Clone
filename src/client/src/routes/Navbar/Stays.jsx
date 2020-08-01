@@ -114,8 +114,7 @@ class Stays extends React.Component {
         const profData=l_userData[0]
         console.log(profData)
         if(l_isAuth || r_isAuth){
-            // if(l_userData[0].firstname=== null || l_userData[0].lastname===null || l_userData[0].mobile_num===null){
-                console.log("ashh")
+                // console.log("ashh")
                 setTimeout(() => {
                     this.setState({
                          isProfile:true
@@ -289,7 +288,7 @@ class Stays extends React.Component {
                                 </div>
                             </div>
                             <br/>
-                            <h3>Browse by property type</h3>
+                            <h3 style={{fontSize:"24px",fontWeight:"700"}}>Browse by property type</h3>
                             <br/>
                             <div className={`${style.recommendDiv}`}>
                                 {/* <h1 style={{fontSize: "18px",textAlign:"left",marginLeft:"8%"}}></h1> */}
@@ -300,12 +299,11 @@ class Stays extends React.Component {
                                 </Carousel>
                             </div>
                             <br/>
-                            <h3>Connect with other travellers</h3>
+                            <h3 style={{fontSize:"24px",fontWeight:"700"}}>Connect with other travellers</h3>
                             <br/>
                             <div className={`${style.recommendDiv}`}>
-                                {/* <h1 style={{fontSize: "18px",textAlign:"left",marginLeft:"8%"}}></h1> */}
                                 <Carousel breakPoints={breakPoints} pagination={false}>
-                                    { data.crousel1 && data.crousel1.map((item, index) => (
+                                    { data.crousel2 && data.crousel2.map((item, index) => (
                                         <ConnectTraveller key={uuidv4()} data={item}/>
                                     ))}
                                 </Carousel>
