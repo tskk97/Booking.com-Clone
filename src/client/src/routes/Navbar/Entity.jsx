@@ -941,61 +941,146 @@ class Entity extends Component {
 
                                         {!this.state.checkAvailFlag ? <BillingDetails data={obj} match={match} checkAvailability={checkAvailability} checkInDate={this.state.checkInDate} checkOutDate={this.state.checkOutDate} num_rooms={this.state.roomBookPage} num_adults={this.state.adultBookPage} num_child={this.state.childrenBookPage} num_nights={this.state.num_nights} l_isAuth={l_isAuth} r_isAuth={r_isAuth} /> : ""}
                                     </>
-                                    
+                                    <br/>
                                     <br/> 
                                 {/* FAQ */}
                                     <div className={`d-flex flex-row justify-content-between`}>
-                                        <div className={`d-flex flex-column mt-2`}>
-                                            <h3>FAQs about Radisson Bengaluru City Center</h3>
+                                        <div className={`d-flex flex-column  col-3`} style={{fontWeight:600,fontSize:24}}>
+                                            <h2>FAQs about Radisson Bengaluru City Center</h2>
                                         </div>
-                                        <div className={`d-flex flex-column mt-2`}>
+                                        <div className={`d-flex flex-column mt-2 col-9`}>
                                         <div class="accordion" id="accordionExample">
                                       <div class="card">
                                         <div class="card-header" id="headingOne">
                                           <h2 class="mb-0">
-                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                              Collapsible Group Item #1
+                                            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                <h5>How can i get to Radisson Bengaluru City Center from the nearest airport?</h5>
                                             </button>
                                           </h2>
                                         </div>
-
                                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                          <div class="card-body">
-                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                          </div>
+                                          <div class="card-body" style={{fontSize:18}}>
+                                            From the nearest airport, you can get to Radisson Bengaluru City Center by:
+                                            <li>
+                                                car 55min
+                                            </li>
+                                           </div>
                                         </div>
                                       </div>
                                       <div class="card">
                                         <div class="card-header" id="headingTwo">
                                           <h2 class="mb-0">
-                                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                              Collapsible Group Item #2
+                                            <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <h5>What kind of breakfast is served at Radisson engaluru City Center </h5>                         
                                             </button>
                                           </h2>
                                         </div>
                                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                          <div class="card-body">
-                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                          </div>
+                                        <div class="card-body" style={{fontSize:18}}>
+                                            Guests staying at Radisson Bengaluru City Center can enjoy a highly-rated breakfast during their stay (guest review score: 8.3).
+                                            <li>Continental</li>
+                                            <li>Vegetarian</li>
+                                            <li>Halal</li>
+                                            <li>American</li>
+                                        </div>
                                         </div>
                                       </div>
                                       <div class="card">
                                         <div class="card-header" id="headingThree">
                                           <h2 class="mb-0">
-                                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                              Collapsible Group Item #3
-                                            </button>
+                                            <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                <h5>Can I park a car at Radisson Bengaluru City Center</h5>                         
+                                             </button>
                                           </h2>
                                         </div>
                                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                          <div class="card-body">
-                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                          </div>
+                                        <div class="card-body" style={{fontSize:18}}>
+                                            The following parking options are available to guests staying at Radisson Bengaluru City Center (subject to availability):                                            <li>Continental</li>
+                                            <li>Vegetarian</li>
+                                            <li>Halal</li>
+                                            <li>American</li>
                                         </div>
-                                      </div>
+                                        </div>
                                     </div>
+                                    <div class="card">
+                                        <div class="card-header" id="headingFour">
+                                          <h2 class="mb-0">
+                                            <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                                                <h5>What type of room can i book at Radisson Bengaluru City Center</h5>                         
+                                             </button>
+                                          </h2>
+                                        </div>
+                                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                                        <div class="card-body" style={{fontSize:18}}>
+                                            The following parking options are available to guests staying at Radisson Bengaluru City Center (subject to availability):                                            
+                                            <li>Continental</li>
+                                            <li>Vegetarian</li>
+                                            <li>Halal</li>
+                                            <li>American</li>
                                         </div>
                                         </div>
+                                    </div>
+                                    
+                                    <div class="card">
+                                        <div class="card-header" id="headingFive">
+                                          <h2 class="mb-0">
+                                            <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
+                                                <h5>Does Radisson Bengaluru City Center have a Restaurant on site</h5>                         
+                                             </button>
+                                          </h2>
+                                        </div>
+                                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                                        <div class="card-body" style={{fontSize:18}}>
+                                            The following parking options are available to guests staying at Radisson Bengaluru City Center (subject to availability):                                            
+                                            <li>Continental</li>
+                                            <li>Vegetarian</li>
+                                            <li>Halal</li>
+                                            <li>American</li>
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-header" id="headingSix">
+                                          <h2 class="mb-0">
+                                            <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
+                                                <h5>what are the check-in and check-out times at Radisson Bengaluru City Center?</h5>                         
+                                             </button>
+                                          </h2>
+                                        </div>
+                                        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                                        <div class="card-body" style={{fontSize:18}}>
+                                            The following parking options are available to guests staying at Radisson Bengaluru City Center (subject to availability):                                            
+                                            <li>Continental</li>
+                                            <li>Vegetarian</li>
+                                            <li>Halal</li>
+                                            <li>American</li>
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-header" id="headingSeven">
+                                          <h2 class="mb-0">
+                                            <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseThree">
+                                                <h5>How much does it cost to stay at Radisson Bengaluru City Center</h5>                         
+                                             </button>
+                                          </h2>
+                                        </div>
+                                        <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+                                        <div class="card-body" style={{fontSize:18}}>
+                                            The following parking options are available to guests staying at Radisson Bengaluru City Center (subject to availability):                                            
+                                            <li>Continental</li>
+                                            <li>Vegetarian</li>
+                                            <li>Halal</li>
+                                            <li>American</li>
+                                        </div>
+                                        </div>
+                                    </div>
+                                
+                                    </div>
+                                 </div>
+                                 </div>
                                 </div>
                             </div>  
                             <div className={`${style.recommendDiv}`}>
