@@ -375,3 +375,13 @@
     padding: 16px;
     font-weight: bold;
 }
+.faq{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    background-color: #ebf3ff;
+    border: 1px solid #ebf3ff;
+    border-radius: 3px;
+    padding: 15px;
+}
