@@ -1,51 +1,96 @@
-{"crousel1":[
+{
+  "crousel1": [
     {
-        "name": "Hotels",
-        "address": "https://r-cf.bstatic.com/xdata/images/xphoto/square300/57584488.webp?k=bf724e4e9b9b75480bbe7fc675460a089ba6414fe4693b83ea3fdd8e938832a6&o=",
-        "total":"719 828 hotels"
-
+      "name": "Hotels",
+      "address": "https://cf.bstatic.com/xdata/images/xphoto/square300/57584488.webp?k=bf724e4e9b9b75480bbe7fc675460a089ba6414fe4693b83ea3fdd8e938832a6&o=",
+      "total": "719 828 hotels"
     },
     {
-        "name": "Apartments",
-        "address": "https://r-cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-apartments_300/9f60235dc09a3ac3f0a93adbc901c61ecd1ce72e.jpg",
-        "total":"798,941 apartments"
-    },
-
-    {
-        "name": "Resorts",
-        "address": "https://r-cf.bstatic.com/static/img/theme-index/carousel_320x240/bg_resorts/6f87c6143fbd51a0bb5d15ca3b9cf84211ab0884.jpg",
-        "total":"20,803 resorts"
+      "name": "Apartments",
+      "address": "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-apartments_300/9f60235dc09a3ac3f0a93adbc901c61ecd1ce72e.jpg ",
+      "total": "798,941 apartments"
     },
     {
-        "name": "Villas",
-        "address": "https://q-cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-villas_300/dd0d7f8202676306a661aa4f0cf1ffab31286211.jpg",
-        "total":"404,225 villas"
+      "name": "Resorts",
+      "address": "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/bg_resorts/6f87c6143fbd51a0bb5d15ca3b9cf84211ab0884.jpg",
+      "total": "20,803 resorts"
     },
     {
-        "name": "Cabins",
-        "address": "https://r-cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-chalet_300/8ee014fcc493cb3334e25893a1dee8c6d36ed0ba.jpg",
-        "total":"14,113 cabins"
+      "name": "Villas",
+      "address": "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-villas_300/dd0d7f8202676306a661aa4f0cf1ffab31286211.jpg ",
+      "total": "404,225 villas"
     },
     {
-        "name": "Cottages",
-        "address": "https://q-cf.bstatic.com/static/img/theme-index/carousel_320x240/bg_cottages/5e1fd9cd716f4825c6c7eac5abe692c52cc64516.jpg",
-        "total":"127,259 cottages"
+      "name": "Cabins",
+      "address": "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-chalet_300/8ee014fcc493cb3334e25893a1dee8c6d36ed0ba.jpg",
+      "total": "14,113 cabins"
     },
     {
-        "name": "Glamping",
-        "address": "https://r-cf.bstatic.com/static/img/theme-index/carousel_320x240/bg_glamping/6e181b9e942c160f4605239be7ddc1728cbcc4c8.jpg",
-        "total":"10,794 glamping sites"
+      "name": "Cottages",
+      "address": "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/bg_cottages/5e1fd9cd716f4825c6c7eac5abe692c52cc64516.jpg",
+      "total": "127,259 cottages"
     },
     {
-        "name": "Serviced Apartments",
-        "address": "https://q-cf.bstatic.com/static/img/theme-index/carousel_320x240/bg_aparthotel/10e092f390b128dcff92727912299eef7824b751.jpg",
-        "total":"35,206 serviced apartments"
+      "name": "Glamping",
+      "address": "https://r-cf.bstatic.com/static/img/theme-index/carousel_320x240/bg_glamping/6e181b9e942c160f4605239be7ddc1728cbcc4c8.jpg",
+      "total": "10,794 glamping sites"
     },
     {
-        "name": "Holiday Homes",
-        "address": "https://q-cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-holidayhomes_300/604c7484d34a9e8791c2d5a0e2df4bc8c803dc7c.jpg",
-        "total":"404,225 holiday homes"
+      "name": "Serviced Apartments",
+      "address": "https://q-cf.bstatic.com/static/img/theme-index/carousel_320x240/bg_aparthotel/10e092f390b128dcff92727912299eef7824b751.jpg",
+      "total": "35,206 serviced apartments"
+    },
+    {
+      "name": "Holiday Homes",
+      "address": "https://q-cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-holidayhomes_300/604c7484d34a9e8791c2d5a0e2df4bc8c803dc7c.jpg",
+      "total": "404,225 holiday homes"
     }
-
-]
+  ],
+  "crousel2": [
+    {
+      "name": "Thailand",
+      "address": "https://cf.bstatic.com/static/img/communities/cover-photo/300x300/thailand/e1787e60e728f9960461b085ca4719f852d39a30.jpg",
+      "total": "197,779,travelers"
+    },
+    {
+      "name": "India",
+      "address": "https://cf.bstatic.com/static/img/communities/cover-photo/300x300/india/a047bf294ce2d2e145fdcdd3097b9a7f4e6df229.jpg",
+      "total": "141,874,travelers"
+    },
+    {
+      "name": "Travel Talk",
+      "address": "https://cf.bstatic.com/static/img/communities/cover-photo/300x300/travel-discussions/35a717b9feba5c8f800e2a8949dfa5014e4e79b4.jpg",
+      "total": "366,811 travelers"
+    },
+    {
+      "name": "Portugal",
+      "address": "https://cf.bstatic.com/static/img/communities/cover-photo/300x300/portugal/21e7947c14dfef96198d7edde59340ad455f76f4.jpg",
+      "total": "191,343 travelers"
+    },
+    {
+      "name": "Greece",
+      "address": "https://cf.bstatic.com/static/img/communities/cover-photo/300x300/greece/6adb819f5dfaf299f795d17cc627a83910e499eb.jpg",
+      "total": "215,842 travelers"
+    },
+    {
+      "name": "Cottages",
+      "address": "https://q-cf.bstatic.com/static/img/theme-index/carousel_320x240/bg_cottages/5e1fd9cd716f4825c6c7eac5abe692c52cc64516.jpg",
+      "total": "127,259 cottages"
+    },
+    {
+      "name": "Glamping",
+      "address": "https://r-cf.bstatic.com/static/img/theme-index/carousel_320x240/bg_glamping/6e181b9e942c160f4605239be7ddc1728cbcc4c8.jpg",
+      "total": "10,794 glamping sites"
+    },
+    {
+      "name": "Serviced Apartments",
+      "address": "https://q-cf.bstatic.com/static/img/theme-index/carousel_320x240/bg_aparthotel/10e092f390b128dcff92727912299eef7824b751.jpg",
+      "total": "35,206 serviced apartments"
+    },
+    {
+      "name": "Holiday Homes",
+      "address": "https://q-cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-holidayhomes_300/604c7484d34a9e8791c2d5a0e2df4bc8c803dc7c.jpg",
+      "total": "404,225 holiday homes"
+    }
+  ]
 }
