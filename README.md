@@ -2,6 +2,26 @@
 ​
 Before starting with the coding it is essential to go through our documentation. So that you have a fair idea on how to contribute with the format organisation follows.
 ​
+### Demo
+
+​
+### Screenshots
+<p align = center>
+  <p>Home Page:<p>
+  <img src="Booking.comHome.png"  width="900px" height="500px">
+ 
+   ​
+  <p>Entity Page:<p>
+  <img src="Booking.comEntity.png" width="900px" height="500px">
+   ​
+  <p>Map Section:<p>
+  <img src="Booking.com maps.png"  width="900px" height="500px">
+   ​
+  <p>Payment Section:<p>
+  <img src="Booking.com payment.png"  width="900px" height="500px">
+<p>
+
+​
 ### Code of Conduct
 https://github.com/masai-oss/open-template/wiki/Code-of-Conduct
 ​
